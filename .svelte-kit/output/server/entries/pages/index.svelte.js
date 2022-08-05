@@ -2570,7 +2570,7 @@ const SlotTable = create_ssr_component(($$result, $$props, $$bindings, slots) =>
 });
 const index_svelte_svelte_type_style_lang = "";
 const css = {
-  code: ".optionForm.svelte-s52mco{width:60%;margin:0 auto;line-height:3.5ch;padding:5px 10px;border:1px solid black}.inactive.svelte-s52mco{display:none}footer.svelte-s52mco{width:20%;margin:20px auto;display:block;justify-content:center;align-items:center;padding:40px;color:hsl(0, 0%, 65%)}",
+  code: ":root{font-family:Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,\n		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;--font-mono:'Fira Mono', monospace;--pure-white:#ffffff;--primary-color:#b9c6d2;--secondary-color:#d0dde9;--tertiary-color:#edf0f8;--accent-color:#444444;--heading-color:rgba(0, 0, 0, 0.7);--text-color:#444444;--background-without-opacity:rgba(255, 255, 255, 0.7);--column-width:42rem;--column-margin-top:4rem}a.svelte-7851f5{color:var(--accent-color);text-decoration:none}a.svelte-7851f5:hover{text-decoration:underline}input.svelte-7851f5,button.svelte-7851f5{font-size:inherit;font-family:inherit}button.svelte-7851f5:focus:not(:focus-visible){outline:none}.optionForm.svelte-7851f5{width:60%;margin:0 auto;line-height:3.5ch;padding:5px 10px;border:1px solid black}.inactive.svelte-7851f5{display:none}footer.svelte-7851f5{width:20%;margin:20px auto;display:block;justify-content:center;align-items:center;padding:40px;color:hsl(0, 0%, 65%)}",
   map: null
 };
 const Routes = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -2627,49 +2627,49 @@ const Routes = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       compare = null;
     }
   }
-  return `${$$result.head += `${$$result.title = `<title>\u5B8C\u58F2\u8868DB</title>`, ""}<meta name="${"description"}" content="${"Svelte demo app"}" data-svelte="svelte-zmzlri">`, ""}
-    
-    <div class="${"optionForm svelte-s52mco"}"><label for="${"cdSelect"}">CD:</label>
-        <select id="${"cdSelect"}" name="${"cd"}" style="${"margin-left: 15px; margin-right: 15px"}">${each(cdlist, (cd, i) => {
+  return `${$$result.head += `${$$result.title = `<title>\u5B8C\u58F2\u8868DB</title>`, ""}<meta name="${"description"}" content="${"Svelte demo app"}" data-svelte="svelte-xhkfe6">`, ""}
+
+<div class="${"optionForm svelte-7851f5"}"><label for="${"cdSelect"}">CD:</label>
+    <select id="${"cdSelect"}" name="${"cd"}" style="${"margin-left: 15px; margin-right: 15px"}">${each(cdlist, (cd, i) => {
     return `<option${add_attribute("value", i, 0)}>${escape(cd.display)}</option>`;
   })}</select>
-        
-        
-        <div id="${"filterOptDiv"}">Filter:
-            ${each(filterMethod, (filt) => {
-    return `<label><input type="${"radio"}" name="${"filterOpt"}"${add_attribute("id", filt.value, 0)}${add_attribute("value", filt.value, 0)}${filt.value === filterOpt ? add_attribute("checked", true, 1) : ""}>
-                ${escape(filt.display)}
-            </label>`;
+    
+    
+    <div id="${"filterOptDiv"}">Filter:
+        ${each(filterMethod, (filt) => {
+    return `<label><input type="${"radio"}" name="${"filterOpt"}"${add_attribute("id", filt.value, 0)}${add_attribute("value", filt.value, 0)} class="${"svelte-7851f5"}"${filt.value === filterOpt ? add_attribute("checked", true, 1) : ""}>
+            ${escape(filt.display)}
+        </label>`;
   })}
-            </div>
-    
-        <div id="${"groupDiv"}">Group:
-            ${each(groupMethod, (grp) => {
-    return `<label><input type="${"radio"}" name="${"groupOpt"}"${add_attribute("id", grp.value, 0)}${add_attribute("value", grp.value, 0)}${grp.value === groupOpt ? add_attribute("checked", true, 1) : ""}>
-                ${escape(grp.display)}
-            </label>`;
+        </div>
+
+    <div id="${"groupDiv"}">Group:
+        ${each(groupMethod, (grp) => {
+    return `<label><input type="${"radio"}" name="${"groupOpt"}"${add_attribute("id", grp.value, 0)}${add_attribute("value", grp.value, 0)} class="${"svelte-7851f5"}"${grp.value === groupOpt ? add_attribute("checked", true, 1) : ""}>
+            ${escape(grp.display)}
+        </label>`;
   })}</div>
-    
-        <div id="${"sortDiv"}">Sort: 
-            ${each(sortMethod, (sort) => {
-    return `<label><input type="${"radio"}" name="${"sortOpt"}"${add_attribute("id", sort.value, 0)}${add_attribute("value", sort.value, 0)}${sort.value === sortOpt ? add_attribute("checked", true, 1) : ""}>
-                ${escape(sort.display)}
-            </label>`;
+
+    <div id="${"sortDiv"}">Sort: 
+        ${each(sortMethod, (sort) => {
+    return `<label><input type="${"radio"}" name="${"sortOpt"}"${add_attribute("id", sort.value, 0)}${add_attribute("value", sort.value, 0)} class="${"svelte-7851f5"}"${sort.value === sortOpt ? add_attribute("checked", true, 1) : ""}>
+            ${escape(sort.display)}
+        </label>`;
   })}		
-            </div></div>
-    <div class="${"optionForm svelte-s52mco"}"><label><input type="${"checkbox"}" name="${"compareCD"}" id="${"compareCD"}"${add_attribute("checked", compareCD, 1)}>
-            \u904E\u53BB\u306E\u58F2\u308A\u4E0A\u3052\u3068\u306E\u5DEE
-        </label>
-        <span class="${["svelte-s52mco", "inactive"].join(" ").trim()}"><label for="${"cd2Select"}">\u2192 \u5BFE\u8C61CD:</label>
-            <select id="${"cd2Select"}" name="${"cd2"}" style="${"margin-left: 5px; margin-right: 5px"}">${each(cdlist, (cd, i) => {
+        </div></div>
+<div class="${"optionForm svelte-7851f5"}"><label><input type="${"checkbox"}" name="${"compareCD"}" id="${"compareCD"}" class="${"svelte-7851f5"}"${add_attribute("checked", compareCD, 1)}>
+        \u904E\u53BB\u306E\u58F2\u308A\u4E0A\u3052\u3068\u306E\u5DEE
+    </label>
+    <span class="${["svelte-7851f5", "inactive"].join(" ").trim()}"><label for="${"cd2Select"}">\u2192 \u5BFE\u8C61CD:</label>
+        <select id="${"cd2Select"}" name="${"cd2"}" style="${"margin-left: 5px; margin-right: 5px"}">${each(cdlist, (cd, i) => {
     return `${i != selected ? `<option${add_attribute("value", i, 0)}>${escape(cd.display)}</option>` : ``}`;
   })}</select>
-            ${isSelectedGood(selected2) ? `<select id="${"drawSelect"}" name="${"drawSelect"}" style="${"margin-left: 2px; margin-right: 2px"}">${each([...Array(selectableDraw).keys()], (i) => {
+        ${isSelectedGood(selected2) ? `<select id="${"drawSelect"}" name="${"drawSelect"}" style="${"margin-left: 2px; margin-right: 2px"}">${each([...Array(selectableDraw).keys()], (i) => {
     return `<option${add_attribute("value", i + 1, 0)}>${escape(i + 1)}</option>`;
   })}</select><label for="${"drawSelect"}">\u6B21\u53D7\u4ED8</label>` : ``}
-            ${``}</span></div>
-    
-    ${validate_component(SlotTable, "SlotTable").$$render(
+        ${``}</span></div>
+
+${validate_component(SlotTable, "SlotTable").$$render(
     $$result,
     {
       data: selectedCDdata,
@@ -2681,9 +2681,9 @@ const Routes = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     {},
     {}
   )}
-    
-    <footer class="${"svelte-s52mco"}">Author: <a href="${"https://github.com/universallyleo"}">universallyleo</a>.  Soruce: <a href="${"https://github.com/universallyleo/ngzkMeetData"}">Github</a>	
-    </footer>`;
+
+<footer class="${"svelte-7851f5"}">Author: <a href="${"https://github.com/universallyleo"}" class="${"svelte-7851f5"}">universallyleo</a>.  Soruce: <a href="${"https://github.com/universallyleo/ngzkMeetData"}" class="${"svelte-7851f5"}">Github</a>	
+</footer>`;
 });
 export {
   Routes as default

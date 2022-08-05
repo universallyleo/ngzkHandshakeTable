@@ -80,6 +80,9 @@ export const LOGONSERVER = "\\\\DESKTOP-7IDMR5C";
 /** @type {import('$env/static/private').NODE} */
 export const NODE = "C:\\Program Files\\nodejs\\node.exe";
 
+/** @type {import('$env/static/private').NODE_ENV} */
+export const NODE_ENV = "production";
+
 /** @type {import('$env/static/private').NODE_EXE} */
 export const NODE_EXE = "C:\\Program Files\\nodejs\\\\node.exe";
 
@@ -129,10 +132,10 @@ export const npm_config_user_agent = "npm/8.15.1 node/v16.13.2 win32 x64 workspa
 export const npm_execpath = "C:\\Users\\Aaron Chan\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js";
 
 /** @type {import('$env/static/private').npm_lifecycle_event} */
-export const npm_lifecycle_event = "dev";
+export const npm_lifecycle_event = "build";
 
 /** @type {import('$env/static/private').npm_lifecycle_script} */
-export const npm_lifecycle_script = "vite dev";
+export const npm_lifecycle_script = "vite build";
 
 /** @type {import('$env/static/private').npm_node_execpath} */
 export const npm_node_execpath = "C:\\Program Files\\nodejs\\node.exe";

@@ -4,62 +4,62 @@
 		<meta charset="utf-8" />
 		<link rel="icon" href="/ngzkHandshakeTable/favicon.png" />
 		<meta name="viewport" content="width=device-width" />
-		<meta http-equiv="content-security-policy" content=""><title>完売表DB</title><meta name="description" content="Svelte demo app" data-svelte="svelte-zmzlri">
-	<link rel="stylesheet" href="/ngzkHandshakeTable/_app/immutable/assets/index-5e71d7a7.css">
-	<link rel="modulepreload" href="/ngzkHandshakeTable/_app/immutable/start-cefc86b3.js">
+		<meta http-equiv="content-security-policy" content=""><title>完売表DB</title><meta name="description" content="Svelte demo app" data-svelte="svelte-xhkfe6">
+	<link rel="stylesheet" href="/ngzkHandshakeTable/_app/immutable/assets/index-453c5a77.css">
+	<link rel="modulepreload" href="/ngzkHandshakeTable/_app/immutable/start-86a096d0.js">
 	<link rel="modulepreload" href="/ngzkHandshakeTable/_app/immutable/chunks/index-432807d3.js">
 	<link rel="modulepreload" href="/ngzkHandshakeTable/_app/immutable/layout.svelte-97181f7a.js">
-	<link rel="modulepreload" href="/ngzkHandshakeTable/_app/immutable/pages/index.svelte-83945552.js">
+	<link rel="modulepreload" href="/ngzkHandshakeTable/_app/immutable/pages/index.svelte-00b1a958.js">
 	</head>
 	<body>
 		<div>
 
 
 
+
+<div class="optionForm svelte-7851f5"><label for="cdSelect">CD:</label>
+    <select id="cdSelect" name="cd" style="margin-left: 15px; margin-right: 15px"><option value="0">28th Single</option><option value="1">1st Best Album</option><option value="2">29th Single</option><option value="3">30th Single</option></select>
     
-    <div class="optionForm svelte-s52mco"><label for="cdSelect">CD:</label>
-        <select id="cdSelect" name="cd" style="margin-left: 15px; margin-right: 15px"><option value="0">28th Single</option><option value="1">1st Best Album</option><option value="2">29th Single</option><option value="3">30th Single</option></select>
-        
-        
-        <div id="filterOptDiv">Filter:
-            <label><input type="radio" name="filterOpt" id="showall" value="showall" checked>
-                全メンバー
-            </label><label><input type="radio" name="filterOpt" id="hasunsold" value="hasunsold">
-                未完売部数あり
-            </label><label><input type="radio" name="filterOpt" id="hassoldout" value="hassoldout">
-                一部以上完売
-            </label><label><input type="radio" name="filterOpt" id="hassoldoutnonfull" value="hassoldoutnonfull">
-                一部以上完売、全完売なし
-            </label>
-            </div>
     
-        <div id="groupDiv">Group:
-            <label><input type="radio" name="groupOpt" id="gen" value="gen" checked>
-                期別分け
-            </label><label><input type="radio" name="groupOpt" id="group" value="group">
-                選抜・アンダー・他
-            </label><label><input type="radio" name="groupOpt" id="dob-year" value="dob-year">
-                誕生年別
-            </label><label><input type="radio" name="groupOpt" id="soldstatus" value="soldstatus">
-                完売・未完売
-            </label></div>
-    
-        <div id="sortDiv">Sort: 
-            <label><input type="radio" name="sortOpt" id="kana" value="kana" checked>
-                名前（五十音）順
-            </label><label><input type="radio" name="sortOpt" id="numsold" value="numsold">
-                完売数順
-            </label>		
-            </div></div>
-    <div class="optionForm svelte-s52mco"><label><input type="checkbox" name="compareCD" id="compareCD">
-            過去の売り上げとの差
+    <div id="filterOptDiv">Filter:
+        <label><input type="radio" name="filterOpt" id="showall" value="showall" class="svelte-7851f5" checked>
+            全メンバー
+        </label><label><input type="radio" name="filterOpt" id="hasunsold" value="hasunsold" class="svelte-7851f5">
+            未完売部数あり
+        </label><label><input type="radio" name="filterOpt" id="hassoldout" value="hassoldout" class="svelte-7851f5">
+            一部以上完売
+        </label><label><input type="radio" name="filterOpt" id="hassoldoutnonfull" value="hassoldoutnonfull" class="svelte-7851f5">
+            一部以上完売、全完売なし
         </label>
-        <span class="svelte-s52mco inactive"><label for="cd2Select">→ 対象CD:</label>
-            <select id="cd2Select" name="cd2" style="margin-left: 5px; margin-right: 5px"><option value="0">28th Single</option><option value="1">1st Best Album</option><option value="2">29th Single</option></select>
-            
-            </span></div>
-    
-    
+        </div>
+
+    <div id="groupDiv">Group:
+        <label><input type="radio" name="groupOpt" id="gen" value="gen" class="svelte-7851f5" checked>
+            期別分け
+        </label><label><input type="radio" name="groupOpt" id="group" value="group" class="svelte-7851f5">
+            選抜・アンダー・他
+        </label><label><input type="radio" name="groupOpt" id="dob-year" value="dob-year" class="svelte-7851f5">
+            誕生年別
+        </label><label><input type="radio" name="groupOpt" id="soldstatus" value="soldstatus" class="svelte-7851f5">
+            完売・未完売
+        </label></div>
+
+    <div id="sortDiv">Sort: 
+        <label><input type="radio" name="sortOpt" id="kana" value="kana" class="svelte-7851f5" checked>
+            名前（五十音）順
+        </label><label><input type="radio" name="sortOpt" id="numsold" value="numsold" class="svelte-7851f5">
+            完売数順
+        </label>		
+        </div></div>
+<div class="optionForm svelte-7851f5"><label><input type="checkbox" name="compareCD" id="compareCD" class="svelte-7851f5">
+        過去の売り上げとの差
+    </label>
+    <span class="svelte-7851f5 inactive"><label for="cd2Select">→ 対象CD:</label>
+        <select id="cd2Select" name="cd2" style="margin-left: 5px; margin-right: 5px"><option value="0">28th Single</option><option value="1">1st Best Album</option><option value="2">29th Single</option></select>
+        
+        </span></div>
+
+
 
 <table class="table-bordered svelte-1hzf9ls"><caption class="text-center svelte-1hzf9ls">30th Single (最後更新：2次受付)</caption>
   <thead><tr>
@@ -1443,18 +1443,18 @@
 </tr></tbody></table>
 
 
-    
-    <footer class="svelte-s52mco">Author: <a href="https://github.com/universallyleo">universallyleo</a>.  Soruce: <a href="https://github.com/universallyleo/ngzkMeetData">Github</a>	
-    </footer>
+
+<footer class="svelte-7851f5">Author: <a href="https://github.com/universallyleo" class="svelte-7851f5">universallyleo</a>.  Soruce: <a href="https://github.com/universallyleo/ngzkMeetData" class="svelte-7851f5">Github</a>	
+</footer>
 
 
-		<script type="module" data-sveltekit-hydrate="11aqucs">
-		import { set_public_env, start } from "/ngzkHandshakeTable/_app/immutable/start-cefc86b3.js";
+		<script type="module" data-sveltekit-hydrate="1ksl36f">
+		import { set_public_env, start } from "/ngzkHandshakeTable/_app/immutable/start-86a096d0.js";
 
 		set_public_env({});
 
 		start({
-			target: document.querySelector('[data-sveltekit-hydrate="11aqucs"]').parentNode,
+			target: document.querySelector('[data-sveltekit-hydrate="1ksl36f"]').parentNode,
 			paths: {"base":"/ngzkHandshakeTable","assets":"/ngzkHandshakeTable"},
 			session: {},
 			route: true,
