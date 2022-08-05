@@ -66,8 +66,8 @@ $: if (!compareCD) {compare=null;}
 </script>
 
 <svelte:head>
-    <title>完売表DB</title>
-    <meta name="description" content="Svelte demo app" />
+    <title>乃木坂46インタラクティブ式完売表</title>
+    <meta name="description" content="乃木坂46インタラクティブ式完売表" />
 </svelte:head>
 
 <div class="optionForm">
