@@ -1,0 +1,1542 @@
+[{
+   "cd": {"num":28, "type":"Single"},
+   "lastDraw": 19,
+   "meetDates": [
+      "2021-09-25",
+      "2021-10-15",
+      "2021-10-30",
+      "2021-11-12",
+      "2021-12-04",
+      "2021-12-24"
+   ],
+   "sbt": ["Takayama Kazumi", "Higuchi Hina", "Suzuki Ayane", "Iwamoto Renka", "Umezawa Minami", "Kubo Shiori", "Yamashita Mizuki", "Yoda Yuuki", "Endo Sakura", "Kaki Haruka", "Kakehashi Sayaka", "Shibata Yuna", "Seimiya Rei", "Tamura Mayu", "Tsujii Ayame", "Hayakawa Seira"],
+   "table": [
+      {
+         "member": "Takayama Kazumi",
+         "slotsSold": [
+            "x|x|x|x|x",
+            "7|7|8|8|x",
+            "x|x|x|x|x",
+            "x|x|x|x|x",
+            "x|x|x|x|x",
+            "x|x|x|x|x"
+         ]
+      },
+      {
+         "member": "Higuchi Hina",
+         "slotsSold": [
+            "4|4|4|5|5",
+            "||||",
+            "7|8|5|9|6",
+            "||||",
+            "||16||15",
+            "6|5|4|5|3"
+         ]
+      },
+      {
+         "member": "Wada Maaya",
+         "slotsSold": [
+            "||||",
+            "||||",
+            "||||",
+            "||||",
+            "||||",
+            "||||"
+         ]
+      },
+      {
+         "member": "Kitano Hinako",
+         "slotsSold": [
+            "3|3|3|3|3",
+            "6|5|5|4|5",
+            "4|3|3|3|3",
+            "5|5|4|5|3",
+            "5|5|4|4|4",
+            "3|3|2|2|2"
+         ]
+      },
+      {
+         "member": "Suzuki Ayane",
+         "slotsSold": [
+            "4|4|4|5|4",
+            "8|9|8|9|8",
+            "7|6|5|7|5",
+            "13|13|10|12|11",
+            "14|13|10|13|14",
+            "5|6|5|4|3"
+         ]
+      },
+      {
+         "member": "Yamazaki Rena",
+         "slotsSold": [
+            "||||x",
+            "||||x",
+            "||||x",
+            "||||x",
+            "||||x",
+            "||15|5|x"
+         ]
+      },
+      {
+         "member": "Ito Riria",
+         "slotsSold": [
+            "||||",
+            "x|x|x|x|x",
+            "||||",
+            "||||",
+            "||||",
+            "||||"
+         ]
+      },
+      {
+         "member": "Iwamoto Renka",
+         "slotsSold": [
+            "3|2|2|2|2",
+            "x|x|x|x|x",
+            "3|2|2|3|2",
+            "3|3|3|3|2",
+            "3|2|2|2|2",
+            "x|x|x|x|x"
+         ]
+      },
+      {
+         "member": "Umezawa Minami",
+         "slotsSold": [
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2"
+         ]
+      },
+      {
+         "member": "Kubo Shiori",
+         "slotsSold": [
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2"
+         ]
+      },
+      {
+         "member": "Sakaguchi Tamami",
+         "slotsSold": [
+            "||||",
+            "||||",
+            "||||",
+            "8|6|4|6|6",
+            "||||",
+            "19|19|18|16|9"
+         ]
+      },
+      {
+         "member": "Sato Kaede",
+         "slotsSold": [
+            "||||",
+            "||||",
+            "||10||",
+            "||||",
+            "||||",
+            "13|12|9|8|5"
+         ]
+      },
+      {
+         "member": "Nakamura Reno",
+         "slotsSold": [
+            "||||",
+            "x|x|x|x|x",
+            "||||",
+            "x|x|x|x|x",
+            "||||",
+            "||||"
+         ]
+      },
+      {
+         "member": "Mukai Hazuki",
+         "slotsSold": [
+            "||||",
+            "||||",
+            "||||",
+            "||||",
+            "||||",
+            "||||"
+         ]
+      },
+      {
+         "member": "Yamashita Mizuki",
+         "slotsSold": [
+            "1|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2"
+         ]
+      },
+      {
+         "member": "Yoshida Ayano Cristi",
+         "slotsSold": [
+            "||||",
+            "||||",
+            "||||",
+            "||||",
+            "||||",
+            "||||"
+         ]
+      },
+      {
+         "member": "Yoda Yuuki",
+         "slotsSold": [
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2"
+         ]
+      },
+      {
+         "member": "Endo Sakura",
+         "slotsSold": [
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2"
+         ]
+      },
+      {
+         "member": "Kaki Haruka",
+         "slotsSold": [
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2"
+         ]
+      },
+      {
+         "member": "Kakehashi Sayaka",
+         "slotsSold": [
+            "2|2|3|3|3",
+            "4|3|3|3|3",
+            "2|2|2|2|3",
+            "2|2|2|3|3",
+            "3|3|2|3|3",
+            "2|2|3|2|3"
+         ]
+      },
+      {
+         "member": "Kanagawa Saya",
+         "slotsSold": [
+            "8|8|7|8|8",
+            "||||",
+            "3|3|2|3|3",
+            "||||",
+            "||||",
+            "11|9|7|6|5"
+         ]
+      },
+      {
+         "member": "Kitagawa Yuri",
+         "slotsSold": [
+            "||||",
+            "||||",
+            "||||",
+            "||||",
+            "?|?|?|?|?",
+            "?|?|?|?|?"
+         ]
+      },
+      {
+         "member": "Kuromi Haruka",
+         "slotsSold": [
+            "||||",
+            "x|x|||",
+            "x|x|x|x|x",
+            "||||",
+            "||||",
+            "||||"
+         ]
+      },
+      {
+         "member": "Sato Rika",
+         "slotsSold": [
+            "||||",
+            "||||",
+            "|9|7|11|11",
+            "||||",
+            "||15||",
+            "8|7|6|7|4"
+         ]
+      },
+      {
+         "member": "Shibata Yuna",
+         "slotsSold": [
+            "5|4|4|4|5",
+            "8|8|8|8|9",
+            "5|4|3|4|4",
+            "9|9|9|9|8",
+            "9|8|8|7|8",
+            "4|4|3|3|3"
+         ]
+      },
+      {
+         "member": "Seimiya Rei",
+         "slotsSold": [
+            "3|3|3|2|3",
+            "x|x|x|x|x",
+            "2|2|2|2|2",
+            "3|3|3|3|3",
+            "3|2|3|3|3",
+            "x|x|x|2|2"
+         ]
+      },
+      {
+         "member": "Tamura Mayu",
+         "slotsSold": [
+            "2|2|2|2|2",
+            "3|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|3",
+            "3|2|2|2|2",
+            "2|2|2|2|2"
+         ]
+      },
+      {
+         "member": "Tsujii Ayame",
+         "slotsSold": [
+            "3|3|3|3|3",
+            "4|4|4|4|3",
+            "2|2|2|2|3",
+            "4|4|3|3|4",
+            "2|3|3|3|3",
+            "x|x|x|x|x"
+         ]
+      },
+      {
+         "member": "Hayakawa Seira",
+         "slotsSold": [
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2"
+         ]
+      },
+      {
+         "member": "Hayashi Runa",
+         "slotsSold": [
+            "||||",
+            "||||",
+            "||||",
+            "x|x|x|x|x",
+            "||||",
+            "||||19"
+         ]
+      },
+      {
+         "member": "Matsuo Miyu",
+         "slotsSold": [
+            "x|x|||",
+            "||||",
+            "x|x|||",
+            "||||",
+            "||||",
+            "11|7|5|5|4"
+         ]
+      },
+      {
+         "member": "Yakubo Mio",
+         "slotsSold": [
+            "||||",
+            "||||",
+            "||||",
+            "||||",
+            "||||",
+            "||||"
+         ]
+      },
+      {
+         "member": "Yumiki Nao",
+         "slotsSold": [
+            "|||6|",
+            "||10||10",
+            "10|9|7|8|9",
+            "||||",
+            "|16|16||",
+            "10|8|7|6|5"
+         ]
+      }
+   ]
+},
+{
+   "cd": {"num":1, "type":"Best"},
+   "lastDraw": 14,
+   "meetDates": [
+      "2022-01-15",
+      "2022-02-05",
+      "2022-03-11"
+   ],
+   "sbt": ["Higuchi Hina", "Shinuchi Mai", "Suzuki Ayane", "Iwamoto Renka", "Umezawa Minami", "Kubo Shiori", "Yamashita Mizuki", "Yoda Yuuki", "Endo Sakura", "Kaki Haruka", "Kakehashi Sayaka", "Seimiya Rei","Tamura Mayu",  "Tsujii Ayame", "Hayakawa Seira"],
+   "table": [
+      {
+         "member": "Higuchi Hina",
+         "slotsSold": [
+            "||||",
+            "||||",
+            "||||"
+         ]
+      },
+      {
+         "member": "Wada Maaya",
+         "slotsSold": [
+            "||||",
+            "||||",
+            "||||"
+         ]
+      },
+      {
+         "member": "Shinuchi Mai",
+         "slotsSold": [
+            "7|7|8|8|8",
+            "x|x|x|x|x",
+            "x|x|x|x|x"
+         ]
+      },
+      {
+         "member": "Suzuki Ayane",
+         "slotsSold": [
+            "x|x|x|x|x",
+            "||||",
+            "||||14"
+         ]
+      },
+      {
+         "member": "Yamazaki Rena",
+         "slotsSold": [
+            "||||x",
+            "||||x",
+            "||||x"
+         ]
+      },
+      {
+         "member": "Ito Riria",
+         "slotsSold": [
+            "||||",
+            "||||",
+            "||||"
+         ]
+      },
+      {
+         "member": "Iwamoto Renka",
+         "slotsSold": [
+            "||||8",
+            "6|6|6|7|5",
+            "||13|11|9"
+         ]
+      },
+      {
+         "member": "Umezawa Minami",
+         "slotsSold": [
+            "3|2|3|3|3",
+            "4|4|3|3|4",
+            "4|4|3|3|3"
+         ]
+      },
+      {
+         "member": "Kubo Shiori",
+         "slotsSold": [
+            "2|2|2|2|3",
+            "3|3|3|3|3",
+            "3|3|3|3|3"
+         ]
+      },
+      {
+         "member": "Sakaguchi Tamami",
+         "slotsSold": [
+            "||||",
+            "||||",
+            "||||"
+         ]
+      },
+      {
+         "member": "Sato Kaede",
+         "slotsSold": [
+            "||||",
+            "||||",
+            "||||"
+         ]
+      },
+      {
+         "member": "Nakamura Reno",
+         "slotsSold": [
+            "x|x|x|x|x",
+            "||||",
+            "||||"
+         ]
+      },
+      {
+         "member": "Mukai Hazuki",
+         "slotsSold": [
+            "||||",
+            "||||",
+            "||||"
+         ]
+      },
+      {
+         "member": "Yamashita Mizuki",
+         "slotsSold": [
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2"
+         ]
+      },
+      {
+         "member": "Yoshida Ayano Cristi",
+         "slotsSold": [
+            "||||",
+            "||||",
+            "x|x|x|x|x"
+         ]
+      },
+      {
+         "member": "Yoda Yuuki",
+         "slotsSold": [
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2"
+         ]
+      },
+      {
+         "member": "Endo Sakura",
+         "slotsSold": [
+            "2|2|2|2|2",
+            "2|2|3|3|2",
+            "3|2|3|2|2"
+         ]
+      },
+      {
+         "member": "Kaki Haruka",
+         "slotsSold": [
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2"
+         ]
+      },
+      {
+         "member": "Kakehashi Sayaka",
+         "slotsSold": [
+            "8||8||",
+            "||11||",
+            "||||"
+         ]
+      },
+      {
+         "member": "Kanagawa Saya",
+         "slotsSold": [
+            "||||",
+            "||||",
+            "||||"
+         ]
+      },
+      {
+         "member": "Kitagawa Yuri",
+         "slotsSold": [
+            "x|x|x|x|x",
+            "?|?|?|?|?",
+            "||||"
+         ]
+      },
+      {
+         "member": "Kuromi Haruka",
+         "slotsSold": [
+            "||||",
+            "||||",
+            "||||"
+         ]
+      },
+      {
+         "member": "Sato Rika",
+         "slotsSold": [
+            "||||",
+            "||||",
+            "||||"
+         ]
+      },
+      {
+         "member": "Shibata Yuna",
+         "slotsSold": [
+            "||||",
+            "||||",
+            "12|11|8|10|6"
+         ]
+      },
+      {
+         "member": "Seimiya Rei",
+         "slotsSold": [
+            "||||",
+            "||||",
+            "||||"
+         ]
+      },
+      {
+         "member": "Tamura Mayu",
+         "slotsSold": [
+            "4|4|3|4|3",
+            "8|7|6|8|9",
+            "11|11|5|11|10"
+         ]
+      },
+      {
+         "member": "Tsujii Ayame",
+         "slotsSold": [
+            "||||",
+            "||||",
+            "||||"
+         ]
+      },
+      {
+         "member": "Hayakawa Seira",
+         "slotsSold": [
+            "3|3|4|3|3",
+            "3|3|4|3|3",
+            "3|4|4|4|3"
+         ]
+      },
+      {
+         "member": "Hayashi Runa",
+         "slotsSold": [
+            "?|?|?|?|?",
+            "||||",
+            "||||"
+         ]
+      },
+      {
+         "member": "Matsuo Miyu",
+         "slotsSold": [
+            "?|?|?|?|?",
+            "||||",
+            "||||"
+         ]
+      },
+      {
+         "member": "Yakubo Mio",
+         "slotsSold": [
+            "||||",
+            "||||",
+            "||||"
+         ]
+      },
+      {
+         "member": "Yumiki Nao",
+         "slotsSold": [
+            "||||",
+            "|||11|",
+            "||||"
+         ]
+      }
+   ]
+},
+{
+   "cd": {"num":29, "type":"Single"},
+   "lastDraw": 20,
+   "meetDates": [
+      "2022-04-16",
+      "2022-04-29",
+      "2022-05-21",
+      "2022-06-04",
+      "2022-07-02",
+      "2022-07-16"
+   ],
+   "sbt": ["Higuchi Hina", "Suzuki Ayane", "Iwamoto Renka", "Umezawa Minami", "Kubo Shiori", "Yamashita Mizuki", "Yoda Yuuki", "Endo Sakura", "Kaki Haruka", "Kakehashi Sayaka", "Shibata Yuna", "Seimiya Rei", "Tamura Mayu", "Tsujii Ayame", "Hayakawa Seira"],
+   "addgroups": [
+      {"id": "gen5",
+         "has":["Ioki Mao", "Ikeda Teresa", "Ichinose Miku", "Inoue Nagi", "Ogawa Aya", "Okuda Iroha", "Sugawara Satsuki", "Tomisato Nao"]},
+      {"id": "grad","has": ["Kitano Hinako"]}],
+   
+   "table": [
+      {
+         "member": "Higuchi Hina",
+         "slotsSold": [
+            "3|3|3|4|4",
+            "||||",
+            "||||",
+            "||||",
+            "||||",
+            "20||||16"
+         ]
+      },
+      {
+         "member": "Wada Maaya",
+         "slotsSold": [
+            "||||",
+            "||||",
+            "||||",
+            "||||",
+            "||||",
+            "||||"
+         ]
+      },
+      {
+         "member": "Kitano Hinako",
+         "slotsSold": [
+            "3|3|3|3|3",
+            "3|3|3|3|3",
+            "x|x|x|x|x",
+            "x|x|x|x|x",
+            "x|x|x|x|x",
+            "x|x|x|x|x"
+         ]
+      },
+      {
+         "member": "Suzuki Ayane",
+         "slotsSold": [
+            "4|4|4|5|5",
+            "9|9|8|9|7",
+            "11|12|9|11|10",
+            "14|14|12|14|12",
+            "17|17|16|16|16",
+            "16|17|15|14|4"
+         ]
+      },
+      {
+         "member": "Yamazaki Rena",
+         "slotsSold": [
+            "||||x",
+            "||||x",
+            "7|8|6|4|x",
+            "||||x",
+            "||18|18|x",
+            "18|18|18|11|x"
+         ]
+      },
+      {
+         "member": "Ito Riria",
+         "slotsSold": [
+            "||||",
+            "||||",
+            "||||",
+            "||||",
+            "||||",
+            "||||"
+         ]
+      },
+      {
+         "member": "Iwamoto Renka",
+         "slotsSold": [
+            "3|3|2|3|3",
+            "9|8|6|8|6",
+            "7|5|5|7|6",
+            "10|8|6|8|6",
+            "10|8|7|7|7",
+            "10|9|4|6|4"
+         ]
+      },
+      {
+         "member": "Umezawa Minami",
+         "slotsSold": [
+            "2|2|2|2|3",
+            "2|3|2|3|3",
+            "2|2|2|2|3",
+            "2|2|2|3|3",
+            "2|2|3|3|3",
+            "3|2|3|3|3"
+         ]
+      },
+      {
+         "member": "Kubo Shiori",
+         "slotsSold": [
+            "2|2|2|2|2",
+            "3|2|3|3|3",
+            "2|2|2|2|2",
+            "2|2|2|3|3",
+            "3|2|3|3|3",
+            "2|2|2|2|2"
+         ]
+      },
+      {
+         "member": "Sakaguchi Tamami",
+         "slotsSold": [
+            "6|4|3|7|8",
+            "||||",
+            "||12||",
+            "||||",
+            "||||",
+            "||||"
+         ]
+      },
+      {
+         "member": "Sato Kaede",
+         "slotsSold": [
+            "8|8|6|8|8",
+            "||||",
+            "|12|8|10|12",
+            "||14||",
+            "||18||",
+            "||||20"
+         ]
+      },
+      {
+         "member": "Nakamura Reno",
+         "slotsSold": [
+            "||||",
+            "||||",
+            "||||",
+            "||||",
+            "||||",
+            "||||"
+         ]
+      },
+      {
+         "member": "Mukai Hazuki",
+         "slotsSold": [
+            "||||",
+            "||||",
+            "||||",
+            "||||",
+            "||||",
+            "||||"
+         ]
+      },
+      {
+         "member": "Yamashita Mizuki",
+         "slotsSold": [
+            "2|1|1|2|1",
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|1|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2"
+         ]
+      },
+      {
+         "member": "Yoshida Ayano Cristi",
+         "slotsSold": [
+            "||||",
+            "||||",
+            "||||",
+            "||||",
+            "||||",
+            "||||"
+         ]
+      },
+      {
+         "member": "Yoda Yuuki",
+         "slotsSold": [
+            "x|x|x|x|x",
+            "x|x|x|x|x",
+            "x|x|x|x|x",
+            "x|x|x|x|x",
+            "1|2|2|1|2",
+            "2|2|x|x|x"
+         ]
+      },
+      {
+         "member": "Endo Sakura",
+         "slotsSold": [
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2"
+         ]
+      },
+      {
+         "member": "Kaki Haruka",
+         "slotsSold": [
+            "1|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "2|2|2|2|2"
+         ]
+      },
+      {
+         "member": "Kakehashi Sayaka",
+         "slotsSold": [
+            "3|3|3|3|4",
+            "7|5|5|7|7",
+            "5|4|3|4|6",
+            "7|4|4|5|7",
+            "9|5|3|7|6",
+            "7|6|4|4|5"
+         ]
+      },
+      {
+         "member": "Kanagawa Saya",
+         "slotsSold": [
+            "8|8|7|8|8",
+            "||||",
+            "|12|12||12",
+            "||14|14|",
+            "||17|18|17",
+            "19|18|17|17|15"
+         ]
+      },
+      {
+         "member": "Kitagawa Yuri",
+         "slotsSold": [
+            "||||",
+            "||||",
+            "?|?|?|?|?",
+            "||||",
+            "?|?|?|?|?",
+            "?|?|?|?|?"
+         ]
+      },
+      {
+         "member": "Kuromi Haruka",
+         "slotsSold": [
+            "||||",
+            "||||",
+            "||||",
+            "||||",
+            "||14|18|",
+            "x|x|x|x|x"
+         ]
+      },
+      {
+         "member": "Sato Rika",
+         "slotsSold": [
+            "6|7|6|7|7",
+            "||10||",
+            "||10||",
+            "||||",
+            "||||",
+            "20|20|19|19|14"
+         ]
+      },
+      {
+         "member": "Shibata Yuna",
+         "slotsSold": [
+            "3|3|3|3|3",
+            "5|4|4|4|4",
+            "4|4|3|4|5",
+            "5|5|4|5|5",
+            "5|5|5|5|5",
+            "4|5|4|4|3"
+         ]
+      },
+      {
+         "member": "Seimiya Rei",
+         "slotsSold": [
+            "x|x|3|5|4",
+            "||||",
+            "11|8|9|9|10",
+            "||13|14|13",
+            "17|17|15|15|12",
+            "14|14|10|12|6"
+         ]
+      },
+      {
+         "member": "Tamura Mayu",
+         "slotsSold": [
+            "3|3|2|3|3",
+            "3|3|3|3|3",
+            "3|3|3|3|3",
+            "3|3|3|3|3",
+            "3|3|3|3|3",
+            "3|3|3|3|3"
+         ]
+      },
+      {
+         "member": "Tsujii Ayame",
+         "slotsSold": [
+            "3|3|3|4|5",
+            "||||",
+            "6|4|4|5|6",
+            "3|3|3|3|3",
+            "7|7|5|6|7",
+            "7|6|5|6|6"
+         ]
+      },
+      {
+         "member": "Hayakawa Seira",
+         "slotsSold": [
+            "2|2|2|2|2",
+            "2|2|2|2|2",
+            "3|2|2|2|2",
+            "x|x|x|x|x",
+            "3|2|2|2|2",
+            "3|3|2|2|3"
+         ]
+      },
+      {
+         "member": "Hayashi Runa",
+         "slotsSold": [
+            "||||",
+            "||||",
+            "||||",
+            "||||",
+            "||||17",
+            "||||20"
+         ]
+      },
+      {
+         "member": "Matsuo Miyu",
+         "slotsSold": [
+            "||||",
+            "||||",
+            "||||",
+            "||||",
+            "||||",
+            "||||"
+         ]
+      },
+      {
+         "member": "Yakubo Mio",
+         "slotsSold": [
+            "||||",
+            "||||",
+            "||||",
+            "||||",
+            "||||",
+            "||||"
+         ]
+      },
+      {
+         "member": "Yumiki Nao",
+         "slotsSold": [
+            "5|5|5|5|5",
+            "||10||10",
+            "12|11|11|11|9",
+            "14||14|14|14",
+            "16|16|16|15|15",
+            "15|15|14|14|12"
+         ]
+      },
+      {
+         "member": "Ioki Mao",
+         "slotsSold": [
+            "x|6|6|7|x",
+            "x|7|7|7|x",
+            "x|6|7|7|x",
+            "x|6|7|7|x",
+            "x|7|8|8|x",
+            "x|7|7|7|x"
+         ]
+      },
+      {
+         "member": "Ikeda Teresa",
+         "slotsSold": [
+            "x||||x",
+            "x||||x",
+            "x||||x",
+            "x|13|13|13|x",
+            "x|13|14|14|x",
+            "x|13|14|14|x"
+         ]
+      },
+      {
+         "member": "Ichinose Miku",
+         "slotsSold": [
+            "x|6|6|7|x",
+            "x|7|7|7|x",
+            "x|7|7|7|x",
+            "x|7|7|7|x",
+            "x|7|7|7|x",
+            "x|7|7|7|x"
+         ]
+      },
+      {
+         "member": "Inoue Nagi",
+         "slotsSold": [
+            "x|6|6|6|x",
+            "x|6|6|7|x",
+            "x|7|6|7|x",
+            "x|6|6|6|x",
+            "x|7|7|7|x",
+            "x|7|7|7|x"
+         ]
+      },
+      {
+         "member": "Ogawa Aya",
+         "slotsSold": [
+            "x|7|7|7|x",
+            "x|8|8|8|x",
+            "x|8|8|8|x",
+            "x|7|9|8|x",
+            "x|8|9|9|x",
+            "x|8|9|8|x"
+         ]
+      },
+      {
+         "member": "Okuda Iroha",
+         "slotsSold": [
+            "x||||x",
+            "x||||x",
+            "x||||x",
+            "x||||x",
+            "x||||x",
+            "x||||x"
+         ]
+      },
+      {
+         "member": "Sugawara Satsuki",
+         "slotsSold": [
+            "x|6|6|6|x",
+            "x|6|6|6|x",
+            "x|7|6|6|x",
+            "x|6|6|6|x",
+            "x|6|6|6|x",
+            "x|6|6|6|x"
+         ]
+      },
+      {
+         "member": "Tomisato Nao",
+         "slotsSold": [
+            "x|6|7|8|x",
+            "x|8|9|8|x",
+            "x|8|8|8|x",
+            "x|8|10|9|x",
+            "x|10|9|10|x",
+            "x|10|9|9|x"
+         ]
+      }
+   ]
+},
+   {
+      "cd": {"num":30, "type":"Single"},
+      "lastDraw": 2,
+      "meetDates": [
+         "2022-09-03",
+         "2022-09-17",
+         "2022-09-24",
+         "2022-10-08",
+         "2022-11-12",
+         "2022-12-03"
+      ],
+      "sbt": ["Iwamoto Renka", "Umezawa Minami", "Kubo Shiori", "Sato Kaede", "Yamashita Mizuki", "Yoda Yuuki", "Endo Sakura", "Kaki Haruka", "Kakehashi Sayaka", "Kanagawa Saya", "Shibata Yuna", "Seimiya Rei", "Tamura Mayu", "Tsujii Ayame", "Yumiki Nao"],
+      "addgroups": [{"id": "gen5",
+         "has": ["Ioki Mao", "Ikeda Teresa", "Ichinose Miku", "Inoue Nagi", "Okamoto Hina", "Ogawa Aya", "Okuda Iroha", "Kawasaki Sakura", "Sugawara Satsuki", "Tomisato Nao", "Nakanishi Aruno"]}],
+      "table": [
+         {
+            "member": "Wada Maaya",
+            "slotsSold": [
+               "||||",
+               "||||",
+               "||||",
+               "||||",
+               "||||",
+               "||||2"
+            ]
+         },
+         {
+            "member": "Ito Riria",
+            "slotsSold": [
+               "||||",
+               "||||",
+               "||||",
+               "||||",
+               "||||",
+               "||||"
+            ]
+         },
+         {
+            "member": "Iwamoto Renka",
+            "slotsSold": [
+               "||||",
+               "||||",
+               "||||",
+               "||||",
+               "||||",
+               "||||2"
+            ]
+         },
+         {
+            "member": "Umezawa Minami",
+            "slotsSold": [
+               "x|x|x|x|x",
+               "2|2|2|2|2",
+               "x|x|x|x|x",
+               "x|x|x|x|x",
+               "2|2|2|2|2",
+               "2|2|2|2|2"
+            ]
+         },
+         {
+            "member": "Kubo Shiori",
+            "slotsSold": [
+               "x|x|x|x|x",
+               "x|x|x|x|x",
+               "x|x|x|x|x",
+               "2|2|2|2|2",
+               "2|2|2|2|2",
+               "2|2|2|2|2"
+            ]
+         },
+         {
+            "member": "Sakaguchi Tamami",
+            "slotsSold": [
+               "||||",
+               "||||",
+               "||||",
+               "||||",
+               "||||",
+               "||||"
+            ]
+         },
+         {
+            "member": "Sato Kaede",
+            "slotsSold": [
+               "2||||",
+               "||||",
+               "||||",
+               "||||",
+               "||||",
+               "||||"
+            ]
+         },
+         {
+            "member": "Nakamura Reno",
+            "slotsSold": [
+               "||||",
+               "||||",
+               "||||",
+               "||||",
+               "||||",
+               "||||"
+            ]
+         },
+         {
+            "member": "Mukai Hazuki",
+            "slotsSold": [
+               "||||",
+               "||||",
+               "||||",
+               "||||",
+               "||||",
+               "||||"
+            ]
+         },
+         {
+            "member": "Yamashita Mizuki",
+            "slotsSold": [
+               "2|1|2|2|2",
+               "2|2|2|2|2",
+               "2|2|2|2|2",
+               "x|x|x|x|x",
+               "2|2|1|2|2",
+               "2|2|2|2|2"
+            ]
+         },
+         {
+            "member": "Yoshida Ayano Cristi",
+            "slotsSold": [
+               "||||",
+               "||||",
+               "||||",
+               "||||",
+               "||||",
+               "||||"
+            ]
+         },
+         {
+            "member": "Yoda Yuuki",
+            "slotsSold": [
+               "x|x|x|x|x",
+               "x|x|x|x|x",
+               "x|x|x|x|x",
+               "x|x|x|x|x",
+               "2|1|2|2|2",
+               "x|x|1|1|x"
+            ]
+         },
+         {
+            "member": "Endo Sakura",
+            "slotsSold": [
+               "2|2|2|2|2",
+               "2|2|2|2|2",
+               "2|2|2|2|2",
+               "2|2|2|2|2",
+               "2|2|2|2|2",
+               "2|2|2|2|2"
+            ]
+         },
+         {
+            "member": "Kaki Haruka",
+            "slotsSold": [
+               "2|1|2|2|2",
+               "2|2|2|2|2",
+               "1|1|1|2|2",
+               "2|1|2|1|2",
+               "2|2|1|1|2",
+               "1|2|2|2|2"
+            ]
+         },
+         {
+            "member": "Kakehashi Sayaka",
+            "slotsSold": [
+               "2|2|2||",
+               "||||",
+               "||||",
+               "||||",
+               "||||",
+               "||||2"
+            ]
+         },
+         {
+            "member": "Kanagawa Saya",
+            "slotsSold": [
+               "2|2|2|2|2",
+               "||||",
+               "||||",
+               "||||",
+               "||||",
+               "||||2"
+            ]
+         },
+         {
+            "member": "Kitagawa Yuri",
+            "slotsSold": [
+               "||||",
+               "||||",
+               "||||",
+               "||||",
+               "||||",
+               "||||"
+            ]
+         },
+         {
+            "member": "Kuromi Haruka",
+            "slotsSold": [
+               "||||",
+               "||||",
+               "||||",
+               "||||",
+               "||||",
+               "||||"
+            ]
+         },
+         {
+            "member": "Sato Rika",
+            "slotsSold": [
+               "||||",
+               "x|x|x|x|x",
+               "x|x|x|x|x",
+               "||||",
+               "||||",
+               "||||"
+            ]
+         },
+         {
+            "member": "Shibata Yuna",
+            "slotsSold": [
+               "|2|2|2|",
+               "||||",
+               "||||",
+               "||||",
+               "||||",
+               "||2|2|2"
+            ]
+         },
+         {
+            "member": "Seimiya Rei",
+            "slotsSold": [
+               "||||",
+               "||||",
+               "||||",
+               "||||",
+               "||||",
+               "||||"
+            ]
+         },
+         {
+            "member": "Tamura Mayu",
+            "slotsSold": [
+               "2|2|2|2|",
+               "||2||",
+               "||||",
+               "2||2|2|",
+               "2|2|2|2|2",
+               "2|2|2|2|2"
+            ]
+         },
+         {
+            "member": "Tsujii Ayame",
+            "slotsSold": [
+               "||||",
+               "||||",
+               "||||",
+               "||||",
+               "||||",
+               "||||"
+            ]
+         },
+         {
+            "member": "Hayashi Runa",
+            "slotsSold": [
+               "||||",
+               "||||",
+               "||||",
+               "||||",
+               "||||",
+               "||||"
+            ]
+         },
+         {
+            "member": "Matsuo Miyu",
+            "slotsSold": [
+               "||||",
+               "||||",
+               "||||",
+               "||||",
+               "||||",
+               "||||"
+            ]
+         },
+         {
+            "member": "Yakubo Mio",
+            "slotsSold": [
+               "||||",
+               "||||",
+               "||||",
+               "||||",
+               "||||",
+               "||||"
+            ]
+         },
+         {
+            "member": "Yumiki Nao",
+            "slotsSold": [
+               "2|2|2|2|2",
+               "||||",
+               "||||",
+               "||||",
+               "||||",
+               "||||2"
+            ]
+         },
+         {
+            "member": "Ioki Mao",
+            "slotsSold": [
+               "x|2|2|2|",
+               "x||||",
+               "x||||",
+               "x||||",
+               "x|2|||",
+               "x|2|2|2|"
+            ]
+         },
+         {
+            "member": "Ikeda Teresa",
+            "slotsSold": [
+               "x|2|2|2|2",
+               "x||2||",
+               "x||||",
+               "x||||",
+               "x||||",
+               "x|2|||"
+            ]
+         },
+         {
+            "member": "Ichinose Miku",
+            "slotsSold": [
+               "x|2|2|2|",
+               "x||||",
+               "x|2|||",
+               "x|2|||",
+               "x|2|||",
+               "x|2|||"
+            ]
+         },
+         {
+            "member": "Inoue Nagi",
+            "slotsSold": [
+               "x|2|2|2|2",
+               "x|2|2|2|2",
+               "x|2|2|2|2",
+               "x|2|2|2|2",
+               "x|2|2|2|2",
+               "x|2|2|2|2"
+            ]
+         },
+         {
+            "member": "Okamoto Hina",
+            "slotsSold": [
+               "x||||",
+               "x||||",
+               "x||||",
+               "x||||",
+               "x||||",
+               "x||||"
+            ]
+         },
+         {
+            "member": "Ogawa Aya",
+            "slotsSold": [
+               "x||||",
+               "x||||",
+               "x||||",
+               "x||||",
+               "x||||",
+               "x||||"
+            ]
+         },
+         {
+            "member": "Okuda Iroha",
+            "slotsSold": [
+               "x||||",
+               "x||||",
+               "x||||",
+               "x||||",
+               "x||||",
+               "x||||"
+            ]
+         },
+         {
+            "member": "Kawasaki Sakura",
+            "slotsSold": [
+               "x|2|2|2|2",
+               "x|2|2|2|",
+               "x||||",
+               "x|2|2||",
+               "x|2|2||",
+               "x|2|2||"
+            ]
+         },
+         {
+            "member": "Sugawara Satsuki",
+            "slotsSold": [
+               "x|2|2|2|2",
+               "x|2|2||",
+               "x|2|2||",
+               "x|2|2|2|2",
+               "x|2|2|2|2",
+               "x|2|2|2|2"
+            ]
+         },
+         {
+            "member": "Tomisato Nao",
+            "slotsSold": [
+               "x|2|2|2|",
+               "x|2|2|2|2",
+               "x||||",
+               "x|2|||",
+               "x||||",
+               "x||2||"
+            ]
+         },
+         {
+            "member": "Nakanishi Aruno",
+            "slotsSold": [
+               "x|2|2||",
+               "x||||",
+               "x||||",
+               "x||||",
+               "x||||",
+               "x||||"
+            ]
+         }
+      ]
+   }
+]
