@@ -2502,7 +2502,7 @@ ${group.has.length > 1 ? `<tr class="${"svelte-179mrzs"}">${validate_component(D
 });
 const SlotTable_svelte_svelte_type_style_lang = "";
 const css$1 = {
-  code: ".table-bordered.svelte-1hzf9ls.svelte-1hzf9ls{margin:0 auto;table-layout:fixed;border:1px solid #ddd !important;border-spacing:0!important;border-collapse:collapse}table.svelte-1hzf9ls caption.svelte-1hzf9ls{font-size:large;font-weight:bold;padding:.5em 0}th.svelte-1hzf9ls.svelte-1hzf9ls{font-size:large;font-weight:bold;border:1px solid black;border-bottom:2px solid black;padding:0}@media screen and (max-width: 767px){table.svelte-1hzf9ls caption.svelte-1hzf9ls{display:none}}.soldFraction.svelte-1hzf9ls.svelte-1hzf9ls{display:inline;float:right;margin-right:3px;font-size:small;font-weight:normal;color:#777}",
+  code: ".table-bordered.svelte-wzhf8m.svelte-wzhf8m{margin:0 auto;table-layout:fixed;border:1px solid #ddd !important;border-spacing:0!important;border-collapse:collapse;display:block;overflow-x:auto}.container.svelte-wzhf8m.svelte-wzhf8m{width:max-content;padding:7px}table.svelte-wzhf8m caption.svelte-wzhf8m{font-size:large;font-weight:bold;padding:.5em 0}th.svelte-wzhf8m.svelte-wzhf8m{font-size:large;font-weight:bold;border:1px solid black;border-bottom:2px solid black;padding:0}@media screen and (max-width: 767px){table.svelte-wzhf8m caption.svelte-wzhf8m{display:none}}.soldFraction.svelte-wzhf8m.svelte-wzhf8m{display:inline;float:right;margin-right:3px;font-size:small;font-weight:normal;color:#777}",
   map: null
 };
 const SlotTable = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -2552,25 +2552,24 @@ const SlotTable = create_ssr_component(($$result, $$props, $$bindings, slots) =>
   }).numSold;
   return `
 
-<table class="${"table-bordered svelte-1hzf9ls"}"><caption class="${"text-center svelte-1hzf9ls"}">${escape(title)} (\u6700\u5F8C\u66F4\u65B0\uFF1A${escape(lastDraw)}\u6B21\u53D7\u4ED8)</caption>
+<div class="${"container svelte-wzhf8m"}"><table class="${"table-bordered svelte-wzhf8m"}"><caption class="${"text-center svelte-wzhf8m"}">${escape(title)} (\u6700\u5F8C\u66F4\u65B0\uFF1A${escape(lastDraw)}\u6B21\u53D7\u4ED8)</caption>
   <thead><tr>
-      <th class="${"svelte-1hzf9ls"}"></th>
-      <th class="${"svelte-1hzf9ls"}"><div class="${"soldFraction svelte-1hzf9ls"}">${escape(totalSold[0])}/${escape(totalSold[1])}</div></th>
+      <th class="${"svelte-wzhf8m"}"></th>
+      <th class="${"svelte-wzhf8m"}"><div class="${"soldFraction svelte-wzhf8m"}">${escape(totalSold[0])}/${escape(totalSold[1])}</div></th>
       ${each(data2.meetDates, (date) => {
-    return `<th colspan="${"5"}" class="${"svelte-1hzf9ls"}">${escape(date)}</th>`;
+    return `<th colspan="${"5"}" class="${"svelte-wzhf8m"}">${escape(date)}</th>`;
   })}
-      ${compare ? `<th class="${"svelte-1hzf9ls"}">\u904E\u53BB\u3068\u306E\u5DEE</th>` : ``}</tr></thead>
+      ${compare ? `<th class="${"svelte-wzhf8m"}">\u904E\u53BB\u3068\u306E\u5DEE</th>` : ``}</tr></thead>
   <tbody>${groupOpt == "none" ? `${each(data2.table, (row) => {
     return `<tr>${validate_component(DataRow, "DataRow").$$render($$result, { row, lastDraw, compare }, {}, {})}</tr>`;
   })}` : `${each(finalTb, (rowGp) => {
     return `${validate_component(RowGroups, "RowGroups").$$render($$result, { group: rowGp, lastDraw, compare }, {}, {})}`;
-  })}`}</tbody></table>
-
+  })}`}</tbody></table></div>
 `;
 });
 const index_svelte_svelte_type_style_lang = "";
 const css = {
-  code: ":root{font-family:Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,\n		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;--font-mono:'Fira Mono', monospace;--pure-white:#ffffff;--primary-color:#b9c6d2;--secondary-color:#d0dde9;--tertiary-color:#edf0f8;--accent-color:#444444;--heading-color:rgba(0, 0, 0, 0.7);--text-color:#444444;--background-without-opacity:rgba(255, 255, 255, 0.7);--column-width:42rem;--column-margin-top:4rem}a.svelte-7851f5{color:var(--accent-color);text-decoration:none}a.svelte-7851f5:hover{text-decoration:underline}input.svelte-7851f5,button.svelte-7851f5{font-size:inherit;font-family:inherit}button.svelte-7851f5:focus:not(:focus-visible){outline:none}.optionForm.svelte-7851f5{width:60%;margin:0 auto;line-height:3.5ch;padding:5px 10px;border:1px solid black}.inactive.svelte-7851f5{display:none}footer.svelte-7851f5{width:20%;margin:20px auto;display:block;justify-content:center;align-items:center;padding:40px;color:hsl(0, 0%, 65%)}",
+  code: ":root{font-family:Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,\n		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;--font-mono:'Fira Mono', monospace;--pure-white:#ffffff;--primary-color:#b9c6d2;--secondary-color:#d0dde9;--tertiary-color:#edf0f8;--accent-color:#444444;--heading-color:rgba(0, 0, 0, 0.7);--text-color:#444444}a.svelte-1als31s.svelte-1als31s.svelte-1als31s{color:var(--accent-color);text-decoration:none}a.svelte-1als31s.svelte-1als31s.svelte-1als31s:hover{text-decoration:underline}input.svelte-1als31s.svelte-1als31s.svelte-1als31s,button.svelte-1als31s.svelte-1als31s.svelte-1als31s{font-size:inherit;font-family:inherit}button.svelte-1als31s.svelte-1als31s.svelte-1als31s:focus:not(:focus-visible){outline:none}.optionForm.svelte-1als31s.svelte-1als31s.svelte-1als31s{width:max-content;margin:0 auto;padding:1px 5px;line-height:3.5ch}.optionsContainer.svelte-1als31s.svelte-1als31s.svelte-1als31s{padding:2px 6px;border:1px solid black}ul.twocols.svelte-1als31s.svelte-1als31s.svelte-1als31s{display:inline-block;text-align:left;margin:0;padding:0}ul.twocols.svelte-1als31s>li.svelte-1als31s.svelte-1als31s{margin:15px 0 15px;display:flex;justify-content:left;margin:0}ul.twocols.svelte-1als31s>li.svelte-1als31s>div.leftcol.svelte-1als31s{flex:none;margin:0;width:55px}.advanceOption.svelte-1als31s.svelte-1als31s.svelte-1als31s{padding:2px 6px;border:1px solid black}.inactive.svelte-1als31s.svelte-1als31s.svelte-1als31s{display:none}footer.svelte-1als31s.svelte-1als31s.svelte-1als31s{width:20%;margin:20px auto;display:block;justify-content:center;align-items:center;padding:40px;color:hsl(0, 0%, 65%)}",
   map: null
 };
 const Routes = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -2606,7 +2605,7 @@ const Routes = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   ];
   let groupOpt = "gen";
   let sortMethod = [
-    { "display": "\u540D\u524D\uFF08\u4E94\u5341\u97F3\uFF09\u9806", "value": "kana" },
+    { "display": "\u4E94\u5341\u97F3\u9806", "value": "kana" },
     { "display": "\u5B8C\u58F2\u6570\u9806", "value": "numsold" }
   ];
   let sortOpt = "kana";
@@ -2627,47 +2626,45 @@ const Routes = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       compare = null;
     }
   }
-  return `${$$result.head += `${$$result.title = `<title>\u5B8C\u58F2\u8868DB</title>`, ""}<meta name="${"description"}" content="${"Svelte demo app"}" data-svelte="svelte-xhkfe6">`, ""}
+  return `${$$result.head += `${$$result.title = `<title>\u4E43\u6728\u574246\u30A4\u30F3\u30BF\u30E9\u30AF\u30C6\u30A3\u30D6\u5F0F\u5B8C\u58F2\u8868</title>`, ""}<meta name="${"description"}" content="${"\u4E43\u6728\u574246\u30A4\u30F3\u30BF\u30E9\u30AF\u30C6\u30A3\u30D6\u5F0F\u5B8C\u58F2\u8868"}" data-svelte="svelte-ya5rpn">`, ""}
 
-<div class="${"optionForm svelte-7851f5"}"><label for="${"cdSelect"}">CD:</label>
-    <select id="${"cdSelect"}" name="${"cd"}" style="${"margin-left: 15px; margin-right: 15px"}">${each(cdlist, (cd, i) => {
+<div class="${"optionForm svelte-1als31s"}"><div class="${"optionsContainer svelte-1als31s"}"><ul class="${"twocols svelte-1als31s"}"><li class="${"svelte-1als31s"}"><div class="${"leftcol svelte-1als31s"}">CD:</div>
+                <div class="${"rightcol"}"><select id="${"cdSelect"}" name="${"cd"}" style="${"margin-left: 15px; margin-right: 15px"}">${each(cdlist, (cd, i) => {
     return `<option${add_attribute("value", i, 0)}>${escape(cd.display)}</option>`;
   })}</select>
-    
-    
-    <div id="${"filterOptDiv"}">Filter:
-        ${each(filterMethod, (filt) => {
-    return `<label><input type="${"radio"}" name="${"filterOpt"}"${add_attribute("id", filt.value, 0)}${add_attribute("value", filt.value, 0)} class="${"svelte-7851f5"}"${filt.value === filterOpt ? add_attribute("checked", true, 1) : ""}>
-            ${escape(filt.display)}
-        </label>`;
-  })}
-        </div>
-
-    <div id="${"groupDiv"}">Group:
-        ${each(groupMethod, (grp) => {
-    return `<label><input type="${"radio"}" name="${"groupOpt"}"${add_attribute("id", grp.value, 0)}${add_attribute("value", grp.value, 0)} class="${"svelte-7851f5"}"${grp.value === groupOpt ? add_attribute("checked", true, 1) : ""}>
-            ${escape(grp.display)}
-        </label>`;
-  })}</div>
-
-    <div id="${"sortDiv"}">Sort: 
-        ${each(sortMethod, (sort) => {
-    return `<label><input type="${"radio"}" name="${"sortOpt"}"${add_attribute("id", sort.value, 0)}${add_attribute("value", sort.value, 0)} class="${"svelte-7851f5"}"${sort.value === sortOpt ? add_attribute("checked", true, 1) : ""}>
-            ${escape(sort.display)}
-        </label>`;
-  })}		
-        </div></div>
-<div class="${"optionForm svelte-7851f5"}"><label><input type="${"checkbox"}" name="${"compareCD"}" id="${"compareCD"}" class="${"svelte-7851f5"}"${add_attribute("checked", compareCD, 1)}>
-        \u904E\u53BB\u306E\u58F2\u308A\u4E0A\u3052\u3068\u306E\u5DEE
-    </label>
-    <span class="${["svelte-7851f5", "inactive"].join(" ").trim()}"><label for="${"cd2Select"}">\u2192 \u5BFE\u8C61CD:</label>
-        <select id="${"cd2Select"}" name="${"cd2"}" style="${"margin-left: 5px; margin-right: 5px"}">${each(cdlist, (cd, i) => {
+                </div></li>
+            <li class="${"svelte-1als31s"}"><div class="${"leftcol svelte-1als31s"}">Group:</div>
+                <div class="${"rightcol"}">${each(groupMethod, (grp) => {
+    return `
+                    <label><input type="${"radio"}" name="${"groupOpt"}"${add_attribute("id", grp.value, 0)}${add_attribute("value", grp.value, 0)} class="${"svelte-1als31s"}"${grp.value === groupOpt ? add_attribute("checked", true, 1) : ""}>
+                        ${escape(grp.display)}</label>
+                    `;
+  })}</div></li>
+            <li class="${"svelte-1als31s"}"><div class="${"leftcol svelte-1als31s"}">Filter:</div>
+                <div class="${"rightcol"}">${each(filterMethod, (filt) => {
+    return `
+                    <label><input type="${"radio"}" name="${"filterOpt"}"${add_attribute("id", filt.value, 0)}${add_attribute("value", filt.value, 0)} class="${"svelte-1als31s"}"${filt.value === filterOpt ? add_attribute("checked", true, 1) : ""}>
+                        ${escape(filt.display)}</label>
+                    `;
+  })}</div></li>
+            <li class="${"svelte-1als31s"}"><div class="${"leftcol svelte-1als31s"}">Sort:</div>
+                <div class="${"rightcol"}">${each(sortMethod, (sort) => {
+    return `
+                    <label><input type="${"radio"}" name="${"sortOpt"}"${add_attribute("id", sort.value, 0)}${add_attribute("value", sort.value, 0)} class="${"svelte-1als31s"}"${sort.value === sortOpt ? add_attribute("checked", true, 1) : ""}>
+                        ${escape(sort.display)}
+                    </label>`;
+  })}</div></li></ul></div>
+    <div class="${"advanceOption svelte-1als31s"}"><label><input type="${"checkbox"}" name="${"compareCD"}" id="${"compareCD"}" class="${"svelte-1als31s"}"${add_attribute("checked", compareCD, 1)}>
+            \u904E\u53BB\u306E\u58F2\u308A\u4E0A\u3052\u3068\u306E\u5DEE
+        </label>
+        <span class="${["svelte-1als31s", "inactive"].join(" ").trim()}"><label for="${"cd2Select"}">\u2192 \u5BFE\u8C61CD:</label>
+            <select id="${"cd2Select"}" name="${"cd2"}" style="${"margin-left: 5px; margin-right: 5px"}">${each(cdlist, (cd, i) => {
     return `${i != selected ? `<option${add_attribute("value", i, 0)}>${escape(cd.display)}</option>` : ``}`;
   })}</select>
-        ${isSelectedGood(selected2) ? `<select id="${"drawSelect"}" name="${"drawSelect"}" style="${"margin-left: 2px; margin-right: 2px"}">${each([...Array(selectableDraw).keys()], (i) => {
+            ${isSelectedGood(selected2) ? `<select id="${"drawSelect"}" name="${"drawSelect"}" style="${"margin-left: 2px; margin-right: 2px"}">${each([...Array(selectableDraw).keys()], (i) => {
     return `<option${add_attribute("value", i + 1, 0)}>${escape(i + 1)}</option>`;
   })}</select><label for="${"drawSelect"}">\u6B21\u53D7\u4ED8</label>` : ``}
-        ${``}</span></div>
+            ${``}</span></div></div>
 
 ${validate_component(SlotTable, "SlotTable").$$render(
     $$result,
@@ -2682,7 +2679,7 @@ ${validate_component(SlotTable, "SlotTable").$$render(
     {}
   )}
 
-<footer class="${"svelte-7851f5"}">Author: <a href="${"https://github.com/universallyleo"}" class="${"svelte-7851f5"}">universallyleo</a>.  Soruce: <a href="${"https://github.com/universallyleo/ngzkMeetData"}" class="${"svelte-7851f5"}">Github</a>	
+<footer class="${"svelte-1als31s"}">Author: <a href="${"https://github.com/universallyleo"}" class="${"svelte-1als31s"}">universallyleo</a>.  Soruce: <a href="${"https://github.com/universallyleo/ngzkMeetData"}" class="${"svelte-1als31s"}">Github</a>	
 </footer>`;
 });
 export {

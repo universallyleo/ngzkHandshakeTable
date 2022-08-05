@@ -49,6 +49,7 @@ function filterList(list, option=filterOpt) {
 
 <!-- not clear why width is not working.... -->
 <!-- <table class="table-bordered" style:width={w}> -->
+<div class="container">
 <table class="table-bordered">
   <caption class="text-center">{title} (最後更新：{lastDraw}次受付)</caption>
   <thead>
@@ -78,7 +79,7 @@ function filterList(list, option=filterOpt) {
     {/if}
   </tbody>
 </table>
-
+</div>
 <!-- <br><br>
 <div class="debugBox">{info}</div> -->
 
@@ -98,6 +99,13 @@ function filterList(list, option=filterOpt) {
   border: 1px solid #ddd !important;
   border-spacing: 0!important;
   border-collapse: collapse;
+  display: block;
+  overflow-x: auto;
+}
+
+.container{
+  width: max-content;
+  padding: 7px;
 }
 
 table caption {

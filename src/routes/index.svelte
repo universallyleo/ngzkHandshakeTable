@@ -2,7 +2,7 @@
 import data from '$lib/data/data.json';
 import {cdData} from '$lib/util.js';
 import SlotTable from '$lib/SlotTable.svelte';
-import { min } from 'lodash-es';
+import { divide, min } from 'lodash-es';
 //import OptionPanel from '$lib/OptionPanel.svelte';
 
 let cdlist = data.map(x=> cdData(x.cd));
@@ -28,7 +28,7 @@ let groupMethod=[
 let groupOpt="gen";
 
 let sortMethod = [
-    {"display": "名前（五十音）順", "value": "kana"},
+    {"display": "五十音順", "value": "kana"},
     {"display": "完売数順", "value": "numsold"},
     // {"display": "生年月日順", "value": "dob"}
 ];
@@ -71,89 +71,91 @@ $: if (!compareCD) {compare=null;}
 </svelte:head>
 
 <div class="optionForm">
-    <label for="cdSelect">CD:</label>
-    <select
-        id="cdSelect"
-        name="cd"
-        bind:value={selected}
-        on:change={()=>{compareCD=false; compare=null;}}
-        style="margin-left: 15px; margin-right: 15px"
-    >
-    {#each cdlist as cd,i}
-        <option value={i}>{cd.display}</option>
-    {/each}
-    </select>
-    <!-- <button id="btnChange" on:click={changeCD}>
-        Change data
-    </button> -->
-    
-    <div id="filterOptDiv">
-        Filter:
-        {#each filterMethod as filt}
-        <label>
-            <input type="radio" name="filterOpt" bind:group={filterOpt} id={filt.value} value={filt.value}>
-            {filt.display}
-        </label>
-        {/each}
-        <!-- [ Selected filter option: {filterOpt} ] -->
+    <div class="optionsContainer">
+        <ul class="twocols">
+            <li>
+                <div class="leftcol">CD:</div>
+                <div class="rightcol"><select
+                    id="cdSelect"
+                    name="cd"
+                    bind:value={selected}
+                    on:change={()=>{compareCD=false; compare=null;}}
+                    style="margin-left: 15px; margin-right: 15px"
+                >
+                {#each cdlist as cd,i}
+                    <option value={i}>{cd.display}</option>
+                {/each}
+                </select>
+                <!-- <button id="btnChange" on:click={changeCD}>
+                    Change data
+                </button> -->
+                </div>
+            </li>
+            <li>
+                <div class="leftcol">Group:</div>
+                <div class="rightcol">{#each groupMethod as grp}
+                    <label>
+                        <input type="radio" name="groupOpt" bind:group={groupOpt} id={grp.value} value={grp.value}>
+                        {grp.display}
+                    </label>
+                    {/each}</div>
+            </li>
+            <li>
+                <div class="leftcol">Filter:</div>
+                <div class="rightcol">{#each filterMethod as filt}
+                    <label>
+                        <input type="radio" name="filterOpt" bind:group={filterOpt} id={filt.value} value={filt.value}>
+                        {filt.display}
+                    </label>
+                    {/each}</div>
+            </li>
+            <li>
+                <div class="leftcol">Sort:</div>
+                <div class="rightcol">{#each sortMethod as sort}
+                    <label>
+                        <input type="radio" name="sortOpt" bind:group={sortOpt} id={sort.value} value={sort.value}>
+                        {sort.display}
+                    </label>
+                    {/each}		</div>
+            </li>
+        </ul>
     </div>
-
-    <div id="groupDiv">
-        Group:
-        {#each groupMethod as grp}
+    <div class="advanceOption">
         <label>
-            <input type="radio" name="groupOpt" bind:group={groupOpt} id={grp.value} value={grp.value}>
-            {grp.display}
+            <input type="checkbox" name="compareCD" id="compareCD" bind:checked={compareCD}>
+            過去の売り上げとの差
         </label>
-        {/each}
-    </div>
-
-    <div id="sortDiv">
-        Sort: 
-        {#each sortMethod as sort}
-        <label>
-            <input type="radio" name="sortOpt" bind:group={sortOpt} id={sort.value} value={sort.value}>
-            {sort.display}
-        </label>
-        {/each}		
-        <!-- [ Selected filter option: {sortOpt} ]  -->
-    </div>
-</div>
-<div class="optionForm">
-    <label>
-        <input type="checkbox" name="compareCD" id="compareCD" bind:checked={compareCD}>
-        過去の売り上げとの差
-    </label>
-    <span class:inactive={!compareCD}>
-        <label for="cd2Select"> → 対象CD:</label>
-        <select
-            id="cd2Select"
-            name="cd2"
-            bind:value={selected2}
-            style="margin-left: 5px; margin-right: 5px"
-        >
-        {#each cdlist as cd,i}
-            {#if i!=selected}
-                <option value={i}>{cd.display}</option>
-            {/if}
-        {/each}
-        </select>
-        {#if isSelectedGood(selected2)}
+        <span class:inactive={!compareCD}>
+            <label for="cd2Select"> → 対象CD:</label>
             <select
-                id="drawSelect"
-                name="drawSelect"
-                bind:value={atdraw}
-                style="margin-left: 2px; margin-right: 2px"
+                id="cd2Select"
+                name="cd2"
+                bind:value={selected2}
+                style="margin-left: 5px; margin-right: 5px"
             >
-            {#each [...Array(selectableDraw).keys()]  as i}
-            <option value={i+1}>{i+1}</option>
+            {#each cdlist as cd,i}
+                {#if i!=selected}
+                    <option value={i}>{cd.display}</option>
+                {/if}
             {/each}
-            </select><label for="drawSelect">次受付</label>
-        {/if}
-        {#if atdraw>0}
-            <button on:click={()=>compare=getCompare()}>比べる</button>
-        {/if}
-    </span>
+            </select>
+            {#if isSelectedGood(selected2)}
+                <select
+                    id="drawSelect"
+                    name="drawSelect"
+                    bind:value={atdraw}
+                    style="margin-left: 2px; margin-right: 2px"
+                >
+                {#each [...Array(selectableDraw).keys()]  as i}
+                <option value={i+1}>{i+1}</option>
+                {/each}
+                </select><label for="drawSelect">次受付</label>
+            {/if}
+            {#if atdraw>0}
+                <button on:click={()=>compare=getCompare()}>比べる</button>
+            {/if}
+        </span>
+    </div>
 </div>
 
 <SlotTable data={selectedCDdata} {filterOpt} {groupOpt} {sortOpt} {compare}/>
@@ -174,9 +176,6 @@ $: if (!compareCD) {compare=null;}
 	--accent-color: #444444;
 	--heading-color: rgba(0, 0, 0, 0.7);
 	--text-color: #444444;
-	--background-without-opacity: rgba(255, 255, 255, 0.7);
-	--column-width: 42rem;
-	--column-margin-top: 4rem;
 }
 
 a {
@@ -199,12 +198,43 @@ button:focus:not(:focus-visible) {
 }
 
 .optionForm{
-    width: 60%;
+    width: max-content;
     margin: 0 auto;
+    padding: 1px 5px;
     line-height: 3.5ch;
-    padding: 5px 10px;
+}
+
+.optionsContainer{
+    padding: 2px 6px;
     border: 1px solid black;
 }
+
+ul.twocols {
+    display: inline-block;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    /*	background-color: hsl(40, 100%, 95%);*/
+}
+
+ul.twocols>li {
+    margin: 15px 0 15px;
+    display: flex;
+    justify-content: left;
+    margin: 0;
+}
+
+ul.twocols>li>div.leftcol {
+    flex: none;
+    margin: 0;
+    width: 55px;
+}
+
+.advanceOption{
+    padding: 2px 6px;
+    border: 1px solid black;
+}
+
 
 .inactive{
     display:none;
