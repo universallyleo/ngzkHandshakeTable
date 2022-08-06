@@ -2,8 +2,8 @@
 import data from '$lib/data/data.json';
 import {cdData} from '$lib/util.js';
 import SlotTable from '$lib/SlotTable.svelte';
-import { divide, min } from 'lodash-es';
-//import OptionPanel from '$lib/OptionPanel.svelte';
+import { min } from 'lodash-es';
+import html2canvas from "html2canvas";
 
 let cdlist = data.map(x=> cdData(x.cd));
 let selected = cdlist.length-1;
@@ -36,6 +36,18 @@ let sortOpt="kana";
 let compareCD=false;
 let selected2 = -1;
 let atdraw=-1;
+
+function exportImg(){
+        alert("Image printing");
+    html2canvas(document.getElementById("slotstable"),{background:'#ffffff', scale:2}).then( canvas =>{
+        var link=document.createElement("a");
+        document.body.appendChild(link);
+        link.download = `${data[selected].cd.num}${data[selected].cd.type}.jpg`;
+        link.href = canvas.toDataURL();
+        link.target = '_blank';
+        link.click();
+    });
+}
 
 function getCompare(){
     if (!compareCD) return null;
@@ -80,6 +92,8 @@ $: if (!compareCD) {compare=null;}
                     Change data
                 </button> -->
                 </div>
+                
+                <div class="print"><button on:click={exportImg}>画像輸出</button></div>
             </li>
             <li>
                 <div class="leftcol">Group:</div>
@@ -148,7 +162,9 @@ $: if (!compareCD) {compare=null;}
     </div>
 </div>
 
+<section id="slotstable" class="main">
 <SlotTable data={selectedCDdata} {filterOpt} {groupOpt} {sortOpt} {compare}/>
+</section>
 
 <footer>
     Author: <a href="https://github.com/universallyleo">universallyleo</a>.  Soruce: <a href="https://github.com/universallyleo/ngzkMeetData">Github</a>	
@@ -225,9 +241,18 @@ ul.twocols>li>div.leftcol {
     border: 1px solid black;
 }
 
-
 .inactive{
     display:none;
+}
+
+.main{
+    margin: 0 auto;
+    width: max-content;
+    padding: 7px;
+}
+
+.print{
+    margin-left: auto;
 }
 
 footer{

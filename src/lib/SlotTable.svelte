@@ -103,9 +103,9 @@ function filterList(list, option=filterOpt) {
 }
 
 .container{
-  margin: 0 auto;
+  /* margin: 0 auto;*/
   width: max-content;
-  padding: 7px;
+  /*padding: 7px;*/
 }
 
 table caption {

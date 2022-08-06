@@ -9,7 +9,7 @@
       "2021-03-14",
       "2021-03-21"
    ],
-   "sbt": ["Iwamoto Renka", "Umezawa Minami", "Oozono Momoko", "Kubo Shiori", "Yamashita Mizuki", "Yoda Yuuki", "Endo Sakura", "Kaki Haruka", "Seimiya Rei", "Tamura Mayu", "Tsujii Ayame"],
+   "sbt": ["Iwamoto Renka", "Umezawa Minami", "Oozono Momoko", "Kubo Shiori", "Yamashita Mizuki", "Yoda Yuuki", "Endo Sakura", "Kaki Haruka", "Seimiya Rei", "Tamura Mayu", "Tsutsui Ayame"],
    "table": [
       {
          "member": "Higuchi Hina",
@@ -341,7 +341,7 @@
          ]
       },
       {
-         "member": "Tsujii Ayame",
+         "member": "Tsutsui Ayame",
          "slotsSold": [
             "5|4|5|4|5",
             "4|5|5|6|5",
@@ -419,7 +419,7 @@
       "2021-08-08",
       "2021-08-29"
    ],
-   "sbt": ["Higuchi Hina", "Matsumura Sayuri", "Iwamoto Renka", "Umezawa Minami", "Oozono Momoko", "Kubo Shiori", "Yamashita Mizuki", "Yoda Yuuki", "Endo Sakura", "Kaki Haruka", "Seimiya Rei", "Tamura Mayu", "Tsujii Ayame", "Hayakawa Seira"],
+   "sbt": ["Higuchi Hina", "Matsumura Sayuri", "Iwamoto Renka", "Umezawa Minami", "Oozono Momoko", "Kubo Shiori", "Yamashita Mizuki", "Yoda Yuuki", "Endo Sakura", "Kaki Haruka", "Seimiya Rei", "Tamura Mayu", "Tsutsui Ayame", "Hayakawa Seira"],
    "table": [
       {
          "member": "Higuchi Hina",
@@ -762,7 +762,7 @@
          ]
       },
       {
-         "member": "Tsujii Ayame",
+         "member": "Tsutsui Ayame",
          "slotsSold": [
             "x|x|x|x|x",
             "x|x|x|x|x",
@@ -840,7 +840,7 @@
       "2021-12-04",
       "2021-12-24"
    ],
-   "sbt": ["Takayama Kazumi", "Higuchi Hina", "Suzuki Ayane", "Iwamoto Renka", "Umezawa Minami", "Kubo Shiori", "Yamashita Mizuki", "Yoda Yuuki", "Endo Sakura", "Kaki Haruka", "Kakehashi Sayaka", "Shibata Yuna", "Seimiya Rei", "Tamura Mayu", "Tsujii Ayame", "Hayakawa Seira"],
+   "sbt": ["Takayama Kazumi", "Higuchi Hina", "Suzuki Ayane", "Iwamoto Renka", "Umezawa Minami", "Kubo Shiori", "Yamashita Mizuki", "Yoda Yuuki", "Endo Sakura", "Kaki Haruka", "Kakehashi Sayaka", "Shibata Yuna", "Seimiya Rei", "Tamura Mayu", "Tsutsui Ayame", "Hayakawa Seira"],
    "table": [
       {
          "member": "Takayama Kazumi",
@@ -1140,7 +1140,7 @@
          ]
       },
       {
-         "member": "Tsujii Ayame",
+         "member": "Tsutsui Ayame",
          "slotsSold": [
             "3|3|3|3|3",
             "4|4|4|4|3",
@@ -1215,7 +1215,7 @@
       "2022-02-05",
       "2022-03-11"
    ],
-   "sbt": ["Higuchi Hina", "Shinuchi Mai", "Suzuki Ayane", "Iwamoto Renka", "Umezawa Minami", "Kubo Shiori", "Yamashita Mizuki", "Yoda Yuuki", "Endo Sakura", "Kaki Haruka", "Kakehashi Sayaka", "Seimiya Rei","Tamura Mayu",  "Tsujii Ayame", "Hayakawa Seira"],
+   "sbt": ["Higuchi Hina", "Shinuchi Mai", "Suzuki Ayane", "Iwamoto Renka", "Umezawa Minami", "Kubo Shiori", "Yamashita Mizuki", "Yoda Yuuki", "Endo Sakura", "Kaki Haruka", "Kakehashi Sayaka", "Seimiya Rei","Tamura Mayu",  "Tsutsui Ayame", "Hayakawa Seira"],
    "table": [
       {
          "member": "Higuchi Hina",
@@ -1426,7 +1426,7 @@
          ]
       },
       {
-         "member": "Tsujii Ayame",
+         "member": "Tsutsui Ayame",
          "slotsSold": [
             "||||",
             "||||",
@@ -1486,7 +1486,7 @@
       "2022-07-02",
       "2022-07-16"
    ],
-   "sbt": ["Higuchi Hina", "Suzuki Ayane", "Iwamoto Renka", "Umezawa Minami", "Kubo Shiori", "Yamashita Mizuki", "Yoda Yuuki", "Endo Sakura", "Kaki Haruka", "Kakehashi Sayaka", "Shibata Yuna", "Seimiya Rei", "Tamura Mayu", "Tsujii Ayame", "Hayakawa Seira"],
+   "sbt": ["Higuchi Hina", "Suzuki Ayane", "Iwamoto Renka", "Umezawa Minami", "Kubo Shiori", "Yamashita Mizuki", "Yoda Yuuki", "Endo Sakura", "Kaki Haruka", "Kakehashi Sayaka", "Shibata Yuna", "Seimiya Rei", "Tamura Mayu", "Tsutsui Ayame", "Hayakawa Seira"],
    "addgroups": [
       {"id": "gen5",
          "has":["Ioki Mao", "Ikeda Teresa", "Ichinose Miku", "Inoue Nagi", "Ogawa Aya", "Okuda Iroha", "Sugawara Satsuki", "Tomisato Nao"]},
@@ -1780,7 +1780,7 @@
          ]
       },
       {
-         "member": "Tsujii Ayame",
+         "member": "Tsutsui Ayame",
          "slotsSold": [
             "3|3|3|4|5",
             "||||",
@@ -1946,7 +1946,7 @@
          "2022-11-12",
          "2022-12-03"
       ],
-      "sbt": ["Iwamoto Renka", "Umezawa Minami", "Kubo Shiori", "Sato Kaede", "Yamashita Mizuki", "Yoda Yuuki", "Endo Sakura", "Kaki Haruka", "Kakehashi Sayaka", "Kanagawa Saya", "Shibata Yuna", "Seimiya Rei", "Tamura Mayu", "Tsujii Ayame", "Yumiki Nao"],
+      "sbt": ["Iwamoto Renka", "Umezawa Minami", "Kubo Shiori", "Sato Kaede", "Yamashita Mizuki", "Yoda Yuuki", "Endo Sakura", "Kaki Haruka", "Kakehashi Sayaka", "Kanagawa Saya", "Shibata Yuna", "Seimiya Rei", "Tamura Mayu", "Tsutsui Ayame", "Yumiki Nao"],
       "addgroups": [{"id": "gen5",
          "has": ["Ioki Mao", "Ikeda Teresa", "Ichinose Miku", "Inoue Nagi", "Okamoto Hina", "Ogawa Aya", "Okuda Iroha", "Kawasaki Sakura", "Sugawara Satsuki", "Tomisato Nao", "Nakanishi Aruno"]}],
       "table": [
@@ -2193,7 +2193,7 @@
             ]
          },
          {
-            "member": "Tsujii Ayame",
+            "member": "Tsutsui Ayame",
             "slotsSold": [
                "||||",
                "||||",

@@ -1,6 +1,871 @@
 import { c as create_ssr_component, e as escape, n as null_to_empty, a as each, b as add_attribute, v as validate_component } from "../../_app/immutable/chunks/index-280110de.js";
 import { concat, pullAll, without, find, min } from "lodash-es";
+import "html2canvas";
 const data = [
+  {
+    cd: {
+      num: 26,
+      type: "Single"
+    },
+    lastDraw: 12,
+    meetDates: [
+      "2021-01-31",
+      "2021-02-07",
+      "2021-02-14",
+      "2021-02-27",
+      "2021-03-14",
+      "2021-03-21"
+    ],
+    sbt: [
+      "Iwamoto Renka",
+      "Umezawa Minami",
+      "Oozono Momoko",
+      "Kubo Shiori",
+      "Yamashita Mizuki",
+      "Yoda Yuuki",
+      "Endo Sakura",
+      "Kaki Haruka",
+      "Seimiya Rei",
+      "Tamura Mayu",
+      "Tsutsui Ayame"
+    ],
+    table: [
+      {
+        member: "Higuchi Hina",
+        slotsSold: [
+          "4|5|5|3|4",
+          "||||",
+          "||||",
+          "||||",
+          "11|11|11|11|",
+          "12|12|11|10|7"
+        ]
+      },
+      {
+        member: "Wada Maaya",
+        slotsSold: [
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||"
+        ]
+      },
+      {
+        member: "Ito Jyunna",
+        slotsSold: [
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||"
+        ]
+      },
+      {
+        member: "Kitano Hinako",
+        slotsSold: [
+          "5|5|5|4|5",
+          "6||6||",
+          "6|6|6|6|6",
+          "8|7|7|6|7",
+          "9|7|7|7|7",
+          "8|8|7|7|5"
+        ]
+      },
+      {
+        member: "Suzuki Ayane",
+        slotsSold: [
+          "||5||",
+          "||||",
+          "||||",
+          "||||",
+          "10|10|9|10|10",
+          "12|12|12|12|11"
+        ]
+      },
+      {
+        member: "Terada Ranze",
+        slotsSold: [
+          "||||",
+          "||||",
+          "||7||",
+          "||||",
+          "||10|11|",
+          "11|10|8|8|5"
+        ]
+      },
+      {
+        member: "Yamazaki Rena",
+        slotsSold: [
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||"
+        ]
+      },
+      {
+        member: "Watanabe Miria",
+        slotsSold: [
+          "|5|5||5",
+          "||||",
+          "|7|6|7|7",
+          "||9||",
+          "11|10|9|10|10",
+          "11|10|10|9|8"
+        ]
+      },
+      {
+        member: "Ito Riria",
+        slotsSold: [
+          "x|x|x|x|x",
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||"
+        ]
+      },
+      {
+        member: "Iwamoto Renka",
+        slotsSold: [
+          "|5|||",
+          "5|6|5|4|5",
+          "6|7|6|7|6",
+          "6|7|7|7|6",
+          "7|7|7|7|7",
+          "7|6|7|6|7"
+        ]
+      },
+      {
+        member: "Umezawa Minami",
+        slotsSold: [
+          "4|3|3|3|4",
+          "3|4|4|3|4",
+          "3|3|4|3|3",
+          "4|4|3|3|3",
+          "4|5|4|4|4",
+          "4|4|3|5|4"
+        ]
+      },
+      {
+        member: "Oozono Momoko",
+        slotsSold: [
+          "5|5|4|4|4",
+          "6|5|5|5|5",
+          "5|5|5|5|5",
+          "5|5|5|5|5",
+          "5|5|6|5|4",
+          "6|5|6|5|5"
+        ]
+      },
+      {
+        member: "Kubo Shiori",
+        slotsSold: [
+          "4|5|4|4|5",
+          "4|5|4|5|4",
+          "4|4|4|5|3",
+          "4|4|5|4|4",
+          "4|4|4|4|4",
+          "3|3|3|4|3"
+        ]
+      },
+      {
+        member: "Sakaguchi Tamami",
+        slotsSold: [
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||"
+        ]
+      },
+      {
+        member: "Sato Kaede",
+        slotsSold: [
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "7|6|6|7|5"
+        ]
+      },
+      {
+        member: "Nakamura Reno",
+        slotsSold: [
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||"
+        ]
+      },
+      {
+        member: "Mukai Hazuki",
+        slotsSold: [
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||"
+        ]
+      },
+      {
+        member: "Yamashita Mizuki",
+        slotsSold: [
+          "4|3|3|4|3",
+          "3|4|3|3|3",
+          "4|3|3|4|3",
+          "5|3|4|3|3",
+          "7|6|7|6|7",
+          "?|?|?|?|?"
+        ]
+      },
+      {
+        member: "Yoshida Ayano Cristi",
+        slotsSold: [
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||"
+        ]
+      },
+      {
+        member: "Yoda Yuuki",
+        slotsSold: [
+          "3|4|3|4|3",
+          "3|3|3|4|5",
+          "4|3|3|4|4",
+          "3|3|3|4|4",
+          "3|4|3|4|5",
+          "3|3|3|3|4"
+        ]
+      },
+      {
+        member: "Endo Sakura",
+        slotsSold: [
+          "3|3|4|3|3",
+          "3|4|4|5|3",
+          "3|3|3|4|4",
+          "4|3|4|3|3",
+          "4|3|3|3|3",
+          "5|3|4|3|4"
+        ]
+      },
+      {
+        member: "Kaki Haruka",
+        slotsSold: [
+          "4|3|3|4|3",
+          "4|4|3|4|4",
+          "4|3|4|3|5",
+          "3|5|3|3|3",
+          "3|3|3|3|4",
+          "4|3|4|3|3"
+        ]
+      },
+      {
+        member: "Kakehashi Sayaka",
+        slotsSold: [
+          "|4|5|5|5",
+          "5|5|6|6|",
+          "6|5|5|5|5",
+          "7|6|7|7|6",
+          "7|6|6|7|7",
+          "7|7|5|7|6"
+        ]
+      },
+      {
+        member: "Kanagawa Saya",
+        slotsSold: [
+          "||||",
+          "||||",
+          "|7|5|7|",
+          "||9||",
+          "11|10|8|9|10",
+          "11|11|9|9|10"
+        ]
+      },
+      {
+        member: "Kitagawa Yuri",
+        slotsSold: [
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||"
+        ]
+      },
+      {
+        member: "Kuromi Haruka",
+        slotsSold: [
+          "||||",
+          "||||",
+          "||||",
+          "x|x|x|x|x",
+          "||||",
+          "||||"
+        ]
+      },
+      {
+        member: "Sato Rika",
+        slotsSold: [
+          "||||",
+          "||||",
+          "||7||",
+          "||9||",
+          "|10|9|10|11",
+          "12|11|11|11|10"
+        ]
+      },
+      {
+        member: "Shibata Yuna",
+        slotsSold: [
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "|11|10|10|",
+          "|||12|"
+        ]
+      },
+      {
+        member: "Seimiya Rei",
+        slotsSold: [
+          "4|5|||4",
+          "5||||",
+          "7|5|4|4|5",
+          "5|6|5|6|7",
+          "5|7|5|7|5",
+          "7|6|6|6|5"
+        ]
+      },
+      {
+        member: "Tamura Mayu",
+        slotsSold: [
+          "4|4|4|4|5",
+          "5|4|4|5|5",
+          "3|3|3|4|3",
+          "3|4|5|4|4",
+          "5|4|4|3|3",
+          "4|3|3|4|4"
+        ]
+      },
+      {
+        member: "Tsutsui Ayame",
+        slotsSold: [
+          "5|4|5|4|5",
+          "4|5|5|6|5",
+          "5|5|4|5|4",
+          "5|4|5|5|4",
+          "5|6|5|5|6",
+          "5|5|6|5|4"
+        ]
+      },
+      {
+        member: "Hayakawa Seira",
+        slotsSold: [
+          "4|4|3|3|4",
+          "4|3|4|4|5",
+          "5|4|3|4|4",
+          "4|5|4|5|4",
+          "4|4|5|4|4",
+          "4|4|4|4|4"
+        ]
+      },
+      {
+        member: "Hayashi Runa",
+        slotsSold: [
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||"
+        ]
+      },
+      {
+        member: "Matsuo Miyu",
+        slotsSold: [
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||"
+        ]
+      },
+      {
+        member: "Yakubo Mio",
+        slotsSold: [
+          "||||",
+          "||||",
+          "||||",
+          "x|x|x|x|x",
+          "||||",
+          "||||"
+        ]
+      },
+      {
+        member: "Yumiki Nao",
+        slotsSold: [
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||"
+        ]
+      }
+    ]
+  },
+  {
+    cd: {
+      num: 27,
+      type: "Single"
+    },
+    lastDraw: 15,
+    meetDates: [
+      "2021-06-13",
+      "2021-06-27",
+      "2021-07-04",
+      "2021-07-25",
+      "2021-08-08",
+      "2021-08-29"
+    ],
+    sbt: [
+      "Higuchi Hina",
+      "Matsumura Sayuri",
+      "Iwamoto Renka",
+      "Umezawa Minami",
+      "Oozono Momoko",
+      "Kubo Shiori",
+      "Yamashita Mizuki",
+      "Yoda Yuuki",
+      "Endo Sakura",
+      "Kaki Haruka",
+      "Seimiya Rei",
+      "Tamura Mayu",
+      "Tsutsui Ayame",
+      "Hayakawa Seira"
+    ],
+    table: [
+      {
+        member: "Higuchi Hina",
+        slotsSold: [
+          "2|3|3|3|4",
+          "||||",
+          "||||",
+          "||11||",
+          "||||",
+          "11|12|9|9|3"
+        ]
+      },
+      {
+        member: "Matsumura Sayuri",
+        slotsSold: [
+          "||||",
+          "7|6|7|7|7",
+          "x|x|x|x|x",
+          "x|x|x|x|x",
+          "x|x|x|x|x",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Wada Maaya",
+        slotsSold: [
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||"
+        ]
+      },
+      {
+        member: "Ito Jyunna",
+        slotsSold: [
+          "4|5|5|5|5",
+          "x|x|x|x|x",
+          "6|6|5|6|6",
+          "7|6|5|7|5",
+          "7|6|5|6|5",
+          "5|5|5|4|5"
+        ]
+      },
+      {
+        member: "Kitano Hinako",
+        slotsSold: [
+          "2|2|2|3|3",
+          "4|4|2|4|4",
+          "4|2|2|4|3",
+          "3|2|2|2|2",
+          "5|4|4|4|4",
+          "4|4|3|3|2"
+        ]
+      },
+      {
+        member: "Suzuki Ayane",
+        slotsSold: [
+          "4|4|4|5|4",
+          "||6||7",
+          "||||",
+          "||||",
+          "||||",
+          "||11|10|4"
+        ]
+      },
+      {
+        member: "Terada Ranze",
+        slotsSold: [
+          "3|4|2|4|3",
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "6|5|4|3|2"
+        ]
+      },
+      {
+        member: "Yamazaki Rena",
+        slotsSold: [
+          "3|4|4|4|x",
+          "||||x",
+          "||||x",
+          "||||x",
+          "||||x",
+          "|||12|x"
+        ]
+      },
+      {
+        member: "Watanabe Miria",
+        slotsSold: [
+          "2|3|3|2|3",
+          "4|4|4|4|4",
+          "4|4|4|4|4",
+          "4|4|4|4|4",
+          "4|4|4|4|4",
+          "4|4|3|3|2"
+        ]
+      },
+      {
+        member: "Ito Riria",
+        slotsSold: [
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||"
+        ]
+      },
+      {
+        member: "Iwamoto Renka",
+        slotsSold: [
+          "2|2|2|2|2",
+          "4|3|3|3|3",
+          "4|3|3|3|3",
+          "4|4|3|3|3",
+          "4|3|3|3|3",
+          "4|3|2|2|2"
+        ]
+      },
+      {
+        member: "Umezawa Minami",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2"
+        ]
+      },
+      {
+        member: "Oozono Momoko",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|3",
+          "2|2|3|3|3",
+          "2|3|3|3|3",
+          "3|3|3|3|3",
+          "2|2|2|2|3"
+        ]
+      },
+      {
+        member: "Kubo Shiori",
+        slotsSold: [
+          "x|x|x|x|x",
+          "x|x|x|x|x",
+          "1|1|2|1|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2"
+        ]
+      },
+      {
+        member: "Sakaguchi Tamami",
+        slotsSold: [
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||12"
+        ]
+      },
+      {
+        member: "Sato Kaede",
+        slotsSold: [
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "|||12|9"
+        ]
+      },
+      {
+        member: "Nakamura Reno",
+        slotsSold: [
+          "||||",
+          "||||",
+          "x|x|x|x|x",
+          "||||",
+          "||||"
+        ]
+      },
+      {
+        member: "Mukai Hazuki",
+        slotsSold: [
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||"
+        ]
+      },
+      {
+        member: "Yamashita Mizuki",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "1|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2"
+        ]
+      },
+      {
+        member: "Yoshida Ayano Cristi",
+        slotsSold: [
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||"
+        ]
+      },
+      {
+        member: "Yoda Yuuki",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "1|2|2|2|2"
+        ]
+      },
+      {
+        member: "Endo Sakura",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2"
+        ]
+      },
+      {
+        member: "Kaki Haruka",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "1|2|2|2|1"
+        ]
+      },
+      {
+        member: "Kakehashi Sayaka",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|3|3",
+          "3|2|2|2|3",
+          "2|2|2|2|2",
+          "3|2|2|3|3",
+          "2|2|2|2|2"
+        ]
+      },
+      {
+        member: "Kanagawa Saya",
+        slotsSold: [
+          "2|4|3|5|",
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||15"
+        ]
+      },
+      {
+        member: "Kitagawa Yuri",
+        slotsSold: [
+          "||||",
+          "?|?|?|?|?",
+          "?|?|?|?|?",
+          "||||",
+          "||||",
+          "||||"
+        ]
+      },
+      {
+        member: "Kuromi Haruka",
+        slotsSold: [
+          "||||",
+          "||||",
+          "x|x|x|x|x",
+          "||||",
+          "||||",
+          "||||"
+        ]
+      },
+      {
+        member: "Sato Rika",
+        slotsSold: [
+          "4||||",
+          "||||",
+          "||||",
+          "||11||",
+          "4|3|3|4|4",
+          "||13|14|7"
+        ]
+      },
+      {
+        member: "Shibata Yuna",
+        slotsSold: [
+          "4|4|4|4|5",
+          "||5||",
+          "||8||",
+          "||5|10|",
+          "||9|12|12",
+          "14|13|6|9|9"
+        ]
+      },
+      {
+        member: "Seimiya Rei",
+        slotsSold: [
+          "x|x|x|x|x",
+          "x|x|x|x|x",
+          "x|x|x|x|x",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2"
+        ]
+      },
+      {
+        member: "Tamura Mayu",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|1|2|2"
+        ]
+      },
+      {
+        member: "Tsutsui Ayame",
+        slotsSold: [
+          "x|x|x|x|x",
+          "x|x|x|x|x",
+          "x|x|x|x|x",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2"
+        ]
+      },
+      {
+        member: "Hayakawa Seira",
+        slotsSold: [
+          "x|x|x|x|x",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|1|2|2"
+        ]
+      },
+      {
+        member: "Hayashi Runa",
+        slotsSold: [
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||"
+        ]
+      },
+      {
+        member: "Matsuo Miyu",
+        slotsSold: [
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||15||15"
+        ]
+      },
+      {
+        member: "Yakubo Mio",
+        slotsSold: [
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||11||",
+          "||||"
+        ]
+      },
+      {
+        member: "Yumiki Nao",
+        slotsSold: [
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||",
+          "||||13"
+        ]
+      }
+    ]
+  },
   {
     cd: {
       num: 28,
@@ -30,7 +895,7 @@ const data = [
       "Shibata Yuna",
       "Seimiya Rei",
       "Tamura Mayu",
-      "Tsujii Ayame",
+      "Tsutsui Ayame",
       "Hayakawa Seira"
     ],
     table: [
@@ -332,7 +1197,7 @@ const data = [
         ]
       },
       {
-        member: "Tsujii Ayame",
+        member: "Tsutsui Ayame",
         slotsSold: [
           "3|3|3|3|3",
           "4|4|4|4|3",
@@ -424,7 +1289,7 @@ const data = [
       "Kakehashi Sayaka",
       "Seimiya Rei",
       "Tamura Mayu",
-      "Tsujii Ayame",
+      "Tsutsui Ayame",
       "Hayakawa Seira"
     ],
     table: [
@@ -637,7 +1502,7 @@ const data = [
         ]
       },
       {
-        member: "Tsujii Ayame",
+        member: "Tsutsui Ayame",
         slotsSold: [
           "||||",
           "||||",
@@ -714,7 +1579,7 @@ const data = [
       "Shibata Yuna",
       "Seimiya Rei",
       "Tamura Mayu",
-      "Tsujii Ayame",
+      "Tsutsui Ayame",
       "Hayakawa Seira"
     ],
     addgroups: [
@@ -1026,7 +1891,7 @@ const data = [
         ]
       },
       {
-        member: "Tsujii Ayame",
+        member: "Tsutsui Ayame",
         slotsSold: [
           "3|3|3|4|5",
           "||||",
@@ -1209,7 +2074,7 @@ const data = [
       "Shibata Yuna",
       "Seimiya Rei",
       "Tamura Mayu",
-      "Tsujii Ayame",
+      "Tsutsui Ayame",
       "Yumiki Nao"
     ],
     addgroups: [
@@ -1474,7 +2339,7 @@ const data = [
         ]
       },
       {
-        member: "Tsujii Ayame",
+        member: "Tsutsui Ayame",
         slotsSold: [
           "||||",
           "||||",
@@ -1662,7 +2527,7 @@ const members = [
     from: "\u57FC\u7389",
     bloodtype: "B",
     height: 154,
-    status: "senbatsu"
+    status: ""
   },
   {
     member: "Saito Asuka",
@@ -1673,7 +2538,7 @@ const members = [
     from: "\u6771\u4EAC",
     bloodtype: "O",
     height: 158,
-    status: "senbatsu"
+    status: ""
   },
   {
     member: "Takayama Kazumi",
@@ -1695,7 +2560,18 @@ const members = [
     from: "\u6771\u4EAC",
     bloodtype: "A",
     height: 161,
-    status: "senbatsu"
+    status: ""
+  },
+  {
+    member: "Matsumura Sayuri",
+    kanji: "\u677E\u6751 \u6C99\u53CB\u7406",
+    furi: "\u307E\u3064\u3080\u3089 \u3055\u3086\u308A",
+    gen: 1,
+    dob: "1992-08-27",
+    from: "\u5927\u962A",
+    bloodtype: "B",
+    height: 164,
+    status: "2021-07-13"
   },
   {
     member: "Wada Maaya",
@@ -1706,7 +2582,18 @@ const members = [
     from: "\u5E83\u5CF6",
     bloodtype: "O",
     height: 161,
-    status: "under"
+    status: ""
+  },
+  {
+    member: "Ito Jyunna",
+    kanji: "\u4F0A\u85E4 \u7D14\u5948",
+    furi: "\u3044\u3068\u3046 \u3058\u3085\u3093\u306A",
+    gen: 2,
+    dob: "1998-08-27",
+    from: "\u795E\u5948\u5DDD",
+    bloodtype: "A",
+    height: 166,
+    status: "2021-08-31"
   },
   {
     member: "Shinuchi Mai",
@@ -1721,7 +2608,7 @@ const members = [
   },
   {
     member: "Terada Ranze",
-    kanji: "\u5BFA\u7530\u862D\u4E16",
+    kanji: "\u5BFA\u7530 \u862D\u4E16",
     furi: "\u3066\u3089\u3060 \u3089\u3093\u305C",
     gen: 2,
     dob: "1998-09-23",
@@ -1750,7 +2637,18 @@ const members = [
     from: "\u5E83\u5CF6",
     bloodtype: "O",
     height: 161,
-    status: "senbatsu"
+    status: ""
+  },
+  {
+    member: "Hori Miyona",
+    kanji: "\u5800 \u672A\u592E\u5948",
+    furi: "\u307B\u308A \u307F\u304A\u306A",
+    gen: 2,
+    dob: "1996-10-15",
+    from: "\u5C90\u961C",
+    bloodtype: "O",
+    height: 162,
+    status: "2021-03-28"
   },
   {
     member: "Yamazaki Rena",
@@ -1764,6 +2662,17 @@ const members = [
     status: "2022-07-17"
   },
   {
+    member: "Watanabe Miria",
+    kanji: "\u6E21\u8FBA \u307F\u308A\u611B",
+    furi: "\u308F\u305F\u306A\u3079 \u307F\u308A\u3042",
+    gen: 2,
+    dob: "1999-11-01",
+    from: "\u6771\u4EAC",
+    bloodtype: "O",
+    height: 153,
+    status: "2021-08-31"
+  },
+  {
     member: "Ito Riria",
     kanji: "\u4F0A\u85E4 \u7406\u3005\u674F",
     furi: "\u3044\u3068\u3046 \u308A\u308A\u3042",
@@ -1772,7 +2681,7 @@ const members = [
     from: "\u6C96\u7E04",
     bloodtype: "B",
     height: 154,
-    status: "under"
+    status: ""
   },
   {
     member: "Iwamoto Renka",
@@ -1783,7 +2692,7 @@ const members = [
     from: "\u6771\u4EAC",
     bloodtype: "B",
     height: 159,
-    status: "senbatsu"
+    status: ""
   },
   {
     member: "Umezawa Minami",
@@ -1794,7 +2703,7 @@ const members = [
     from: "\u795E\u5948\u5DDD",
     bloodtype: "A",
     height: 170,
-    status: "senbatsu"
+    status: ""
   },
   {
     member: "Oozono Momoko",
@@ -1816,7 +2725,7 @@ const members = [
     from: "\u5BAE\u57CE",
     bloodtype: "O",
     height: 161,
-    status: "senbatsu"
+    status: ""
   },
   {
     member: "Sakaguchi Tamami",
@@ -1827,7 +2736,7 @@ const members = [
     from: "\u6771\u4EAC",
     bloodtype: "A",
     height: 161,
-    status: "under"
+    status: ""
   },
   {
     member: "Sato Kaede",
@@ -1838,7 +2747,7 @@ const members = [
     from: "\u611B\u77E5",
     bloodtype: "A",
     height: 161,
-    status: "senbatsu"
+    status: ""
   },
   {
     member: "Nakamura Reno",
@@ -1849,7 +2758,7 @@ const members = [
     from: "\u6771\u4EAC",
     bloodtype: "\u4E0D\u660E",
     height: 167,
-    status: "under"
+    status: ""
   },
   {
     member: "Mukai Hazuki",
@@ -1860,7 +2769,7 @@ const members = [
     from: "\u6771\u4EAC",
     bloodtype: "A",
     height: 152,
-    status: "under"
+    status: ""
   },
   {
     member: "Yamashita Mizuki",
@@ -1871,7 +2780,7 @@ const members = [
     from: "\u6771\u4EAC",
     bloodtype: "O",
     height: 160,
-    status: "senbatsu"
+    status: ""
   },
   {
     member: "Yoshida Ayano Cristi",
@@ -1882,7 +2791,7 @@ const members = [
     from: "\u5927\u5206",
     bloodtype: "A",
     height: 161,
-    status: "under"
+    status: ""
   },
   {
     member: "Yoda Yuuki",
@@ -1893,7 +2802,7 @@ const members = [
     from: "\u798F\u5CA1",
     bloodtype: "O",
     height: 153,
-    status: "senbatsu"
+    status: ""
   },
   {
     member: "Endo Sakura",
@@ -1904,7 +2813,7 @@ const members = [
     from: "\u611B\u77E5",
     bloodtype: "\u4E0D\u660E",
     height: 164,
-    status: "senbatsu"
+    status: ""
   },
   {
     member: "Kaki Haruka",
@@ -1915,7 +2824,7 @@ const members = [
     from: "\u6803\u6728",
     bloodtype: "A",
     height: 166,
-    status: "senbatsu"
+    status: ""
   },
   {
     member: "Kakehashi Sayaka",
@@ -1926,7 +2835,7 @@ const members = [
     from: "\u5CA1\u5C71",
     bloodtype: "B\u578B",
     height: 154,
-    status: "senbatsu"
+    status: ""
   },
   {
     member: "Kanagawa Saya",
@@ -1937,7 +2846,7 @@ const members = [
     from: "\u5317\u6D77\u9053",
     bloodtype: "O",
     height: 165,
-    status: "senbatsu"
+    status: ""
   },
   {
     member: "Kitagawa Yuri",
@@ -1948,7 +2857,7 @@ const members = [
     from: "\u30AB\u30EA\u30D5\u30A9\u30EB\u30CB\u30A2\u5DDE",
     bloodtype: "\u4E0D\u660E",
     height: 165,
-    status: "under"
+    status: ""
   },
   {
     member: "Kuromi Haruka",
@@ -1959,7 +2868,7 @@ const members = [
     from: "\u6771\u4EAC",
     bloodtype: "O",
     height: 162,
-    status: "under"
+    status: ""
   },
   {
     member: "Sato Rika",
@@ -1970,7 +2879,7 @@ const members = [
     from: "\u5CA9\u624B",
     bloodtype: "B",
     height: 160,
-    status: "under"
+    status: ""
   },
   {
     member: "Shibata Yuna",
@@ -1981,7 +2890,7 @@ const members = [
     from: "\u5343\u8449",
     bloodtype: "A",
     height: 160,
-    status: "senbatsu"
+    status: ""
   },
   {
     member: "Seimiya Rei",
@@ -1992,7 +2901,7 @@ const members = [
     from: "\u57FC\u7389",
     bloodtype: "O",
     height: 164,
-    status: "senbatsu"
+    status: ""
   },
   {
     member: "Tamura Mayu",
@@ -2003,10 +2912,10 @@ const members = [
     from: "\u57FC\u7389",
     bloodtype: "A",
     height: 160,
-    status: "senbatsu"
+    status: ""
   },
   {
-    member: "Tsujii Ayame",
+    member: "Tsutsui Ayame",
     kanji: "\u7B52\u4E95 \u3042\u3084\u3081",
     furi: "\u3064\u3064\u3044 \u3042\u3084\u3081",
     gen: 4,
@@ -2014,7 +2923,7 @@ const members = [
     from: "\u611B\u77E5",
     bloodtype: "O",
     height: 160,
-    status: "senbatsu"
+    status: ""
   },
   {
     member: "Hayakawa Seira",
@@ -2036,7 +2945,7 @@ const members = [
     from: "\u795E\u5948\u5DDD",
     bloodtype: "O",
     height: 164,
-    status: "under"
+    status: ""
   },
   {
     member: "Matsuo Miyu",
@@ -2047,7 +2956,7 @@ const members = [
     from: "\u5343\u8449",
     bloodtype: "O",
     height: 167,
-    status: "under"
+    status: ""
   },
   {
     member: "Yakubo Mio",
@@ -2058,7 +2967,7 @@ const members = [
     from: "\u6771\u4EAC",
     bloodtype: "B",
     height: 153,
-    status: "under"
+    status: ""
   },
   {
     member: "Yumiki Nao",
@@ -2069,7 +2978,7 @@ const members = [
     from: "\u4EAC\u90FD",
     bloodtype: "A",
     height: 165,
-    status: "senbatsu"
+    status: ""
   },
   {
     member: "Ioki Mao",
@@ -2498,7 +3407,7 @@ ${group.has.length > 1 ? `<tr class="${"svelte-179mrzs"}">${validate_component(D
 });
 const SlotTable_svelte_svelte_type_style_lang = "";
 const css$1 = {
-  code: ".table-bordered.svelte-78q4wm.svelte-78q4wm{table-layout:fixed;border:1px solid #ddd !important;border-spacing:0!important;border-collapse:collapse;display:block;overflow-x:auto}.container.svelte-78q4wm.svelte-78q4wm{margin:0 auto;width:max-content;padding:7px}table.svelte-78q4wm caption.svelte-78q4wm{font-size:large;font-weight:bold;padding:.5em 0}th.svelte-78q4wm.svelte-78q4wm{font-size:large;font-weight:bold;border:1px solid black;border-bottom:2px solid black;padding:0}@media screen and (max-width: 767px){table.svelte-78q4wm caption.svelte-78q4wm{display:none}}.soldFraction.svelte-78q4wm.svelte-78q4wm{display:inline;float:right;margin-right:3px;font-size:small;font-weight:normal;color:#777}",
+  code: ".table-bordered.svelte-i4pbgc.svelte-i4pbgc{table-layout:fixed;border:1px solid #ddd !important;border-spacing:0!important;border-collapse:collapse;display:block;overflow-x:auto}.container.svelte-i4pbgc.svelte-i4pbgc{width:max-content}table.svelte-i4pbgc caption.svelte-i4pbgc{font-size:large;font-weight:bold;padding:.5em 0}th.svelte-i4pbgc.svelte-i4pbgc{font-size:large;font-weight:bold;border:1px solid black;border-bottom:2px solid black;padding:0}@media screen and (max-width: 767px){table.svelte-i4pbgc caption.svelte-i4pbgc{display:none}}.soldFraction.svelte-i4pbgc.svelte-i4pbgc{display:inline;float:right;margin-right:3px;font-size:small;font-weight:normal;color:#777}",
   map: null
 };
 const SlotTable = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -2548,14 +3457,14 @@ const SlotTable = create_ssr_component(($$result, $$props, $$bindings, slots) =>
   }).numSold;
   return `
 
-<div class="${"container svelte-78q4wm"}"><table class="${"table-bordered svelte-78q4wm"}"><caption class="${"text-center svelte-78q4wm"}">${escape(title)} (\u6700\u5F8C\u66F4\u65B0\uFF1A${escape(lastDraw)}\u6B21\u53D7\u4ED8)</caption>
+<div class="${"container svelte-i4pbgc"}"><table class="${"table-bordered svelte-i4pbgc"}"><caption class="${"text-center svelte-i4pbgc"}">${escape(title)} (\u6700\u5F8C\u66F4\u65B0\uFF1A${escape(lastDraw)}\u6B21\u53D7\u4ED8)</caption>
   <thead><tr>
-      <th class="${"svelte-78q4wm"}"></th>
-      <th class="${"svelte-78q4wm"}"><div class="${"soldFraction svelte-78q4wm"}">${escape(totalSold[0])}/${escape(totalSold[1])}</div></th>
+      <th class="${"svelte-i4pbgc"}"></th>
+      <th class="${"svelte-i4pbgc"}"><div class="${"soldFraction svelte-i4pbgc"}">${escape(totalSold[0])}/${escape(totalSold[1])}</div></th>
       ${each(data2.meetDates, (date) => {
-    return `<th colspan="${"5"}" class="${"svelte-78q4wm"}">${escape(date)}</th>`;
+    return `<th colspan="${"5"}" class="${"svelte-i4pbgc"}">${escape(date)}</th>`;
   })}
-      ${compare ? `<th class="${"svelte-78q4wm"}">\u904E\u53BB\u3068\u306E\u5DEE</th>` : ``}</tr></thead>
+      ${compare ? `<th class="${"svelte-i4pbgc"}">\u904E\u53BB\u3068\u306E\u5DEE</th>` : ``}</tr></thead>
   <tbody>${groupOpt == "none" ? `${each(data2.table, (row) => {
     return `<tr>${validate_component(DataRow, "DataRow").$$render($$result, { row, lastDraw, compare }, {}, {})}</tr>`;
   })}` : `${each(finalTb, (rowGp) => {
@@ -2565,7 +3474,7 @@ const SlotTable = create_ssr_component(($$result, $$props, $$bindings, slots) =>
 });
 const index_svelte_svelte_type_style_lang = "";
 const css = {
-  code: ":root{font-family:Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,\n		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;--font-mono:'Fira Mono', monospace;--pure-white:#ffffff;--primary-color:#b9c6d2;--secondary-color:#d0dde9;--tertiary-color:#edf0f8;--accent-color:#444444;--heading-color:rgba(0, 0, 0, 0.7);--text-color:#444444}a.svelte-1als31s.svelte-1als31s.svelte-1als31s{color:var(--accent-color);text-decoration:none}a.svelte-1als31s.svelte-1als31s.svelte-1als31s:hover{text-decoration:underline}input.svelte-1als31s.svelte-1als31s.svelte-1als31s,button.svelte-1als31s.svelte-1als31s.svelte-1als31s{font-size:inherit;font-family:inherit}button.svelte-1als31s.svelte-1als31s.svelte-1als31s:focus:not(:focus-visible){outline:none}.optionForm.svelte-1als31s.svelte-1als31s.svelte-1als31s{width:max-content;margin:0 auto;padding:1px 5px;line-height:3.5ch}.optionsContainer.svelte-1als31s.svelte-1als31s.svelte-1als31s{padding:2px 6px;border:1px solid black}ul.twocols.svelte-1als31s.svelte-1als31s.svelte-1als31s{display:inline-block;text-align:left;margin:0;padding:0}ul.twocols.svelte-1als31s>li.svelte-1als31s.svelte-1als31s{margin:15px 0 15px;display:flex;justify-content:left;margin:0}ul.twocols.svelte-1als31s>li.svelte-1als31s>div.leftcol.svelte-1als31s{flex:none;margin:0;width:55px}.advanceOption.svelte-1als31s.svelte-1als31s.svelte-1als31s{padding:2px 6px;border:1px solid black}.inactive.svelte-1als31s.svelte-1als31s.svelte-1als31s{display:none}footer.svelte-1als31s.svelte-1als31s.svelte-1als31s{width:20%;margin:20px auto;display:block;justify-content:center;align-items:center;padding:40px;color:hsl(0, 0%, 65%)}",
+  code: ":root{font-family:Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,\n		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;--font-mono:'Fira Mono', monospace;--pure-white:#ffffff;--primary-color:#b9c6d2;--secondary-color:#d0dde9;--tertiary-color:#edf0f8;--accent-color:#444444;--heading-color:rgba(0, 0, 0, 0.7);--text-color:#444444}a.svelte-umrrx0.svelte-umrrx0.svelte-umrrx0{color:var(--accent-color);text-decoration:none}a.svelte-umrrx0.svelte-umrrx0.svelte-umrrx0:hover{text-decoration:underline}input.svelte-umrrx0.svelte-umrrx0.svelte-umrrx0,button.svelte-umrrx0.svelte-umrrx0.svelte-umrrx0{font-size:inherit;font-family:inherit}button.svelte-umrrx0.svelte-umrrx0.svelte-umrrx0:focus:not(:focus-visible){outline:none}.optionForm.svelte-umrrx0.svelte-umrrx0.svelte-umrrx0{width:max-content;margin:0 auto;padding:1px 5px;line-height:3.5ch}.optionsContainer.svelte-umrrx0.svelte-umrrx0.svelte-umrrx0{padding:2px 6px;border:1px solid black}ul.twocols.svelte-umrrx0.svelte-umrrx0.svelte-umrrx0{display:inline-block;text-align:left;margin:0;padding:0}ul.twocols.svelte-umrrx0>li.svelte-umrrx0.svelte-umrrx0{margin:15px 0 15px;display:flex;justify-content:left;margin:0}ul.twocols.svelte-umrrx0>li.svelte-umrrx0>div.leftcol.svelte-umrrx0{flex:none;margin:0;width:55px}.advanceOption.svelte-umrrx0.svelte-umrrx0.svelte-umrrx0{padding:2px 6px;border:1px solid black}.inactive.svelte-umrrx0.svelte-umrrx0.svelte-umrrx0{display:none}.main.svelte-umrrx0.svelte-umrrx0.svelte-umrrx0{margin:0 auto;width:max-content;padding:7px}.print.svelte-umrrx0.svelte-umrrx0.svelte-umrrx0{margin-left:auto}footer.svelte-umrrx0.svelte-umrrx0.svelte-umrrx0{width:20%;margin:20px auto;display:block;justify-content:center;align-items:center;padding:40px;color:hsl(0, 0%, 65%)}",
   map: null
 };
 const Routes = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -2624,36 +3533,38 @@ const Routes = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   }
   return `${$$result.head += `${$$result.title = `<title>\u4E43\u6728\u574246\u30A4\u30F3\u30BF\u30E9\u30AF\u30C6\u30A3\u30D6\u5F0F\u5B8C\u58F2\u8868</title>`, ""}<meta name="${"description"}" content="${"\u4E43\u6728\u574246\u30A4\u30F3\u30BF\u30E9\u30AF\u30C6\u30A3\u30D6\u5F0F\u5B8C\u58F2\u8868"}" data-svelte="svelte-ya5rpn">`, ""}
 
-<div class="${"optionForm svelte-1als31s"}"><div class="${"optionsContainer svelte-1als31s"}"><ul class="${"twocols svelte-1als31s"}"><li class="${"svelte-1als31s"}"><div class="${"leftcol svelte-1als31s"}">CD:</div>
+<div class="${"optionForm svelte-umrrx0"}"><div class="${"optionsContainer svelte-umrrx0"}"><ul class="${"twocols svelte-umrrx0"}"><li class="${"svelte-umrrx0"}"><div class="${"leftcol svelte-umrrx0"}">CD:</div>
                 <div class="${"rightcol"}"><select id="${"cdSelect"}" name="${"cd"}" style="${"margin-left: 15px; margin-right: 15px"}">${each(cdlist, (cd, i) => {
     return `<option${add_attribute("value", i, 0)}>${escape(cd.display)}</option>`;
   })}</select>
-                </div></li>
-            <li class="${"svelte-1als31s"}"><div class="${"leftcol svelte-1als31s"}">Group:</div>
+                </div>
+                
+                <div class="${"print svelte-umrrx0"}"><button class="${"svelte-umrrx0"}">\u753B\u50CF\u8F38\u51FA</button></div></li>
+            <li class="${"svelte-umrrx0"}"><div class="${"leftcol svelte-umrrx0"}">Group:</div>
                 <div class="${"rightcol"}">${each(groupMethod, (grp) => {
     return `
-                    <label><input type="${"radio"}" name="${"groupOpt"}"${add_attribute("id", grp.value, 0)}${add_attribute("value", grp.value, 0)} class="${"svelte-1als31s"}"${grp.value === groupOpt ? add_attribute("checked", true, 1) : ""}>
+                    <label><input type="${"radio"}" name="${"groupOpt"}"${add_attribute("id", grp.value, 0)}${add_attribute("value", grp.value, 0)} class="${"svelte-umrrx0"}"${grp.value === groupOpt ? add_attribute("checked", true, 1) : ""}>
                         ${escape(grp.display)}</label>
                     `;
   })}</div></li>
-            <li class="${"svelte-1als31s"}"><div class="${"leftcol svelte-1als31s"}">Filter:</div>
+            <li class="${"svelte-umrrx0"}"><div class="${"leftcol svelte-umrrx0"}">Filter:</div>
                 <div class="${"rightcol"}">${each(filterMethod, (filt) => {
     return `
-                    <label><input type="${"radio"}" name="${"filterOpt"}"${add_attribute("id", filt.value, 0)}${add_attribute("value", filt.value, 0)} class="${"svelte-1als31s"}"${filt.value === filterOpt ? add_attribute("checked", true, 1) : ""}>
+                    <label><input type="${"radio"}" name="${"filterOpt"}"${add_attribute("id", filt.value, 0)}${add_attribute("value", filt.value, 0)} class="${"svelte-umrrx0"}"${filt.value === filterOpt ? add_attribute("checked", true, 1) : ""}>
                         ${escape(filt.display)}</label>
                     `;
   })}</div></li>
-            <li class="${"svelte-1als31s"}"><div class="${"leftcol svelte-1als31s"}">Sort:</div>
+            <li class="${"svelte-umrrx0"}"><div class="${"leftcol svelte-umrrx0"}">Sort:</div>
                 <div class="${"rightcol"}">${each(sortMethod, (sort) => {
     return `
-                    <label><input type="${"radio"}" name="${"sortOpt"}"${add_attribute("id", sort.value, 0)}${add_attribute("value", sort.value, 0)} class="${"svelte-1als31s"}"${sort.value === sortOpt ? add_attribute("checked", true, 1) : ""}>
+                    <label><input type="${"radio"}" name="${"sortOpt"}"${add_attribute("id", sort.value, 0)}${add_attribute("value", sort.value, 0)} class="${"svelte-umrrx0"}"${sort.value === sortOpt ? add_attribute("checked", true, 1) : ""}>
                         ${escape(sort.display)}
                     </label>`;
   })}</div></li></ul></div>
-    <div class="${"advanceOption svelte-1als31s"}"><label><input type="${"checkbox"}" name="${"compareCD"}" id="${"compareCD"}" class="${"svelte-1als31s"}"${add_attribute("checked", compareCD, 1)}>
+    <div class="${"advanceOption svelte-umrrx0"}"><label><input type="${"checkbox"}" name="${"compareCD"}" id="${"compareCD"}" class="${"svelte-umrrx0"}"${add_attribute("checked", compareCD, 1)}>
             \u904E\u53BB\u306E\u58F2\u308A\u4E0A\u3052\u3068\u306E\u5DEE
         </label>
-        <span class="${["svelte-1als31s", "inactive"].join(" ").trim()}"><label for="${"cd2Select"}">\u2192 \u5BFE\u8C61CD:</label>
+        <span class="${["svelte-umrrx0", "inactive"].join(" ").trim()}"><label for="${"cd2Select"}">\u2192 \u5BFE\u8C61CD:</label>
             <select id="${"cd2Select"}" name="${"cd2"}" style="${"margin-left: 5px; margin-right: 5px"}">${each(cdlist, (cd, i) => {
     return `${i != selected ? `<option${add_attribute("value", i, 0)}>${escape(cd.display)}</option>` : ``}`;
   })}</select>
@@ -2662,7 +3573,7 @@ const Routes = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   })}</select><label for="${"drawSelect"}">\u6B21\u53D7\u4ED8</label>` : ``}
             ${``}</span></div></div>
 
-${validate_component(SlotTable, "SlotTable").$$render(
+<section id="${"slotstable"}" class="${"main svelte-umrrx0"}">${validate_component(SlotTable, "SlotTable").$$render(
     $$result,
     {
       data: selectedCDdata,
@@ -2673,9 +3584,9 @@ ${validate_component(SlotTable, "SlotTable").$$render(
     },
     {},
     {}
-  )}
+  )}</section>
 
-<footer class="${"svelte-1als31s"}">Author: <a href="${"https://github.com/universallyleo"}" class="${"svelte-1als31s"}">universallyleo</a>.  Soruce: <a href="${"https://github.com/universallyleo/ngzkMeetData"}" class="${"svelte-1als31s"}">Github</a>	
+<footer class="${"svelte-umrrx0"}">Author: <a href="${"https://github.com/universallyleo"}" class="${"svelte-umrrx0"}">universallyleo</a>.  Soruce: <a href="${"https://github.com/universallyleo/ngzkMeetData"}" class="${"svelte-umrrx0"}">Github</a>	
 </footer>`;
 });
 export {

@@ -12,7 +12,7 @@ export const ChocolateyInstall = "C:\\ProgramData\\chocolatey";
 export const ChocolateyLastPathUpdate = "132269448547353040";
 
 /** @type {import('$env/static/private').CHROME_CRASHPAD_PIPE_NAME} */
-export const CHROME_CRASHPAD_PIPE_NAME = "\\\\.\\pipe\\crashpad_19064_NYADDLCRXKMINGMA";
+export const CHROME_CRASHPAD_PIPE_NAME = "\\\\.\\pipe\\crashpad_20832_CQTREBIJUQDGJEWP";
 
 /** @type {import('$env/static/private').COLOR} */
 export const COLOR = "1";
@@ -120,7 +120,7 @@ export const npm_config_prefix = "C:\\Users\\Aaron Chan\\AppData\\Roaming\\npm";
 export const npm_config_userconfig = "C:\\Users\\Aaron Chan\\.npmrc";
 
 /** @type {import('$env/static/private').npm_config_user_agent} */
-export const npm_config_user_agent = "npm/8.15.1 node/v16.13.2 win32 x64 workspaces/false";
+export const npm_config_user_agent = "npm/8.16.0 node/v16.13.2 win32 x64 workspaces/false";
 
 /** @type {import('$env/static/private').npm_execpath} */
 export const npm_execpath = "C:\\Users\\Aaron Chan\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js";
