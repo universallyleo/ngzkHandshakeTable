@@ -29,6 +29,29 @@ const data = [
       "Tamura Mayu",
       "Tsutsui Ayame"
     ],
+    addgroups: [
+      {
+        id: "gen4",
+        has: [
+          "Endo Sakura",
+          "Kaki Haruka",
+          "Kakehashi Sayaka",
+          "Kanagawa Saya",
+          "Kitagawa Yuri",
+          "Kuromi Haruka",
+          "Sato Rika",
+          "Shibata Yuna",
+          "Seimiya Rei",
+          "Tamura Mayu",
+          "Tsutsui Ayame",
+          "Hayakawa Seira",
+          "Hayashi Runa",
+          "Matsuo Miyu",
+          "Yakubo Mio",
+          "Yumiki Nao"
+        ]
+      }
+    ],
     table: [
       {
         member: "Higuchi Hina",
@@ -456,6 +479,29 @@ const data = [
       "Tamura Mayu",
       "Tsutsui Ayame",
       "Hayakawa Seira"
+    ],
+    addgroups: [
+      {
+        id: "gen4",
+        has: [
+          "Endo Sakura",
+          "Kaki Haruka",
+          "Kakehashi Sayaka",
+          "Kanagawa Saya",
+          "Kitagawa Yuri",
+          "Kuromi Haruka",
+          "Sato Rika",
+          "Shibata Yuna",
+          "Seimiya Rei",
+          "Tamura Mayu",
+          "Tsutsui Ayame",
+          "Hayakawa Seira",
+          "Hayashi Runa",
+          "Matsuo Miyu",
+          "Yakubo Mio",
+          "Yumiki Nao"
+        ]
+      }
     ],
     table: [
       {
