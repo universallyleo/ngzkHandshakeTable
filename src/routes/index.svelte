@@ -39,20 +39,10 @@ let atdraw=-1;
 
 function getCompare(){
     if (!compareCD) return null;
-    // console.log("Compare CD=true");
-
     if (!isSelectedGood(selected2)) return null;
-    // console.log("Selected2 is good");
-
     if (selected2 == selected) return null;
-    // console.log("Selected!=Selected2");
-
     if (atdraw<0) return null;
-    console.log("All OK!");
-
-    console.log({"cdData": data[selected2], "atdraw": 2});
     return {"cdData": data[selected2], "atdraw": atdraw};
-    // return {cdData: data[2], atdraw: 2};
 }
 
 function isSelectedGood(s){

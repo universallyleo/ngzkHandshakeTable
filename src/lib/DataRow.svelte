@@ -10,8 +10,9 @@ $: mbInfo = getMember(row.member);
 
 const decoratedItem = (c)=>{
     if (c=="x") return {content: "", classes: "NAslot"};
-    if (lastDraw==parseInt(c)) return {content: c, classes: "slot lastDrawSlot"}; 
-    if (lastDraw-1>0 && lastDraw-1==parseInt(c)) return {content: c, classes: "slot lastlastDrawSlot"}; 
+    if (c!="?" && lastDraw==parseInt(c)) return {content: c, classes: "slot lastDrawSlot"}; 
+    if (c!="?" && parseInt(c)>0 && parseInt(c)<lastDraw) return {content: c, classes: "slot soldSlot"};
+    //if (lastDraw-1>0 && lastDraw-1==parseInt(c)) return {content: c, classes: "slot lastlastDrawSlot"}; 
     return {content: c, classes: "slot"};
 };
 $: decoratedTbl = row.slotsSoldex.map( dayslots => {
@@ -101,8 +102,8 @@ $: compareCellClasses = `compareCell lastcell ${addClasses}`;
 .lastDrawSlot{
     background-color: yellow;
 }
-.lastlastDrawSlot{
-    background-color: hsl(86, 80%, 50%);
+.soldSlot{
+    background-color: hsl(211, 62%, 80%);
 }
 .lastcell{
     border-right: 1px solid black !important;

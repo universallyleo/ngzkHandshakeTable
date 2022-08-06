@@ -78,7 +78,6 @@ export function expandMBData(mb, groups, compare = null) {
 	];
 	res.group = groups == '' ? '' : determineGroup(mb, groups);
 	if (compare) {
-		console.log('compare called: ', compare);
 		let [n, total] = getNumSold(res.member, compare.cdData, compare.atdraw);
 		let d = n !== 'N/A' ? `${res.numSold[0] - n > 0 ? '+' : ''}${res.numSold[0] - n}` : '';
 		let lastTimeSoldout = total == n,
@@ -168,7 +167,6 @@ export function partitionToGroup(mbDataList, opt = 'gen') {
 
 export function sortList(datalist, opt = 'none') {
 	//checked if it is a grouped list or ungrouped list
-	console.log('Sorting by ', opt);
 	return 'has' in datalist[0]
 		? datalist.map((x) => {
 				return { label: x.label, value: x.value, has: sortPlainList(x.has, opt) };
@@ -185,7 +183,6 @@ function sortPlainList(mbdatalist, opt = 'kana') {
 				: mbdatalist.map((x) => expandMBData(x, ''));
 			return t.sort((a, b) => {
 				let soldout = [a, b].map((x) => x.numSold[0] == x.numSold[1]);
-				console.log(`${a.member}: soldout=${soldout[0]}`);
 				if (soldout[0]) return soldout[1] ? b.numSold[0] - a.numSold[0] : -1; //TODO: sort by name
 				else return soldout[1] ? 1 : b.numSold[0] - a.numSold[0];
 			});

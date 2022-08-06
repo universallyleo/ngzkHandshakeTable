@@ -94,7 +94,6 @@ function filterList(list, option=filterOpt) {
   margin-top: 1ch; 
 }*/
 .table-bordered {
-  margin: 0 auto;
   table-layout: fixed;
   border: 1px solid #ddd !important;
   border-spacing: 0!important;
@@ -104,6 +103,7 @@ function filterList(list, option=filterOpt) {
 }
 
 .container{
+  margin: 0 auto;
   width: max-content;
   padding: 7px;
 }

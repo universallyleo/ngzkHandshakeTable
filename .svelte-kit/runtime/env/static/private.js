@@ -12,7 +12,7 @@ export const ChocolateyInstall = "C:\\ProgramData\\chocolatey";
 export const ChocolateyLastPathUpdate = "132269448547353040";
 
 /** @type {import('$env/static/private').CHROME_CRASHPAD_PIPE_NAME} */
-export const CHROME_CRASHPAD_PIPE_NAME = "\\\\.\\pipe\\crashpad_7752_ZEBLZSETXSYWUWQX";
+export const CHROME_CRASHPAD_PIPE_NAME = "\\\\.\\pipe\\crashpad_19064_NYADDLCRXKMINGMA";
 
 /** @type {import('$env/static/private').COLOR} */
 export const COLOR = "1";

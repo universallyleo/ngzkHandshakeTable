@@ -2205,7 +2205,6 @@ function expandMBData(mb, groups, compare = null) {
   ];
   res.group = groups == "" ? "" : determineGroup(mb, groups);
   if (compare) {
-    console.log("compare called: ", compare);
     let [n, total] = getNumSold(res.member, compare.cdData, compare.atdraw);
     let d = n !== "N/A" ? `${res.numSold[0] - n > 0 ? "+" : ""}${res.numSold[0] - n}` : "";
     let lastTimeSoldout = total == n, currentSoldout = res.numSold[0] == res.numSold[1];
@@ -2388,7 +2387,7 @@ function sortPlainList(mbdatalist, opt = "kana") {
 }
 const DataRow_svelte_svelte_type_style_lang = "";
 const css$3 = {
-  code: `.soldFraction.svelte-17t34yj{display:inline;float:right;color:#777}.memberName.svelte-17t34yj{width:240px;max-width:300px;padding-left:.4em;padding-right:.2em;border-right:1px solid black;border-top:1px solid #ddd;border-bottom:1px solid #ddd}.NAslot.svelte-17t34yj{width:26px;height:1.8ch;padding:0;box-sizing:border-box;border:1px solid #ddd;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 100 100'><line x1='0' y1='0' x2='100' y2='100' stroke='black' vector-effect='non-scaling-stroke'/><line x1='0' y1='100' x2='100' y2='0' stroke='black' vector-effect='non-scaling-stroke'/></svg>");background-repeat:no-repeat;background-position:center center;background-size:100% 1.75ch}.slot.svelte-17t34yj{width:26px;height:1.8ch;padding:0;overflow:clip;box-sizing:border-box;border:1px solid #ddd;text-align:center}.lastDrawSlot.svelte-17t34yj{background-color:yellow}.lastlastDrawSlot.svelte-17t34yj{background-color:hsl(86, 80%, 50%)}.lastcell.svelte-17t34yj{border-right:1px solid black !important}.topRow.svelte-17t34yj{border-top:1px solid black !important}.bottomRow.svelte-17t34yj{border-bottom:1px solid black !important}.compareCell.svelte-17t34yj{border:1px solid #ddd}.compareGrid.svelte-17t34yj{width:125px;min-height:100%;height:100%;margin:0;display:grid;gap:0;grid-template-columns:35px 12px 30px 48px;grid-template-rows:100%;justify-items:center;align-items:stretch;align-content:stretch}.plusCell.svelte-17t34yj{color:hsl(120, 100%, 40%)}.minusCell.svelte-17t34yj{color:red}`,
+  code: `.soldFraction.svelte-pive2y{display:inline;float:right;color:#777}.memberName.svelte-pive2y{width:240px;max-width:300px;padding-left:.4em;padding-right:.2em;border-right:1px solid black;border-top:1px solid #ddd;border-bottom:1px solid #ddd}.NAslot.svelte-pive2y{width:26px;height:1.8ch;padding:0;box-sizing:border-box;border:1px solid #ddd;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 100 100'><line x1='0' y1='0' x2='100' y2='100' stroke='black' vector-effect='non-scaling-stroke'/><line x1='0' y1='100' x2='100' y2='0' stroke='black' vector-effect='non-scaling-stroke'/></svg>");background-repeat:no-repeat;background-position:center center;background-size:100% 1.75ch}.slot.svelte-pive2y{width:26px;height:1.8ch;padding:0;overflow:clip;box-sizing:border-box;border:1px solid #ddd;text-align:center}.lastDrawSlot.svelte-pive2y{background-color:yellow}.soldSlot.svelte-pive2y{background-color:hsl(211, 62%, 80%)}.lastcell.svelte-pive2y{border-right:1px solid black !important}.topRow.svelte-pive2y{border-top:1px solid black !important}.bottomRow.svelte-pive2y{border-bottom:1px solid black !important}.compareCell.svelte-pive2y{border:1px solid #ddd}.compareGrid.svelte-pive2y{width:125px;min-height:100%;height:100%;margin:0;display:grid;gap:0;grid-template-columns:35px 12px 30px 48px;grid-template-rows:100%;justify-items:center;align-items:stretch;align-content:stretch}.plusCell.svelte-pive2y{color:hsl(120, 100%, 40%)}.minusCell.svelte-pive2y{color:red}`,
   map: null
 };
 const DataRow = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -2403,13 +2402,10 @@ const DataRow = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   const decoratedItem = (c) => {
     if (c == "x")
       return { content: "", classes: "NAslot" };
-    if (lastDraw == parseInt(c))
+    if (c != "?" && lastDraw == parseInt(c))
       return { content: c, classes: "slot lastDrawSlot" };
-    if (lastDraw - 1 > 0 && lastDraw - 1 == parseInt(c))
-      return {
-        content: c,
-        classes: "slot lastlastDrawSlot"
-      };
+    if (c != "?" && parseInt(c) > 0 && parseInt(c) < lastDraw)
+      return { content: c, classes: "slot soldSlot" };
     return { content: c, classes: "slot" };
   };
   if ($$props.row === void 0 && $$bindings.row && row !== void 0)
@@ -2433,24 +2429,24 @@ const DataRow = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   });
   classesOnMbCell = `memberName ${addClasses}`;
   compareCellClasses = `compareCell lastcell ${addClasses}`;
-  return `<td class="${escape(null_to_empty(classesOnMbCell), true) + " svelte-17t34yj"}">${escape(mbInfo.kanji)}
-    <div class="${"soldFraction svelte-17t34yj"}">${escape(row.numSold[0])}/${escape(row.numSold[1])}</div></td>
+  return `<td class="${escape(null_to_empty(classesOnMbCell), true) + " svelte-pive2y"}">${escape(mbInfo.kanji)}
+    <div class="${"soldFraction svelte-pive2y"}">${escape(row.numSold[0])}/${escape(row.numSold[1])}</div></td>
 
 
 ${each(decoratedTbl, (daySlots) => {
     return `${each(daySlots, (slot, i) => {
       return `   
     <td class="${[
-        escape(null_to_empty(slot.classes), true) + " svelte-17t34yj",
+        escape(null_to_empty(slot.classes), true) + " svelte-pive2y",
         i == daySlots.length - 1 ? "lastcell" : ""
       ].join(" ").trim()}">${escape(slot.content)}</td>`;
     })}`;
   })}
-${compare ? `<td class="${escape(null_to_empty(compareCellClasses), true) + " svelte-17t34yj"}"><div class="${"compareGrid svelte-17t34yj"}"><div>${escape(row.compare.lasttime)}</div>
+${compare ? `<td class="${escape(null_to_empty(compareCellClasses), true) + " svelte-pive2y"}"><div class="${"compareGrid svelte-pive2y"}"><div>${escape(row.compare.lasttime)}</div>
             <div>\u2192</div>
             <div>${escape(row.compare.current)}</div>
             <div class="${[
-    "svelte-17t34yj",
+    "svelte-pive2y",
     (row.compare.diff[0] === "+" ? "plusCell" : "") + " " + (row.compare.diff[0] === "-" ? "minusCell" : "")
   ].join(" ").trim()}">${row.compare.diff == `\u5B8C\u58F2` ? `[\u5B8C\u58F2]` : `${row.compare.diff != 0 ? `<span class="${"color:black"}">[ </span>
                     ${escape(row.compare.diff)}
@@ -2502,7 +2498,7 @@ ${group.has.length > 1 ? `<tr class="${"svelte-179mrzs"}">${validate_component(D
 });
 const SlotTable_svelte_svelte_type_style_lang = "";
 const css$1 = {
-  code: ".table-bordered.svelte-wzhf8m.svelte-wzhf8m{margin:0 auto;table-layout:fixed;border:1px solid #ddd !important;border-spacing:0!important;border-collapse:collapse;display:block;overflow-x:auto}.container.svelte-wzhf8m.svelte-wzhf8m{width:max-content;padding:7px}table.svelte-wzhf8m caption.svelte-wzhf8m{font-size:large;font-weight:bold;padding:.5em 0}th.svelte-wzhf8m.svelte-wzhf8m{font-size:large;font-weight:bold;border:1px solid black;border-bottom:2px solid black;padding:0}@media screen and (max-width: 767px){table.svelte-wzhf8m caption.svelte-wzhf8m{display:none}}.soldFraction.svelte-wzhf8m.svelte-wzhf8m{display:inline;float:right;margin-right:3px;font-size:small;font-weight:normal;color:#777}",
+  code: ".table-bordered.svelte-78q4wm.svelte-78q4wm{table-layout:fixed;border:1px solid #ddd !important;border-spacing:0!important;border-collapse:collapse;display:block;overflow-x:auto}.container.svelte-78q4wm.svelte-78q4wm{margin:0 auto;width:max-content;padding:7px}table.svelte-78q4wm caption.svelte-78q4wm{font-size:large;font-weight:bold;padding:.5em 0}th.svelte-78q4wm.svelte-78q4wm{font-size:large;font-weight:bold;border:1px solid black;border-bottom:2px solid black;padding:0}@media screen and (max-width: 767px){table.svelte-78q4wm caption.svelte-78q4wm{display:none}}.soldFraction.svelte-78q4wm.svelte-78q4wm{display:inline;float:right;margin-right:3px;font-size:small;font-weight:normal;color:#777}",
   map: null
 };
 const SlotTable = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -2552,14 +2548,14 @@ const SlotTable = create_ssr_component(($$result, $$props, $$bindings, slots) =>
   }).numSold;
   return `
 
-<div class="${"container svelte-wzhf8m"}"><table class="${"table-bordered svelte-wzhf8m"}"><caption class="${"text-center svelte-wzhf8m"}">${escape(title)} (\u6700\u5F8C\u66F4\u65B0\uFF1A${escape(lastDraw)}\u6B21\u53D7\u4ED8)</caption>
+<div class="${"container svelte-78q4wm"}"><table class="${"table-bordered svelte-78q4wm"}"><caption class="${"text-center svelte-78q4wm"}">${escape(title)} (\u6700\u5F8C\u66F4\u65B0\uFF1A${escape(lastDraw)}\u6B21\u53D7\u4ED8)</caption>
   <thead><tr>
-      <th class="${"svelte-wzhf8m"}"></th>
-      <th class="${"svelte-wzhf8m"}"><div class="${"soldFraction svelte-wzhf8m"}">${escape(totalSold[0])}/${escape(totalSold[1])}</div></th>
+      <th class="${"svelte-78q4wm"}"></th>
+      <th class="${"svelte-78q4wm"}"><div class="${"soldFraction svelte-78q4wm"}">${escape(totalSold[0])}/${escape(totalSold[1])}</div></th>
       ${each(data2.meetDates, (date) => {
-    return `<th colspan="${"5"}" class="${"svelte-wzhf8m"}">${escape(date)}</th>`;
+    return `<th colspan="${"5"}" class="${"svelte-78q4wm"}">${escape(date)}</th>`;
   })}
-      ${compare ? `<th class="${"svelte-wzhf8m"}">\u904E\u53BB\u3068\u306E\u5DEE</th>` : ``}</tr></thead>
+      ${compare ? `<th class="${"svelte-78q4wm"}">\u904E\u53BB\u3068\u306E\u5DEE</th>` : ``}</tr></thead>
   <tbody>${groupOpt == "none" ? `${each(data2.table, (row) => {
     return `<tr>${validate_component(DataRow, "DataRow").$$render($$result, { row, lastDraw, compare }, {}, {})}</tr>`;
   })}` : `${each(finalTb, (rowGp) => {
