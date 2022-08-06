@@ -11,6 +11,17 @@
         "status": ""
     },
     {
+        "member": "Inoue Sayuri",
+        "kanji": "井上 小百合",
+        "furi": "いのうえ さゆり",
+        "gen": 1,
+        "dob": "1994-12-14",
+        "from": "埼玉",
+        "bloodtype": "B",
+        "height": 156,
+        "status": "2020-04-27"
+    },
+    {
         "member": "Saito Asuka",
         "kanji": "齋藤 飛鳥",
         "furi": "さいとう  あすか",
@@ -20,6 +31,17 @@
         "bloodtype": "O",
         "height": 158,
         "status": ""
+    },
+    {
+        "member": "Saitou Yuuri",
+        "kanji": "斉藤 優里",
+        "furi": "ささいとう ゆうり",
+        "gen": 1,
+        "dob": "1993-07-20",
+        "from": "東京",
+        "bloodtype": "O",
+        "height": 157,
+        "status": "2019-06-30"
     },
     {
         "member": "Takayama Kazumi",
@@ -33,6 +55,17 @@
         "status": "2021-11-21"
     },
     {
+        "member": "Nakada Kana",
+        "kanji": "中田 花奈",
+        "furi": "なかだ かな",
+        "gen": 1,
+        "dob": "1994-08-06",
+        "from": "埼玉",
+        "bloodtype": "A",
+        "height": 158,
+        "status": "2020-10-25"
+    },
+    {
         "member": "Higuchi Hina",
         "kanji": "樋口 日奈",
         "furi": "さいとう  あすか",
@@ -42,6 +75,17 @@
         "bloodtype": "A",
         "height": 161,
         "status": ""
+    },
+    {
+        "member": "Hoshino Minami",
+        "kanji": "星野 みなみ",
+        "furi": "ほしの みなみ",
+        "gen": 1,
+        "dob": "1998-02-06",
+        "from": "神奈川",
+        "bloodtype": "B",
+        "height": 155,
+        "status": "2022-02-12"
     },
     {
         "member": "Matsumura Sayuri",
@@ -66,6 +110,17 @@
         "status": ""
     },
     {
+        "member": "Itou Karin",
+        "kanji": "伊藤 かりん",
+        "furi": "いとう かりん",
+        "gen": 2,
+        "dob": "1993-05-26",
+        "from": "神奈川",
+        "bloodtype": "O",
+        "height": 153,
+        "status": "2019-05-24"
+    },
+    {
         "member": "Ito Jyunna",
         "kanji": "伊藤 純奈",
         "furi": "いとう じゅんな",
@@ -75,6 +130,17 @@
         "bloodtype": "A",
         "height": 166,
         "status": "2021-08-31"
+    },
+    {
+        "member": "Sasaki Kotoko",
+        "kanji": "佐々木 琴子",
+        "furi": "ささき ことこ",
+        "gen": 2,
+        "dob": "1998-08-28",
+        "from": "埼玉",
+        "bloodtype": "A",
+        "height": 163,
+        "status": "2020-03-31"
     },
     {
         "member": "Shinuchi Mai",
