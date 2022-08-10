@@ -1,4 +1,4 @@
-import { without, concat, pullAll, find } from 'lodash-es';
+import { without, concat, pullAll } from 'lodash-es';
 import members from '$lib/data/members.json';
 
 export const isISODate = (d) => d.match(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/);
@@ -68,34 +68,70 @@ export const opt2label = (opt, val) => {
 	}
 };
 
-export function expandMBData(mb, groups, compare = null) {
-	let res = { member: mb.member, slotsSoldex: [], numSold: [0, 0], group: '' };
-	res.slotsSoldex = mb.slotsSold.map((x) => x.split('|'));
+const expandSoldslots = (mbdata) => {
+	if (!('slotsSoldex' in mbdata)) mbdata['slotsSoldex'] = mbdata.slotsSold.map((x) => x.split('|'));
+	return mbdata.slotsSoldex;
+};
+
+export function expandMBData(mbdata, groups) {
+	let res = { member: mbdata.member, slotsSoldex: [], numSold: [0, 0], group: '' };
+	// res.slotsSoldex =
+	// 	'slotsSoldex' in mbdata ? mbdata.slotsSoldex : mbdata.slotsSold.map((x) => x.split('|'));
+	res.slotsSoldex = expandSoldslots(mbdata);
 	let f = res.slotsSoldex.flat();
 	res.numSold = [
 		f.filter((x) => (x.match(/^\d+$/) ? parseInt(x) > 0 : false)).length,
 		f.filter((x) => x != 'x' && x != '?').length
 	];
-	res.group = groups == '' ? '' : determineGroup(mb, groups);
-	if (compare) {
-		let [n, total] = getNumSold(res.member, compare.cdData, compare.atdraw);
-		let d = n !== 'N/A' ? `${res.numSold[0] - n > 0 ? '+' : ''}${res.numSold[0] - n}` : '';
-		let lastTimeSoldout = total == n,
-			currentSoldout = res.numSold[0] == res.numSold[1];
-		// if soldout atdraw, then
-		// show difference when currently not soldout
-		// if current also sold out, show no difference
-		res['compare'] = {
-			lasttime: n,
-			current: res.numSold[0],
-			diff: lastTimeSoldout ? (currentSoldout ? `完売` : d) : d
-			//diff: n !== 'N/A' ? res.numSold[0] - n : ''
-		};
-	}
+	res.group = groups == '' ? '' : determineGroup(mbdata, groups);
 	return res;
 }
 
-export function expandDataList(cdData, compare = null) {
+export function compareData(mbdataNow, mbdataCompare, atdraw = -1) {
+	let tolog = mbdataNow.member == 'Yumiki Nao';
+	let [m, totalThen] = getNumSold(mbdataCompare, atdraw),
+		[n, totalNow] = getNumSold(mbdataNow, atdraw);
+	//let diff = n !== 'N/A' ? `${m - n > 0 ? '+' : ''}${m - n}` : '';
+	let lastTimeSoldout = m == totalThen,
+		currentSoldout = n == totalNow,
+		bothSoldout = lastTimeSoldout && currentSoldout;
+	if (tolog) {
+		console.log(`m=${m}, totalThen=${totalThen}`);
+		console.log(`m=${n}, totalThen=${totalNow}`);
+		console.log(`last:${lastTimeSoldout}, curr:${currentSoldout}, both:${bothSoldout}`);
+	}
+
+	if (bothSoldout) {
+		return {
+			prev: m,
+			curr: n,
+			diff: 0,
+			extraprev: `(${allSoldoutAtDraw(mbdataCompare)}次)`,
+			extracurr: `(${allSoldoutAtDraw(mbdataNow)}次)`,
+			extradiff: totalThen != 'N/A' ? `全完売` : ''
+		};
+	} else if (lastTimeSoldout && n > m) {
+		return {
+			prev: `${m}(全)`,
+			curr: n,
+			diff: 'N/A'
+		};
+	} else if (currentSoldout && n < m) {
+		return {
+			prev: m,
+			curr: `${n}(全)`,
+			diff: 'N/A'
+		};
+	} else {
+		return {
+			prev: totalThen == 'N/A' ? 'N/A' : m,
+			curr: `${n}${currentSoldout ? '(全)' : ''}`,
+			diff: m !== 'N/A' ? `${n - m > 0 ? '+' : ''}${n - m}` : ''
+		};
+	}
+}
+
+export function expandDataList(cdData) {
 	let groups = concat(
 		[
 			{ id: 'sbt', has: cdData.sbt },
@@ -103,17 +139,44 @@ export function expandDataList(cdData, compare = null) {
 		],
 		cdData.addgroups ? cdData.addgroups : []
 	);
-	return cdData.table.map((x) => expandMBData(x, groups, compare));
+	return cdData.table.map((x) => expandMBData(x, groups));
 }
 
-export function getNumSold(mb, cdData, atdraw) {
-	let data = find(cdData.table, ['member', mb]);
-	if (!data) return ['N/A', 'N/A'];
-	let expanded = data.slotsSold.map((x) => x.split('|')).flat();
-	return [
-		expanded.filter((x) => (x.match(/^\d+$/) ? parseInt(x) <= atdraw : false)).length,
-		expanded.filter((x) => x != 'x' && x != '?').length
-	];
+/**
+ * @param  {Object} mbdata //Member sold data, with non-empty slotssold
+ * @param  {Integer} atdraw=-1
+ */
+function getNumSold(mbdata, atdraw = -1) {
+	if (!mbdata) return [0, 'N/A'];
+	if ('numSold' in mbdata) return mbdata.numSold;
+	let expanded = expandSoldslots(mbdata).flat();
+	let bound = atdraw == -1 ? finalSoldoutAtDraw(mbdata) : atdraw;
+	// bound=-1 if atDraw is not specified and there is no soldout at all
+	let total = expanded.filter((x) => x != 'x' && x != '?').length;
+	return bound == -1
+		? [0, total]
+		: [expanded.filter((x) => (x.match(/^\d+$/) ? parseInt(x) <= bound : false)).length, total];
+}
+
+function finalSoldoutAtDraw(mbdata) {
+	return mbdata
+		? expandSoldslots(mbdata)
+				.flat()
+				.reduce((curr, prev) => {
+					if (String(curr).match(/^\d+$/)) {
+						let c = parseInt(curr);
+						return c > prev ? c : prev;
+					} else {
+						return prev ? prev : -1;
+					}
+				})
+		: -1;
+}
+
+function allSoldoutAtDraw(mbdata) {
+	if (!('numSold' in mbdata)) mbdata['numSold'] = getNumSold(mbdata);
+	if (mbdata.numSold[0] < mbdata.numSold[1]) return -1;
+	return finalSoldoutAtDraw(mbdata);
 }
 
 /**

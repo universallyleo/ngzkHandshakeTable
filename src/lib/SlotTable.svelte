@@ -1,8 +1,7 @@
 <script>
 import RowGroups from "./RowGroups.svelte";
 import DataRow from "./DataRow.svelte";
-import {partitionToGroup, sortList} from '$lib/memberInfo.js';
-import {cdData, expandDataList} from '$lib/util.js';
+import {cdData, expandDataList, partitionToGroup, sortList} from '$lib/util.js';
 export let data;
 //export let group="gen"; //allow: gen, dob-year, dob-month, bloodtype, from
 export let filterOpt;
@@ -12,7 +11,7 @@ export let compare=null;
 
 $: title = cdData(data.cd).display;
 // array of {member, slotsSoldex: Array<Array<String>>, numSold: [int, int]}
-$: expandedData = expandDataList(data,compare);
+$: expandedData = expandDataList(data);
 $: finalTb = sortList(partitionToGroup(filterList(expandedData,filterOpt),groupOpt),sortOpt);
 $: lastDraw = data.lastDraw;
 $: totalSold = expandedData.reduce((prev,curr)=> { return {numSold: [prev.numSold[0]+curr.numSold[0], prev.numSold[1]+curr.numSold[1]]}; }).numSold;
@@ -69,6 +68,7 @@ function filterList(list, option=filterOpt) {
   </thead>
   <tbody>
     {#if groupOpt=="none"}
+      <!-- TODO: Something is strange, fix it -->
       {#each data.table as row}
       <tr><DataRow {row} {lastDraw} {compare}/></tr>
       {/each}

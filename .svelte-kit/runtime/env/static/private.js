@@ -12,7 +12,7 @@ export const ChocolateyInstall = "C:\\ProgramData\\chocolatey";
 export const ChocolateyLastPathUpdate = "132269448547353040";
 
 /** @type {import('$env/static/private').CHROME_CRASHPAD_PIPE_NAME} */
-export const CHROME_CRASHPAD_PIPE_NAME = "\\\\.\\pipe\\crashpad_21508_VUEBMYFLUWEGTVKW";
+export const CHROME_CRASHPAD_PIPE_NAME = "\\\\.\\pipe\\crashpad_27080_TRGCNQGQLGIWMTQB";
 
 /** @type {import('$env/static/private').COLOR} */
 export const COLOR = "1";
@@ -74,9 +74,6 @@ export const LOGONSERVER = "\\\\DESKTOP-7IDMR5C";
 /** @type {import('$env/static/private').NODE} */
 export const NODE = "C:\\Program Files\\nodejs\\node.exe";
 
-/** @type {import('$env/static/private').NODE_ENV} */
-export const NODE_ENV = "production";
-
 /** @type {import('$env/static/private').NODE_EXE} */
 export const NODE_EXE = "C:\\Program Files\\nodejs\\\\node.exe";
 
@@ -126,10 +123,10 @@ export const npm_config_user_agent = "npm/8.16.0 node/v16.13.2 win32 x64 workspa
 export const npm_execpath = "C:\\Users\\Aaron Chan\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js";
 
 /** @type {import('$env/static/private').npm_lifecycle_event} */
-export const npm_lifecycle_event = "build";
+export const npm_lifecycle_event = "dev";
 
 /** @type {import('$env/static/private').npm_lifecycle_script} */
-export const npm_lifecycle_script = "vite build";
+export const npm_lifecycle_script = "vite dev";
 
 /** @type {import('$env/static/private').npm_node_execpath} */
 export const npm_node_execpath = "C:\\Program Files\\nodejs\\node.exe";

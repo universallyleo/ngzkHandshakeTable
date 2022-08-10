@@ -1,7 +1,8 @@
 # ngzkHandshakeTable
  Display handshake/meet-and-greet sales of each Nogizaka46 CD in a reasonably good-looking table.
 
-[完売表の見方](https://ameblo.jp/seto-kasumi/entry-11695182533.html) 
+[完売表の見方 (JP)](https://ameblo.jp/seto-kasumi/entry-11695182533.html) 
+[完売表の見方 (ZH-TW)](https://pttyes.com/SakaTalk/M.1648729058.A.59E) 
 
 # データ源
 - [乃木坂46公式サイト](nogizaka46.com) - メンバー情報
@@ -13,7 +14,8 @@
 
 
 # TODO
-- Replace/Unify member json data with the official one
-- Better information (regarding timing of 完売) when comparing with other records
+- Add 曜日 and 握手会会場 info
 - New table (or graph): Sales progression, and accumulated sales numebr
+- Rewrite using class so functions related to individual member's data become methods
+- Finish recording all old data (current earliest: 22nd Single)
 - Companion project: write a forTUNE music scrapper to automate update of DB

@@ -1,9 +1,9 @@
 <script>	
 import data from '$lib/data/data.json';
 import {cdData} from '$lib/util.js';
-import SlotTable from '$lib/SlotTable.svelte';
 import { min } from 'lodash-es';
 import html2canvas from "html2canvas";
+import SlotTable from '$lib/SlotTable.svelte';
 
 let cdlist = data.map(x=> cdData(x.cd));
 let selected = cdlist.length-1;
@@ -37,16 +37,24 @@ let compareCD=false;
 let selected2 = -1;
 let atdraw=-1;
 
-function exportImg(){
-        alert("Image printing");
-    html2canvas(document.getElementById("slotstable"),{background:'#ffffff', scale:2}).then( canvas =>{
-        var link=document.createElement("a");
-        document.body.appendChild(link);
-        link.download = `${data[selected].cd.num}${data[selected].cd.type}.jpg`;
-        link.href = canvas.toDataURL();
-        link.target = '_blank';
-        link.click();
+function exportImg(canvas){
+    var link=document.createElement("a");
+    document.body.appendChild(link);
+    link.download = `${data[selected].cd.num}${data[selected].cd.type}-${data[selected].lastDraw}.jpg`;
+    link.href = canvas.toDataURL();
+    link.target = '_blank';
+    link.click();
+}
+
+function copyImg(canvas){
+    canvas.toBlob(blob=> {
+        navigator.clipboard.write([new ClipboardItem( {'image/png': blob} )])
     });
+    alert("Table copied as image to clipboard");
+}
+
+function imgOut(method){
+    html2canvas(document.getElementById("slotstable"),{background:'#ffffff', scale:2}).then( method );
 }
 
 function getCompare(){
@@ -93,7 +101,10 @@ $: if (!compareCD) {compare=null;}
                 </button> -->
                 </div>
                 
-                <div class="print"><button on:click={exportImg}>画像輸出</button></div>
+                <div class="print">
+                    <button on:click={()=>imgOut(exportImg)}>画像輸出</button>
+                    <button on:click={()=>imgOut(copyImg)}>画像コピー</button>
+                </div>
             </li>
             <li>
                 <div class="leftcol">Group:</div>
@@ -197,6 +208,7 @@ input,
 button {
 	font-size: inherit;
 	font-family: inherit;
+    line-height:1.2;
 }
 
 button:focus:not(:focus-visible) {

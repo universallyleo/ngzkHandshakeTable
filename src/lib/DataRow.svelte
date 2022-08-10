@@ -1,5 +1,6 @@
 <script>
-import {getMember} from '$lib/memberInfo.js';
+import {getMember,compareData} from '$lib/util.js';
+import {find} from 'lodash-es';
 export let row;
 export let lastDraw;
 export let addClasses="";
@@ -15,6 +16,7 @@ const decoratedItem = (c)=>{
     //if (lastDraw-1>0 && lastDraw-1==parseInt(c)) return {content: c, classes: "slot lastlastDrawSlot"}; 
     return {content: c, classes: "slot"};
 };
+
 $: decoratedTbl = row.slotsSoldex.map( dayslots => {
     let res=[];
     for (let s of dayslots) { 
@@ -29,6 +31,7 @@ $: decoratedTbl = row.slotsSoldex.map( dayslots => {
 
 $: classesOnMbCell = `memberName ${addClasses}`;
 $: compareCellClasses = `compareCell lastcell ${addClasses}`;
+$: compareOutput = compare!=null?compareData(row,find(compare.cdData.table, ['member',row.member]),compare.atdraw):null;
 </script>
 
 
@@ -46,16 +49,25 @@ $: compareCellClasses = `compareCell lastcell ${addClasses}`;
 {#if compare}
     <td class={compareCellClasses}>
         <div class="compareGrid">
-            <div>{row.compare.lasttime}</div>
+            <div>{compareOutput.prev}
+                {#if compareOutput.extraprev}
+                    <br/>{compareOutput.extraprev}
+                {/if}
+            </div>
             <div>→</div>
-            <div>{row.compare.current}</div>
-            <div class:plusCell={row.compare.diff[0]==="+"} class:minusCell={row.compare.diff[0]==="-"}>
-                {#if row.compare.diff==`完売`}
-                    [完売]
-                {:else if row.compare.diff!=0}
+            <div>{compareOutput.curr}
+                {#if compareOutput.extracurr}
+                    <br/>{compareOutput.extracurr}
+                {/if}
+            </div>
+            <div class:plusCell={compareOutput.diff[0]==="+"} class:minusCell={compareOutput.diff[0]==="-"}>
+                {#if compareOutput.diff!='0'}
                     <span class="color:black">[ </span>
-                    {row.compare.diff}
+                    {compareOutput.diff}
                     <span class="color:black"> ]</span>
+                {/if}
+                {#if compareOutput.extradiff}
+                    <br/>{compareOutput.extradiff}
                 {/if}
             </div>
         </div>
@@ -119,16 +131,17 @@ $: compareCellClasses = `compareCell lastcell ${addClasses}`;
 }
 .compareCell{
     border: 1px solid #ddd;
+    text-align: center;
 }
 
 .compareGrid{
-    width: 125px;
+    width: 167px;
     min-height: 100%;
     height: 100%;
     margin:0;
     display: grid;
     gap: 0;
-    grid-template-columns: 35px 12px 30px 48px;
+    grid-template-columns: 50px 12px 50px 55px;
     grid-template-rows: 100%;
     justify-items: center;
     align-items: stretch;
