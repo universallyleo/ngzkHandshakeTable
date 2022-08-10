@@ -5236,77 +5236,6 @@ const members = [
 ];
 const isISODate = (d) => d.match(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/);
 const isExpandedDatalist = (l) => "slotsSoldex" in l[0];
-function expandMBData(mb, groups, compare = null) {
-  let res = { member: mb.member, slotsSoldex: [], numSold: [0, 0], group: "" };
-  res.slotsSoldex = mb.slotsSold.map((x) => x.split("|"));
-  let f = res.slotsSoldex.flat();
-  res.numSold = [
-    f.filter((x) => x.match(/^\d+$/) ? parseInt(x) > 0 : false).length,
-    f.filter((x) => x != "x" && x != "?").length
-  ];
-  res.group = groups == "" ? "" : determineGroup(mb, groups);
-  if (compare) {
-    let [n, total] = getNumSold(res.member, compare.cdData, compare.atdraw);
-    let d = n !== "N/A" ? `${res.numSold[0] - n > 0 ? "+" : ""}${res.numSold[0] - n}` : "";
-    let lastTimeSoldout = total == n, currentSoldout = res.numSold[0] == res.numSold[1];
-    res["compare"] = {
-      lasttime: n,
-      current: res.numSold[0],
-      diff: lastTimeSoldout ? currentSoldout ? `\u5B8C\u58F2` : d : d
-    };
-  }
-  return res;
-}
-function expandDataList(cdData2, compare = null) {
-  let groups = concat(
-    [
-      { id: "sbt", has: cdData2.sbt },
-      { id: "und", has: getUnderList(cdData2) }
-    ],
-    cdData2.addgroups ? cdData2.addgroups : []
-  );
-  return cdData2.table.map((x) => expandMBData(x, groups, compare));
-}
-function getNumSold(mb, cdData2, atdraw) {
-  let data2 = find(cdData2.table, ["member", mb]);
-  if (!data2)
-    return ["N/A", "N/A"];
-  let expanded = data2.slotsSold.map((x) => x.split("|")).flat();
-  return [
-    expanded.filter((x) => x.match(/^\d+$/) ? parseInt(x) <= atdraw : false).length,
-    expanded.filter((x) => x != "x" && x != "?").length
-  ];
-}
-function nth(n) {
-  return ["st", "nd", "rd"][((n + 90) % 100 - 10) % 10 - 1] || "th";
-}
-function cdData(cd) {
-  let value = `${cd.num}${cd.type}`;
-  let type;
-  switch (cd.type) {
-    case "Best":
-      type = "Best Album";
-      break;
-    default:
-      type = cd.type;
-      break;
-  }
-  let display = `${cd.num}${nth(cd.num)} ${type}`;
-  return { display, value };
-}
-function getUnderList(cdData2) {
-  let mblist = cdData2.table.map((x) => x.member);
-  if ("addgroups" in cdData2)
-    cdData2.addgroups.map((x) => pullAll(mblist, x.has));
-  return without(mblist, ...cdData2.sbt);
-}
-function determineGroup(mb, groups) {
-  for (let g of groups) {
-    if (g.has.indexOf(mb.member) !== -1)
-      return g.id;
-  }
-  return "NoData";
-}
 function getMember(name) {
   let res = members.filter((x) => x.member == name);
   return res.length == 0 ? { memebr: name, kanji: name, furi: name, gen: 0, dob: "1900-01-01", from: "", status: "none" } : res[0];
@@ -5364,6 +5293,97 @@ const opt2label = (opt, val) => {
       return val;
   }
 };
+const expandSoldslots = (mbdata) => {
+  if (!("slotsSoldex" in mbdata))
+    mbdata["slotsSoldex"] = mbdata.slotsSold.map((x) => x.split("|"));
+  return mbdata.slotsSoldex;
+};
+function expandMBData(mbdata, groups) {
+  let res = { member: mbdata.member, slotsSoldex: [], numSold: [0, 0], group: "" };
+  res.slotsSoldex = expandSoldslots(mbdata);
+  let f = res.slotsSoldex.flat();
+  res.numSold = [
+    f.filter((x) => x.match(/^\d+$/) ? parseInt(x) > 0 : false).length,
+    f.filter((x) => x != "x" && x != "?").length
+  ];
+  res.group = groups == "" ? "" : determineGroup(mbdata, groups);
+  return res;
+}
+function compareData(mbdataNow, mbdataCompare, atdraw = -1) {
+  let tolog = mbdataNow.member == "Yumiki Nao";
+  let [m, totalThen] = getNumSold(mbdataCompare, atdraw), [n, totalNow] = getNumSold(mbdataNow, atdraw);
+  let lastTimeSoldout = m == totalThen, currentSoldout = n == totalNow, bothSoldout = lastTimeSoldout && currentSoldout;
+  if (tolog) {
+    console.log(`m=${m}, totalThen=${totalThen}`);
+    console.log(`m=${n}, totalThen=${totalNow}`);
+    console.log(`last:${lastTimeSoldout}, curr:${currentSoldout}, both:${bothSoldout}`);
+  }
+  if (bothSoldout) {
+    return {
+      prev: m,
+      curr: n,
+      diff: 0,
+      extraprev: `(${allSoldoutAtDraw(mbdataCompare)}\u6B21)`,
+      extracurr: `(${allSoldoutAtDraw(mbdataNow)}\u6B21)`,
+      extradiff: totalThen != "N/A" ? `\u5168\u5B8C\u58F2` : ""
+    };
+  } else if (lastTimeSoldout && n > m) {
+    return {
+      prev: `${m}(\u5168)`,
+      curr: n,
+      diff: "N/A"
+    };
+  } else if (currentSoldout && n < m) {
+    return {
+      prev: m,
+      curr: `${n}(\u5168)`,
+      diff: "N/A"
+    };
+  } else {
+    return {
+      prev: totalThen == "N/A" ? "N/A" : m,
+      curr: `${n}${currentSoldout ? "(\u5168)" : ""}`,
+      diff: m !== "N/A" ? `${n - m > 0 ? "+" : ""}${n - m}` : ""
+    };
+  }
+}
+function expandDataList(cdData2) {
+  let groups = concat(
+    [
+      { id: "sbt", has: cdData2.sbt },
+      { id: "und", has: getUnderList(cdData2) }
+    ],
+    cdData2.addgroups ? cdData2.addgroups : []
+  );
+  return cdData2.table.map((x) => expandMBData(x, groups));
+}
+function getNumSold(mbdata, atdraw = -1) {
+  if (!mbdata)
+    return [0, "N/A"];
+  if ("numSold" in mbdata)
+    return mbdata.numSold;
+  let expanded = expandSoldslots(mbdata).flat();
+  let bound = atdraw == -1 ? finalSoldoutAtDraw(mbdata) : atdraw;
+  let total = expanded.filter((x) => x != "x" && x != "?").length;
+  return bound == -1 ? [0, total] : [expanded.filter((x) => x.match(/^\d+$/) ? parseInt(x) <= bound : false).length, total];
+}
+function finalSoldoutAtDraw(mbdata) {
+  return mbdata ? expandSoldslots(mbdata).flat().reduce((curr, prev) => {
+    if (String(curr).match(/^\d+$/)) {
+      let c = parseInt(curr);
+      return c > prev ? c : prev;
+    } else {
+      return prev ? prev : -1;
+    }
+  }) : -1;
+}
+function allSoldoutAtDraw(mbdata) {
+  if (!("numSold" in mbdata))
+    mbdata["numSold"] = getNumSold(mbdata);
+  if (mbdata.numSold[0] < mbdata.numSold[1])
+    return -1;
+  return finalSoldoutAtDraw(mbdata);
+}
 function partitionToGroup(mbDataList, opt = "gen") {
   if (opt == "none")
     return mbDataList;
@@ -5400,23 +5420,22 @@ function partitionToGroup(mbDataList, opt = "gen") {
   return res.sort((a, b) => ordering[opt](a.value, b.value));
 }
 function sortList(datalist, opt = "none") {
-  console.log("Sorting by ", opt);
   return "has" in datalist[0] ? datalist.map((x) => {
     return { label: x.label, value: x.value, has: sortPlainList(x.has, opt) };
   }) : sortPlainList(datalist, opt);
 }
 function sortPlainList(mbdatalist, opt = "kana") {
   switch (opt) {
-    case "numsold":
+    case "numsold": {
       let t = isExpandedDatalist(mbdatalist) ? mbdatalist : mbdatalist.map((x) => expandMBData(x, ""));
       return t.sort((a, b) => {
         let soldout = [a, b].map((x) => x.numSold[0] == x.numSold[1]);
-        console.log(`${a.member}: soldout=${soldout[0]}`);
         if (soldout[0])
           return soldout[1] ? b.numSold[0] - a.numSold[0] : -1;
         else
           return soldout[1] ? 1 : b.numSold[0] - a.numSold[0];
       });
+    }
     case "kana":
       return mbdatalist.sort((a, b) => {
         let [aa, bb] = getMembers([a.member, b.member]);
@@ -5426,9 +5445,39 @@ function sortPlainList(mbdatalist, opt = "kana") {
       return mbdatalist;
   }
 }
+function nth(n) {
+  return ["st", "nd", "rd"][((n + 90) % 100 - 10) % 10 - 1] || "th";
+}
+function cdData(cd) {
+  let value = `${cd.num}${cd.type}`;
+  let type;
+  switch (cd.type) {
+    case "Best":
+      type = "Best Album";
+      break;
+    default:
+      type = cd.type;
+      break;
+  }
+  let display = `${cd.num}${nth(cd.num)} ${type}`;
+  return { display, value };
+}
+function getUnderList(cdData2) {
+  let mblist = cdData2.table.map((x) => x.member);
+  if ("addgroups" in cdData2)
+    cdData2.addgroups.map((x) => pullAll(mblist, x.has));
+  return without(mblist, ...cdData2.sbt);
+}
+function determineGroup(mb, groups) {
+  for (let g of groups) {
+    if (g.has.indexOf(mb.member) !== -1)
+      return g.id;
+  }
+  return "NoData";
+}
 const DataRow_svelte_svelte_type_style_lang = "";
 const css$3 = {
-  code: `.soldFraction.svelte-pive2y{display:inline;float:right;color:#777}.memberName.svelte-pive2y{width:240px;max-width:300px;padding-left:.4em;padding-right:.2em;border-right:1px solid black;border-top:1px solid #ddd;border-bottom:1px solid #ddd}.NAslot.svelte-pive2y{width:26px;height:1.8ch;padding:0;box-sizing:border-box;border:1px solid #ddd;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 100 100'><line x1='0' y1='0' x2='100' y2='100' stroke='black' vector-effect='non-scaling-stroke'/><line x1='0' y1='100' x2='100' y2='0' stroke='black' vector-effect='non-scaling-stroke'/></svg>");background-repeat:no-repeat;background-position:center center;background-size:100% 1.75ch}.slot.svelte-pive2y{width:26px;height:1.8ch;padding:0;overflow:clip;box-sizing:border-box;border:1px solid #ddd;text-align:center}.lastDrawSlot.svelte-pive2y{background-color:yellow}.soldSlot.svelte-pive2y{background-color:hsl(211, 62%, 80%)}.lastcell.svelte-pive2y{border-right:1px solid black !important}.topRow.svelte-pive2y{border-top:1px solid black !important}.bottomRow.svelte-pive2y{border-bottom:1px solid black !important}.compareCell.svelte-pive2y{border:1px solid #ddd}.compareGrid.svelte-pive2y{width:125px;min-height:100%;height:100%;margin:0;display:grid;gap:0;grid-template-columns:35px 12px 30px 48px;grid-template-rows:100%;justify-items:center;align-items:stretch;align-content:stretch}.plusCell.svelte-pive2y{color:hsl(120, 100%, 40%)}.minusCell.svelte-pive2y{color:red}`,
+  code: `.soldFraction.svelte-coz64u{display:inline;float:right;color:#777}.memberName.svelte-coz64u{width:240px;max-width:300px;padding-left:.4em;padding-right:.2em;border-right:1px solid black;border-top:1px solid #ddd;border-bottom:1px solid #ddd}.NAslot.svelte-coz64u{width:26px;height:1.8ch;padding:0;box-sizing:border-box;border:1px solid #ddd;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 100 100'><line x1='0' y1='0' x2='100' y2='100' stroke='black' vector-effect='non-scaling-stroke'/><line x1='0' y1='100' x2='100' y2='0' stroke='black' vector-effect='non-scaling-stroke'/></svg>");background-repeat:no-repeat;background-position:center center;background-size:100% 1.75ch}.slot.svelte-coz64u{width:26px;height:1.8ch;padding:0;overflow:clip;box-sizing:border-box;border:1px solid #ddd;text-align:center}.lastDrawSlot.svelte-coz64u{background-color:yellow}.soldSlot.svelte-coz64u{background-color:hsl(211, 62%, 80%)}.lastcell.svelte-coz64u{border-right:1px solid black !important}.topRow.svelte-coz64u{border-top:1px solid black !important}.bottomRow.svelte-coz64u{border-bottom:1px solid black !important}.compareCell.svelte-coz64u{border:1px solid #ddd;text-align:center}.compareGrid.svelte-coz64u{width:167px;min-height:100%;height:100%;margin:0;display:grid;gap:0;grid-template-columns:50px 12px 50px 55px;grid-template-rows:100%;justify-items:center;align-items:stretch;align-content:stretch}.plusCell.svelte-coz64u{color:hsl(120, 100%, 40%)}.minusCell.svelte-coz64u{color:red}`,
   map: null
 };
 const DataRow = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -5436,6 +5485,7 @@ const DataRow = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let decoratedTbl;
   let classesOnMbCell;
   let compareCellClasses;
+  let compareOutput;
   let { row } = $$props;
   let { lastDraw } = $$props;
   let { addClasses = "" } = $$props;
@@ -5470,28 +5520,32 @@ const DataRow = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   });
   classesOnMbCell = `memberName ${addClasses}`;
   compareCellClasses = `compareCell lastcell ${addClasses}`;
-  return `<td class="${escape(null_to_empty(classesOnMbCell), true) + " svelte-pive2y"}">${escape(mbInfo.kanji)}
-    <div class="${"soldFraction svelte-pive2y"}">${escape(row.numSold[0])}/${escape(row.numSold[1])}</div></td>
+  compareOutput = compare != null ? compareData(row, find(compare.cdData.table, ["member", row.member]), compare.atdraw) : null;
+  return `<td class="${escape(null_to_empty(classesOnMbCell), true) + " svelte-coz64u"}">${escape(mbInfo.kanji)}
+    <div class="${"soldFraction svelte-coz64u"}">${escape(row.numSold[0])}/${escape(row.numSold[1])}</div></td>
 
 
 ${each(decoratedTbl, (daySlots) => {
     return `${each(daySlots, (slot, i) => {
       return `   
     <td class="${[
-        escape(null_to_empty(slot.classes), true) + " svelte-pive2y",
+        escape(null_to_empty(slot.classes), true) + " svelte-coz64u",
         i == daySlots.length - 1 ? "lastcell" : ""
       ].join(" ").trim()}">${escape(slot.content)}</td>`;
     })}`;
   })}
-${compare ? `<td class="${escape(null_to_empty(compareCellClasses), true) + " svelte-pive2y"}"><div class="${"compareGrid svelte-pive2y"}"><div>${escape(row.compare.lasttime)}</div>
+${compare ? `<td class="${escape(null_to_empty(compareCellClasses), true) + " svelte-coz64u"}"><div class="${"compareGrid svelte-coz64u"}"><div>${escape(compareOutput.prev)}
+                ${compareOutput.extraprev ? `<br>${escape(compareOutput.extraprev)}` : ``}</div>
             <div>\u2192</div>
-            <div>${escape(row.compare.current)}</div>
+            <div>${escape(compareOutput.curr)}
+                ${compareOutput.extracurr ? `<br>${escape(compareOutput.extracurr)}` : ``}</div>
             <div class="${[
-    "svelte-pive2y",
-    (row.compare.diff[0] === "+" ? "plusCell" : "") + " " + (row.compare.diff[0] === "-" ? "minusCell" : "")
-  ].join(" ").trim()}">${row.compare.diff == `\u5B8C\u58F2` ? `[\u5B8C\u58F2]` : `${row.compare.diff != 0 ? `<span class="${"color:black"}">[ </span>
-                    ${escape(row.compare.diff)}
-                    <span class="${"color:black"}">]</span>` : ``}`}</div></div></td>` : ``}`;
+    "svelte-coz64u",
+    (compareOutput.diff[0] === "+" ? "plusCell" : "") + " " + (compareOutput.diff[0] === "-" ? "minusCell" : "")
+  ].join(" ").trim()}">${compareOutput.diff != "0" ? `<span class="${"color:black"}">[ </span>
+                    ${escape(compareOutput.diff)}
+                    <span class="${"color:black"}">]</span>` : ``}
+                ${compareOutput.extradiff ? `<br>${escape(compareOutput.extradiff)}` : ``}</div></div></td>` : ``}`;
 });
 const RowGroups_svelte_svelte_type_style_lang = "";
 const css$2 = {
@@ -5579,7 +5633,7 @@ const SlotTable = create_ssr_component(($$result, $$props, $$bindings, slots) =>
     $$bindings.compare(compare);
   $$result.css.add(css$1);
   title = cdData(data2.cd).display;
-  expandedData = expandDataList(data2, compare);
+  expandedData = expandDataList(data2);
   finalTb = sortList(partitionToGroup(filterList(expandedData, filterOpt), groupOpt), sortOpt);
   lastDraw = data2.lastDraw;
   totalSold = expandedData.reduce((prev, curr) => {
@@ -5597,7 +5651,8 @@ const SlotTable = create_ssr_component(($$result, $$props, $$bindings, slots) =>
     return `<th colspan="${"5"}" class="${"svelte-i4pbgc"}">${escape(date)}</th>`;
   })}
       ${compare ? `<th class="${"svelte-i4pbgc"}">\u904E\u53BB\u3068\u306E\u5DEE</th>` : ``}</tr></thead>
-  <tbody>${groupOpt == "none" ? `${each(data2.table, (row) => {
+  <tbody>${groupOpt == "none" ? `
+      ${each(data2.table, (row) => {
     return `<tr>${validate_component(DataRow, "DataRow").$$render($$result, { row, lastDraw, compare }, {}, {})}</tr>`;
   })}` : `${each(finalTb, (rowGp) => {
     return `${validate_component(RowGroups, "RowGroups").$$render($$result, { group: rowGp, lastDraw, compare }, {}, {})}`;
@@ -5606,7 +5661,7 @@ const SlotTable = create_ssr_component(($$result, $$props, $$bindings, slots) =>
 });
 const index_svelte_svelte_type_style_lang = "";
 const css = {
-  code: ":root{font-family:Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,\n		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;--font-mono:'Fira Mono', monospace;--pure-white:#ffffff;--primary-color:#b9c6d2;--secondary-color:#d0dde9;--tertiary-color:#edf0f8;--accent-color:#444444;--heading-color:rgba(0, 0, 0, 0.7);--text-color:#444444}a.svelte-umrrx0.svelte-umrrx0.svelte-umrrx0{color:var(--accent-color);text-decoration:none}a.svelte-umrrx0.svelte-umrrx0.svelte-umrrx0:hover{text-decoration:underline}input.svelte-umrrx0.svelte-umrrx0.svelte-umrrx0,button.svelte-umrrx0.svelte-umrrx0.svelte-umrrx0{font-size:inherit;font-family:inherit}button.svelte-umrrx0.svelte-umrrx0.svelte-umrrx0:focus:not(:focus-visible){outline:none}.optionForm.svelte-umrrx0.svelte-umrrx0.svelte-umrrx0{width:max-content;margin:0 auto;padding:1px 5px;line-height:3.5ch}.optionsContainer.svelte-umrrx0.svelte-umrrx0.svelte-umrrx0{padding:2px 6px;border:1px solid black}ul.twocols.svelte-umrrx0.svelte-umrrx0.svelte-umrrx0{display:inline-block;text-align:left;margin:0;padding:0}ul.twocols.svelte-umrrx0>li.svelte-umrrx0.svelte-umrrx0{margin:15px 0 15px;display:flex;justify-content:left;margin:0}ul.twocols.svelte-umrrx0>li.svelte-umrrx0>div.leftcol.svelte-umrrx0{flex:none;margin:0;width:55px}.advanceOption.svelte-umrrx0.svelte-umrrx0.svelte-umrrx0{padding:2px 6px;border:1px solid black}.inactive.svelte-umrrx0.svelte-umrrx0.svelte-umrrx0{display:none}.main.svelte-umrrx0.svelte-umrrx0.svelte-umrrx0{margin:0 auto;width:max-content;padding:7px}.print.svelte-umrrx0.svelte-umrrx0.svelte-umrrx0{margin-left:auto}footer.svelte-umrrx0.svelte-umrrx0.svelte-umrrx0{width:20%;margin:20px auto;display:block;justify-content:center;align-items:center;padding:40px;color:hsl(0, 0%, 65%)}",
+  code: ":root{font-family:Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,\n		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;--font-mono:'Fira Mono', monospace;--pure-white:#ffffff;--primary-color:#b9c6d2;--secondary-color:#d0dde9;--tertiary-color:#edf0f8;--accent-color:#444444;--heading-color:rgba(0, 0, 0, 0.7);--text-color:#444444}a.svelte-f3p9de.svelte-f3p9de.svelte-f3p9de{color:var(--accent-color);text-decoration:none}a.svelte-f3p9de.svelte-f3p9de.svelte-f3p9de:hover{text-decoration:underline}input.svelte-f3p9de.svelte-f3p9de.svelte-f3p9de,button.svelte-f3p9de.svelte-f3p9de.svelte-f3p9de{font-size:inherit;font-family:inherit;line-height:1.2}button.svelte-f3p9de.svelte-f3p9de.svelte-f3p9de:focus:not(:focus-visible){outline:none}.optionForm.svelte-f3p9de.svelte-f3p9de.svelte-f3p9de{width:max-content;margin:0 auto;padding:1px 5px;line-height:3.5ch}.optionsContainer.svelte-f3p9de.svelte-f3p9de.svelte-f3p9de{padding:2px 6px;border:1px solid black}ul.twocols.svelte-f3p9de.svelte-f3p9de.svelte-f3p9de{display:inline-block;text-align:left;margin:0;padding:0}ul.twocols.svelte-f3p9de>li.svelte-f3p9de.svelte-f3p9de{margin:15px 0 15px;display:flex;justify-content:left;margin:0}ul.twocols.svelte-f3p9de>li.svelte-f3p9de>div.leftcol.svelte-f3p9de{flex:none;margin:0;width:55px}.advanceOption.svelte-f3p9de.svelte-f3p9de.svelte-f3p9de{padding:2px 6px;border:1px solid black}.inactive.svelte-f3p9de.svelte-f3p9de.svelte-f3p9de{display:none}.main.svelte-f3p9de.svelte-f3p9de.svelte-f3p9de{margin:0 auto;width:max-content;padding:7px}.print.svelte-f3p9de.svelte-f3p9de.svelte-f3p9de{margin-left:auto}footer.svelte-f3p9de.svelte-f3p9de.svelte-f3p9de{width:20%;margin:20px auto;display:block;justify-content:center;align-items:center;padding:40px;color:hsl(0, 0%, 65%)}",
   map: null
 };
 const Routes = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -5665,38 +5720,39 @@ const Routes = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   }
   return `${$$result.head += `${$$result.title = `<title>\u4E43\u6728\u574246\u30A4\u30F3\u30BF\u30E9\u30AF\u30C6\u30A3\u30D6\u5F0F\u5B8C\u58F2\u8868</title>`, ""}<meta name="${"description"}" content="${"\u4E43\u6728\u574246\u30A4\u30F3\u30BF\u30E9\u30AF\u30C6\u30A3\u30D6\u5F0F\u5B8C\u58F2\u8868"}" data-svelte="svelte-ya5rpn">`, ""}
 
-<div class="${"optionForm svelte-umrrx0"}"><div class="${"optionsContainer svelte-umrrx0"}"><ul class="${"twocols svelte-umrrx0"}"><li class="${"svelte-umrrx0"}"><div class="${"leftcol svelte-umrrx0"}">CD:</div>
+<div class="${"optionForm svelte-f3p9de"}"><div class="${"optionsContainer svelte-f3p9de"}"><ul class="${"twocols svelte-f3p9de"}"><li class="${"svelte-f3p9de"}"><div class="${"leftcol svelte-f3p9de"}">CD:</div>
                 <div class="${"rightcol"}"><select id="${"cdSelect"}" name="${"cd"}" style="${"margin-left: 15px; margin-right: 15px"}">${each(cdlist, (cd, i) => {
     return `<option${add_attribute("value", i, 0)}>${escape(cd.display)}</option>`;
   })}</select>
                 </div>
                 
-                <div class="${"print svelte-umrrx0"}"><button class="${"svelte-umrrx0"}">\u753B\u50CF\u8F38\u51FA</button></div></li>
-            <li class="${"svelte-umrrx0"}"><div class="${"leftcol svelte-umrrx0"}">Group:</div>
+                <div class="${"print svelte-f3p9de"}"><button class="${"svelte-f3p9de"}">\u753B\u50CF\u8F38\u51FA</button>
+                    <button class="${"svelte-f3p9de"}">\u753B\u50CF\u30B3\u30D4\u30FC</button></div></li>
+            <li class="${"svelte-f3p9de"}"><div class="${"leftcol svelte-f3p9de"}">Group:</div>
                 <div class="${"rightcol"}">${each(groupMethod, (grp) => {
     return `
-                    <label><input type="${"radio"}" name="${"groupOpt"}"${add_attribute("id", grp.value, 0)}${add_attribute("value", grp.value, 0)} class="${"svelte-umrrx0"}"${grp.value === groupOpt ? add_attribute("checked", true, 1) : ""}>
+                    <label><input type="${"radio"}" name="${"groupOpt"}"${add_attribute("id", grp.value, 0)}${add_attribute("value", grp.value, 0)} class="${"svelte-f3p9de"}"${grp.value === groupOpt ? add_attribute("checked", true, 1) : ""}>
                         ${escape(grp.display)}</label>
                     `;
   })}</div></li>
-            <li class="${"svelte-umrrx0"}"><div class="${"leftcol svelte-umrrx0"}">Filter:</div>
+            <li class="${"svelte-f3p9de"}"><div class="${"leftcol svelte-f3p9de"}">Filter:</div>
                 <div class="${"rightcol"}">${each(filterMethod, (filt) => {
     return `
-                    <label><input type="${"radio"}" name="${"filterOpt"}"${add_attribute("id", filt.value, 0)}${add_attribute("value", filt.value, 0)} class="${"svelte-umrrx0"}"${filt.value === filterOpt ? add_attribute("checked", true, 1) : ""}>
+                    <label><input type="${"radio"}" name="${"filterOpt"}"${add_attribute("id", filt.value, 0)}${add_attribute("value", filt.value, 0)} class="${"svelte-f3p9de"}"${filt.value === filterOpt ? add_attribute("checked", true, 1) : ""}>
                         ${escape(filt.display)}</label>
                     `;
   })}</div></li>
-            <li class="${"svelte-umrrx0"}"><div class="${"leftcol svelte-umrrx0"}">Sort:</div>
+            <li class="${"svelte-f3p9de"}"><div class="${"leftcol svelte-f3p9de"}">Sort:</div>
                 <div class="${"rightcol"}">${each(sortMethod, (sort) => {
     return `
-                    <label><input type="${"radio"}" name="${"sortOpt"}"${add_attribute("id", sort.value, 0)}${add_attribute("value", sort.value, 0)} class="${"svelte-umrrx0"}"${sort.value === sortOpt ? add_attribute("checked", true, 1) : ""}>
+                    <label><input type="${"radio"}" name="${"sortOpt"}"${add_attribute("id", sort.value, 0)}${add_attribute("value", sort.value, 0)} class="${"svelte-f3p9de"}"${sort.value === sortOpt ? add_attribute("checked", true, 1) : ""}>
                         ${escape(sort.display)}
                     </label>`;
   })}</div></li></ul></div>
-    <div class="${"advanceOption svelte-umrrx0"}"><label><input type="${"checkbox"}" name="${"compareCD"}" id="${"compareCD"}" class="${"svelte-umrrx0"}"${add_attribute("checked", compareCD, 1)}>
+    <div class="${"advanceOption svelte-f3p9de"}"><label><input type="${"checkbox"}" name="${"compareCD"}" id="${"compareCD"}" class="${"svelte-f3p9de"}"${add_attribute("checked", compareCD, 1)}>
             \u904E\u53BB\u306E\u58F2\u308A\u4E0A\u3052\u3068\u306E\u5DEE
         </label>
-        <span class="${["svelte-umrrx0", "inactive"].join(" ").trim()}"><label for="${"cd2Select"}">\u2192 \u5BFE\u8C61CD:</label>
+        <span class="${["svelte-f3p9de", "inactive"].join(" ").trim()}"><label for="${"cd2Select"}">\u2192 \u5BFE\u8C61CD:</label>
             <select id="${"cd2Select"}" name="${"cd2"}" style="${"margin-left: 5px; margin-right: 5px"}">${each(cdlist, (cd, i) => {
     return `${i != selected ? `<option${add_attribute("value", i, 0)}>${escape(cd.display)}</option>` : ``}`;
   })}</select>
@@ -5705,7 +5761,7 @@ const Routes = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   })}</select><label for="${"drawSelect"}">\u6B21\u53D7\u4ED8</label>` : ``}
             ${``}</span></div></div>
 
-<section id="${"slotstable"}" class="${"main svelte-umrrx0"}">${validate_component(SlotTable, "SlotTable").$$render(
+<section id="${"slotstable"}" class="${"main svelte-f3p9de"}">${validate_component(SlotTable, "SlotTable").$$render(
     $$result,
     {
       data: selectedCDdata,
@@ -5718,7 +5774,7 @@ const Routes = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     {}
   )}</section>
 
-<footer class="${"svelte-umrrx0"}">Author: <a href="${"https://github.com/universallyleo"}" class="${"svelte-umrrx0"}">universallyleo</a>.  Soruce: <a href="${"https://github.com/universallyleo/ngzkMeetData"}" class="${"svelte-umrrx0"}">Github</a>	
+<footer class="${"svelte-f3p9de"}">Author: <a href="${"https://github.com/universallyleo"}" class="${"svelte-f3p9de"}">universallyleo</a>.  Soruce: <a href="${"https://github.com/universallyleo/ngzkMeetData"}" class="${"svelte-f3p9de"}">Github</a>	
 </footer>`;
 });
 export {
