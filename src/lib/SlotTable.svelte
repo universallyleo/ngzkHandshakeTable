@@ -8,6 +8,7 @@ export let filterOpt;
 export let groupOpt;
 export let sortOpt;
 export let compare=null;
+export let capture;
 
 $: title = cdData(data.cd).display;
 // array of {member, slotsSoldex: Array<Array<String>>, numSold: [int, int]}
@@ -15,6 +16,8 @@ $: expandedData = expandDataList(data);
 $: finalTb = sortList(partitionToGroup(filterList(expandedData,filterOpt),groupOpt),sortOpt);
 $: lastDraw = data.lastDraw;
 $: totalSold = expandedData.reduce((prev,curr)=> { return {numSold: [prev.numSold[0]+curr.numSold[0], prev.numSold[1]+curr.numSold[1]]}; }).numSold;
+$: capture = capture;
+$: title2 = compare?cdData(compare.cdData.cd).display:"";
   // console.log(curr.numSold););
 //$: console.log(expandData);
 // $: numSlots = data.meetDates.length*5;
@@ -50,7 +53,11 @@ function filterList(list, option=filterOpt) {
 <!-- <table class="table-bordered" style:width={w}> -->
 <div class="container">
 <table class="table-bordered">
-  <caption class="text-center">{title} (最後更新：{lastDraw}次受付)</caption>
+  <caption class="text-center">{title} (最後更新：{lastDraw}次受付) 
+    {#if compare}
+      &nbsp;&nbsp;[ vs {title2} {compare.atDraw}次受付 ]
+    {/if}
+  </caption>
   <thead>
     <tr>
       <!-- {#if groupOpt!="none"}
@@ -70,11 +77,11 @@ function filterList(list, option=filterOpt) {
     {#if groupOpt=="none"}
       <!-- TODO: Something is strange, fix it -->
       {#each data.table as row}
-      <tr><DataRow {row} {lastDraw} {compare}/></tr>
+      <tr><DataRow {row} {lastDraw} {compare} {capture}/></tr>
       {/each}
     {:else}
       {#each finalTb as rowGp}
-        <RowGroups group={rowGp} {lastDraw} {compare}/>
+        <RowGroups group={rowGp} {lastDraw} {compare} {capture}/>
       {/each} 
     {/if}
   </tbody>

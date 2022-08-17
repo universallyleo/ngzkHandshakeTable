@@ -1,9 +1,10 @@
 <script>
-	import DataRow from '$lib/DataRow.svelte';
-	export let group;
-	export let lastDraw;
-	export let compare=null;
-	/*
+import DataRow from '$lib/DataRow.svelte';
+export let group;
+export let lastDraw;
+export let compare=null;
+export let capture;
+/*
 group: DataList
 interface DataList {
     label: string, //what to display for the tag
@@ -12,10 +13,10 @@ interface DataList {
 }
 */
 
-	function taggingCellMOToggle(e) {
-		e.target.classList.toggle('tagCellHover');
-		//e.target.classList.add("tagCellHover");
-	}
+function taggingCellMOToggle(e) {
+	e.target.classList.toggle('tagCellHover');
+	//e.target.classList.add("tagCellHover");
+}
 </script>
 
 <tr class="taggedRow">
@@ -27,16 +28,17 @@ interface DataList {
 		{lastDraw}
 		addClasses={group.has.length == 1 ? 'topRow bottomRow' : 'topRow'}
 		{compare}
+		{capture}
 	/>
 </tr>
 {#each group.has.slice(1, -1) as row (row.member)}
 	<tr class="normalRow">
-		<DataRow {row} {lastDraw} {compare}/>
+		<DataRow {row} {lastDraw} {compare} {capture}/>
 	</tr>
 {/each}
 {#if group.has.length > 1}
 	<tr>
-		<DataRow row={group.has[group.has.length - 1]} {lastDraw} addClasses="bottomRow" {compare}/>
+		<DataRow row={group.has[group.has.length - 1]} {lastDraw} addClasses="bottomRow" {compare} {capture}/>
 	</tr>
 {/if}
 

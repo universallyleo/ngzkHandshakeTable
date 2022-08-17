@@ -5308,21 +5308,15 @@ function expandMBData(mbdata, groups) {
   return res;
 }
 function compareData(mbdataNow, mbdataCompare, atdraw = -1) {
-  let tolog = mbdataNow.member == "Yumiki Nao";
   let [m, totalThen] = getNumSold(mbdataCompare, atdraw), [n, totalNow] = getNumSold(mbdataNow, atdraw);
   let lastTimeSoldout = m == totalThen, currentSoldout = n == totalNow, bothSoldout = lastTimeSoldout && currentSoldout;
-  if (tolog) {
-    console.log(`m=${m}, totalThen=${totalThen}`);
-    console.log(`m=${n}, totalThen=${totalNow}`);
-    console.log(`last:${lastTimeSoldout}, curr:${currentSoldout}, both:${bothSoldout}`);
-  }
   if (bothSoldout) {
     return {
       prev: m,
       curr: n,
       diff: 0,
-      extraprev: `(${allSoldoutAtDraw(mbdataCompare)}\u6B21)`,
-      extracurr: `(${allSoldoutAtDraw(mbdataNow)}\u6B21)`,
+      extraprev: `(${finalSoldoutDraw(mbdataCompare)}\u6B21)`,
+      extracurr: `(${finalSoldoutDraw(mbdataNow)}\u6B21)`,
       extradiff: totalThen != "N/A" ? `\u5168\u5B8C\u58F2` : ""
     };
   } else if (lastTimeSoldout && n > m) {
@@ -5358,29 +5352,20 @@ function expandDataList(cdData2) {
 function getNumSold(mbdata, atdraw = -1) {
   if (!mbdata)
     return [0, "N/A"];
-  if ("numSold" in mbdata)
-    return mbdata.numSold;
   let expanded = expandSoldslots(mbdata).flat();
-  let bound = atdraw == -1 ? finalSoldoutAtDraw(mbdata) : atdraw;
+  let bound = atdraw == -1 ? finalSoldoutDraw(mbdata) : atdraw;
   let total = expanded.filter((x) => x != "x" && x != "?").length;
   return bound == -1 ? [0, total] : [expanded.filter((x) => x.match(/^\d+$/) ? parseInt(x) <= bound : false).length, total];
 }
-function finalSoldoutAtDraw(mbdata) {
-  return mbdata ? expandSoldslots(mbdata).flat().reduce((curr, prev) => {
+function finalSoldoutDraw(mbdata) {
+  return mbdata ? expandSoldslots(mbdata).flat().reduce((prev, curr) => {
     if (String(curr).match(/^\d+$/)) {
       let c = parseInt(curr);
       return c > prev ? c : prev;
     } else {
-      return prev ? prev : -1;
+      return String(prev).match(/^\d+$/) ? parseInt(prev) : -1;
     }
   }) : -1;
-}
-function allSoldoutAtDraw(mbdata) {
-  if (!("numSold" in mbdata))
-    mbdata["numSold"] = getNumSold(mbdata);
-  if (mbdata.numSold[0] < mbdata.numSold[1])
-    return -1;
-  return finalSoldoutAtDraw(mbdata);
 }
 function partitionToGroup(mbDataList, opt = "gen") {
   if (opt == "none")

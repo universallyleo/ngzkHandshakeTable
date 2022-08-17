@@ -5,8 +5,8 @@ import { min } from 'lodash-es';
 import html2canvas from "html2canvas";
 import SlotTable from '$lib/SlotTable.svelte';
 
-let cdlist = data.map(x=> cdData(x.cd));
-let selected = cdlist.length-1;
+let cdlist = data.map(x=> cdData(x.cd)).reverse();
+let selected = 0;
 
 let filterMethod = [
     {"display": "全メンバー", "value": "showall"}, 
@@ -36,6 +36,8 @@ let sortOpt="kana";
 let compareCD=false;
 let selected2 = -1;
 let atdraw=-1;
+let capture=false;
+let mode = "copy";
 
 function exportImg(canvas){
     var link=document.createElement("a");
@@ -44,6 +46,7 @@ function exportImg(canvas){
     link.href = canvas.toDataURL();
     link.target = '_blank';
     link.click();
+    capture=false;
 }
 
 function copyImg(canvas){
@@ -51,10 +54,16 @@ function copyImg(canvas){
         navigator.clipboard.write([new ClipboardItem( {'image/png': blob} )])
     });
     alert("Table copied as image to clipboard");
+    capture=false;
 }
 
 function imgOut(method){
-    html2canvas(document.getElementById("slotstable"),{background:'#ffffff', scale:2}).then( method );
+    html2canvas(document.getElementById("slotstable"),{
+        background:'#ffffff', 
+        scale:2,  //needed to allow rendering 1px border of table
+        //allowTaint: true, //needed in order to render css background (NAslots)
+        //useCORS: true //needed in order to render css background (NAslots)
+    }).then( method );
 }
 
 function getCompare(){
@@ -62,17 +71,18 @@ function getCompare(){
     if (!isSelectedGood(selected2)) return null;
     if (selected2 == selected) return null;
     if (atdraw<0) return null;
-    return {"cdData": data[selected2], "atdraw": atdraw};
+    return {"cdData": data[cdlist.length-selected2-1], "atdraw": atdraw};
 }
 
 function isSelectedGood(s){
     return s<0?false:s>=cdlist.length?false:true;
 }
 
-$: selectedCDdata = data[selected];
-$: selectableDraw = isSelectedGood(selected2)?min([data[selected2].lastDraw, selectedCDdata.lastDraw]):0;
+$: selectedCDdata = data[cdlist.length-selected-1];
+$: selectableDraw = isSelectedGood(selected2)?min([data[cdlist.length-selected2-1].lastDraw, selectedCDdata.lastDraw]):0;
 $: compare=getCompare();
 $: if (!compareCD) {compare=null;}
+$: if (capture) {  };
 </script>
 
 <svelte:head>
@@ -96,14 +106,12 @@ $: if (!compareCD) {compare=null;}
                     <option value={i}>{cd.display}</option>
                 {/each}
                 </select>
-                <!-- <button id="btnChange" on:click={changeCD}>
-                    Change data
-                </button> -->
                 </div>
                 
                 <div class="print">
                     <button on:click={()=>imgOut(exportImg)}>画像輸出</button>
-                    <button on:click={()=>imgOut(copyImg)}>画像コピー</button>
+                    <button on:click={()=>{
+                        capture = true;}} title="Does not work on Firefox unless ClipboardItem is enabled">画像コピー</button>
                 </div>
             </li>
             <li>
@@ -174,7 +182,7 @@ $: if (!compareCD) {compare=null;}
 </div>
 
 <section id="slotstable" class="main">
-<SlotTable data={selectedCDdata} {filterOpt} {groupOpt} {sortOpt} {compare}/>
+<SlotTable data={selectedCDdata} {filterOpt} {groupOpt} {sortOpt} {compare} {capture}/>
 </section>
 
 <footer>

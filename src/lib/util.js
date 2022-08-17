@@ -88,26 +88,27 @@ export function expandMBData(mbdata, groups) {
 }
 
 export function compareData(mbdataNow, mbdataCompare, atdraw = -1) {
-	let tolog = mbdataNow.member == 'Yumiki Nao';
 	let [m, totalThen] = getNumSold(mbdataCompare, atdraw),
 		[n, totalNow] = getNumSold(mbdataNow, atdraw);
 	//let diff = n !== 'N/A' ? `${m - n > 0 ? '+' : ''}${m - n}` : '';
 	let lastTimeSoldout = m == totalThen,
 		currentSoldout = n == totalNow,
 		bothSoldout = lastTimeSoldout && currentSoldout;
-	if (tolog) {
-		console.log(`m=${m}, totalThen=${totalThen}`);
-		console.log(`m=${n}, totalThen=${totalNow}`);
-		console.log(`last:${lastTimeSoldout}, curr:${currentSoldout}, both:${bothSoldout}`);
-	}
+	// if (mbdataNow.member == 'Yoda Yuuki') {
+	// 	//just check everything is correct...
+	// 	console.log(`m=${m}, totalThen=${totalThen}`);
+	// 	console.log(`m=${n}, totalThen=${totalNow}`);
+	// 	console.log(`last:${lastTimeSoldout}, curr:${currentSoldout}, both:${bothSoldout}`);
+	// 	console.log(`old data detail: ${finalSoldoutDraw(mbdataCompare)}`);
+	// }
 
 	if (bothSoldout) {
 		return {
 			prev: m,
 			curr: n,
 			diff: 0,
-			extraprev: `(${allSoldoutAtDraw(mbdataCompare)}次)`,
-			extracurr: `(${allSoldoutAtDraw(mbdataNow)}次)`,
+			extraprev: `(${finalSoldoutDraw(mbdataCompare)}次)`,
+			extracurr: `(${finalSoldoutDraw(mbdataNow)}次)`,
 			extradiff: totalThen != 'N/A' ? `全完売` : ''
 		};
 	} else if (lastTimeSoldout && n > m) {
@@ -148,9 +149,8 @@ export function expandDataList(cdData) {
  */
 function getNumSold(mbdata, atdraw = -1) {
 	if (!mbdata) return [0, 'N/A'];
-	if ('numSold' in mbdata) return mbdata.numSold;
 	let expanded = expandSoldslots(mbdata).flat();
-	let bound = atdraw == -1 ? finalSoldoutAtDraw(mbdata) : atdraw;
+	let bound = atdraw == -1 ? finalSoldoutDraw(mbdata) : atdraw;
 	// bound=-1 if atDraw is not specified and there is no soldout at all
 	let total = expanded.filter((x) => x != 'x' && x != '?').length;
 	return bound == -1
@@ -158,25 +158,20 @@ function getNumSold(mbdata, atdraw = -1) {
 		: [expanded.filter((x) => (x.match(/^\d+$/) ? parseInt(x) <= bound : false)).length, total];
 }
 
-function finalSoldoutAtDraw(mbdata) {
+function finalSoldoutDraw(mbdata) {
 	return mbdata
 		? expandSoldslots(mbdata)
 				.flat()
-				.reduce((curr, prev) => {
+				.reduce((prev, curr) => {
 					if (String(curr).match(/^\d+$/)) {
 						let c = parseInt(curr);
 						return c > prev ? c : prev;
 					} else {
-						return prev ? prev : -1;
+						//accummulated value is not number => no sold data yet
+						return String(prev).match(/^\d+$/) ? parseInt(prev) : -1;
 					}
 				})
 		: -1;
-}
-
-function allSoldoutAtDraw(mbdata) {
-	if (!('numSold' in mbdata)) mbdata['numSold'] = getNumSold(mbdata);
-	if (mbdata.numSold[0] < mbdata.numSold[1]) return -1;
-	return finalSoldoutAtDraw(mbdata);
 }
 
 /**
