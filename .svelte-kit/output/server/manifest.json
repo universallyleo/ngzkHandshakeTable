@@ -31,14 +31,30 @@
     "src": "src/routes/index.svelte",
     "isEntry": true,
     "imports": [
-      "_index-280110de.js"
+      "_index-280110de.js",
+      "_util-5d56fb4c.js"
     ],
     "css": [
       "_app/immutable/assets/index-a471590a.css"
     ]
   },
+  "src/routes/progress.svelte": {
+    "file": "entries/pages/progress.svelte.js",
+    "src": "src/routes/progress.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index-280110de.js",
+      "_util-5d56fb4c.js"
+    ],
+    "css": [
+      "_app/immutable/assets/progress-c1678f2b.css"
+    ]
+  },
   "_index-280110de.js": {
     "file": "_app/immutable/chunks/index-280110de.js"
+  },
+  "_util-5d56fb4c.js": {
+    "file": "_app/immutable/chunks/util-5d56fb4c.js"
   },
   ".svelte-kit/build/hooks.js": {
     "file": "_app/immutable/chunks/hooks-bced8853.js",

@@ -1,6 +1,6 @@
 {
   ".svelte-kit/runtime/client/start.js": {
-    "file": "_app/immutable/start-0c6ce0b8.js",
+    "file": "_app/immutable/start-48d1f1ff.js",
     "src": ".svelte-kit/runtime/client/start.js",
     "isEntry": true,
     "imports": [
@@ -9,7 +9,8 @@
     "dynamicImports": [
       ".svelte-kit/runtime/components/layout.svelte",
       ".svelte-kit/runtime/components/error.svelte",
-      "src/routes/index.svelte"
+      "src/routes/index.svelte",
+      "src/routes/progress.svelte"
     ]
   },
   ".svelte-kit/runtime/components/layout.svelte": {
@@ -31,22 +32,43 @@
     ]
   },
   "src/routes/index.svelte": {
-    "file": "_app/immutable/pages/index.svelte-05998fbb.js",
+    "file": "_app/immutable/pages/index.svelte-4d984bea.js",
     "src": "src/routes/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
-      "_index-744bf7ec.js"
+      "_index-744bf7ec.js",
+      "_util-4a933154.js"
     ],
     "css": [
       "_app/immutable/assets/index-3c9cdd89.css"
     ]
   },
+  "src/routes/progress.svelte": {
+    "file": "_app/immutable/pages/progress.svelte-eb80ad6c.js",
+    "src": "src/routes/progress.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-744bf7ec.js",
+      "_util-4a933154.js"
+    ],
+    "css": [
+      "_app/immutable/assets/progress-f2153c74.css"
+    ]
+  },
   "_index-744bf7ec.js": {
     "file": "_app/immutable/chunks/index-744bf7ec.js"
+  },
+  "_util-4a933154.js": {
+    "file": "_app/immutable/chunks/util-4a933154.js"
   },
   "src/routes/index.css": {
     "file": "_app/immutable/assets/index-3c9cdd89.css",
     "src": "src/routes/index.css"
+  },
+  "src/routes/progress.css": {
+    "file": "_app/immutable/assets/progress-f2153c74.css",
+    "src": "src/routes/progress.css"
   }
 }

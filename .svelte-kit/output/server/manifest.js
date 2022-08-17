@@ -3,11 +3,12 @@ export const manifest = {
 	assets: new Set([".nojekyll","favicon.png"]),
 	mimeTypes: {".png":"image/png"},
 	_: {
-		entry: {"file":"_app/immutable/start-0c6ce0b8.js","imports":["_app/immutable/start-0c6ce0b8.js","_app/immutable/chunks/index-744bf7ec.js"],"stylesheets":[]},
+		entry: {"file":"_app/immutable/start-48d1f1ff.js","imports":["_app/immutable/start-48d1f1ff.js","_app/immutable/chunks/index-744bf7ec.js"],"stylesheets":[]},
 		nodes: [
 			() => import('./nodes/0.js'),
 			() => import('./nodes/1.js'),
-			() => import('./nodes/2.js')
+			() => import('./nodes/2.js'),
+			() => import('./nodes/3.js')
 		],
 		routes: [
 			{
@@ -19,6 +20,17 @@ export const manifest = {
 				path: "/",
 				shadow: null,
 				a: [0,2],
+				b: [1]
+			},
+			{
+				type: 'page',
+				id: "progress",
+				pattern: /^\/progress\/?$/,
+				names: [],
+				types: [],
+				path: "/progress",
+				shadow: null,
+				a: [0,3],
 				b: [1]
 			}
 		],

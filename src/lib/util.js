@@ -1,4 +1,4 @@
-import { without, concat, pullAll } from 'lodash-es';
+import { without, concat, pullAll, find } from 'lodash-es';
 import members from '$lib/data/members.json';
 
 export const isISODate = (d) => d.match(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/);
@@ -30,7 +30,7 @@ const groupID2label = (id) => {
 		case 'und':
 			return 'アンダー';
 		case 'grad':
-			return '卒業ソロ';
+			return '卒業予定';
 		default:
 			if (id.match(/^(gen)\d+$/)) return `${id.slice(3)}期生`;
 			return `?`;
@@ -292,4 +292,15 @@ function determineGroup(mb, groups) {
 		if (g.has.indexOf(mb.member) !== -1) return g.id;
 	}
 	return 'NoData';
+}
+
+export function progression(mb, cd) {
+	let res = { total: [], diff: Array(cd.lastDraw).fill(0) };
+	let flatSlots = find(cd.table, ['member', mb])
+		.slotsSold.map((row) => row.split('|'))
+		.flat();
+	flatSlots.map((e) => (e.match(/^\d+$/) ? res.diff[parseInt(e) - 1]++ : 0));
+	let sum = 0;
+	res.total = res.diff.map((x) => (sum += x));
+	return res;
 }
