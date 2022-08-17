@@ -82,7 +82,6 @@ $: selectedCDdata = data[cdlist.length-selected-1];
 $: selectableDraw = isSelectedGood(selected2)?min([data[cdlist.length-selected2-1].lastDraw, selectedCDdata.lastDraw]):0;
 $: compare=getCompare();
 $: if (!compareCD) {compare=null;}
-$: if (capture) {  };
 </script>
 
 <svelte:head>
@@ -110,8 +109,7 @@ $: if (capture) {  };
                 
                 <div class="print">
                     <button on:click={()=>imgOut(exportImg)}>画像輸出</button>
-                    <button on:click={()=>{
-                        capture = true;}} title="Does not work on Firefox unless ClipboardItem is enabled">画像コピー</button>
+                    <button on:click={()=>imgOut(copyImg)} title="Does not work on Firefox unless ClipboardItem is enabled">画像コピー</button>
                 </div>
             </li>
             <li>

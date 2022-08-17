@@ -186,7 +186,7 @@ const SlotTable = create_ssr_component(($$result, $$props, $$bindings, slots) =>
   return `
 
 <div class="${"container svelte-i4pbgc"}"><table class="${"table-bordered svelte-i4pbgc"}"><caption class="${"text-center svelte-i4pbgc"}">${escape(title)} (\u6700\u5F8C\u66F4\u65B0\uFF1A${escape(lastDraw)}\u6B21\u53D7\u4ED8) 
-    ${compare ? `\xA0\xA0[ vs ${escape(title2)} ${escape(compare.atDraw)}\u6B21\u53D7\u4ED8 ]` : ``}</caption>
+    ${compare ? `\xA0\xA0[ vs ${escape(title2)} ${escape(compare.atdraw)}\u6B21\u53D7\u4ED8 ]` : ``}</caption>
   <thead><tr>
       <th class="${"svelte-i4pbgc"}"></th>
       <th class="${"svelte-i4pbgc"}"><div class="${"soldFraction svelte-i4pbgc"}">${escape(totalSold[0])}/${escape(totalSold[1])}</div></th>

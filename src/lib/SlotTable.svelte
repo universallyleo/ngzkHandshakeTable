@@ -55,7 +55,7 @@ function filterList(list, option=filterOpt) {
 <table class="table-bordered">
   <caption class="text-center">{title} (最後更新：{lastDraw}次受付) 
     {#if compare}
-      &nbsp;&nbsp;[ vs {title2} {compare.atDraw}次受付 ]
+      &nbsp;&nbsp;[ vs {title2} {compare.atdraw}次受付 ]
     {/if}
   </caption>
   <thead>
