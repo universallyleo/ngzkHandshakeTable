@@ -1,4 +1,4 @@
-import { without, concat, pullAll, find } from 'lodash-es';
+import { without, concat, pullAll } from 'lodash-es';
 import members from '$lib/data/members.json';
 
 export const isISODate = (d) => d.match(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/);
@@ -289,13 +289,30 @@ function determineGroup(mb, groups) {
 	return 'NoData';
 }
 
-export function progression(mb, cd) {
-	let res = { total: [], diff: Array(cd.lastDraw).fill(0) };
-	let flatSlots = find(cd.table, ['member', mb])
-		.slotsSold.map((row) => row.split('|'))
-		.flat();
-	flatSlots.map((e) => (e.match(/^\d+$/) ? res.diff[parseInt(e) - 1]++ : 0));
-	let sum = 0;
-	res.total = res.diff.map((x) => (sum += x));
-	return res;
+export function nthColor(n) {
+	const palette = [
+		//from https://sashamaps.net/docs/resources/20-colors
+		// c.f. https://stats.stackexchange.com/questions/118033/best-series-of-colors-to-use-for-differentiating-series-in-publication-quality
+		'#911eb4', //purple
+		'#3cb44b', //green
+		'#4363d8', //blue
+		'#e6194b', //red
+		'#42d4f4', //cyan
+		'#f58231', //orange
+		'#f032e6', //magenta
+		'#469990', //teal
+		'#fabed4', //pink
+		'#dcbeff', //lavender
+		'#9a6324', //brown
+		'#fffac8', //beige
+		'#800000', //maroon
+		'#aaffc3', //mint
+		'#000075', //navy
+		'#ffe119', //yellow
+		'#bfef45', //lime
+		'#808000', //olive
+		'#ffd8b1', //apricot
+		'#000000' //black
+	];
+	return n < palette.length ? palette[n] : palette[n % palette.length];
 }

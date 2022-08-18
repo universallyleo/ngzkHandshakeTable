@@ -1,8 +1,28 @@
 <script>
-import {getMember,cdData,progression} from '$lib/util.js';
-import {range} from 'lodash-es';
+import {getMember,cdData} from '$lib/util.js';
+import {range, find} from 'lodash-es';
+import ProgressGraph from './ProgressGraph.svelte';
+
 export let member;
 export let includings;
+
+/**
+ * Return object {total: Array<integer>, diff: Array<integer>}
+ * @param  {object} cd
+ */
+function progression(memberName, cd) {
+	let res = { cd: cd.cd, 
+        member: memberName,
+        total: [], 
+        diff: Array(cd.lastDraw).fill(0) };
+	let flatSlots = find(cd.table, ['member', memberName])
+		.slotsSold.map((row) => row.split('|'))
+		.flat();
+	flatSlots.map((e) => (e.match(/^\d+$/) ? res.diff[parseInt(e) - 1]++ : 0));
+	let sum = 0;
+	res.total = res.diff.map((x) => (sum += x));
+    return res;
+}
 
 function extendProgressData(data,toLength){
     let len = data.total.length;
@@ -13,35 +33,56 @@ function extendProgressData(data,toLength){
 }
 
 $: mbInfo = getMember(member);
-$: numRows = Math.max(...includings.map((x)=>x.lastDraw));
+$: numSlots = Math.max(...includings.map((x)=>x.lastDraw));
 $: progressData = includings.map(x=>progression(member,x));
-$: progressData.map(t=>extendProgressData(t,numRows));
-$: transposedTotal = progressData[0].total.map((col,i) => progressData.map(row=>row.total[i]));
+$: progressData.map(t=>extendProgressData(t,numSlots));
+//$: transposedTotal = progressData[0].total.map((col,i) => progressData.map(row=>row.total[i]));
 </script>
 
-<table class="table-bordered">
-    <caption> {mbInfo.kanji} </caption>
-    <thead>
-        <th></th>
-        {#each includings as cd}
-            <th class="headingCell cdInfo">{cdData(cd.cd).display}</th>
-        {/each}
-    </thead>
-    
-    {#each range(numRows) as i}
-        <tr>
-            <td>{i}</td>
-            {#each transposedTotal[i] as draw}
-                <td>{draw}</td>
+<div class="container">
+    <table class="table-bordered">
+        <caption> 各受付の完売数の差 (メンバー： {mbInfo.kanji})  </caption>
+        <thead>
+            <th></th>
+            {#each range(numSlots) as i}
+                <th class="headingRow">{i}→{i+1}</th>
             {/each}
-        </tr>
-    {/each}
+        </thead>
     
-</table>
+        {#each progressData as cdprogress}
+            <tr>
+                <td class="headingCell cdInfo">{cdData(cdprogress.cd).display}</td>
+            {#each cdprogress.diff as slot}
+                <td>{slot}</td>
+            {/each}
+            </tr>
+        {/each}
+    
+        <!-- {#each range(numRows) as i}
+            <tr>
+                <td>{i}</td>
+                {#each transposedTotal[i] as draw}
+                    <td>{draw}</td>
+                {/each}
+            </tr>
+        {/each} -->
+    
+    </table>
+</div>
+
+<ProgressGraph {mbInfo} datum={progressData} />
 
 <style>
+.container{
+/* margin: 0 auto;*/
+width: max-content;
+/*padding: 7px;*/
+}
+
+th,
 td{
     text-align:center;
+    padding: 2px 5px;
 }
 .table-bordered {
     table-layout: fixed;
@@ -50,8 +91,13 @@ td{
     border-collapse: collapse;
     display: block;
     overflow-x: auto;
+    margin: 0 auto;
+    font-family:Arial, Helvetica, sans-serif;
 }
 
+.headingRow{
+    border-bottom: 1px solid #ddd;
+}
 .headingCell{
     padding-left: .4em;
     padding-right: .2em;
@@ -60,10 +106,10 @@ td{
     border-bottom: 1px solid #ddd;
 }
 
-.memberName{
+/* .memberName{
     width: 240px;
     max-width: 300px;
-}
+} */
 
 .cdInfo{
     width: 100px;
