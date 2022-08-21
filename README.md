@@ -20,5 +20,6 @@
 - Rewrite using class so functions related to individual member's data become methods
 - Finish recording all old data (current earliest: 22nd Single)
 
-# About chart.js
-As of 2022-08-21, chart.js works fine in `dev` but not in `build`.
+# Note about chart.js
+
+Opposed to many tutorial site on using chart.js with svelte, the usual loading method (`import Chart from 'chartjs/auto/auto.js'`) is outdated.  It somehow worked in `dev` stage but not in the deployed version.  The correct way is to replace `auto.js` by `auto.mjs`.
