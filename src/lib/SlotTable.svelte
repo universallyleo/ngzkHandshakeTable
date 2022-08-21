@@ -107,6 +107,7 @@ function filterList(list, option=filterOpt) {
   border-collapse: collapse;
   display: block;
   overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .container{

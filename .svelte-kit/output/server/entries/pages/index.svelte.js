@@ -129,7 +129,7 @@ ${group.has.length > 1 ? `<tr class="${"svelte-179mrzs"}">${validate_component(D
 });
 const SlotTable_svelte_svelte_type_style_lang = "";
 const css$1 = {
-  code: ".table-bordered.svelte-i4pbgc.svelte-i4pbgc{table-layout:fixed;border:1px solid #ddd !important;border-spacing:0!important;border-collapse:collapse;display:block;overflow-x:auto}.container.svelte-i4pbgc.svelte-i4pbgc{width:max-content}table.svelte-i4pbgc caption.svelte-i4pbgc{font-size:large;font-weight:bold;padding:.5em 0}th.svelte-i4pbgc.svelte-i4pbgc{font-size:large;font-weight:bold;border:1px solid black;border-bottom:2px solid black;padding:0}@media screen and (max-width: 767px){table.svelte-i4pbgc caption.svelte-i4pbgc{display:none}}.soldFraction.svelte-i4pbgc.svelte-i4pbgc{display:inline;float:right;margin-right:3px;font-size:small;font-weight:normal;color:#777}",
+  code: ".table-bordered.svelte-81drp5.svelte-81drp5{table-layout:fixed;border:1px solid #ddd !important;border-spacing:0!important;border-collapse:collapse;display:block;overflow-x:auto;overflow-y:hidden}.container.svelte-81drp5.svelte-81drp5{width:max-content}table.svelte-81drp5 caption.svelte-81drp5{font-size:large;font-weight:bold;padding:.5em 0}th.svelte-81drp5.svelte-81drp5{font-size:large;font-weight:bold;border:1px solid black;border-bottom:2px solid black;padding:0}@media screen and (max-width: 767px){table.svelte-81drp5 caption.svelte-81drp5{display:none}}.soldFraction.svelte-81drp5.svelte-81drp5{display:inline;float:right;margin-right:3px;font-size:small;font-weight:normal;color:#777}",
   map: null
 };
 const SlotTable = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -185,15 +185,15 @@ const SlotTable = create_ssr_component(($$result, $$props, $$bindings, slots) =>
   title2 = compare ? cdData(compare.cdData.cd).display : "";
   return `
 
-<div class="${"container svelte-i4pbgc"}"><table class="${"table-bordered svelte-i4pbgc"}"><caption class="${"text-center svelte-i4pbgc"}">${escape(title)} (\u6700\u5F8C\u66F4\u65B0\uFF1A${escape(lastDraw)}\u6B21\u53D7\u4ED8) 
+<div class="${"container svelte-81drp5"}"><table class="${"table-bordered svelte-81drp5"}"><caption class="${"text-center svelte-81drp5"}">${escape(title)} (\u6700\u5F8C\u66F4\u65B0\uFF1A${escape(lastDraw)}\u6B21\u53D7\u4ED8) 
     ${compare ? `\xA0\xA0[ vs ${escape(title2)} ${escape(compare.atdraw)}\u6B21\u53D7\u4ED8 ]` : ``}</caption>
   <thead><tr>
-      <th class="${"svelte-i4pbgc"}"></th>
-      <th class="${"svelte-i4pbgc"}"><div class="${"soldFraction svelte-i4pbgc"}">${escape(totalSold[0])}/${escape(totalSold[1])}</div></th>
+      <th class="${"svelte-81drp5"}"></th>
+      <th class="${"svelte-81drp5"}"><div class="${"soldFraction svelte-81drp5"}">${escape(totalSold[0])}/${escape(totalSold[1])}</div></th>
       ${each(data2.meetDates, (date) => {
-    return `<th colspan="${"5"}" class="${"svelte-i4pbgc"}">${escape(date)}</th>`;
+    return `<th colspan="${"5"}" class="${"svelte-81drp5"}">${escape(date)}</th>`;
   })}
-      ${compare ? `<th class="${"svelte-i4pbgc"}">\u904E\u53BB\u3068\u306E\u5DEE</th>` : ``}</tr></thead>
+      ${compare ? `<th class="${"svelte-81drp5"}">\u904E\u53BB\u3068\u306E\u5DEE</th>` : ``}</tr></thead>
   <tbody>${groupOpt == "none" ? `
       ${each(data2.table, (row) => {
     return `<tr>${validate_component(DataRow, "DataRow").$$render($$result, { row, lastDraw, compare, capture }, {}, {})}</tr>`;
