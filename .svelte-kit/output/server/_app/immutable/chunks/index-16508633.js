@@ -24,6 +24,9 @@ function get_current_component() {
     throw new Error("Function called outside component initialization");
   return current_component;
 }
+function onDestroy(fn) {
+  get_current_component().$$.on_destroy.push(fn);
+}
 function createEventDispatcher() {
   const component = get_current_component();
   return (type, detail, { cancelable = false } = {}) => {
@@ -126,6 +129,7 @@ export {
   escape as e,
   missing_component as m,
   null_to_empty as n,
+  onDestroy as o,
   setContext as s,
   validate_component as v
 };

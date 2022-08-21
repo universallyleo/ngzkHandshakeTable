@@ -43,24 +43,24 @@ function organiseDatum(){
 /****** Graph related setup ******/
 let canvasContainer;
 
-const tooltipLine = {
-    id: 'tooltipLine',
-    beforeDraw: chart => {
-        if (chart.tooltip._active && chart.tooltip._active.length){
-            const ctx = chart.ctx;
-            ctx.save();
-            const activePoint = chart.tooltip._active[0];
-            ctx.beginPath();
-            ctx.setLineDash([5,7]);
-            ctx.moveTo(activePoint.element.x, chart.chartArea.top);
-            ctx.lineTo(activePoint.element.x, chart.chartArea.bottom);
-            ctx.lineWidth = 2;
-            ctx.strokeStyle = 'black';
-            ctx.stroke();
-            ctx.restore();
-        }
-    }
-}
+// const tooltipLine = {
+//     id: 'tooltipLine',
+//     beforeDraw: chart => {
+//         if (chart.tooltip._active && chart.tooltip._active.length){
+//             const ctx = chart.ctx;
+//             ctx.save();
+//             const activePoint = chart.tooltip._active[0];
+//             ctx.beginPath();
+//             ctx.setLineDash([5,7]);
+//             ctx.moveTo(activePoint.element.x, chart.chartArea.top);
+//             ctx.lineTo(activePoint.element.x, chart.chartArea.bottom);
+//             ctx.lineWidth = 2;
+//             ctx.strokeStyle = 'black';
+//             ctx.stroke();
+//             ctx.restore();
+//         }
+//     }
+// }
 
 const config = {
     type: 'line',
@@ -95,7 +95,7 @@ const config = {
             }
         }
     },
-    plugins: [tooltipLine] //see https://youtu.be/rLUwF1UQcbI
+    // plugins: [tooltipLine] //see https://youtu.be/rLUwF1UQcbI
 }
 
 let thechart;

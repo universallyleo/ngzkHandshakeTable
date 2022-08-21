@@ -71,7 +71,7 @@ $: progressData.map(t=>extendProgressData(t,numSlots));
     </table>
     <div class="graphContainer">
         [ChartJS fails in Production.  Finding resolution...]
-        <!-- <ProgressGraph {mode} datum={progressData} /> -->
+        <ProgressGraph {mode} datum={progressData} />
     </div>
 </div>
 
