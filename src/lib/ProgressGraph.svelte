@@ -2,7 +2,9 @@
 import {cdData, nthColor,getMember} from '$lib/util.js';
 import {range} from 'lodash-es';
 import {Line} from 'svelte-chartjs';
-import 'chart.js/auto'
+import {Chart, Title, Tooltip, Legend, LineElement, LinearScale, PointElement, CategoryScale} from 'chart.js';
+
+Chart.register(Title, Tooltip, Legend, LineElement, LinearScale, PointElement, CategoryScale);
 
 //to be made export
 export let datum; 
