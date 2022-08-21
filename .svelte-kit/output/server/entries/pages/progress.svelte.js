@@ -1,27 +1,8 @@
-import { c as create_ssr_component, o as onDestroy, e as escape, b as add_attribute, a as each, v as validate_component, d as createEventDispatcher } from "../../_app/immutable/chunks/index-16508633.js";
+import { c as create_ssr_component, a as each, e as escape, d as createEventDispatcher, v as validate_component, b as add_attribute } from "../../_app/immutable/chunks/index-960f3247.js";
 import { a as cdData, g as getMember, d as data, i as involvedMembers } from "../../_app/immutable/chunks/util-9274ca4a.js";
 import { range, find, uniq } from "lodash-es";
 import "chart.js/auto/auto.js";
 import "chartjs-plugin-datalabels";
-const ProgressGraph = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let canvasWidth;
-  let { datum } = $$props;
-  let { mode } = $$props;
-  let maxlength = 0;
-  let canvasContainer;
-  let thechart;
-  onDestroy(() => {
-    if (thechart)
-      thechart.destroy();
-    thechart = null;
-  });
-  if ($$props.datum === void 0 && $$bindings.datum && datum !== void 0)
-    $$bindings.datum(datum);
-  if ($$props.mode === void 0 && $$bindings.mode && mode !== void 0)
-    $$bindings.mode(mode);
-  canvasWidth = Math.max(maxlength * 50, 800);
-  return `<div style="${"width:" + escape(canvasWidth, true) + "px"}"${add_attribute("this", canvasContainer, 0)}><canvas${add_attribute("this", thechart, 0)}></canvas></div>`;
-});
 const ProgressTable_svelte_svelte_type_style_lang = "";
 const css$2 = {
   code: ".container.svelte-ilcu8n.svelte-ilcu8n{width:max-content}.graphContainer.svelte-ilcu8n.svelte-ilcu8n{width:max-content;margin:0 auto}th.svelte-ilcu8n.svelte-ilcu8n,td.svelte-ilcu8n.svelte-ilcu8n{text-align:center;padding:4px 5px}.weaker.svelte-ilcu8n.svelte-ilcu8n{font-size:small;color:hsl(0, 0%, 60%)}tbody.svelte-ilcu8n tr.svelte-ilcu8n:nth-child(odd){background-color:#efefef}.table-bordered.svelte-ilcu8n.svelte-ilcu8n{table-layout:fixed;border:1px solid #ddd !important;border-spacing:0!important;border-collapse:collapse;display:block;overflow-x:auto;margin:0 auto;font-family:Arial, Helvetica, sans-serif}.headingRow.svelte-ilcu8n.svelte-ilcu8n{border-bottom:1px solid #ddd}.headingCell.svelte-ilcu8n.svelte-ilcu8n{padding-left:.4em;padding-right:.2em;border-right:1px solid black;border-top:1px solid #ddd;border-bottom:1px solid #ddd}.cdInfo.svelte-ilcu8n.svelte-ilcu8n{width:100px;max-width:140px}",
@@ -82,7 +63,8 @@ const ProgressTable = create_ssr_component(($$result, $$props, $$bindings, slots
     })}
             </tr>`;
   })}</tbody></table>
-    <div class="${"graphContainer svelte-ilcu8n"}">${validate_component(ProgressGraph, "ProgressGraph").$$render($$result, { mode, datum: progressData }, {}, {})}</div>
+    <div class="${"graphContainer svelte-ilcu8n"}">[ChartJS fails in Production.  Finding resolution...]
+        </div>
 </div>`;
 });
 const StateButton_svelte_svelte_type_style_lang = "";
