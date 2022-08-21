@@ -1,7 +1,7 @@
 <script>
 import {getMember,cdData} from '$lib/util.js';
 import {range, find} from 'lodash-es';
-import ProgressGraph from './RawChartjsProgressGraph.svelte';
+import ProgressGraph from './ProgressGraph.svelte';
 
 export let members;
 export let includings;
@@ -70,7 +70,6 @@ $: progressData.map(t=>extendProgressData(t,numSlots));
         </tbody>    
     </table>
     <div class="graphContainer">
-        [ChartJS fails in Production.  Finding resolution...]
         <ProgressGraph {mode} datum={progressData} />
     </div>
 </div>

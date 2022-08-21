@@ -1,9 +1,9 @@
 import { c as create_ssr_component, o as onDestroy, e as escape, b as add_attribute, a as each, v as validate_component, d as createEventDispatcher } from "../../_app/immutable/chunks/index-16508633.js";
 import { a as cdData, g as getMember, d as data, i as involvedMembers } from "../../_app/immutable/chunks/util-9274ca4a.js";
 import { range, find, uniq } from "lodash-es";
-import "chart.js/auto/auto.js";
+import "chart.js/auto/auto.mjs";
 import "chartjs-plugin-datalabels";
-const RawChartjsProgressGraph = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+const ProgressGraph = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let canvasWidth;
   let { datum } = $$props;
   let { mode } = $$props;
@@ -82,8 +82,7 @@ const ProgressTable = create_ssr_component(($$result, $$props, $$bindings, slots
     })}
             </tr>`;
   })}</tbody></table>
-    <div class="${"graphContainer svelte-ilcu8n"}">[ChartJS fails in Production.  Finding resolution...]
-        ${validate_component(RawChartjsProgressGraph, "ProgressGraph").$$render($$result, { mode, datum: progressData }, {}, {})}</div>
+    <div class="${"graphContainer svelte-ilcu8n"}">${validate_component(ProgressGraph, "ProgressGraph").$$render($$result, { mode, datum: progressData }, {}, {})}</div>
 </div>`;
 });
 const StateButton_svelte_svelte_type_style_lang = "";
