@@ -1,9 +1,10 @@
-import { concat, pullAll, without, find } from "lodash-es";
+import { concat, pullAll, without } from "lodash-es";
 const data = [
   {
     cd: {
       num: 22,
-      type: "Single"
+      type: "Single",
+      title: "\u5E30\u308A\u9053\u306F\u9060\u56DE\u308A\u3057\u305F\u304F\u306A\u308B"
     },
     lastDraw: 19,
     meetDates: [
@@ -351,7 +352,8 @@ const data = [
   {
     cd: {
       num: 4,
-      type: "Album"
+      type: "Album",
+      title: "\u4ECA\u304C\u601D\u3044\u51FA\u306B\u306A\u308B\u307E\u3067"
     },
     lastDraw: 7,
     meetDates: [
@@ -718,7 +720,8 @@ const data = [
   {
     cd: {
       num: 23,
-      type: "Single"
+      type: "Single",
+      title: "Sing Out!"
     },
     lastDraw: 17,
     meetDates: [
@@ -1184,7 +1187,8 @@ const data = [
   {
     cd: {
       num: 24,
-      type: "Single"
+      type: "Single",
+      title: "\u591C\u660E\u3051\u307E\u3067\u5F37\u304C\u3089\u306A\u304F\u3066\u3082\u3044\u3044"
     },
     lastDraw: 17,
     meetDates: [
@@ -1618,7 +1622,8 @@ const data = [
   {
     cd: {
       num: 25,
-      type: "Single"
+      type: "Single",
+      title: "\u3057\u3042\u308F\u305B\u306E\u4FDD\u8B77\u8272"
     },
     lastDraw: 20,
     meetDates: [
@@ -2022,7 +2027,8 @@ const data = [
   {
     cd: {
       num: 26,
-      type: "Single"
+      type: "Single",
+      title: "\u50D5\u306F\u50D5\u3092\u597D\u304D\u306B\u306A\u308B"
     },
     lastDraw: 12,
     meetDates: [
@@ -2471,7 +2477,8 @@ const data = [
   {
     cd: {
       num: 27,
-      type: "Single"
+      type: "Single",
+      title: "\u3054\u3081\u3093\u306DFingers crossed"
     },
     lastDraw: 15,
     meetDates: [
@@ -2933,7 +2940,8 @@ const data = [
   {
     cd: {
       num: 28,
-      type: "Single"
+      type: "Single",
+      title: "\u541B\u306B\u53F1\u3089\u308C\u305F"
     },
     lastDraw: 19,
     meetDates: [
@@ -3331,7 +3339,8 @@ const data = [
   {
     cd: {
       num: 1,
-      type: "Best"
+      type: "Best",
+      title: "Time flies"
     },
     lastDraw: 14,
     meetDates: [
@@ -3618,7 +3627,8 @@ const data = [
   {
     cd: {
       num: 29,
-      type: "Single"
+      type: "Single",
+      title: "Actually..."
     },
     lastDraw: 20,
     meetDates: [
@@ -4113,7 +4123,8 @@ const data = [
   {
     cd: {
       num: 30,
-      type: "Single"
+      type: "Single",
+      title: "\u597D\u304D\u3068\u3044\u3046\u306E\u306F\u30ED\u30C3\u30AF\u3060\u305C!"
     },
     lastDraw: 3,
     meetDates: [
@@ -4581,7 +4592,7 @@ const data = [
     ]
   }
 ];
-const members = [
+const membersdata = [
   {
     member: "Akimoto Manatsu",
     kanji: "\u79CB\u5143 \u771F\u590F",
@@ -5235,11 +5246,28 @@ const members = [
 const isISODate = (d) => d.match(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/);
 const isExpandedDatalist = (l) => "slotsSoldex" in l[0];
 function getMember(name) {
-  let res = members.filter((x) => x.member == name);
-  return res.length == 0 ? { memebr: name, kanji: name, furi: name, gen: 0, dob: "1900-01-01", from: "", status: "none" } : res[0];
+  let res = membersdata.filter((x) => x.member == name);
+  if (res.length != 0) {
+    res[0]["stripped_kanji"] = res[0].kanji.replace(" ", "");
+    return res[0];
+  } else {
+    return {
+      memebr: name,
+      kanji: name,
+      furi: name,
+      stripped_kanji: name,
+      gen: 0,
+      dob: "1900-01-01",
+      from: "",
+      status: "none"
+    };
+  }
 }
 function getMembers(listOfNames) {
   return listOfNames.map((x) => getMember(x));
+}
+function involvedMembers(cdData2, dataform = "full") {
+  return cdData2.table.map((x) => dataform == "name" ? x.member : getMember(x.member));
 }
 const status2label = (s) => {
   if (isISODate(s)) {
@@ -5458,21 +5486,13 @@ function determineGroup(mb, groups) {
   }
   return "NoData";
 }
-function progression(mb, cd) {
-  let res = { total: [], diff: Array(cd.lastDraw).fill(0) };
-  let flatSlots = find(cd.table, ["member", mb]).slotsSold.map((row) => row.split("|")).flat();
-  flatSlots.map((e) => e.match(/^\d+$/) ? res.diff[parseInt(e) - 1]++ : 0);
-  let sum = 0;
-  res.total = res.diff.map((x) => sum += x);
-  return res;
-}
 export {
   cdData as a,
-  progression as b,
   compareData as c,
   data as d,
   expandDataList as e,
   getMember as g,
+  involvedMembers as i,
   partitionToGroup as p,
   sortList as s
 };

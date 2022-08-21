@@ -1,7 +1,8 @@
 [{
    "cd": {
       "num": 22,
-      "type": "Single"
+      "type": "Single", 
+      "title": "帰り道は遠回りしたくなる"
    },
    "lastDraw": 19,
    "meetDates": [
@@ -349,7 +350,8 @@
 {
    "cd": {
       "num": 4,
-      "type": "Album"
+      "type": "Album", 
+      "title": "今が思い出になるまで"
    },
    "lastDraw": 7,
    "meetDates": [
@@ -710,7 +712,8 @@
 {
    "cd": {
       "num": 23,
-      "type": "Single"
+      "type": "Single",
+      "title": "Sing Out!"
    },
    "lastDraw": 17,
    "meetDates": [
@@ -1170,7 +1173,8 @@
 {
    "cd": {
       "num": 24,
-      "type": "Single"
+      "type": "Single",
+      "title": "夜明けまで強がらなくてもいい"
    },
    "lastDraw": 17,
    "meetDates": [
@@ -1598,7 +1602,8 @@
 {
    "cd": {
       "num": 25,
-      "type": "Single"
+      "type": "Single",
+      "title": "しあわせの保護色"
    },
    "lastDraw": 20,
    "meetDates": [
@@ -2000,7 +2005,7 @@
    ]
 },
 {
-   "cd": {"num":26, "type":"Single"},
+   "cd": {"num":26, "type":"Single", "title": "僕は僕を好きになる"},
    "lastDraw": 12,
    "meetDates": [
       "2021-01-31",
@@ -2428,7 +2433,7 @@
    ]
 },
 {
-   "cd": {"num":27, "type":"Single"},
+   "cd": {"num":27, "type":"Single", "title": "ごめんねFingers crossed"},
    "lastDraw": 15,
    "meetDates": [
       "2021-06-13",
@@ -2866,7 +2871,7 @@
    ]
 },
 {
-   "cd": {"num":28, "type":"Single"},
+   "cd": {"num":28, "type":"Single", "title": "君に叱られた"},
    "lastDraw": 19,
    "meetDates": [
       "2021-09-25",
@@ -3244,7 +3249,7 @@
    ]
 },
 {
-   "cd": {"num":1, "type":"Best"},
+   "cd": {"num":1, "type":"Best", "title": "Time flies"},
    "lastDraw": 14,
    "meetDates": [
       "2022-01-15",
@@ -3512,7 +3517,7 @@
    ]
 },
 {
-   "cd": {"num":29, "type":"Single"},
+   "cd": {"num":29, "type":"Single", "title": "Actually..."},
    "lastDraw": 20,
    "meetDates": [
       "2022-04-16",
@@ -3972,7 +3977,7 @@
    ]
 },
    {
-      "cd": {"num":30, "type":"Single"},
+      "cd": {"num":30, "type":"Single", "title": "好きというのはロックだぜ!"},
       "lastDraw": 3,
       "meetDates": [
          "2022-09-04",

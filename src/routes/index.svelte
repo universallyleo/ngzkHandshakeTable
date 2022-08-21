@@ -147,20 +147,22 @@ $: if (!compareCD) {compare=null;}
             過去の売り上げとの差
         </label>
         <span class:inactive={!compareCD}>
-            <label for="cd2Select"> → 対象CD:</label>
-            <select
-                id="cd2Select"
-                name="cd2"
-                bind:value={selected2}
-                style="margin-left: 5px; margin-right: 5px"
-            >
-            {#each cdlist as cd,i}
-                {#if i!=selected}
-                    <option value={i}>{cd.display}</option>
-                {/if}
-            {/each}
-            </select>
+            <label> → 対象CD:
+                <select
+                    id="cd2Select"
+                    name="cd2"
+                    bind:value={selected2}
+                    style="margin-left: 5px; margin-right: 5px"
+                >
+                {#each cdlist as cd,i}
+                    {#if i!=selected}
+                        <option value={i}>{cd.display}</option>
+                    {/if}
+                {/each}
+                </select>
+            </label>
             {#if isSelectedGood(selected2)}
+                <label>
                 <select
                     id="drawSelect"
                     name="drawSelect"
@@ -170,7 +172,7 @@ $: if (!compareCD) {compare=null;}
                 {#each [...Array(selectableDraw).keys()]  as i}
                 <option value={i+1}>{i+1}</option>
                 {/each}
-                </select><label for="drawSelect">次受付</label>
+                </select>次受付</label>
             {/if}
             {#if atdraw>0}
                 <button on:click={()=>compare=getCompare()}>比べる</button>
@@ -183,33 +185,7 @@ $: if (!compareCD) {compare=null;}
 <SlotTable data={selectedCDdata} {filterOpt} {groupOpt} {sortOpt} {compare} {capture}/>
 </section>
 
-<footer>
-    Author: <a href="https://github.com/universallyleo">universallyleo</a>.  Soruce: <a href="https://github.com/universallyleo/ngzkMeetData">Github</a>	
-</footer>
-
 <style>
-:root {
-	font-family: Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
-		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-	--font-mono: 'Fira Mono', monospace;
-	--pure-white: #ffffff;
-	--primary-color: #b9c6d2;
-	--secondary-color: #d0dde9;
-	--tertiary-color: #edf0f8;
-	--accent-color: #444444;
-	--heading-color: rgba(0, 0, 0, 0.7);
-	--text-color: #444444;
-}
-
-a {
-	color: var(--accent-color);
-	text-decoration: none;
-}
-
-a:hover {
-	text-decoration: underline;
-}
-
 input,
 button {
 	font-size: inherit;
@@ -271,15 +247,5 @@ ul.twocols>li>div.leftcol {
 
 .print{
     margin-left: auto;
-}
-
-footer{
-    width:20%;
-    margin: 20px auto;
-    display: block;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
-    color: hsl(0, 0%, 65%);
 }
 </style>

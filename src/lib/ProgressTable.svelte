@@ -3,7 +3,7 @@ import {getMember,cdData} from '$lib/util.js';
 import {range, find} from 'lodash-es';
 import ProgressGraph from './ProgressGraph.svelte';
 
-export let member;
+export let members;
 export let includings;
 
 /**
@@ -15,12 +15,13 @@ function progression(memberName, cd) {
         member: memberName,
         total: [], 
         diff: Array(cd.lastDraw).fill(0) };
-	let flatSlots = find(cd.table, ['member', memberName])
-		.slotsSold.map((row) => row.split('|'))
-		.flat();
-	flatSlots.map((e) => (e.match(/^\d+$/) ? res.diff[parseInt(e) - 1]++ : 0));
-	let sum = 0;
-	res.total = res.diff.map((x) => (sum += x));
+	let mbTable = find(cd.table, ['member', memberName]);
+    if (mbTable){
+        let flatSlots = mbTable.slotsSold.map((row) => row.split('|')).flat();
+        flatSlots.map((e) => (e.match(/^\d+$/) ? res.diff[parseInt(e) - 1]++ : 0));
+        let sum = 0;
+        res.total = res.diff.map((x) => (sum += x));
+    }
     return res;
 }
 
@@ -32,58 +33,73 @@ function extendProgressData(data,toLength){
     }
 }
 
-$: mbInfo = getMember(member);
-$: numSlots = Math.max(...includings.map((x)=>x.lastDraw));
-$: progressData = includings.map(x=>progression(member,x));
+$: mode = includings.length>1?"fixMember":"fixCD";
+$: numSlots = mode=="fixMember"?Math.max(...includings.map((x)=>x.lastDraw)):includings[0].lastDraw;
+$: progressData = mode=="fixCD"?members.map(x=>progression(x,includings[0])):includings.map(x=>progression(members[0],x));
 $: progressData.map(t=>extendProgressData(t,numSlots));
 //$: transposedTotal = progressData[0].total.map((col,i) => progressData.map(row=>row.total[i]));
 </script>
 
 <div class="container">
     <table class="table-bordered">
-        <caption> 各受付の完売数の差 (メンバー： {mbInfo.kanji})  </caption>
+        <caption> 累計完売数の推移 <span class="weaker">(N次受付の完売数)</span></caption>
         <thead>
             <th></th>
             {#each range(numSlots) as i}
-                <th class="headingRow">{i}→{i+1}</th>
+                <th class="headingRow">{i+1}</th>
             {/each}
         </thead>
     
-        {#each progressData as cdprogress}
+        <tbody>
+        {#each progressData as series}
             <tr>
-                <td class="headingCell cdInfo">{cdData(cdprogress.cd).display}</td>
-            {#each cdprogress.diff as slot}
-                <td>{slot}</td>
+                <td class="headingCell cdInfo">
+                {#if mode=='fixMember'}
+                    {cdData(series.cd).display}
+                {:else}
+                    {getMember(series.member).kanji}
+                {/if}
+                </td>
+            {#each range(numSlots) as i}
+                <td>{series.total[i]} 
+                    {#if series.total[i]!="-"} <span class="weaker">(+{series.diff[i]})</span>{/if}
+                </td>
             {/each}
             </tr>
         {/each}
-    
-        <!-- {#each range(numRows) as i}
-            <tr>
-                <td>{i}</td>
-                {#each transposedTotal[i] as draw}
-                    <td>{draw}</td>
-                {/each}
-            </tr>
-        {/each} -->
-    
+        </tbody>    
     </table>
+    <div class="graphContainer">
+        <ProgressGraph {mode} datum={progressData} />
+    </div>
 </div>
 
-<ProgressGraph {mbInfo} datum={progressData} />
 
 <style>
 .container{
-/* margin: 0 auto;*/
-width: max-content;
-/*padding: 7px;*/
+    /* margin: 0 auto;*/
+    width: max-content;
+    /*padding: 7px;*/
+}
+
+.graphContainer{
+    width: max-content;
+    margin: 0 auto;
 }
 
 th,
 td{
     text-align:center;
-    padding: 2px 5px;
+    padding: 4px 5px;
 }
+
+.weaker{
+    font-size: small;
+    color: hsl(0, 0%, 60%);
+}
+
+tbody tr:nth-child(odd) { background-color: #efefef; }
+
 .table-bordered {
     table-layout: fixed;
     border: 1px solid #ddd !important;

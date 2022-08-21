@@ -1,18 +1,42 @@
 import { without, concat, pullAll } from 'lodash-es';
 import members from '$lib/data/members.json';
+import fulldata from '$lib/data/data.json';
 
 export const isISODate = (d) => d.match(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/);
 export const isExpandedDatalist = (l) => 'slotsSoldex' in l[0];
 
 export function getMember(name) {
 	let res = members.filter((x) => x.member == name);
-	return res.length == 0
-		? { memebr: name, kanji: name, furi: name, gen: 0, dob: '1900-01-01', from: '', status: 'none' }
-		: res[0];
+	if (res.length != 0) {
+		res[0]['stripped_kanji'] = res[0].kanji.replace(' ', '');
+		return res[0];
+	} else {
+		return {
+			memebr: name,
+			kanji: name,
+			furi: name,
+			stripped_kanji: name,
+			gen: 0,
+			dob: '1900-01-01',
+			from: '',
+			status: 'none'
+		};
+	}
 }
 
 export function getMembers(listOfNames) {
 	return listOfNames.map((x) => getMember(x));
+}
+/**
+ * @param  {object} cdData  full cd data object
+ * @param  {string} dataform="full"  either "full"->return full member data or "name"->return only member name
+ */
+export function involvedMembers(cdData, dataform = 'full') {
+	return cdData.table.map((x) => (dataform == 'name' ? x.member : getMember(x.member)));
+}
+
+export function performedInCDs(member) {
+	return fulldata.filter((x) => !!x.table.find((y) => y.member == member)).map((x) => x.cd);
 }
 
 const status2label = (s) => {

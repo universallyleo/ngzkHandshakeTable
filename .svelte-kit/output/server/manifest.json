@@ -4,18 +4,23 @@
     "src": ".svelte-kit/build/index.js",
     "isEntry": true,
     "imports": [
-      "_index-280110de.js"
+      "_index-16508633.js",
+      "_paths-b9644fda.js"
     ],
     "dynamicImports": [
       ".svelte-kit/build/hooks.js"
     ]
   },
-  ".svelte-kit/runtime/components/layout.svelte": {
-    "file": "entries/fallbacks/layout.svelte.js",
-    "src": ".svelte-kit/runtime/components/layout.svelte",
+  "src/routes/__layout.svelte": {
+    "file": "entries/pages/__layout.svelte.js",
+    "src": "src/routes/__layout.svelte",
     "isEntry": true,
     "imports": [
-      "_index-280110de.js"
+      "_index-16508633.js",
+      "_paths-b9644fda.js"
+    ],
+    "css": [
+      "_app/immutable/assets/__layout-57acc6d4.css"
     ]
   },
   ".svelte-kit/runtime/components/error.svelte": {
@@ -23,7 +28,15 @@
     "src": ".svelte-kit/runtime/components/error.svelte",
     "isEntry": true,
     "imports": [
-      "_index-280110de.js"
+      "_index-16508633.js"
+    ]
+  },
+  "src/routes/about.svelte": {
+    "file": "entries/pages/about.svelte.js",
+    "src": "src/routes/about.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index-16508633.js"
     ]
   },
   "src/routes/index.svelte": {
@@ -31,11 +44,11 @@
     "src": "src/routes/index.svelte",
     "isEntry": true,
     "imports": [
-      "_index-280110de.js",
-      "_util-247bbdd8.js"
+      "_index-16508633.js",
+      "_util-9274ca4a.js"
     ],
     "css": [
-      "_app/immutable/assets/index-504a8fca.css"
+      "_app/immutable/assets/index-fa0a5176.css"
     ]
   },
   "src/routes/progress.svelte": {
@@ -43,18 +56,21 @@
     "src": "src/routes/progress.svelte",
     "isEntry": true,
     "imports": [
-      "_index-280110de.js",
-      "_util-247bbdd8.js"
+      "_index-16508633.js",
+      "_util-9274ca4a.js"
     ],
     "css": [
-      "_app/immutable/assets/progress-c1678f2b.css"
+      "_app/immutable/assets/progress-fbd5827d.css"
     ]
   },
-  "_index-280110de.js": {
-    "file": "_app/immutable/chunks/index-280110de.js"
+  "_paths-b9644fda.js": {
+    "file": "_app/immutable/chunks/paths-b9644fda.js"
   },
-  "_util-247bbdd8.js": {
-    "file": "_app/immutable/chunks/util-247bbdd8.js"
+  "_index-16508633.js": {
+    "file": "_app/immutable/chunks/index-16508633.js"
+  },
+  "_util-9274ca4a.js": {
+    "file": "_app/immutable/chunks/util-9274ca4a.js"
   },
   ".svelte-kit/build/hooks.js": {
     "file": "_app/immutable/chunks/hooks-bced8853.js",
