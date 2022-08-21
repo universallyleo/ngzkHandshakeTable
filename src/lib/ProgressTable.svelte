@@ -1,7 +1,7 @@
 <script>
 import {getMember,cdData} from '$lib/util.js';
 import {range, find} from 'lodash-es';
-import ProgressGraph from './ProgressGraph.svelte';
+import ProgressGraph from './RawChartjsProgressGraph.svelte';
 
 export let members;
 export let includings;
