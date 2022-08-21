@@ -3,7 +3,7 @@ import { a as cdData, g as getMember, d as data, i as involvedMembers } from "..
 import { range, find, uniq } from "lodash-es";
 import "chart.js/auto/auto.js";
 import "chartjs-plugin-datalabels";
-const ProgressGraph = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+const RawChartjsProgressGraph = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let canvasWidth;
   let { datum } = $$props;
   let { mode } = $$props;
@@ -83,7 +83,7 @@ const ProgressTable = create_ssr_component(($$result, $$props, $$bindings, slots
             </tr>`;
   })}</tbody></table>
     <div class="${"graphContainer svelte-ilcu8n"}">[ChartJS fails in Production.  Finding resolution...]
-        ${validate_component(ProgressGraph, "ProgressGraph").$$render($$result, { mode, datum: progressData }, {}, {})}</div>
+        ${validate_component(RawChartjsProgressGraph, "ProgressGraph").$$render($$result, { mode, datum: progressData }, {}, {})}</div>
 </div>`;
 });
 const StateButton_svelte_svelte_type_style_lang = "";
