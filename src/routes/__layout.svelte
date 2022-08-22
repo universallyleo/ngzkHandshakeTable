@@ -52,7 +52,7 @@ a:hover {
 }
 
 footer{
-    width:20%;
+    width:50%;
     margin: 20px auto;
     display: block;
     justify-content: center;

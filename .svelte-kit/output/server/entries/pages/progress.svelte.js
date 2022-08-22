@@ -1,5 +1,5 @@
 import { c as create_ssr_component, o as onDestroy, e as escape, b as add_attribute, a as each, v as validate_component, d as createEventDispatcher } from "../../_app/immutable/chunks/index-16508633.js";
-import { g as getMember, a as cdData, n as nthColor, b as getNumSold, d as data, i as involvedMembers } from "../../_app/immutable/chunks/util-39001e6d.js";
+import { g as getMember, a as cdData, n as nthColor, b as getNumSold, i as involvedMembers, d as data, S as SelectOneCD } from "../../_app/immutable/chunks/SelectOneCD-9e48dad4.js";
 import { range, find, uniq } from "lodash-es";
 import "chart.js/auto/auto.mjs";
 import "chartjs-plugin-datalabels";
@@ -7,9 +7,10 @@ const ProgressGraph = create_ssr_component(($$result, $$props, $$bindings, slots
   let canvasWidth;
   let { progressData } = $$props;
   let { title } = $$props;
-  let { maxlength = progressData.datasets[0].data.length } = $$props;
+  let { maxlength } = $$props;
   let canvasContainer;
   let thechart;
+  console.log(maxlength);
   onDestroy(() => {
     if (thechart)
       thechart.destroy();
@@ -21,7 +22,9 @@ const ProgressGraph = create_ssr_component(($$result, $$props, $$bindings, slots
     $$bindings.title(title);
   if ($$props.maxlength === void 0 && $$bindings.maxlength && maxlength !== void 0)
     $$bindings.maxlength(maxlength);
-  canvasWidth = Math.max(maxlength * 50, 800);
+  progressData.spanGaps = true;
+  maxlength = progressData ? progressData.datasets[0].data.length : 0;
+  canvasWidth = Math.max(maxlength * 100, 1e3);
   return `<div style="${"width:" + escape(canvasWidth, true) + "px"}"${add_attribute("this", canvasContainer, 0)}><canvas${add_attribute("this", thechart, 0)}></canvas></div>`;
 });
 const ProgressTable_svelte_svelte_type_style_lang = "";
@@ -57,23 +60,30 @@ const ProgressTable = create_ssr_component(($$result, $$props, $$bindings, slots
     return res;
   }
   function soldProgressionPerCD(memberName, atdraw = -1) {
-    let mainArr = [], subArr = [];
-    for (let cddata of includings) {
-      let frac = getNumSold(cddata.table.find((x) => x.member == memberName), atdraw);
-      mainArr.push(frac[1] == "N/A" ? "N/A" : frac[0]);
-      subArr.push(frac[1]);
+    let soldatcd = [], accum = [];
+    let lastNumericIdx = -1;
+    for (let i = 0; i < includings.length; i++) {
+      let frac = getNumSold(includings[i].table.find((x) => x.member == memberName), atdraw);
+      if (frac[1] == "N/A") {
+        soldatcd.push(["-", "-"]);
+        accum.push("-");
+      } else {
+        soldatcd.push(frac);
+        accum.push(lastNumericIdx > -1 ? accum[lastNumericIdx] + frac[0] : frac[0]);
+        lastNumericIdx = i;
+      }
     }
     return {
       member: memberName,
-      main: mainArr,
-      sub: subArr
+      main: accum,
+      sub: soldatcd
     };
   }
   function subdataDisplayInTable(x) {
     if (mode.slice(0, 3) == "fix")
       return `(+${x})`;
     if (mode == "overallProgression")
-      return `/${x}`;
+      return `(+${x[0]}/${x[1]})`;
   }
   let numSlots = 0;
   let progressData = {};
@@ -84,6 +94,7 @@ const ProgressTable = create_ssr_component(($$result, $$props, $$bindings, slots
   let seriesLabels = [];
   let xAxisLabels = [];
   let headings = [];
+  const skipped = (ctx, value) => ctx.p0.skip || ctx.p1.skip ? value : void 0;
   if ($$props.mode === void 0 && $$bindings.mode && mode !== void 0)
     $$bindings.mode(mode);
   if ($$props.members === void 0 && $$bindings.members && members !== void 0)
@@ -124,8 +135,8 @@ const ProgressTable = create_ssr_component(($$result, $$props, $$bindings, slots
         datum = members.map((x) => soldProgressionPerCD(x));
         seriesLabels = members.map((x) => getMember(x).kanji);
         title = "\u7DCF\u5B8C\u58F2\u6570\u63A8\u79FB";
-        caption = "\u7DCF\u5B8C\u58F2\u6570\u63A8\u79FB";
-        subcaption = "(\u6700\u5927\u53EF\u80FD\u5B8C\u58F2\u6570)";
+        caption = "\u7D2F\u8A08\u7DCF\u5B8C\u58F2\u6570";
+        subcaption = "(\u5186\u76E4\u306E\u7DCF\u5B8C\u58F2\u90E8\u6570 / \u6700\u5927\u53EF\u80FD\u5B8C\u58F2\u6570)";
         xAxisLabels = includings.map((x) => cdData(x.cd).display);
         headings = xAxisLabels.map((x) => x.replace(/\s/, "<br>"));
       }
@@ -138,6 +149,11 @@ const ProgressTable = create_ssr_component(($$result, $$props, $$bindings, slots
           borderColor: `${nthColor(i)}`,
           backgroundColor: `${nthColor(i)}`,
           pointHitRadius: 20,
+          segment: {
+            borderColor: (ctx) => skipped(ctx, "rgb(0,0,0,0.5)"),
+            borderDash: (ctx) => skipped(ctx, [6, 6])
+          },
+          spanGaps: true,
           datalabels: {
             color: "white",
             backgroundColor: `${nthColor(i)}`
@@ -158,7 +174,7 @@ const ProgressTable = create_ssr_component(($$result, $$props, $$bindings, slots
     return `<tr class="${"svelte-ilcu8n"}"><td class="${"headingCell cdInfo svelte-ilcu8n"}">${escape(seriesLabels[j])}</td>
             ${each(range(numSlots), (i) => {
       return `<td class="${"svelte-ilcu8n"}">${escape(series.main[i])} 
-                    ${series.main[i] != "-" ? `<span class="${"weaker svelte-ilcu8n"}">${escape(subdataDisplayInTable(series.sub[i]))}</span>` : ``}
+                    ${!isNaN(series.main[i]) ? `<span class="${"weaker svelte-ilcu8n"}">${escape(subdataDisplayInTable(series.sub[i]))}</span>` : ``}
                 </td>`;
     })}
             </tr>`;
@@ -216,7 +232,7 @@ const SelectMembersPanel = create_ssr_component(($$result, $$props, $$bindings, 
 });
 const progress_svelte_svelte_type_style_lang = "";
 const css = {
-  code: 'input.svelte-38usip.svelte-38usip.svelte-38usip,button.svelte-38usip.svelte-38usip.svelte-38usip{font-size:inherit;font-family:inherit;line-height:1.2}button.svelte-38usip.svelte-38usip.svelte-38usip:focus:not(:focus-visible){outline:none}.optionsContainer.svelte-38usip.svelte-38usip.svelte-38usip{width:max-content;margin:10px 1ch;padding:2px 6px;border:1px solid black;display:flex}ul.twocols.svelte-38usip.svelte-38usip.svelte-38usip{display:inline-block;text-align:left;margin:0;padding:0}ul.twocols.svelte-38usip>li.svelte-38usip.svelte-38usip{margin:15px 0 15px;display:flex;justify-content:left;margin:0}ul.twocols.svelte-38usip>li.svelte-38usip>div.leftcol.svelte-38usip{flex:none;margin:0;width:max-content}.print.svelte-38usip.svelte-38usip.svelte-38usip{margin-left:auto;margin-top:1ch;margin-bottom:5px}[type="checkbox"].svelte-38usip.svelte-38usip.svelte-38usip{vertical-align:middle}.cdList.svelte-38usip.svelte-38usip.svelte-38usip{margin-top:1.2ch;display:grid;grid-auto-flow:column;grid-column-gap:1.5em;grid-template-rows:repeat(10,auto)}',
+  code: 'input.svelte-efwcs7.svelte-efwcs7.svelte-efwcs7,button.svelte-efwcs7.svelte-efwcs7.svelte-efwcs7{font-size:inherit;font-family:inherit;line-height:1.2}button.svelte-efwcs7.svelte-efwcs7.svelte-efwcs7:focus:not(:focus-visible){outline:none}.optionsContainer.svelte-efwcs7.svelte-efwcs7.svelte-efwcs7{width:max-content;margin:10px 1ch;padding:2px 6px;border:1px solid black;display:flex}ul.twocols.svelte-efwcs7.svelte-efwcs7.svelte-efwcs7{display:inline-block;text-align:left;margin:0;padding:0}ul.twocols.svelte-efwcs7>li.svelte-efwcs7.svelte-efwcs7{margin:15px 0 15px;display:flex;justify-content:left;margin:0}ul.twocols.svelte-efwcs7>li.svelte-efwcs7>div.leftcol.svelte-efwcs7{flex:none;margin:0;width:max-content}.print.svelte-efwcs7.svelte-efwcs7.svelte-efwcs7{width:50%;margin-left:auto;margin-right:auto;margin-top:1ch;margin-bottom:5px}[type="checkbox"].svelte-efwcs7.svelte-efwcs7.svelte-efwcs7{vertical-align:middle}.cdList.svelte-efwcs7.svelte-efwcs7.svelte-efwcs7{grid-area:2/1/3/3;display:grid;grid-auto-flow:column;grid-column-gap:1em;grid-template-rows:repeat(5,auto)}.cdProgressionOption.svelte-efwcs7.svelte-efwcs7.svelte-efwcs7{display:grid;grid-template-columns:280px auto;grid-template-rows:auto;grid-template-areas:"row1L row2R"\r\n                        "longbox longbox"}.fixOption.svelte-efwcs7.svelte-efwcs7.svelte-efwcs7{grid-area:"row1L";margin-left:5px;margin-top:.2ch;margin-bottom:1ch}.selectFix.svelte-efwcs7.svelte-efwcs7.svelte-efwcs7{grid-area:"row1R";margin-top:.2ch;margin-bottom:1ch}.longSelection.svelte-efwcs7.svelte-efwcs7.svelte-efwcs7{margin-left:5px;grid-area:2/1/3/3}',
   map: null
 };
 const Progress = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -237,12 +253,11 @@ const Progress = create_ssr_component(($$result, $$props, $$bindings, slots) => 
   let seriesOpt = "cdProgression";
   let fixOpt = "fixCD";
   let mode = "fixCD";
-  let cdlist = data.map((x) => cdData(x.cd)).reverse();
   let members = ["Yumiki Nao", "Kanagawa Saya", "Sato Kaede"];
-  let includings = [data[cdlist.length - 1]];
-  let selectedCD = 0;
+  let includings = [data[data.length - 1]];
+  let selectedCD = data[data.length - 1];
   let selectedMembers = members;
-  let selectables = involvedMembers(data[cdlist.length - 1 - selectedCD]);
+  let selectables = involvedMembers(selectedCD);
   $$result.css.add(css);
   let $$settled;
   let $$rendered;
@@ -252,30 +267,39 @@ const Progress = create_ssr_component(($$result, $$props, $$bindings, slots) => 
       {
         {
           {
-            selectables = involvedMembers(data[cdlist.length - 1 - selectedCD]);
+            selectables = involvedMembers(selectedCD);
           }
         }
       }
     }
-    $$rendered = `${$$result.head += `${$$result.title = `<title>\u4E43\u6728\u574246\u5B8C\u58F2\u30C7\u30FC\u30BF\u63A8\u79FB</title>`, ""}<meta name="${"description"}" content="${"\u4E43\u6728\u574246\u5B8C\u58F2\u30C7\u30FC\u30BF\u63A8\u79FB"}" data-svelte="svelte-6g9vkf">`, ""}
+    $$rendered = `${$$result.head += `${$$result.title = `<title>\u4E43\u6728\u574246\u5B8C\u58F2\u6570\u63A8\u79FB</title>`, ""}<meta name="${"description"}" content="${"\u4E43\u6728\u574246\u5B8C\u58F2\u6570\u63A8\u79FB"}" data-svelte="svelte-xnpnvr">`, ""}
 
-<div class="${"optionsContainer svelte-38usip"}"><ul class="${"twocols svelte-38usip"}"><li class="${"svelte-38usip"}"><div class="${"leftcol svelte-38usip"}">\u7CFB\u5217\u69CB\u6210:</div>
+<div class="${"optionsContainer svelte-efwcs7"}"><ul class="${"twocols svelte-efwcs7"}"><li class="${"svelte-efwcs7"}"><div class="${"leftcol svelte-efwcs7"}">\u7CFB\u5217\u69CB\u6210:</div>
             <div class="${"rightcol"}">${each(seriesTypes, (ser) => {
       return `
-                <label><input type="${"radio"}" name="${"seriesOpt"}"${add_attribute("id", ser.value, 0)}${add_attribute("value", ser.value, 0)} class="${"svelte-38usip"}"${ser.value === seriesOpt ? add_attribute("checked", true, 1) : ""}>
+                <label><input type="${"radio"}" name="${"seriesOpt"}"${add_attribute("id", ser.value, 0)}${add_attribute("value", ser.value, 0)} class="${"svelte-efwcs7"}"${ser.value === seriesOpt ? add_attribute("checked", true, 1) : ""}>
                     ${escape(ser.display)}
                 </label>`;
     })}</div></li>
-        <li class="${"svelte-38usip"}"><div class="${"leftcol svelte-38usip"}">\u56FA\u5B9A\u5BFE\u8C61:</div>
-            <div class="${"rightcol"}">${`${each(fixTypes, (ft) => {
-      return `<label><input type="${"radio"}" name="${"fixOpt"}"${add_attribute("id", ft.value, 0)}${add_attribute("value", ft.value, 0)} class="${"svelte-38usip"}"${ft.value === fixOpt ? add_attribute("checked", true, 1) : ""}>
-                    ${escape(ft.display)}
-                </label>`;
-    })}                  
-                ${`<div><select id="${"cdSelect"}" name="${"cd"}">${each(cdlist, (cd, i) => {
-      return `<option${add_attribute("value", i, 0)}>${escape(cd.display)}</option>`;
-    })}</select>
-                    ${validate_component(SelectMembersPanel, "SelectMembersPanel").$$render(
+        <li class="${"svelte-efwcs7"}"><div class="${"leftcol svelte-efwcs7"}">\u30C7\u30FC\u30BF:</div>
+            <div class="${"rightcol"}">${`<div class="${"cdProgressionOption svelte-efwcs7"}"><div class="${"fixOption svelte-efwcs7"}">\u56FA\u5B9A\u5BFE\u8C61:
+                ${each(fixTypes, (ft) => {
+      return `<label><input type="${"radio"}" name="${"fixOpt"}"${add_attribute("id", ft.value, 0)}${add_attribute("value", ft.value, 0)} class="${"svelte-efwcs7"}"${ft.value === fixOpt ? add_attribute("checked", true, 1) : ""}>
+                        ${escape(ft.display)}
+                    </label>`;
+    })}</div>
+                ${`<div class="${"selectFix svelte-efwcs7"}">${validate_component(SelectOneCD, "SelectOneCD").$$render(
+      $$result,
+      { selectedCDData: selectedCD },
+      {
+        selectedCDData: ($$value) => {
+          selectedCD = $$value;
+          $$settled = false;
+        }
+      },
+      {}
+    )}</div>
+                <div class="${"longSelection svelte-efwcs7"}">${validate_component(SelectMembersPanel, "SelectMembersPanel").$$render(
       $$result,
       { selectables, selectedMembers },
       {
@@ -286,9 +310,11 @@ const Progress = create_ssr_component(($$result, $$props, $$bindings, slots) => 
       },
       {}
     )}</div>`}
-                ${``}`}
+
+                ${``}</div>`}
+
             ${``}</div></li>
-        <li class="${"svelte-38usip"}"><div class="${"print svelte-38usip"}"><button class="${"svelte-38usip"}">\u30B0\u30E9\u30D5\u4F5C\u6210\u3059\u308B</button></div></li></ul></div>
+        <li class="${"svelte-efwcs7"}"><div class="${"print svelte-efwcs7"}"><button class="${"svelte-efwcs7"}">\u30B0\u30E9\u30D5\u4F5C\u6210\u3059\u308B</button></div></li></ul></div>
 
 ${validate_component(ProgressTable, "ProgressTable").$$render($$result, { mode, members, includings }, {}, {})}`;
   } while (!$$settled);

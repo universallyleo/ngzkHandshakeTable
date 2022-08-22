@@ -8,38 +8,9 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 //to be made export
 export let progressData; 
 export let title;
-export let maxlength=progressData.datasets[0].data.length;
+export let maxlength;
 
-// let graph = { labels: [], datasets:[] };
-// let lengths=[];
-// let maxlength=0;
-
-// function organiseDatum(){
-//     graph = { labels: [], datasets:[] };
-//     lengths = datum.map(entry => entry.total.length);
-//     maxlength = Math.max(...lengths);
-
-//     graph["labels"] = range(1,maxlength+1);
-//     config.options.plugins.title.text = mode=="fixMember"
-//         ?`対象メンバー： ${getMember(datum[0].member).kanji}`
-//         :`対象円盤： ${cdData(datum[0].cd).display}`;
-
-//     for (let [i,entry] of datum.entries()){
-//         let res = {
-//             label: `${mode=="fixMember"?cdData(entry.cd).display:getMember(entry.member).kanji}`,
-//             data: entry.total,
-//             borderColor: `${nthColor(i)}`,
-//             backgroundColor: `${nthColor(i)}`,
-//             pointHitRadius: 20, // larger area for intersect detection
-//             datalabels: {color: 'white', backgroundColor: `${nthColor(i)}`}
-//         }
-//         graph["datasets"].push(res);
-//     }
-//     config.data = graph;
-// }
-
-//$: organiseDatum();
-
+$: progressData.spanGaps = true;
 $: config.data = progressData;
 
 /****** Graph related setup ******/
@@ -79,9 +50,16 @@ const config = {
         interaction: {
             mode: 'index'
         },
+        scales:{
+            y:{
+                // max: 30,
+                // suggestedMax: 30
+            }
+        },
         plugins:{
             legend:{
                 position: 'top',
+                labels: { padding: 15 }
             },
             title:{
                 display:true,
@@ -93,7 +71,11 @@ const config = {
             datalabels:{
                 borderRadius: 6,
                 align: 'center',
-                anchor: 'center'
+                anchor: 'center',
+                padding:{
+                    top: 2,
+                    bottom: 1
+                }
             }
         }
     },
@@ -101,10 +83,14 @@ const config = {
 }
 
 let thechart;
-$: canvasWidth=Math.max(maxlength * 50,800);
+$: maxlength = progressData?progressData.datasets[0].data.length:0;
+$: canvasWidth=Math.max(maxlength * 100,1000); console.log(maxlength)
 $: config.options.plugins.title.text = title;
+// $: maxValue = Math.max( ...(progressData.datasets.map( x=> 
+//         Math.max( ...(x.data.map(y=> Number.isInteger(y)?y:0 )) ) 
+//     ).flat()) ); 
+// $: config.options.scales.y.max =  Math.ceil((maxValue+1)/roundupFactor)*roundupFactor;  //round up (maxValue+1) to the nearest 5s
 onMount(()=>{
-    //organiseDatum();
     Chart.register(ChartDataLabels);  //make ChartDataLabel available
     const ctx = thechart.getContext('2d'); 
     thechart = new Chart(ctx, config); //initialise
@@ -112,7 +98,6 @@ onMount(()=>{
 
 afterUpdate(()=>{
     if (!thechart) return;
-    //organiseDatum();
     thechart.update(); 
 });
 

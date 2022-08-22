@@ -1,5 +1,5 @@
 <script>
-import data from '$lib/data/data.json';
+//import data from '$lib/data/data.json';
 import {getMember,cdData,nthColor,getNumSold} from '$lib/util.js';
 import {range, find} from 'lodash-es';
 import ProgressGraph from './ProgressGraph.svelte';
@@ -36,18 +36,25 @@ function extendCDProgressData(data,toLength){
 }
 
 function soldProgressionPerCD(memberName, atdraw=-1){
-    let mainArr=[], subArr = [];
-    for (let cddata of includings){
-        let frac = getNumSold(cddata.table.find((x)=>x.member==memberName), atdraw);
-        mainArr.push(frac[1]=="N/A"?"N/A":frac[0]);
-        subArr.push(frac[1]);
-    }
-    return {member: memberName, main:mainArr, sub:subArr};
+    let soldatcd=[], accum=[];
+    let lastNumericIdx = -1;
+    for (let i=0; i<includings.length; i++){
+        let frac = getNumSold(includings[i].table.find((x)=>x.member==memberName), atdraw);
+        if (frac[1]=="N/A"){
+            soldatcd.push(["-","-"]);
+            accum.push("-");
+        }else{
+            soldatcd.push(frac);
+            accum.push((lastNumericIdx > -1)?accum[lastNumericIdx]+frac[0]:frac[0])
+            lastNumericIdx = i;
+        }
+    } 
+    return {member: memberName, main: accum, sub: soldatcd};
 }
 
 function subdataDisplayInTable(x){
     if (mode.slice(0,3)=="fix") return `(+${x})`;
-    if (mode == "overallProgression") return `/${x}`;
+    if (mode == "overallProgression") return `(+${x[0]}/${x[1]})`;
 }
 
 let numSlots=0;
@@ -59,6 +66,9 @@ let caption,subcaption;
 let seriesLabels=[];
 let xAxisLabels=[];
 let headings=[];
+
+//see: https://www.chartjs.org/docs/latest/samples/line/segments.html
+const skipped = (ctx, value) => ctx.p0.skip || ctx.p1.skip ? value : undefined;
 
 $: {
     //prepare data series
@@ -93,8 +103,8 @@ $: {
         datum = members.map(x=>soldProgressionPerCD(x));
         seriesLabels = members.map(x=>getMember(x).kanji);
         title = "総完売数推移";
-        caption = "総完売数推移";
-        subcaption = "(最大可能完売数)";
+        caption = "累計総完売数";
+        subcaption = "(円盤の総完売部数 / 最大可能完売数)";
         xAxisLabels = includings.map(x=>cdData(x.cd).display);
         headings = xAxisLabels.map(x=>x.replace(/\s/,'<br>')); // dunno y I can't just {@html lb.replace(...)}
     }
@@ -109,6 +119,11 @@ $: {
             borderColor: `${nthColor(i)}`,
             backgroundColor: `${nthColor(i)}`,
             pointHitRadius: 20, // larger area for intersect detection
+            segment: {
+                borderColor: ctx => skipped(ctx, 'rgb(0,0,0,0.5)'),
+                borderDash: ctx => skipped(ctx, [6, 6]),
+            },
+            spanGaps: true,
             datalabels: {color: 'white', backgroundColor: `${nthColor(i)}`}
         }
         graph["datasets"].push(res);
@@ -135,7 +150,7 @@ $: {
                 </td>
             {#each range(numSlots) as i}
                 <td>{series.main[i]} 
-                    {#if series.main[i]!="-"} <span class="weaker">{subdataDisplayInTable(series.sub[i])}</span>{/if}
+                    {#if !isNaN(series.main[i])} <span class="weaker">{subdataDisplayInTable(series.sub[i])}</span>{/if}
                 </td>
             {/each}
             </tr>

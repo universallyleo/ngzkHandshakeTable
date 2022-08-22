@@ -156,13 +156,13 @@ $: compareOutput = compare!=null?compareData(row,find(compare.cdData.table, ['me
 }
 
 .compareGrid{
-    width: 167px;
+    width: 180px;
     min-height: 100%;
     height: 100%;
     margin:0;
     display: grid;
     gap: 0;
-    grid-template-columns: 50px 12px 50px 55px;
+    grid-template-columns: 55px 12px 55px 60px;
     grid-template-rows: 100%;
     justify-items: center;
     align-items: stretch;

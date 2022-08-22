@@ -1,3 +1,4 @@
+import { c as create_ssr_component, a as each, b as add_attribute, e as escape } from "./index-16508633.js";
 import { concat, pullAll, without } from "lodash-es";
 const data = [
   {
@@ -5461,16 +5462,7 @@ function nth(n) {
 }
 function cdData(cd) {
   let value = `${cd.num}${cd.type}`;
-  let type;
-  switch (cd.type) {
-    case "Best":
-      type = "Best Album";
-      break;
-    default:
-      type = cd.type;
-      break;
-  }
-  let display = `${cd.num}${nth(cd.num)} ${type}`;
+  let display = `${cd.num}${nth(cd.num)} ${cd.type}`;
   return { display, value };
 }
 function getUnderList(cdData2) {
@@ -5511,7 +5503,25 @@ function nthColor(n) {
   ];
   return n < palette.length ? palette[n] : palette[n % palette.length];
 }
+const SelectOneCD = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+  let { selectedCDData } = $$props;
+  let { exclude = { value: -1 } } = $$props;
+  let cdlist = data.map((x) => cdData(x.cd)).reverse();
+  let selected = 0;
+  if (cdlist[selected].value == exclude.value) {
+    selected = 1;
+  }
+  if ($$props.selectedCDData === void 0 && $$bindings.selectedCDData && selectedCDData !== void 0)
+    $$bindings.selectedCDData(selectedCDData);
+  if ($$props.exclude === void 0 && $$bindings.exclude && exclude !== void 0)
+    $$bindings.exclude(exclude);
+  selectedCDData = data[data.length - 1 - selected];
+  return `<select id="${"cdSelect"}" name="${"cd"}">${each(cdlist, (cd, i) => {
+    return `${exclude.value != -1 || exclude.value != cd.value ? `<option${add_attribute("value", i, 0)}>${escape(cd.display)}</option>` : ``}`;
+  })}</select>`;
+});
 export {
+  SelectOneCD as S,
   cdData as a,
   getNumSold as b,
   compareData as c,

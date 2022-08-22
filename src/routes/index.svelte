@@ -4,8 +4,10 @@ import {cdData} from '$lib/util.js';
 import { min } from 'lodash-es';
 import html2canvas from "html2canvas";
 import SlotTable from '$lib/SlotTable.svelte';
+import SelectOneCD from '$lib/SelectOneCD.svelte';
+import { fly } from 'svelte/transition';
 
-let cdlist = data.map(x=> cdData(x.cd)).reverse();
+//let cdlist = data.map(x=> cdData(x.cd)).reverse();
 let selected = 0;
 
 let filterMethod = [
@@ -34,10 +36,9 @@ let sortMethod = [
 ];
 let sortOpt="kana";
 let compareCD=false;
-let selected2 = -1;
 let atdraw=-1;
 let capture=false;
-let mode = "copy";
+let selectedCD=data[data.length-1], compareToCDData;
 
 function exportImg(canvas){
     var link=document.createElement("a");
@@ -68,20 +69,15 @@ function imgOut(method){
 
 function getCompare(){
     if (!compareCD) return null;
-    if (!isSelectedGood(selected2)) return null;
-    if (selected2 == selected) return null;
+    console.log(compareToCDData.cd);
+    if (compareToCDData.cd === selectedCD.cd) return null;
     if (atdraw<0) return null;
-    return {"cdData": data[cdlist.length-selected2-1], "atdraw": atdraw};
+    return {"cdData": compareToCDData, "atdraw": atdraw};
 }
 
-function isSelectedGood(s){
-    return s<0?false:s>=cdlist.length?false:true;
-}
-
-$: selectedCDdata = data[cdlist.length-selected-1];
-$: selectableDraw = isSelectedGood(selected2)?min([data[cdlist.length-selected2-1].lastDraw, selectedCDdata.lastDraw]):0;
+$: selectableDraw = compareToCDData?min([compareToCDData.lastDraw, selectedCD.lastDraw]):0
 $: compare=getCompare();
-$: if (!compareCD) {compare=null;}
+$: if (!compareCD) {compare=null;compareToCDData=null;}
 </script>
 
 <svelte:head>
@@ -94,17 +90,8 @@ $: if (!compareCD) {compare=null;}
         <ul class="twocols">
             <li>
                 <div class="leftcol">CD:</div>
-                <div class="rightcol"><select
-                    id="cdSelect"
-                    name="cd"
-                    bind:value={selected}
-                    on:change={()=>{compareCD=false; compare=null;}}
-                    style="margin-left: 15px; margin-right: 15px"
-                >
-                {#each cdlist as cd,i}
-                    <option value={i}>{cd.display}</option>
-                {/each}
-                </select>
+                <div class="rightcol">
+                    <SelectOneCD bind:selectedCDData={selectedCD} />
                 </div>
                 
                 <div class="print">
@@ -146,22 +133,11 @@ $: if (!compareCD) {compare=null;}
             <input type="checkbox" name="compareCD" id="compareCD" bind:checked={compareCD}>
             過去の売り上げとの差
         </label>
-        <span class:inactive={!compareCD}>
-            <label> → 対象CD:
-                <select
-                    id="cd2Select"
-                    name="cd2"
-                    bind:value={selected2}
-                    style="margin-left: 5px; margin-right: 5px"
-                >
-                {#each cdlist as cd,i}
-                    {#if i!=selected}
-                        <option value={i}>{cd.display}</option>
-                    {/if}
-                {/each}
-                </select>
-            </label>
-            {#if isSelectedGood(selected2)}
+        {#if compareCD}
+        <div in:fly="{{ x: 300, duration: 800 }}">
+            <!-- <label>  -->
+            → 対象CD:
+            <SelectOneCD bind:selectedCDData={compareToCDData} exclude={selectedCD?cdData(selectedCD.cd):{value:-1}}/>
                 <label>
                 <select
                     id="drawSelect"
@@ -173,16 +149,16 @@ $: if (!compareCD) {compare=null;}
                 <option value={i+1}>{i+1}</option>
                 {/each}
                 </select>次受付</label>
-            {/if}
             {#if atdraw>0}
                 <button on:click={()=>compare=getCompare()}>比べる</button>
             {/if}
-        </span>
+        </div>
+        {/if}
     </div>
 </div>
 
 <section id="slotstable" class="main">
-<SlotTable data={selectedCDdata} {filterOpt} {groupOpt} {sortOpt} {compare} {capture}/>
+<SlotTable data={selectedCD} {filterOpt} {groupOpt} {sortOpt} {compare} {capture}/>
 </section>
 
 <style>
@@ -233,10 +209,7 @@ ul.twocols>li>div.leftcol {
 .advanceOption{
     padding: 2px 6px;
     border: 1px solid black;
-}
-
-.inactive{
-    display:none;
+    display: flex;
 }
 
 .main{

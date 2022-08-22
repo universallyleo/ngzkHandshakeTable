@@ -1,17 +1,17 @@
 <script>	
 import data from '$lib/data/data.json';
 import membersdata from '$lib/data/members.json';
-import {cdData, involvedMembers, performedInCDs, getNumSold} from '$lib/util.js';
+import {cdData, involvedMembers, performedInCDs} from '$lib/util.js';
 import {find,union} from 'lodash-es';
 import { fly } from 'svelte/transition';
 import ProgressTable from '$lib/ProgressTable.svelte';
-//import StateButton from '$lib/StateButton.svelte';
+import SelectOneCD from '../lib/SelectOneCD.svelte';
 import SelectMembersPanel from '$lib/SelectMembersPanel.svelte';
 
 let seriesTypes = [
     {"display": "個別円盤の各受付完売数推移", "value": "cdProgression"}, 
     {"display": "個別メンバーの総完売数推移", "value": "overallProgression"}, 
-    //{"display": "N次受付の完売数推移 (To be implemented)", "value": "receptionProgression"}, 
+    //{"display": "個別メンバーのN次受付までの完売数推移", "value": "receptionProgression"}, 
 ];
 let fixTypes = [
     {"display": "円盤", "value": "fixCD"}, 
@@ -21,14 +21,13 @@ let seriesOpt = "cdProgression";
 let fixOpt = "fixCD";
 let mode = "fixCD";
 
-let cdlist = data.map(x=> cdData(x.cd)).reverse();
+//let cdlist = data.map(x=> cdData(x.cd)).reverse();
 let members = ["Yumiki Nao", "Kanagawa Saya", "Sato Kaede"];
-let includings = [data[cdlist.length-1]];
+let includings = [data[data.length-1]];
 
-//let selAllMBLabel = "全員選択";
-let selectedCD=0;
+let selectedCD=data[data.length-1];
 let selectedMembers=members;
-let selectables=involvedMembers(data[cdlist.length-1-selectedCD]);
+let selectables=involvedMembers(selectedCD);
 
 let selectedCDs=[];
 let fixingMember="Yumiki Nao";
@@ -36,7 +35,7 @@ let fixingMember="Yumiki Nao";
 $: {
     if (seriesOpt == "cdProgression"){
         if (fixOpt=="fixCD"){
-            selectables = involvedMembers(data[cdlist.length-1-selectedCD]);
+            selectables = involvedMembers(selectedCD);
         }
         if (fixOpt=="fixMember"){
             selectables = performedInCDs(fixingMember).map(x=>cdData(x)).reverse();
@@ -62,7 +61,7 @@ function processData(){
     if (seriesOpt == "cdProgression"){
         if (fixOpt == "fixCD"){
             members = selectedMembers;
-            includings = [data[cdlist.length-1-selectedCD]];
+            includings = [selectedCD];
             mode = fixOpt;
         }
         if (fixOpt == "fixMember"){
@@ -81,8 +80,8 @@ function processData(){
 </script>
 
 <svelte:head>
-    <title>乃木坂46完売データ推移</title>
-    <meta name="description" content="乃木坂46完売データ推移" />
+    <title>乃木坂46完売数推移</title>
+    <meta name="description" content="乃木坂46完売数推移" />
 </svelte:head>
 
 <div class="optionsContainer">
@@ -98,29 +97,30 @@ function processData(){
             </div>
         </li>
         <li>
-            <div class="leftcol">固定対象:</div>
+            <div class="leftcol">データ:</div>
             <div class="rightcol">
             {#if seriesOpt=="cdProgression"}  
+            <div class="cdProgressionOption">
+                <div class="fixOption">
+                固定対象:
                 {#each fixTypes as ft}
-                <label>
-                    <input type="radio" name="fixOpt" bind:group={fixOpt} id={ft.value} value={ft.value}>
-                    {ft.display}
-                </label>
+                    <label>
+                        <input type="radio" name="fixOpt" bind:group={fixOpt} id={ft.value} value={ft.value}>
+                        {ft.display}
+                    </label>
                 {/each}                  
+                </div>
                 {#if fixOpt=="fixCD"} 
-                <div in:fly="{{ x: 200, duration: 1000 }}">
-                    <select id="cdSelect"
-                        name="cd"
-                        bind:value={selectedCD}>
-                    {#each cdlist as cd,i}
-                        <option value={i}>{cd.display}</option>
-                    {/each}
-                    </select>
+                <div class="selectFix" in:fly="{{ x: 200, duration: 1000 }}"> 
+                    <SelectOneCD bind:selectedCDData={selectedCD} />
+                </div>
+                <div class="longSelection" in:fly="{{ x: 200, duration: 1000 }}">
                     <SelectMembersPanel bind:selectedMembers={selectedMembers} {selectables} />
                 </div>    
                 {/if}
+
                 {#if fixOpt=="fixMember"}
-                <div in:fly="{{ x: 200, duration: 1000 }}">
+                <div class="selectFix" in:fly="{{ x: 200, duration: 1000 }}">
                     <select id="mbSelect"
                         name="mbSelect"
                         bind:value={fixingMember}>
@@ -128,16 +128,18 @@ function processData(){
                         <option value={mb.member}>{mb.kanji}</option>
                     {/each}
                     </select>
-                    <div class="cdList">
-                    {#each selectables as cd}
-                        <label>
-                        <input type="checkbox" name="selectedCDs" bind:group={selectedCDs} value={cd.value}>
-                        {cd.display}</label>
-                    {/each}
-                    </div>
+                </div>
+                <div class="cdList" in:fly="{{ x: 200, duration: 1000 }}">
+                {#each selectables as cd}
+                    <label>
+                    <input type="checkbox" name="selectedCDs" bind:group={selectedCDs} value={cd.value}>
+                    {cd.display}</label>
+                {/each}
                 </div>
                 {/if}
+            </div>
             {/if}
+
             {#if seriesOpt=="overallProgression"}
             <SelectMembersPanel bind:selectedMembers={selectedMembers} {selectables} />
             {/if}
@@ -199,7 +201,9 @@ ul.twocols>li>div.leftcol {
 } */
 
 .print{
+    width: 50%;
     margin-left: auto;
+    margin-right: auto;
     margin-top: 1ch;
     margin-bottom: 5px;
 }
@@ -210,11 +214,38 @@ ul.twocols>li>div.leftcol {
 }
 
 .cdList{
-    margin-top: 1.2ch;
+    grid-area: 2/1/3/3;
     display: grid;
     grid-auto-flow: column;
-    grid-column-gap: 1.5em;
-    grid-template-rows: repeat(10,auto);
+    grid-column-gap: 1em;
+    grid-template-rows: repeat(5,auto);
+}
+
+.cdProgressionOption{
+    display: grid;
+    grid-template-columns: 280px auto;
+    grid-template-rows: auto; 
+    grid-template-areas: "row1L row2R"
+                        "longbox longbox";
+}
+
+.fixOption{
+    grid-area: "row1L";
+    margin-left: 5px;
+    margin-top: .2ch;
+    margin-bottom: 1ch;
+}
+
+.selectFix{
+    grid-area: "row1R";
+    margin-top: .2ch;
+    margin-bottom: 1ch;
+}
+
+.longSelection{
+    margin-left: 5px;
+    /* grid-area: "longbox";   don't know why this is not working?? */
+    grid-area: 2/1/3/3;
 }
 
 </style>

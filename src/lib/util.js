@@ -167,7 +167,7 @@ export function expandDataList(cdData) {
 	return cdData.table.map((x) => expandMBData(x, groups));
 }
 
-/**
+/** total number sold up to and including atdraw
  * @param  {Object} mbdata //Member sold data, with non-empty slotssold
  * @param  {Integer} atdraw=-1
  */
@@ -286,17 +286,17 @@ export function nth(n) {
 export function cdData(cd) {
 	let value = `${cd.num}${cd.type}`;
 
-	let type;
-	switch (cd.type) {
-		case 'Best':
-			type = 'Best Album';
-			break;
-		default:
-			type = cd.type;
-			break;
-	}
+	// let type;
+	// switch (cd.type) {
+	// 	case 'Best':
+	// 		type = 'Best Album';
+	// 		break;
+	// 	default:
+	// 		type = cd.type;
+	// 		break;
+	// }
 
-	let display = `${cd.num}${nth(cd.num)} ${type}`;
+	let display = `${cd.num}${nth(cd.num)} ${cd.type}`;
 	return { display: display, value: value };
 }
 
