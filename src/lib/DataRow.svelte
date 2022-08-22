@@ -1,7 +1,6 @@
 <script>
 import {getMember,compareData} from '$lib/util.js';
-import {find, slice} from 'lodash-es';
-import Index from '../routes/index.svelte';
+import {find} from 'lodash-es';
 export let row;
 export let lastDraw;
 export let addClasses="";

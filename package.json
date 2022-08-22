@@ -25,7 +25,6 @@
 		"chart.js": "^3.9.1",
 		"chartjs-plugin-datalabels": "^2.1.0",
 		"html2canvas": "^1.4.1",
-		"lodash-es": "^4.17.21",
-		"svelte-frappe-charts": "^1.9.2"
+		"lodash-es": "^4.17.21"
 	}
 }

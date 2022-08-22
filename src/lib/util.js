@@ -35,8 +35,8 @@ export function involvedMembers(cdData, dataform = 'full') {
 	return cdData.table.map((x) => (dataform == 'name' ? x.member : getMember(x.member)));
 }
 
-export function performedInCDs(member) {
-	return fulldata.filter((x) => !!x.table.find((y) => y.member == member)).map((x) => x.cd);
+export function performedInCDs(memberName) {
+	return fulldata.filter((x) => !!x.table.find((y) => y.member == memberName)).map((x) => x.cd);
 }
 
 const status2label = (s) => {
@@ -171,7 +171,7 @@ export function expandDataList(cdData) {
  * @param  {Object} mbdata //Member sold data, with non-empty slotssold
  * @param  {Integer} atdraw=-1
  */
-function getNumSold(mbdata, atdraw = -1) {
+export function getNumSold(mbdata, atdraw = -1) {
 	if (!mbdata) return [0, 'N/A'];
 	let expanded = expandSoldslots(mbdata).flat();
 	let bound = atdraw == -1 ? finalSoldoutDraw(mbdata) : atdraw;

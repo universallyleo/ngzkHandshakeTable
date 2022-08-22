@@ -5486,13 +5486,40 @@ function determineGroup(mb, groups) {
   }
   return "NoData";
 }
+function nthColor(n) {
+  const palette = [
+    "#911eb4",
+    "#3cb44b",
+    "#4363d8",
+    "#e6194b",
+    "#42d4f4",
+    "#f58231",
+    "#f032e6",
+    "#469990",
+    "#fabed4",
+    "#dcbeff",
+    "#9a6324",
+    "#fffac8",
+    "#800000",
+    "#aaffc3",
+    "#000075",
+    "#ffe119",
+    "#bfef45",
+    "#808000",
+    "#ffd8b1",
+    "#000000"
+  ];
+  return n < palette.length ? palette[n] : palette[n % palette.length];
+}
 export {
   cdData as a,
+  getNumSold as b,
   compareData as c,
   data as d,
   expandDataList as e,
   getMember as g,
   involvedMembers as i,
+  nthColor as n,
   partitionToGroup as p,
   sortList as s
 };

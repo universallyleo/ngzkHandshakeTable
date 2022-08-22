@@ -1,44 +1,46 @@
 <script>
-import {cdData, nthColor,getMember} from '$lib/util.js';
-import {range} from 'lodash-es';
+// import {cdData, nthColor,getMember} from '$lib/util.js';
+// import {range} from 'lodash-es';
 import {onMount, afterUpdate, onDestroy} from 'svelte';
 import Chart from 'chart.js/auto/auto.mjs'; //make everything in Chart available
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 //to be made export
-export let datum; 
-export let mode;
+export let progressData; 
+export let title;
+export let maxlength=progressData.datasets[0].data.length;
 
-let graph = { labels: [], datasets:[] };
-let lengths=[];
-let maxlength=0;
+// let graph = { labels: [], datasets:[] };
+// let lengths=[];
+// let maxlength=0;
 
-function organiseDatum(){
-    graph = { labels: [], datasets:[] };
-    lengths = datum.map(entry => entry.total.length);
-    maxlength = Math.max(...lengths);
+// function organiseDatum(){
+//     graph = { labels: [], datasets:[] };
+//     lengths = datum.map(entry => entry.total.length);
+//     maxlength = Math.max(...lengths);
 
-    graph["labels"] = range(1,maxlength+1);
-    config.options.plugins.title.text = mode=="fixMember"
-        ?`対象メンバー： ${getMember(datum[0].member).kanji}`
-        :`対象円盤： ${cdData(datum[0].cd).display}`;
+//     graph["labels"] = range(1,maxlength+1);
+//     config.options.plugins.title.text = mode=="fixMember"
+//         ?`対象メンバー： ${getMember(datum[0].member).kanji}`
+//         :`対象円盤： ${cdData(datum[0].cd).display}`;
 
-    for (let [i,entry] of datum.entries()){
-        let res = {
-            label: `${mode=="fixMember"?cdData(entry.cd).display:getMember(entry.member).kanji}`,
-            data: entry.total,
-            borderColor: `${nthColor(i)}`,
-            backgroundColor: `${nthColor(i)}`,
-            pointHitRadius: 20, // larger area for intersect detection
-            datalabels: {color: 'white', backgroundColor: `${nthColor(i)}`}
-        }
-        graph["datasets"].push(res);
-    }
-    config.data = graph;
-}
+//     for (let [i,entry] of datum.entries()){
+//         let res = {
+//             label: `${mode=="fixMember"?cdData(entry.cd).display:getMember(entry.member).kanji}`,
+//             data: entry.total,
+//             borderColor: `${nthColor(i)}`,
+//             backgroundColor: `${nthColor(i)}`,
+//             pointHitRadius: 20, // larger area for intersect detection
+//             datalabels: {color: 'white', backgroundColor: `${nthColor(i)}`}
+//         }
+//         graph["datasets"].push(res);
+//     }
+//     config.data = graph;
+// }
 
 //$: organiseDatum();
 
+$: config.data = progressData;
 
 /****** Graph related setup ******/
 let canvasContainer;
@@ -100,8 +102,9 @@ const config = {
 
 let thechart;
 $: canvasWidth=Math.max(maxlength * 50,800);
+$: config.options.plugins.title.text = title;
 onMount(()=>{
-    organiseDatum();
+    //organiseDatum();
     Chart.register(ChartDataLabels);  //make ChartDataLabel available
     const ctx = thechart.getContext('2d'); 
     thechart = new Chart(ctx, config); //initialise
@@ -109,7 +112,7 @@ onMount(()=>{
 
 afterUpdate(()=>{
     if (!thechart) return;
-    organiseDatum();
+    //organiseDatum();
     thechart.update(); 
 });
 
