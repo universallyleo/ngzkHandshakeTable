@@ -1,8 +1,8 @@
 # ngzkHandshakeTable
  Display handshake/meet-and-greet sales of each Nogizaka46 CD in a reasonably good-looking table.
 
-[完売表の見方 (JP)](https://ameblo.jp/seto-kasumi/entry-11695182533.html) 
-[完売表の見方 (ZH-TW)](https://pttyes.com/SakaTalk/M.1648729058.A.59E) 
+-[完売表の見方 (JP)](https://ameblo.jp/seto-kasumi/entry-11695182533.html) 
+-[完売表の見方 (ZH-TW)](https://pttyes.com/SakaTalk/M.1648729058.A.59E) 
 
 # データ源
 - [乃木坂46公式サイト](nogizaka46.com) - メンバー情報

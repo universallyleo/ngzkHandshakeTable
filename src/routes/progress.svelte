@@ -2,16 +2,17 @@
 import data from '$lib/data/data.json';
 import membersdata from '$lib/data/members.json';
 import {cdData, involvedMembers, performedInCDs} from '$lib/util.js';
-import {find,union} from 'lodash-es';
+import {union, range} from 'lodash-es';
 import { fly } from 'svelte/transition';
 import ProgressTable from '$lib/ProgressTable.svelte';
 import SelectOneCD from '../lib/SelectOneCD.svelte';
+import SelectCDs from '../lib/SelectCDs.svelte';
 import SelectMembersPanel from '$lib/SelectMembersPanel.svelte';
 
 let seriesTypes = [
     {"display": "個別円盤の各受付完売数推移", "value": "cdProgression"}, 
     {"display": "個別メンバーの総完売数推移", "value": "overallProgression"}, 
-    //{"display": "個別メンバーのN次受付までの完売数推移", "value": "receptionProgression"}, 
+    {"display": "個別メンバーのN次受付までの完売数推移", "value": "receptionProgression"}, 
 ];
 let fixTypes = [
     {"display": "円盤", "value": "fixCD"}, 
@@ -21,7 +22,6 @@ let seriesOpt = "cdProgression";
 let fixOpt = "fixCD";
 let mode = "fixCD";
 
-//let cdlist = data.map(x=> cdData(x.cd)).reverse();
 let members = ["Yumiki Nao", "Kanagawa Saya", "Sato Kaede"];
 let includings = [data[data.length-1]];
 
@@ -29,8 +29,12 @@ let selectedCD=data[data.length-1];
 let selectedMembers=members;
 let selectables=involvedMembers(selectedCD);
 
-let selectedCDs=[];
 let fixingMember="Yumiki Nao";
+let selectedCDsData=[];
+
+let lastDraw=1;
+let selectedDraw=1;
+let extra={};
 
 $: {
     if (seriesOpt == "cdProgression"){
@@ -43,6 +47,10 @@ $: {
     }
     if (seriesOpt == "overallProgression"){
         selectables = union(data.map(x=>involvedMembers(x)).flat());
+    }
+    if (seriesOpt == "receptionProgression"){
+        selectables = union(data.map(x=>involvedMembers(x)).flat());
+        lastDraw = selectedCDsData.length>1?Math.max(...(selectedCDsData.map(x=>x.lastDraw))):1;
     }
 }
 
@@ -66,7 +74,7 @@ function processData(){
         }
         if (fixOpt == "fixMember"){
             members = [fixingMember];
-            includings = selectedCDs.map( y => find(data, (x)=>cdData(x.cd).value==y));
+            includings = selectedCDsData;
             mode = fixOpt;
         }
     }
@@ -75,6 +83,12 @@ function processData(){
         includings = data.slice(findStartingCD(selectedMembers));  
         members = selectedMembers;
         mode="overallProgression";
+    }
+    if (seriesOpt == "receptionProgression"){
+        includings = selectedCDsData;
+        members = selectedMembers;
+        mode="receptionProgression";
+        extra={atdraw: selectedDraw};
     }
 }
 </script>
@@ -130,29 +144,47 @@ function processData(){
                     </select>
                 </div>
                 <div class="cdList" in:fly="{{ x: 200, duration: 1000 }}">
-                {#each selectables as cd}
-                    <label>
-                    <input type="checkbox" name="selectedCDs" bind:group={selectedCDs} value={cd.value}>
-                    {cd.display}</label>
-                {/each}
+                    <SelectCDs bind:selectedCDsData={selectedCDsData} {selectables}/>
                 </div>
                 {/if}
             </div>
             {/if}
 
             {#if seriesOpt=="overallProgression"}
-            <SelectMembersPanel bind:selectedMembers={selectedMembers} {selectables} />
+            <div in:fly="{{ x: 200, duration: 1000 }}"> 
+                <SelectMembersPanel bind:selectedMembers={selectedMembers} {selectables} />
+            </div>
+            {/if}
+
+            {#if seriesOpt=="receptionProgression"}
+            <div in:fly="{{ x: 200, duration: 1000 }}"> 
+                <div style="margin: 5px; padding-bottom: 5px; border-bottom: solid 1px black;">
+                    <SelectCDs bind:selectedCDsData={selectedCDsData} selectAllButton={true} />
+                </div>
+                <div style="margin-top: 1ch; padding-bottom: 5px; border-bottom: solid 1px black;">
+                    (N= 
+                    <select name="draw" bind:value={selectedDraw}>
+                        {#each range(lastDraw) as i}
+                            <option value={i+1}>{i+1}</option>
+                        {/each}
+                    </select>
+                    )次受付
+                </div>
+                <div style="margin-top: 1ch">
+                    <SelectMembersPanel bind:selectedMembers={selectedMembers} {selectables} />
+                </div>
+            </div>
             {/if}
         </li>
         <li>
-            <div class="print">
-                <button on:click={processData}>グラフ作成する</button>
+            <div style="width: 50%; margin: 1ch auto 5px auto;">
+                <button on:click={processData} class="print">グラフ作成する</button>
             </div>
         </li>
     </ul>
 </div>
 
-<ProgressTable {mode} {members} {includings}/>
+<ProgressTable {mode} {members} {includings} {extra}/>
 
 <style>
 input,
@@ -183,47 +215,55 @@ ul.twocols {
 }
 
 ul.twocols>li {
-    margin: 15px 0 15px;
+    margin: 15px;
     display: flex;
     justify-content: left;
     margin: 0;
 }
 
 ul.twocols>li>div.leftcol {
-    flex: none;
-    margin: 0;
-    width: max-content;
+    margin-top: 0;
+    margin-bottom: .5ch;
+    margin-right: .2em;
+    width: 75px;
 }
-/* 
-.subOptions{
-    padding: 2px 6px;
-    border: 1px solid black;
-} */
+
+ul.twocols>li>div.rightcol {
+    margin-top: 0;
+    margin-bottom: .5ch;
+    margin-right: 1em;
+}
 
 .print{
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 1ch;
-    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+button.print::before,
+button.print::after {
+    flex: auto;
+    min-width: 50px;
+    height: 1px;
+    display: block;
+    content: "";
+    background-color: black;
+}
+button.print::before {
+    margin-right: 25px;
+}
+button.print::after {
+    margin-left: 25px;
 }
 
-[type="checkbox"]
-{
-    vertical-align:middle;
-}
 
 .cdList{
+    /* grid-area: "longbox";   don't know why this is not working?? */
     grid-area: 2/1/3/3;
-    display: grid;
-    grid-auto-flow: column;
-    grid-column-gap: 1em;
-    grid-template-rows: repeat(5,auto);
 }
 
 .cdProgressionOption{
     display: grid;
-    grid-template-columns: 280px auto;
+    grid-template-columns: 255px auto;
     grid-template-rows: auto; 
     grid-template-areas: "row1L row2R"
                         "longbox longbox";

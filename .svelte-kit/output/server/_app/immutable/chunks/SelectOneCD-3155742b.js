@@ -1,5 +1,5 @@
 import { c as create_ssr_component, a as each, b as add_attribute, e as escape } from "./index-16508633.js";
-import { concat, pullAll, without } from "lodash-es";
+import { concat, pullAll, without, differenceWith, isEqual, findIndex, zip } from "lodash-es";
 const data = [
   {
     cd: {
@@ -5505,19 +5505,20 @@ function nthColor(n) {
 }
 const SelectOneCD = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { selectedCDData } = $$props;
-  let { exclude = { value: -1 } } = $$props;
+  let { exclude = [{ value: -1 }] } = $$props;
   let cdlist = data.map((x) => cdData(x.cd)).reverse();
-  let selected = 0;
-  if (cdlist[selected].value == exclude.value) {
-    selected = 1;
-  }
+  let temp = differenceWith(cdlist, exclude, isEqual);
+  let indices = temp.map((x) => findIndex(cdlist, (y) => x.value === y.value));
+  let selectables = zip(temp, indices);
+  let selected = selectables[0][1];
+  selectedCDData = data[data.length - 1 - selected];
   if ($$props.selectedCDData === void 0 && $$bindings.selectedCDData && selectedCDData !== void 0)
     $$bindings.selectedCDData(selectedCDData);
   if ($$props.exclude === void 0 && $$bindings.exclude && exclude !== void 0)
     $$bindings.exclude(exclude);
   selectedCDData = data[data.length - 1 - selected];
-  return `<select id="${"cdSelect"}" name="${"cd"}">${each(cdlist, (cd, i) => {
-    return `${exclude.value != -1 || exclude.value != cd.value ? `<option${add_attribute("value", i, 0)}>${escape(cd.display)}</option>` : ``}`;
+  return `<select id="${"cdSelect"}" name="${"cd"}">${each(selectables, (cdidx) => {
+    return `<option${add_attribute("value", cdidx[1], 0)}>${escape(cdidx[0].display)}</option>`;
   })}</select>`;
 });
 export {

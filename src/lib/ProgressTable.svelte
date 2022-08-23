@@ -1,5 +1,4 @@
 <script>
-//import data from '$lib/data/data.json';
 import {getMember,cdData,nthColor,getNumSold} from '$lib/util.js';
 import {range, find} from 'lodash-es';
 import ProgressGraph from './ProgressGraph.svelte';
@@ -7,6 +6,7 @@ import ProgressGraph from './ProgressGraph.svelte';
 export let mode;
 export let members;
 export let includings;
+export let extra={};
 
 /**
  * Return object {main: Array<integer>, sub: Array<integer>}
@@ -39,14 +39,20 @@ function soldProgressionPerCD(memberName, atdraw=-1){
     let soldatcd=[], accum=[];
     let lastNumericIdx = -1;
     for (let i=0; i<includings.length; i++){
-        let frac = getNumSold(includings[i].table.find((x)=>x.member==memberName), atdraw);
-        if (frac[1]=="N/A"){
-            soldatcd.push(["-","-"]);
-            accum.push("-");
+        let frac;
+        if (atdraw <= includings[i].lastDraw){
+            frac = getNumSold(includings[i].table.find((x)=>x.member==memberName), atdraw);
+            if (frac[1]=="N/A"){
+                soldatcd.push(["-","-"]);
+                accum.push("-");
+            }else{
+                soldatcd.push(frac);
+                accum.push((lastNumericIdx > -1)?accum[lastNumericIdx]+frac[0]:frac[0])
+                lastNumericIdx = i;
+            }
         }else{
-            soldatcd.push(frac);
-            accum.push((lastNumericIdx > -1)?accum[lastNumericIdx]+frac[0]:frac[0])
-            lastNumericIdx = i;
+            soldatcd.push(["-","-"])
+            accum.push("-");
         }
     } 
     return {member: memberName, main: accum, sub: soldatcd};
@@ -55,6 +61,7 @@ function soldProgressionPerCD(memberName, atdraw=-1){
 function subdataDisplayInTable(x){
     if (mode.slice(0,3)=="fix") return `(+${x})`;
     if (mode == "overallProgression") return `(+${x[0]}/${x[1]})`;
+    if (mode == "receptionProgression") return `/${x}`;
 }
 
 let numSlots=0;
@@ -107,6 +114,21 @@ $: {
         subcaption = "(円盤の総完売部数 / 最大可能完売数)";
         xAxisLabels = includings.map(x=>cdData(x.cd).display);
         headings = xAxisLabels.map(x=>x.replace(/\s/,'<br>')); // dunno y I can't just {@html lb.replace(...)}
+    }
+    if (mode=="receptionProgression"){
+        numSlots = includings.length;
+        if (!("atdraw" in extra)) console.log("Something wrong.  Need to specify 'atdraw' for this option.");
+        let temp = members.map(x=>soldProgressionPerCD(x,extra.atdraw));
+        console.log(temp);
+        //we do not want accumulated data, so swap out sub data (= individual CD sold data)
+        datum = temp.map(x=>{ return {member: x.member, main: x.sub.map(y=>y[0]), sub: x.sub.map(y=>y[1])};});
+        console.log(datum);
+        seriesLabels = members.map(x=>getMember(x).kanji);
+        title = `${extra.atdraw}次受付までの完売数推移`;
+        caption = `${extra.atdraw}次受付までの完売数`;
+        subcaption = " / 円盤の最大可能完売数";
+        xAxisLabels = includings.map(x=>cdData(x.cd).display);
+        headings = xAxisLabels.map(x=>x.replace(/\s/,'<br>'));
     }
     datum = datum;
 
@@ -209,11 +231,6 @@ tbody tr:nth-child(odd) { background-color: #efefef; }
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
 }
-
-/* .memberName{
-    width: 240px;
-    max-width: 300px;
-} */
 
 .cdInfo{
     width: 100px;

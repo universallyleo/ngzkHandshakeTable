@@ -7,7 +7,6 @@ import SlotTable from '$lib/SlotTable.svelte';
 import SelectOneCD from '$lib/SelectOneCD.svelte';
 import { fly } from 'svelte/transition';
 
-//let cdlist = data.map(x=> cdData(x.cd)).reverse();
 let selected = 0;
 
 let filterMethod = [
@@ -69,7 +68,6 @@ function imgOut(method){
 
 function getCompare(){
     if (!compareCD) return null;
-    console.log(compareToCDData.cd);
     if (compareToCDData.cd === selectedCD.cd) return null;
     if (atdraw<0) return null;
     return {"cdData": compareToCDData, "atdraw": atdraw};
@@ -135,9 +133,8 @@ $: if (!compareCD) {compare=null;compareToCDData=null;}
         </label>
         {#if compareCD}
         <div in:fly="{{ x: 300, duration: 800 }}">
-            <!-- <label>  -->
             → 対象CD:
-            <SelectOneCD bind:selectedCDData={compareToCDData} exclude={selectedCD?cdData(selectedCD.cd):{value:-1}}/>
+            <SelectOneCD bind:selectedCDData={compareToCDData} exclude={selectedCD?[cdData(selectedCD.cd)]:[{value:-1}]}/>
                 <label>
                 <select
                     id="drawSelect"

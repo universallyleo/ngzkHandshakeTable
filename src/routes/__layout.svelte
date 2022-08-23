@@ -6,7 +6,7 @@ import { base } from '$app/paths';
     <ul>
         <li><a href="{base}/">完売表</a></li>
         <li><a href="{base}/progress">推移グラフ</a></li>
-        <!-- <li><a href="/about">About</a></li> -->
+        <li><a href="{base}/about">About</a></li>
     </ul>
 </nav>
 <slot></slot>

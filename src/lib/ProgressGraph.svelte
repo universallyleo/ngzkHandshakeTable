@@ -1,6 +1,4 @@
 <script>
-// import {cdData, nthColor,getMember} from '$lib/util.js';
-// import {range} from 'lodash-es';
 import {onMount, afterUpdate, onDestroy} from 'svelte';
 import Chart from 'chart.js/auto/auto.mjs'; //make everything in Chart available
 import ChartDataLabels from 'chartjs-plugin-datalabels';
@@ -84,7 +82,7 @@ const config = {
 
 let thechart;
 $: maxlength = progressData?progressData.datasets[0].data.length:0;
-$: canvasWidth=Math.max(maxlength * 100,1000); console.log(maxlength)
+$: canvasWidth=Math.max(maxlength * 80,1000); 
 $: config.options.plugins.title.text = title;
 // $: maxValue = Math.max( ...(progressData.datasets.map( x=> 
 //         Math.max( ...(x.data.map(y=> Number.isInteger(y)?y:0 )) ) 
