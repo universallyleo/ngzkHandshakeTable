@@ -37,6 +37,9 @@
     "isEntry": true,
     "imports": [
       "_index-16508633.js"
+    ],
+    "css": [
+      "_app/immutable/assets/about-0ffea5be.css"
     ]
   },
   "src/routes/index.svelte": {
@@ -45,7 +48,7 @@
     "isEntry": true,
     "imports": [
       "_index-16508633.js",
-      "_SelectOneCD-3155742b.js"
+      "_SelectOneCD-6d9098f4.js"
     ],
     "css": [
       "_app/immutable/assets/index-d772348e.css"
@@ -57,7 +60,7 @@
     "isEntry": true,
     "imports": [
       "_index-16508633.js",
-      "_SelectOneCD-3155742b.js"
+      "_SelectOneCD-6d9098f4.js"
     ],
     "css": [
       "_app/immutable/assets/progress-5c63f621.css"
@@ -69,8 +72,8 @@
   "_index-16508633.js": {
     "file": "_app/immutable/chunks/index-16508633.js"
   },
-  "_SelectOneCD-3155742b.js": {
-    "file": "_app/immutable/chunks/SelectOneCD-3155742b.js",
+  "_SelectOneCD-6d9098f4.js": {
+    "file": "_app/immutable/chunks/SelectOneCD-6d9098f4.js",
     "imports": [
       "_index-16508633.js"
     ]

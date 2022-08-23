@@ -18,7 +18,7 @@
 - Add 曜日 and 握手会会場 info
 - New table (or graph): Sales progression, and accumulated sales numebr
 - Rewrite using class so functions related to individual member's data become methods
-- Finish recording all old data (current earliest: 22nd Single)
+- Finish recording all old data (current earliest: 17th Single)
 
 # Note about chart.js
 

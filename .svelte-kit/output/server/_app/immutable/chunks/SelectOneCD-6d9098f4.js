@@ -3,6 +3,2886 @@ import { concat, pullAll, without, differenceWith, isEqual, findIndex, zip } fro
 const data = [
   {
     cd: {
+      num: 17,
+      type: "Single",
+      title: "\u30A4\u30F3\u30D5\u30EB\u30A8\u30F3\u30B5\u30FC"
+    },
+    lastDraw: 14,
+    meetDates: [
+      "2017-04-09",
+      "2017-04-23",
+      "2017-04-29",
+      "2017-05-07",
+      "2017-05-14",
+      "2017-05-28",
+      "2017-06-11",
+      "2017-06-17"
+    ],
+    sbt: [
+      "Akimoto Manatsu",
+      "Ikuta Erika",
+      "Ikoma Rina",
+      "Itou Marika",
+      "Inoue Sayuri",
+      "Etou Misa",
+      "Saito Asuka",
+      "Saitou Yuuri",
+      "Sakurai Reika",
+      "Shiraishi Mai",
+      "Higuchi Hina",
+      "Hoshino Minami",
+      "Takayama Kazumi",
+      "Nakada Kana",
+      "Nishino Nanase",
+      "Matsumura Sayuri",
+      "Wakatsuki Yumi",
+      "Kitano Hinako",
+      "Terada Ranze",
+      "Hori Miona",
+      "Shinuchi Mai"
+    ],
+    table: [
+      {
+        member: "Akimoto Manatsu",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "x|x|x|x|x",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Ikuta Erika",
+        slotsSold: [
+          "2|2|2|2|2",
+          "x|x|x|x|x",
+          "x|x|x|x|x",
+          "2|2|2|2|2",
+          "x|x|x|x|x",
+          "4|4|4|4|4",
+          "2|2|2|2|2",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Ikoma Rina",
+        slotsSold: [
+          "5|4|3|4|5",
+          "5|4|3|4|6",
+          "7|4|3|5|7",
+          "7|6|4|5|6",
+          "7|7|6|6|8",
+          "x|x|x|x|x",
+          "x|x|x|x|x",
+          "8|8|6|7|7"
+        ]
+      },
+      {
+        member: "Itou Marika",
+        slotsSold: [
+          "3|2|2|2|4",
+          "3|2|2|2|4",
+          "4|3|2|3|4",
+          "4|4|2|3|3",
+          "x|x|x|x|x",
+          "4|3|2|2|3",
+          "4|3|2|3|3",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Inoue Sayuri",
+        slotsSold: [
+          "2|2|2|2|3",
+          "2|2|2|2|3",
+          "3|3|2|2|3",
+          "3|3|2|2|2",
+          "5|4|5|5|5",
+          "x|x|x|x|x",
+          "x|x|x|x|x",
+          "4|5|4|4|4"
+        ]
+      },
+      {
+        member: "Etou Misa",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "4|4|4|4|4",
+          "x|x|x|x|x",
+          "x|x|x|x|x",
+          "4|4|4|4|4"
+        ]
+      },
+      {
+        member: "Kawago Hina",
+        slotsSold: [
+          "x|x|x|6|",
+          "x|x|x|8|",
+          "x|x|x||",
+          "x|x|x||",
+          "x|x|x|x|x",
+          "x|x|x||",
+          "x|x|x|12|13",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Kawamura Mahiro",
+        slotsSold: [
+          "x|x|x|x|4",
+          "x|x|x|x|7",
+          "x|x|x|x|9",
+          "x|x|x|x|5",
+          "x|x|x|x|x",
+          "x|x|x|x|7",
+          "x|x|x|x|10",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Saito Asuka",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "4|4|4|4|4",
+          "x|x|x|x|x",
+          "x|x|x|x|x",
+          "4|4|4|4|4"
+        ]
+      },
+      {
+        member: "Saitou Chiharu",
+        slotsSold: [
+          "||4|x|x",
+          "||4|x|x",
+          "||5|x|x",
+          "||6|x|x",
+          "x|x|x|4|5",
+          "|12|4|x|x",
+          "14|12|5|x|x",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Saitou Yuuri",
+        slotsSold: [
+          "4|4|3|3|5",
+          "5|3|3|3|5",
+          "5|4|3|3|5",
+          "5|4|3|3|3",
+          "x|x|x|x|x",
+          "4|3|2|3|4",
+          "5|4|3|3|5",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Sakurai Reika",
+        slotsSold: [
+          "3|2|2|2|2",
+          "2|2|2|2|2",
+          "3|2|2|2|2",
+          "3|3|2|2|2",
+          "x|x|x|x|x",
+          "2|3|2|2|2",
+          "3|2|2|2|2",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Takayama Kazumi",
+        slotsSold: [
+          "2|2|2|2|3",
+          "2|2|2|2|3",
+          "2|2|2|2|2",
+          "3|3|2|2|2",
+          "x|x|x|x|x",
+          "2|3|2|2|2",
+          "3|2|2|2|3",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Nakada Kana",
+        slotsSold: [
+          "4|4|3|3|5",
+          "6|4|3|4|5",
+          "4|6|4|4|5",
+          "6|5|4|4|4",
+          "x|x|x|x|x",
+          "5|4|3|4|4",
+          "6|4|4|4|4",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Nishino Nanase",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "x|x|x|x|x",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Noujou Ami",
+        slotsSold: [
+          "x|x|x|x|x",
+          "|7|4|x|x",
+          "x|x|x|x|x",
+          "x|x|6|5|x",
+          "x|x|x|6|x",
+          "||8|x|x",
+          "14|11|4|x|x",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Higuchi Hina",
+        slotsSold: [
+          "x|x|x|x|x",
+          "x|x|x|x|x",
+          "x|x|x|x|x",
+          "4|3|2|2|3",
+          "4|5|4|x|x",
+          "4|3|2|2|4",
+          "3|2|2|2|3",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Hoshino Minami",
+        slotsSold: [
+          "2|2|2|2|3",
+          "3|2|2|2|3",
+          "4|3|2|3|3",
+          "3|3|2|2|3",
+          "x|x|x|x|x",
+          "3|3|2|2|3",
+          "3|3|2|2|3",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Wakatsuki Yumi",
+        slotsSold: [
+          "x|x|x|x|x",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|3|2|2|2",
+          "4|4|4|4|4",
+          "x|x|x|x|x",
+          "x|x|x|x|x",
+          "4|4|4|4|4"
+        ]
+      },
+      {
+        member: "Wada Maaya",
+        slotsSold: [
+          "x|x|x|x|",
+          "x|x|x|x|5",
+          "x|x|x|x|",
+          "x|x|x|x|",
+          "x|x|x|x|x",
+          "x|x|x|x|",
+          "x|x|x|x|",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Itou Karin",
+        slotsSold: [
+          "|||x|x",
+          "|||x|x",
+          "|||x|x",
+          "||x|x|x",
+          "x|x|x|x|x",
+          "x|x|x||",
+          "2|2|2|2|2",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Itou Jyunna",
+        slotsSold: [
+          "x|x|x|x|x",
+          "x|x|x|4|8",
+          "x|x|x|6|",
+          "||x|x|x",
+          "x|x|x|x|9",
+          "x|x|x|8|12",
+          "x|x|x|6|11",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Kitano Hinako",
+        slotsSold: [
+          "2|2|2|3|3",
+          "3|3|2|2|3",
+          "4|3|2|2|3",
+          "3|3|2|2|3",
+          "5|5|5|5|5",
+          "x|x|x|x|x",
+          "x|x|x|x|x",
+          "5|5|5|5|5"
+        ]
+      },
+      {
+        member: "Sagara Iori",
+        slotsSold: [
+          "x|x|x|4|",
+          "x|x|x|4|8",
+          "||4|x|x",
+          "x|x|x|5|10",
+          "x|x|x|x|x",
+          "x|x|x|6|",
+          "x|x|x|4|5",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Sasaki Kotoko",
+        slotsSold: [
+          "x|x|x|x|",
+          "x|x|x|x|",
+          "x|x|x|x|",
+          "x|x|x|x|",
+          "x|x|x|x|x",
+          "x|x|x|x|",
+          "x|x|x|x|13",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Shinuchi Mai",
+        slotsSold: [
+          "3|2|2|2|3",
+          "2|2|2|2|3",
+          "3|3|2|2|3",
+          "3|3|2|2|2",
+          "4|5|4|4|4",
+          "x|x|x|x|x",
+          "x|x|x|x|x",
+          "5|5|4|4|4"
+        ]
+      },
+      {
+        member: "Suzuki Ayane",
+        slotsSold: [
+          "4|4|2|3|x",
+          "4|4|3|3|x",
+          "6|4|3|3|x",
+          "7|6|4|4|x",
+          "x|x|x|x|x",
+          "7|6|4|4|x",
+          "5|4|3|3|x",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Terada Ranze",
+        slotsSold: [
+          "4|3|2|3|3",
+          "4|3|2|3|4",
+          "4|4|2|3|4",
+          "4|3|2|2|3",
+          "x|x|x|x|x",
+          "3|3|2|3|3",
+          "4|3|2|3|3e",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Hori Miyona",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|3",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "4|4|4|4|4",
+          "x|x|x|x|x",
+          "x|x|x|x|x",
+          "4|4|4|4|4"
+        ]
+      },
+      {
+        member: "Yamazaki Rena",
+        slotsSold: [
+          "5|4|3|3|x",
+          "5|5|3|3|x",
+          "6|5|4|3|x",
+          "4|4|3|3|x",
+          "x|x|x|x|x",
+          "4|4|3|3|x",
+          "4|4|3|3|x",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Watanabe Miria",
+        slotsSold: [
+          "5|4|3|3|x",
+          "6|5|3|3|x",
+          "6|5|3|4|5",
+          "7|6|4|4|5",
+          "x|x|x|x|x",
+          "7|5|3|3|x",
+          "5|5|3|3|x",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Itou Riria",
+        slotsSold: [
+          "2|2|x|x|2",
+          "2|2|x|x|2",
+          "2|2|x|x|2",
+          "2|2|x|x|2",
+          "x|x|x|x|x",
+          "4|4|x|x|8",
+          "3|3|x|x|8",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Iwamoto Renka",
+        slotsSold: [
+          "x|x|3|5|x",
+          "x|x|5|6|x",
+          "x|x|6|6|x",
+          "x|x|6|7|x",
+          "x|x|x|x|x",
+          "x|x|10|10|x",
+          "x|x|5|6|x",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Umezawa Minami",
+        slotsSold: [
+          "2|2|x|x|5",
+          "3|2|x|x|5",
+          "3|3|x|x|6",
+          "3|3|x|x|6",
+          "x|x|x|x|x",
+          "3|3|x|x|6",
+          "3|3|x|x|5",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Oozono Momoko",
+        slotsSold: [
+          "x|x|2|2|5",
+          "x|x|2|2|5",
+          "x|x|2|2|6",
+          "x|x|3|3|5",
+          "x|x|x|x|x",
+          "x|x|3|3|6",
+          "x|x|2|2|5",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Kubo Shiori",
+        slotsSold: [
+          "x|x|2|2|4",
+          "x|x|2|2|4",
+          "x|x|2|2|4",
+          "x|x|2|2|4",
+          "x|x|x|x|x",
+          "x|x|2|2|4",
+          "x|x|2|2|4",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Sakaguchi Tamami",
+        slotsSold: [
+          "x|x|3|3|x",
+          "x|x|3|4|x",
+          "x|x|3|4|x",
+          "x|x|4|5|x",
+          "x|x|x|x|x",
+          "x|x|7|7|x",
+          "x|x|3|4|x",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Sato Kaede",
+        slotsSold: [
+          "||x|x|x",
+          "||x|x|x",
+          "||x|x|x",
+          "||x|x|x",
+          "x|x|x|x|x",
+          "||x|x|x",
+          "14|11|x|x|x",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Nakamura Reno",
+        slotsSold: [
+          "|4|x|x|x",
+          "|6|x|x|x",
+          "|5|x|x|x",
+          "||x|x|x",
+          "x|x|x|x|x",
+          "||x|x|x",
+          "12|6|x|x|x",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Mukai Hazuki",
+        slotsSold: [
+          "5|3|x|x|x",
+          "|5|x|x|x",
+          "|7|x|x|x",
+          "||x|x|x",
+          "x|x|x|x|x",
+          "||x|x|x",
+          "10|4|x|x|x",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Yamashita Mizuki",
+        slotsSold: [
+          "x|x|2|2|4",
+          "x|x|2|2|4",
+          "x|x|2|2|4",
+          "x|x|2|2|4",
+          "x|x|x|x|x",
+          "x|x|2|2|4",
+          "x|x|2|2|4",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Yoshida Ayano Cristi",
+        slotsSold: [
+          "||x|x|x",
+          "||x|x|x",
+          "||x|x|x",
+          "||x|x|x",
+          "x|x|x|x|x",
+          "||x|x|x",
+          "12|10|x|x|x",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Yoda Yuuki",
+        slotsSold: [
+          "x|x|2|2|4",
+          "x|x|2|2|4",
+          "x|x|2|2|4",
+          "x|x|2|2|4",
+          "x|x|x|x|x",
+          "x|x|2|2|4",
+          "x|x|2|2|4",
+          "x|x|x|x|x"
+        ]
+      }
+    ]
+  },
+  {
+    cd: {
+      num: 3,
+      type: "Album",
+      title: "\u751F\u307E\u308C\u3066\u304B\u3089\u521D\u3081\u3066\u898B\u305F\u5922"
+    },
+    lastDraw: 10,
+    meetDates: [
+      "2017-07-16",
+      "2017-07-17",
+      "2017-07-23"
+    ],
+    sbt: [
+      "Akimoto Manatsu",
+      "Ikuta Erika",
+      "Ikoma Rina",
+      "Itou Marika",
+      "Inoue Sayuri",
+      "Etou Misa",
+      "Saito Asuka",
+      "Saitou Yuuri",
+      "Sakurai Reika",
+      "Shiraishi Mai",
+      "Higuchi Hina",
+      "Hoshino Minami",
+      "Takayama Kazumi",
+      "Nakada Kana",
+      "Nishino Nanase",
+      "Matsumura Sayuri",
+      "Wakatsuki Yumi",
+      "Kitano Hinako",
+      "Terada Ranze",
+      "Hori Miona",
+      "Shinuchi Mai"
+    ],
+    table: [
+      {
+        member: "Akimoto Manatsu",
+        slotsSold: [
+          "2|3|3|3|3",
+          "3|3|3|3|3",
+          "2|2|2|2|2"
+        ]
+      },
+      {
+        member: "Ikoma Rina",
+        slotsSold: [
+          "||||",
+          "||||",
+          "6|4|4|6|7"
+        ]
+      },
+      {
+        member: "Itou Marika",
+        slotsSold: [
+          "|8|7|9|4",
+          "||||",
+          "3|3|3|3|4"
+        ]
+      },
+      {
+        member: "Inoue Sayuri",
+        slotsSold: [
+          "|9|7|9|9",
+          "||||",
+          "3|2|3|3|3"
+        ]
+      },
+      {
+        member: "Etou Misa",
+        slotsSold: [
+          "3|2|3|3|3",
+          "3|2|2|2|2",
+          "2|2|2|2|2"
+        ]
+      },
+      {
+        member: "Kawago Hina",
+        slotsSold: [
+          "x|x|x||",
+          "||x|x|x",
+          "x|x|x|8|"
+        ]
+      },
+      {
+        member: "Kawamura Mahiro",
+        slotsSold: [
+          "x|x|x||",
+          "||x|x|x",
+          "x|x|x|4|5"
+        ]
+      },
+      {
+        member: "Saito Asuka",
+        slotsSold: [
+          "3|2|3|2|2",
+          "2|2|2|3|2",
+          "2|2|2|2|2"
+        ]
+      },
+      {
+        member: "Saitou Chiharu",
+        slotsSold: [
+          "x|x|x||",
+          "||x|x|x",
+          "x|x|x|5|6"
+        ]
+      },
+      {
+        member: "Saitou Yuuri",
+        slotsSold: [
+          "||||",
+          "||||",
+          "3|3|3|3|3"
+        ]
+      },
+      {
+        member: "Sakurai Reika",
+        slotsSold: [
+          "6|5|4|5|5",
+          "8|6|6|6|5",
+          "2|2|3|2|2"
+        ]
+      },
+      {
+        member: "Takayama Kazumi",
+        slotsSold: [
+          "4|4|4|3|3",
+          "8|6|5|4|5",
+          "2|2|2|2|3"
+        ]
+      },
+      {
+        member: "Nakada Kana",
+        slotsSold: [
+          "||||",
+          "||||",
+          "8|4|4|5|8"
+        ]
+      },
+      {
+        member: "Nakamoto Himeka",
+        slotsSold: [
+          "5|4|3|5|4",
+          "||||",
+          "2|2|2|3|3"
+        ]
+      },
+      {
+        member: "Noujou Ami",
+        slotsSold: [
+          "x|x|||x",
+          "x|||x|x",
+          "x|x|9|9|x"
+        ]
+      },
+      {
+        member: "Higuchi Hina",
+        slotsSold: [
+          "||||",
+          "||||",
+          "4|3|3|3|4"
+        ]
+      },
+      {
+        member: "Hoshino Minami",
+        slotsSold: [
+          "6|5|4|5|6",
+          "|9|9||9",
+          "3|3|3|3|3"
+        ]
+      },
+      {
+        member: "Wakatsuki Yumi",
+        slotsSold: [
+          "3|3|3|3|3",
+          "4|4|4|4|3",
+          "2|2|2|2|2"
+        ]
+      },
+      {
+        member: "Wada Maaya",
+        slotsSold: [
+          "x|x|x|x|",
+          "|x|x|x|x",
+          "x|x|x|x|"
+        ]
+      },
+      {
+        member: "Itou Karin",
+        slotsSold: [
+          "x|x|||x",
+          "x|||x|x",
+          "x|x|4|6|x"
+        ]
+      },
+      {
+        member: "Itou Jyunna",
+        slotsSold: [
+          "x|x|||x",
+          "x|||x|x",
+          "x|x|5|6|x"
+        ]
+      },
+      {
+        member: "Kitano Hinako",
+        slotsSold: [
+          "||||",
+          "||9||",
+          "3|3|3|3|4"
+        ]
+      },
+      {
+        member: "Sagara Iori",
+        slotsSold: [
+          "x|x|||x",
+          "x|||x|x",
+          "x|x|6|6|x"
+        ]
+      },
+      {
+        member: "Sasaki Kotoko",
+        slotsSold: [
+          "x|x|x|x|",
+          "|x|x|x|x",
+          "x|x|x|x|4"
+        ]
+      },
+      {
+        member: "Shinuchi Mai",
+        slotsSold: [
+          "6|5|6|6|8",
+          "8|6|6|6|8",
+          "2|2|2|2|3"
+        ]
+      },
+      {
+        member: "Suzuki Ayane",
+        slotsSold: [
+          "||||",
+          "||||",
+          "6|4|3|4|6"
+        ]
+      },
+      {
+        member: "Terada Ranze",
+        slotsSold: [
+          "8|7|6|6|7",
+          "||||5",
+          "3|3|2|3|3"
+        ]
+      },
+      {
+        member: "Hori Miyona",
+        slotsSold: [
+          "4|3|3|3|4",
+          "5|5|6|5|5",
+          "2|2|3|3|3"
+        ]
+      },
+      {
+        member: "Yamazaki Rena",
+        slotsSold: [
+          "||||",
+          "||||",
+          "5|3|3|4|5"
+        ]
+      },
+      {
+        member: "Watanabe Miria",
+        slotsSold: [
+          "||||",
+          "||||",
+          "3|3|4|3|4"
+        ]
+      },
+      {
+        member: "Itou Riria",
+        slotsSold: [
+          "4|4|x|x|x",
+          "x|x|x|5|5",
+          "2|2|x|x|x"
+        ]
+      },
+      {
+        member: "Iwamoto Renka",
+        slotsSold: [
+          "7|5|x|x|x",
+          "x|x|x|7|",
+          "3|2|x|x|x"
+        ]
+      },
+      {
+        member: "Umezawa Minami",
+        slotsSold: [
+          "4|3|x|x|x",
+          "x|x|x|5|6",
+          "2|2|x|x|x"
+        ]
+      },
+      {
+        member: "Oozono Momoko",
+        slotsSold: [
+          "4|3|x|x|x",
+          "x|x|x|4|5",
+          "2|2|x|x|x"
+        ]
+      },
+      {
+        member: "Kubo Shiori",
+        slotsSold: [
+          "3|3|2|x|x",
+          "x|x|3|3|4",
+          "2|2|2|x|x"
+        ]
+      },
+      {
+        member: "Sakaguchi Tamami",
+        slotsSold: [
+          "x|x|6|7|x",
+          "x||8|x|x",
+          "x|x|3|3|x"
+        ]
+      },
+      {
+        member: "Sato Kaede",
+        slotsSold: [
+          "x|x|x|x|",
+          "|x|x|x|x",
+          "x|x|x|x|3"
+        ]
+      },
+      {
+        member: "Nakamura Reno",
+        slotsSold: [
+          "x|x|x|x|",
+          "|x|x|x|x",
+          "x|x|x|x|3"
+        ]
+      },
+      {
+        member: "Mukai Hazuki",
+        slotsSold: [
+          "||x|x|x",
+          "x|x|x||",
+          "4|3|x|x|x"
+        ]
+      },
+      {
+        member: "Yamashita Mizuki",
+        slotsSold: [
+          "2|2|2|x|x",
+          "x|x|2|2|3",
+          "2|2|2|x|x"
+        ]
+      },
+      {
+        member: "Yoshida Ayano Cristi",
+        slotsSold: [
+          "x|x|x|x|",
+          "|x|x|x|x",
+          "x|x|x|x|3"
+        ]
+      },
+      {
+        member: "Yoda Yuuki",
+        slotsSold: [
+          "2|2|2|x|x",
+          "x|x|2|2|2",
+          "2|2|2|x|x"
+        ]
+      }
+    ]
+  },
+  {
+    cd: {
+      num: 18,
+      type: "Single",
+      title: "\u9003\u3052\u6C34"
+    },
+    lastDraw: 20,
+    meetDates: [
+      "2017-09-18",
+      "2017-09-24",
+      "2017-09-30",
+      "2017-10-28",
+      "2017-11-04",
+      "2017-12-23"
+    ],
+    sbt: [
+      "Akimoto Manatsu",
+      "Ikuta Erika",
+      "Ikoma Rina",
+      "Itou Marika",
+      "Inoue Sayuri",
+      "Etou Misa",
+      "Saito Asuka",
+      "Sakurai Reika",
+      "Shiraishi Mai",
+      "Hoshino Minami",
+      "Takayama Kazumi",
+      "Nishino Nanase",
+      "Matsumura Sayuri",
+      "Wakatsuki Yumi",
+      "Hori Miona",
+      "Shinuchi Mai",
+      "Oozono Momoko",
+      "Yoda Yuuki"
+    ],
+    table: [
+      {
+        member: "Akimoto Manatsu",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "4|4|4|4|4"
+        ]
+      },
+      {
+        member: "Ikuta Erika",
+        slotsSold: [
+          "2|2|2|2|2",
+          "x|x|x|x|x",
+          "x|x|x|x|x",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "4|4|4|4|4"
+        ]
+      },
+      {
+        member: "Ikoma Rina",
+        slotsSold: [
+          "5|5|4|5|5",
+          "6|4|4|4|6",
+          "10|10|6|9|10",
+          "7|5|4|5|6",
+          "10|6|4|5|8",
+          "11|7|6|6|8"
+        ]
+      },
+      {
+        member: "Itou Marika",
+        slotsSold: [
+          "3|3|2|3|3",
+          "x|x|x|x|x",
+          "5|5|4|5|4",
+          "3|3|2|2|3",
+          "4|4|2|3|4",
+          "6|6|5|5|5"
+        ]
+      },
+      {
+        member: "Inoue Sayuri",
+        slotsSold: [
+          "3|3|2|3|3",
+          "3|3|2|3|3",
+          "4|4|2|3|4",
+          "3|2|2|2|3",
+          "4|4|2|3|3",
+          "4|4|4|4|4"
+        ]
+      },
+      {
+        member: "Etou Misa",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "4|4|4|4|4"
+        ]
+      },
+      {
+        member: "Kawago Hina",
+        slotsSold: [
+          "x|x|x|8|",
+          "x|x|x||",
+          "x|x|x||",
+          "x|x|x|6|9",
+          "x|x|x||",
+          "x|x|x|20|19"
+        ]
+      },
+      {
+        member: "Kawamura Mahiro",
+        slotsSold: [
+          "x|x|x||",
+          "x|x|x||",
+          "x|x|x||",
+          "x|x|x||",
+          "x|x|x||",
+          "x|x|x||"
+        ]
+      },
+      {
+        member: "Saito Asuka",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "4|4|4|4|4"
+        ]
+      },
+      {
+        member: "Saitou Chiharu",
+        slotsSold: [
+          "x|x|x|5|7",
+          "x|x|x|4|6",
+          "x|x|x|7|7",
+          "x|x|x|3|5",
+          "x|x|x|4|5",
+          "x|x|x|11|14"
+        ]
+      },
+      {
+        member: "Saitou Yuuri",
+        slotsSold: [
+          "4|3|3|3|4",
+          "5|4|3|3|5",
+          "5|5|3|3|3",
+          "4|3|3|3|3",
+          "5|5|4|4|4",
+          "8|7|5|6|6"
+        ]
+      },
+      {
+        member: "Sakurai Reika",
+        slotsSold: [
+          "2|2|2|2|2",
+          "x|x|x|x|x",
+          "4|3|2|2|2",
+          "2|2|2|2|2",
+          "3|3|2|2|2",
+          "5|5|4|4|4"
+        ]
+      },
+      {
+        member: "Takayama Kazumi",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "4|3|2|2|3",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "4|4|4|4|4"
+        ]
+      },
+      {
+        member: "Nakada Kana",
+        slotsSold: [
+          "6|5|4|4|5",
+          "9|6|4|5|6",
+          "10|10|7|8|9",
+          "6|5|4|4|5",
+          "12|9|6|5|7",
+          "18|12|8|8|8"
+        ]
+      },
+      {
+        member: "Noujou Ami",
+        slotsSold: [
+          "x|x|x|4|7",
+          "x|x|x|6|7",
+          "x|x|x|7|7",
+          "x|x|4|4|4",
+          "12|6|x|x|x",
+          "x|x|x|9|10"
+        ]
+      },
+      {
+        member: "Higuchi Hina",
+        slotsSold: [
+          "4|4|3|3|4",
+          "5|4|3|3|5",
+          "6|6|4|4|4",
+          "5|4|3|3|4",
+          "5|5|3|4|4",
+          "9|8|6|7|5"
+        ]
+      },
+      {
+        member: "Hoshino Minami",
+        slotsSold: [
+          "3|2|2|2|3",
+          "3|2|2|2|3",
+          "4|3|2|3|3",
+          "3|2|2|2|3",
+          "3|2|2|2|2",
+          "6|5|5|5|5"
+        ]
+      },
+      {
+        member: "Wakatsuki Yumi",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "x|x|x|x|x",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Wada Maaya",
+        slotsSold: [
+          "x|x|x|x|",
+          "x|x|x|x|",
+          "x|x|x|x|",
+          "x|x|x|x|",
+          "x|x|x|x|",
+          "x|x|x|x|"
+        ]
+      },
+      {
+        member: "Itou Karin",
+        slotsSold: [
+          "|7|4|x|x",
+          "|6|4|x|x",
+          "|||x|x",
+          "6|4|x|x|x",
+          "|8|x|x|x",
+          "||11|x|x"
+        ]
+      },
+      {
+        member: "Itou Jyunna",
+        slotsSold: [
+          "6|5|x|x|x",
+          "6|4|x|x|x",
+          "|10|x|x|x",
+          "6|4|x|x|x",
+          "x|x|7|7|8",
+          "17|8|x|x|x"
+        ]
+      },
+      {
+        member: "Kitano Hinako",
+        slotsSold: [
+          "3|2|2|2|3",
+          "4|4|3|4|4",
+          "6|6|5|5|5",
+          "5|4|3|3|4",
+          "6|5|4|4|5",
+          "7|6|5|5|5"
+        ]
+      },
+      {
+        member: "Sagara Iori",
+        slotsSold: [
+          "x|x|x|3|5",
+          "x|x|x|4|6",
+          "x|x|x|9|",
+          "x|x|x|3|4",
+          "x|x|12|12|13",
+          "x|x|x|8|10"
+        ]
+      },
+      {
+        member: "Sasaki Kotoko",
+        slotsSold: [
+          "x|x|x|x|3",
+          "x|x|x|x|5",
+          "x|x|x|x|6",
+          "x|x|x|x|4",
+          "x|x|x|x|4",
+          "x|x|x|x|6"
+        ]
+      },
+      {
+        member: "Shinuchi Mai",
+        slotsSold: [
+          "3|2|2|2|3",
+          "3|2|2|2|3",
+          "4|4|2|2|3",
+          "3|2|2|2|2",
+          "4|3|2|2|2",
+          "4|4|4|4|4"
+        ]
+      },
+      {
+        member: "Suzuki Ayane",
+        slotsSold: [
+          "7|5|3|4|4",
+          "7|5|4|4|6",
+          "||6|7|9",
+          "6|4|3|3|4",
+          "14|7|5|5|7",
+          "14|9|6|7|7"
+        ]
+      },
+      {
+        member: "Terada Ranze",
+        slotsSold: [
+          "3|3|2|2|3",
+          "3|2|2|2|2",
+          "4|4|3|4|4",
+          "4|2|2|2|2",
+          "4|4|2|2|2",
+          "5|5|5|5|4"
+        ]
+      },
+      {
+        member: "Hori Miyona",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|3",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "4|4|4|4|4"
+        ]
+      },
+      {
+        member: "Yamazaki Rena",
+        slotsSold: [
+          "5|4|4|4|4",
+          "6|5|4|4|4",
+          "6|7|4|5|4",
+          "5|4|3|3|4",
+          "8|6|4|6|6",
+          "9|9|7|6|6"
+        ]
+      },
+      {
+        member: "Watanabe Miria",
+        slotsSold: [
+          "5|4|3|3|4",
+          "5|4|3|3|4",
+          "6|6|4|4|5",
+          "4|3|2|3|3",
+          "6|6|4|4|4",
+          "8|7|6|6|6"
+        ]
+      },
+      {
+        member: "Itou Riria",
+        slotsSold: [
+          "2|2|2|x|x",
+          "2|2|2|x|x",
+          "3|3|2|x|x",
+          "2|2|2|x|x",
+          "3|2|2|x|x",
+          "4|4|4|x|x"
+        ]
+      },
+      {
+        member: "Iwamoto Renka",
+        slotsSold: [
+          "3|3|2|x|x",
+          "4|3|2|x|x",
+          "5|5|3|x|x",
+          "3|3|2|x|x",
+          "6|5|3|x|x",
+          "6|5|4|x|x"
+        ]
+      },
+      {
+        member: "Umezawa Minami",
+        slotsSold: [
+          "2|2|2|x|2",
+          "2|2|2|x|2",
+          "3|3|2|x|2",
+          "2|2|2|x|2",
+          "2|2|2|x|2",
+          "4|4|4|x|4"
+        ]
+      },
+      {
+        member: "Oozono Momoko",
+        slotsSold: [
+          "2|2|2|2|x",
+          "2|2|2|2|x",
+          "4|4|3|3|x",
+          "3|2|2|2|x",
+          "4|3|2|2|x",
+          "4|4|4|4|x"
+        ]
+      },
+      {
+        member: "Kubo Shiori",
+        slotsSold: [
+          "2|2|2|2|x",
+          "2|2|2|2|x",
+          "2|2|2|2|x",
+          "2|2|2|2|x",
+          "2|2|2|2|x",
+          "4|4|4|4|x"
+        ]
+      },
+      {
+        member: "Sakaguchi Tamami",
+        slotsSold: [
+          "4|3|2|x|x",
+          "4|3|3|x|x",
+          "6|6|3|x|x",
+          "4|3|2|x|x",
+          "5|4|2|x|x",
+          "6|6|4|x|x"
+        ]
+      },
+      {
+        member: "Sato Kaede",
+        slotsSold: [
+          "x|x|3|x|4",
+          "x|x|3|x|4",
+          "x|x|4|x|5",
+          "x|x|3|x|4",
+          "x|x|4|x|5",
+          "x|x|5|x|6"
+        ]
+      },
+      {
+        member: "Nakamura Reno",
+        slotsSold: [
+          "x|x|x|3|4",
+          "x|x|x|3|4",
+          "x|x|x|5|5",
+          "x|x|x|3|4",
+          "x|x|x|4|6",
+          "x|x|x|7|7"
+        ]
+      },
+      {
+        member: "Mukai Hazuki",
+        slotsSold: [
+          "x|x|3|3|4",
+          "x|x|3|4|5",
+          "x|x|5|7|6",
+          "x|x|2|3|4",
+          "6|5|x|x|x",
+          "x|x|6|7|7"
+        ]
+      },
+      {
+        member: "Yamashita Mizuki",
+        slotsSold: [
+          "2|2|2|2|x",
+          "2|2|2|2|x",
+          "2|2|2|2|x",
+          "2|2|2|2|x",
+          "2|2|2|2|x",
+          "4|4|4|4|x"
+        ]
+      },
+      {
+        member: "Yoshida Ayano Cristi",
+        slotsSold: [
+          "5|4|x|x|x",
+          "4|3|x|x|x",
+          "10|8|x|x|x",
+          "5|4|x|x|x",
+          "x|x|x|3|5",
+          "9|7|x|x|x"
+        ]
+      },
+      {
+        member: "Yoda Yuuki",
+        slotsSold: [
+          "2|2|2|2|x",
+          "2|2|2|2|x",
+          "2|2|2|2|x",
+          "2|2|2|2|x",
+          "2|2|2|2|x",
+          "4|4|4|4|x"
+        ]
+      }
+    ]
+  },
+  {
+    cd: {
+      num: 19,
+      type: "Single",
+      title: "\u3044\u3064\u304B\u3067\u304D\u308B\u304B\u3089\u4ECA\u65E5\u3067\u304D\u308B"
+    },
+    lastDraw: 14,
+    meetDates: [
+      "2018-01-30",
+      "2018-01-03",
+      "2018-02-09",
+      "2018-02-17",
+      "2018-03-23",
+      "2018-03-16"
+    ],
+    sbt: [
+      "Akimoto Manatsu",
+      "Ikuta Erika",
+      "Ikoma Rina",
+      "Inoue Sayuri",
+      "Etou Misa",
+      "Saito Asuka",
+      "Saitou Yuuri",
+      "Sakurai Reika",
+      "Shiraishi Mai",
+      "Higuchi Hina",
+      "Hoshino Minami",
+      "Takayama Kazumi",
+      "Nakada Kana",
+      "Nishino Nanase",
+      "Matsumura Sayuri",
+      "Wakatsuki Yumi",
+      "Hori Miona",
+      "Kitano Hinako",
+      "Shinuchi Mai"
+    ],
+    table: [
+      {
+        member: "Ikuta Erika",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2"
+        ]
+      },
+      {
+        member: "Ikoma Rina",
+        slotsSold: [
+          "|13|10|13|",
+          "x|x|x|x|x",
+          "x|x|x|x|x",
+          "5|4|4|5|5",
+          "x|x|x|x|x",
+          "11|8|5|9|10"
+        ]
+      },
+      {
+        member: "Inoue Sayuri",
+        slotsSold: [
+          "3|2|2|2|2",
+          "3|2|2|2|3",
+          "3|3|2|3|3",
+          "3|2|2|2|3",
+          "3|3|2|2|3",
+          "3|2|2|2|3"
+        ]
+      },
+      {
+        member: "Etou Misa",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2"
+        ]
+      },
+      {
+        member: "Kawago Hina",
+        slotsSold: [
+          "x|x|x||",
+          "x|x|x||",
+          "||x|x|x",
+          "|18|x|x|x",
+          "18|13|x|x|x",
+          "|18|x|x|x"
+        ]
+      },
+      {
+        member: "Kawamura Mahiro",
+        slotsSold: [
+          "x|x|x|x|",
+          "x|x|x|x|",
+          "x|x|x|x|",
+          "x|x|x|x|",
+          "|20|x|x|x",
+          "x|x|x|x|19"
+        ]
+      },
+      {
+        member: "Saito Asuka",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2"
+        ]
+      },
+      {
+        member: "Saitou Chiharu",
+        slotsSold: [
+          "|||x|x",
+          "||10|x|x",
+          "x|x|||",
+          "x|x|7|8|9",
+          "|21|17|x|x",
+          "||16|x|x"
+        ]
+      },
+      {
+        member: "Saitou Yuuri",
+        slotsSold: [
+          "4|4|3|4|4",
+          "5|3|3|4|5",
+          "7|5|4|5|6",
+          "4|3|3|4|5",
+          "6|4|4|4|5",
+          "5|4|3|4|4"
+        ]
+      },
+      {
+        member: "Takayama Kazumi",
+        slotsSold: [
+          "3|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "3|2|2|2|2",
+          "3|2|2|2|2"
+        ]
+      },
+      {
+        member: "Nakada Kana",
+        slotsSold: [
+          "13|12|11|11|10",
+          "13|7|5|6|10",
+          "15|14|9|13|15",
+          "13|9|5|6|10",
+          "16|13|9|6|13",
+          "17|15|10|14|10"
+        ]
+      },
+      {
+        member: "Noujou Ami",
+        slotsSold: [
+          "|||x|x",
+          "|||x|x",
+          "|||x|x",
+          "x|x|18||",
+          "x|x|x|x|x",
+          "x|x|||"
+        ]
+      },
+      {
+        member: "Higuchi Hina",
+        slotsSold: [
+          "6|5|4|4|4",
+          "4|3|3|3|4",
+          "6|5|4|5|6",
+          "5|4|4|4|",
+          "5|4|5|4|5",
+          "6|5|3|4|4"
+        ]
+      },
+      {
+        member: "Hoshino Minami",
+        slotsSold: [
+          "4|3|3|3|3",
+          "3|3|3|3|4",
+          "3|2|2|3|3",
+          "3|3|2|3|3",
+          "4|3|3|3|4",
+          "3|2|2|2|2"
+        ]
+      },
+      {
+        member: "Wakatsuki Yumi",
+        slotsSold: [
+          "x|x|x|x|x",
+          "3|3|3|3|3",
+          "x|x|x|x|x",
+          "x|x|x|x|x",
+          "x|x|x|x|x",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Wada Maaya",
+        slotsSold: [
+          "x|x|x|x|",
+          "x|x|x|x|",
+          "x|x|x|x|",
+          "x|x|x|x|",
+          "x|x|x|x|",
+          "x|x|x|x|"
+        ]
+      },
+      {
+        member: "Itou Karin",
+        slotsSold: [
+          "x|x|x|8|",
+          "x|x|x|5|",
+          "|12|x|x|x",
+          "16|6|x|x|x",
+          "x|x|x|7|17",
+          "x|x|x|10|17"
+        ]
+      },
+      {
+        member: "Itou Jyunna",
+        slotsSold: [
+          "x|x|x||",
+          "x|x|x|4|7",
+          "|15|x|x|x",
+          "16|6|x|x|x",
+          "x|x|x|6|12",
+          "x|x|x|15|16"
+        ]
+      },
+      {
+        member: "Sagara Iori",
+        slotsSold: [
+          "x|x|x||",
+          "x|x|x|7|",
+          "||x|x|x",
+          "17|6|x|x|x",
+          "x|x|x|9|17",
+          "x|x|x||"
+        ]
+      },
+      {
+        member: "Sasaki Kotoko",
+        slotsSold: [
+          "x|x|x||",
+          "x|x|x|8|",
+          "||x|x|x",
+          "18|9|x|x|x",
+          "x|x|x|10|17",
+          "x|x|x|15|17"
+        ]
+      },
+      {
+        member: "Shinuchi Mai",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|3",
+          "4|3|3|3|3",
+          "3|2|2|2|3",
+          "3|3|3|3|3",
+          "3|3|3|3|3"
+        ]
+      },
+      {
+        member: "Suzuki Ayane",
+        slotsSold: [
+          "13|12|7|9|10",
+          "|7|4|5|13",
+          "|11|7|9|15",
+          "10|7|4|4|7",
+          "9|6|4|4|5",
+          "16|11|7|9|10"
+        ]
+      },
+      {
+        member: "Terada Ranze",
+        slotsSold: [
+          "4|3|3|3|3",
+          "4|3|3|3|3",
+          "5|4|3|4|4",
+          "4|3|3|3|3",
+          "5|4|4|3|4",
+          "4|4|3|4|3"
+        ]
+      },
+      {
+        member: "Hori Miyona",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|3",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2"
+        ]
+      },
+      {
+        member: "Yamazaki Rena",
+        slotsSold: [
+          "8|6|5|5|5",
+          "10|5|5|5|8",
+          "10|9|6|6|7",
+          "9|5|5|4|6",
+          "11|9|5|6|7",
+          "11|10|7|5|7"
+        ]
+      },
+      {
+        member: "Watanabe Miria",
+        slotsSold: [
+          "6|6|5|5|5",
+          "6|5|4|5|6",
+          "9|6|5|5|6",
+          "6|4|3|4|5",
+          "8|5|4|5|6",
+          "6|6|4|5|4"
+        ]
+      },
+      {
+        member: "Itou Riria",
+        slotsSold: [
+          "3|3|2|2|3",
+          "2|2|2|2|2",
+          "3|2|2|2|3",
+          "3|2|2|2|3",
+          "x|x|2|2|3",
+          "3|3|2|2|3"
+        ]
+      },
+      {
+        member: "Iwamoto Renka",
+        slotsSold: [
+          "6|5|4|5|5",
+          "6|4|4|5|5",
+          "5|4|3|4|4",
+          "5|4|4|4|5",
+          "7|5|5|5|6",
+          "8|5|5|4|5"
+        ]
+      },
+      {
+        member: "Umezawa Minami",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2"
+        ]
+      },
+      {
+        member: "Oozono Momoko",
+        slotsSold: [
+          "3|3|2|3|3",
+          "3|3|2|2|3",
+          "3|3|3|3|3",
+          "3|2|3|2|3",
+          "3|3|3|3|3",
+          "3|2|2|2|2"
+        ]
+      },
+      {
+        member: "Kubo Shiori",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2"
+        ]
+      },
+      {
+        member: "Sakaguchi Tamami",
+        slotsSold: [
+          "10|6|4|4|x",
+          "7|5|4|4|x",
+          "10|7|5|5|x",
+          "7|5|4|4|x",
+          "10|6|5|5|6",
+          "11|7|5|4|x"
+        ]
+      },
+      {
+        member: "Sato Kaede",
+        slotsSold: [
+          "9|7|4|x|x",
+          "8|6|4|x|x",
+          "x|x|4|5|7",
+          "x|x|4|5|6",
+          "6|4|4|x|x",
+          "9|8|4|x|x"
+        ]
+      },
+      {
+        member: "Nakamura Reno",
+        slotsSold: [
+          "||7|x|x",
+          "|8|5|x|x",
+          "x|x|9|10|14",
+          "x|x|5|6|7",
+          "16|11|5|x|x",
+          "17|10|5|x|x"
+        ]
+      },
+      {
+        member: "Mukai Hazuki",
+        slotsSold: [
+          "||7|7|",
+          "|7|4|4|x",
+          "|9|6|6|x",
+          "15|6|4|4|x",
+          "16|8|5|5|x",
+          "19|16|9|10|x"
+        ]
+      },
+      {
+        member: "Yamashita Mizuki",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2"
+        ]
+      },
+      {
+        member: "Yoshida Ayano Cristi",
+        slotsSold: [
+          "||10|x|x",
+          "|9|5|x|x",
+          "x|x|10|13|15",
+          "x|x|5|6|9",
+          "18|15|7|x|x",
+          "20|18|10|x|x"
+        ]
+      },
+      {
+        member: "Yoda Yuuki",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2"
+        ]
+      }
+    ]
+  },
+  {
+    cd: {
+      num: 1,
+      type: "U.Album",
+      title: "\u50D5\u3060\u3051\u306E\u541B"
+    },
+    lastDraw: 13,
+    meetDates: [
+      "2018-01-14",
+      "2018-02-17",
+      "2018-03-25"
+    ],
+    sbt: [],
+    table: [
+      {
+        member: "Kawago Hina",
+        slotsSold: [
+          "x|x|x||",
+          "x|x|x||",
+          "|||x|x"
+        ]
+      },
+      {
+        member: "Kawamura Mahiro",
+        slotsSold: [
+          "x|x|x||",
+          "x|x|x||",
+          "x|x|x|12|11"
+        ]
+      },
+      {
+        member: "Saitou Chiharu",
+        slotsSold: [
+          "|||x|x",
+          "||||7",
+          "|||x|x"
+        ]
+      },
+      {
+        member: "Noujou Ami",
+        slotsSold: [
+          "||||",
+          "|||x|x",
+          "|||x|x"
+        ]
+      },
+      {
+        member: "Higuchi Hina",
+        slotsSold: [
+          "3|2|2|3|",
+          "8|8|8|7|7",
+          "x|x|x|x|2"
+        ]
+      },
+      {
+        member: "Wada Maaya",
+        slotsSold: [
+          "x|x|x||",
+          "x|x|x||",
+          "x|x|x||"
+        ]
+      },
+      {
+        member: "Itou Karin",
+        slotsSold: [
+          "|||x|x",
+          "|||x|x",
+          "||||x"
+        ]
+      },
+      {
+        member: "Itou Jyunna",
+        slotsSold: [
+          "|||x|x",
+          "|||x|x",
+          "|||x|x"
+        ]
+      },
+      {
+        member: "Sagara Iori",
+        slotsSold: [
+          "|||x|x",
+          "|||x|x",
+          "x|x|x||"
+        ]
+      },
+      {
+        member: "Sasaki Kotoko",
+        slotsSold: [
+          "x|x|x||",
+          "x|x|x||",
+          "x|x|x||"
+        ]
+      },
+      {
+        member: "Suzuki Ayane",
+        slotsSold: [
+          "|4|3||",
+          "||||",
+          "11|9|9|10|12"
+        ]
+      },
+      {
+        member: "Terada Ranze",
+        slotsSold: [
+          "2|2|2|3|2",
+          "4|5|5|6|4",
+          "4|5|6|4|3"
+        ]
+      },
+      {
+        member: "Yamazaki Rena",
+        slotsSold: [
+          "3|3|2|4|4",
+          "5|6|7|7|5",
+          "9|7|7|8|8"
+        ]
+      },
+      {
+        member: "Watanabe Miria",
+        slotsSold: [
+          "|3|3|3|",
+          "|8|8|7|5",
+          "13|10|9|10|11"
+        ]
+      }
+    ]
+  },
+  {
+    cd: {
+      num: 20,
+      type: "Single",
+      title: "\u30B7\u30F3\u30AF\u30ED\u30CB\u30B7\u30C6\u30A3"
+    },
+    lastDraw: 14,
+    meetDates: [
+      "2018-04-30",
+      "2018-05-03",
+      "2018-06-09",
+      "2018-06-17",
+      "2018-06-23",
+      "2018-07-16"
+    ],
+    sbt: [
+      "Akimoto Manatsu",
+      "Ikuta Erika",
+      "Ikoma Rina",
+      "Inoue Sayuri",
+      "Etou Misa",
+      "Saito Asuka",
+      "Sakurai Reika",
+      "Shiraishi Mai",
+      "Higuchi Hina",
+      "Hoshino Minami",
+      "Takayama Kazumi",
+      "Nishino Nanase",
+      "Matsumura Sayuri",
+      "Wakatsuki Yumi",
+      "Hori Miona",
+      "Shinuchi Mai",
+      "Terada Ranze",
+      "Oozono Momoko",
+      "Kubo Shiori",
+      "Yamashita Mizuki",
+      "Yoda Yuuki"
+    ],
+    table: [
+      {
+        member: "Akimoto Manatsu",
+        slotsSold: [
+          "2|2|2|2|x",
+          "x|x|x|x|x",
+          "x|2|2|2|2",
+          "x|2|2|2|2",
+          "x|2|2|2|2",
+          "x|2|2|2|2"
+        ]
+      },
+      {
+        member: "Ikuta Erika",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "x|x|x|x|x",
+          "x|x|x|x|x",
+          "x|x|x|x|x",
+          "2|2|2|2|2"
+        ]
+      },
+      {
+        member: "Inoue Sayuri",
+        slotsSold: [
+          "x|x|x|x|x",
+          "x|x|x|x|x",
+          "2|2|2|2|2",
+          "4|4|4|4|4",
+          "2|2|2|2|2",
+          "2|2|2|2|2"
+        ]
+      },
+      {
+        member: "Kawago Hina",
+        slotsSold: [
+          "x|5|x|x|x",
+          "x|5|x|x|x",
+          "x|x|x|4|x",
+          "x|10|x|x|x",
+          "x|x||4|x",
+          "x|x|14|5|x"
+        ]
+      },
+      {
+        member: "Etou Misa",
+        slotsSold: [
+          "2|2|2|2|x",
+          "x|x|x|x|x",
+          "x|2|2|2|2",
+          "x|2|2|2|2",
+          "x|2|2|2|2",
+          "x|2|2|2|2"
+        ]
+      },
+      {
+        member: "Saito Asuka",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2"
+        ]
+      },
+      {
+        member: "Saitou Chiharu",
+        slotsSold: [
+          "|||x|x",
+          "|||x|x",
+          "||6|x|x",
+          "|||x|x",
+          "12|12|9|x|x",
+          "12|12|11|x|14"
+        ]
+      },
+      {
+        member: "Saitou Yuuri",
+        slotsSold: [
+          "4|3|3|3|4",
+          "4|4|3|3|4",
+          "4|3|2|2|4",
+          "9|7|7|10|6",
+          "4|3|3|3|3",
+          "4|3|3|3|3"
+        ]
+      },
+      {
+        member: "Takayama Kazumi",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "3|3|3|3|3",
+          "2|2|2|2|2",
+          "2|2|2|2|2"
+        ]
+      },
+      {
+        member: "Nakada Kana",
+        slotsSold: [
+          "|5|5|5|",
+          "||||5",
+          "6|4|5|5|5",
+          "||11||",
+          "6|5|4|4|4",
+          "7|5|4|4|5"
+        ]
+      },
+      {
+        member: "Noujou Ami",
+        slotsSold: [
+          "x|x|x||",
+          "x|x|x||",
+          "|6|x|x|x",
+          "x|x|x||",
+          "|9|x|x|x",
+          "|11|x|x|x"
+        ]
+      },
+      {
+        member: "Higuchi Hina",
+        slotsSold: [
+          "5|4|3|4|4",
+          "5|5|5|5|5",
+          "4|3|3|3|3",
+          "|10|7|10|9",
+          "4|3|3|3|4",
+          "5|3|3|3|4"
+        ]
+      },
+      {
+        member: "Hoshino Minami",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "4|3|3|4|4",
+          "2|2|2|2|2",
+          "2|2|2|2|2"
+        ]
+      },
+      {
+        member: "Wada Maaya",
+        slotsSold: [
+          "|x|x|x|x",
+          "|x|x|x|x",
+          "x|x|8|x|x",
+          "|x|x|x|x",
+          "x|x|12|x|x",
+          "x|x|12|x|x"
+        ]
+      },
+      {
+        member: "Itou Karin",
+        slotsSold: [
+          "|||x|x",
+          "|||x|x",
+          "10|5|4|x|x",
+          "|||x|x",
+          "12|6|4|x|x",
+          "13|9|5|x|x"
+        ]
+      },
+      {
+        member: "Itou Jyunna",
+        slotsSold: [
+          "x|x|x||",
+          "x|x|x||",
+          "x|x|x|4|6",
+          "x|x|x||",
+          "x|x|x|5|7",
+          "x|x|x|5|7"
+        ]
+      },
+      {
+        member: "Sagara Iori",
+        slotsSold: [
+          "x|x|4|x|x",
+          "x|x|3|x|x",
+          "x|x|x|9|3",
+          "x|x|5|10|x",
+          "x||x|9|4",
+          "x|14|x|10|4"
+        ]
+      },
+      {
+        member: "Sasaki Kotoko",
+        slotsSold: [
+          "x|x|x||",
+          "x|x|x||",
+          "x|x|x|9|10",
+          "x|x|x||",
+          "x|x|x|8|11",
+          "x|x|x|10|13"
+        ]
+      },
+      {
+        member: "Shinuchi Mai",
+        slotsSold: [
+          "3|2|2|2|3",
+          "3|2|2|2|2",
+          "2|2|2|2|2",
+          "4|4|3|4|4",
+          "3|2|2|2|2",
+          "3|2|2|2|2"
+        ]
+      },
+      {
+        member: "Suzuki Ayane",
+        slotsSold: [
+          "4|3|3|3|4",
+          "x|x|x|x|x",
+          "3|2|2|2|3",
+          "8|6|5|6|7",
+          "4|3|2|3|4",
+          "4|3|3|3|4"
+        ]
+      },
+      {
+        member: "Terada Ranze",
+        slotsSold: [
+          "5|3|3|3|4",
+          "4|3|3|2|3",
+          "4|3|3|3|3",
+          "5|5|5|5|5",
+          "4|3|2|3|3",
+          "4|3|3|3|3"
+        ]
+      },
+      {
+        member: "Hori Miyona",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "3|3|3|3|3",
+          "2|2|2|2|2",
+          "2|2|2|2|2"
+        ]
+      },
+      {
+        member: "Yamazaki Rena",
+        slotsSold: [
+          "|5|4|5|5",
+          "||5||5",
+          "4|3|2|3|3",
+          "|||11|11",
+          "5|4|4|4|4",
+          "4|4|4|4|4"
+        ]
+      },
+      {
+        member: "Watanabe Miria",
+        slotsSold: [
+          "5|4|4|4|4",
+          "5|4|3|4|3",
+          "4|2|2|3|4",
+          "9|9|8|8|5",
+          "5|3|3|3|4",
+          "5|4|3|3|4"
+        ]
+      },
+      {
+        member: "Itou Riria",
+        slotsSold: [
+          "3|2|2|3|3",
+          "3|2|2|2|3",
+          "2|2|2|2|2",
+          "4|4|4|4|4",
+          "2|2|2|2|2",
+          "2|2|2|2|3"
+        ]
+      },
+      {
+        member: "Iwamoto Renka",
+        slotsSold: [
+          "5|5|4|5|5",
+          "5|5|3|4|5",
+          "3|3|2|2|3",
+          "6|6|5|6|5",
+          "4|3|3|3|3",
+          "4|3|3|3|3"
+        ]
+      },
+      {
+        member: "Umezawa Minami",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "3|3|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2"
+        ]
+      },
+      {
+        member: "Oozono Momoko",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "4|3|3|4|4",
+          "2|2|2|2|2",
+          "2|2|2|2|2"
+        ]
+      },
+      {
+        member: "Sakaguchi Tamami",
+        slotsSold: [
+          "|4|5|5|",
+          "|5|5|5|5",
+          "5|4|3|4|4",
+          "|||11|11",
+          "6|5|4|4|5",
+          "6|4|4|5|5"
+        ]
+      },
+      {
+        member: "Sato Kaede",
+        slotsSold: [
+          "|4|5|5|",
+          "||4|5|",
+          "6|4|4|4|4",
+          "||11||",
+          "6|5|4|4|5",
+          "6|5|4|4|5"
+        ]
+      },
+      {
+        member: "Nakamura Reno",
+        slotsSold: [
+          "||||",
+          "||||",
+          "|10|6|8|10",
+          "||||",
+          "|10|7|8|11",
+          "13|8|6|8|11"
+        ]
+      },
+      {
+        member: "Mukai Hazuki",
+        slotsSold: [
+          "||||",
+          "||5||",
+          "6|5|4|4|6",
+          "||||",
+          "7|4|4|4|7",
+          "8|4|4|5|5"
+        ]
+      },
+      {
+        member: "Yamashita Mizuki",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2"
+        ]
+      },
+      {
+        member: "Yoshida Ayano Cristi",
+        slotsSold: [
+          "||||",
+          "||||",
+          "|9|5|5|9",
+          "||||",
+          "|9|6|7|11",
+          "13|8|6|8|11"
+        ]
+      },
+      {
+        member: "Yoda Yuuki",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2"
+        ]
+      }
+    ]
+  },
+  {
+    cd: {
+      num: 21,
+      type: "Single",
+      title: "\u30B8\u30B3\u30C1\u30E5\u30FC\u3067\u884C\u3053\u3046!"
+    },
+    lastDraw: 21,
+    meetDates: [
+      "2018-08-12",
+      "2018-09-29",
+      "2018-10-13",
+      "2018-10-21",
+      "2018-10-27",
+      "2018-12-15"
+    ],
+    sbt: [
+      "Akimoto Manatsu",
+      "Ikuta Erika",
+      "Inoue Sayuri",
+      "Etou Misa",
+      "Saito Asuka",
+      "Saitou Yuuri",
+      "Sakurai Reika",
+      "Shiraishi Mai",
+      "Hoshino Minami",
+      "Takayama Kazumi",
+      "Nishino Nanase",
+      "Matsumura Sayuri",
+      "Wakatsuki Yumi",
+      "Hori Miona",
+      "Shinuchi Mai",
+      "Suzuki Ayane",
+      "Iwamoto Renka",
+      "Umezawa Minami",
+      "Oozono Momoko",
+      "Yamashita Mizuki",
+      "Yoda Yuuki"
+    ],
+    table: [
+      {
+        member: "Ikuta Erika",
+        slotsSold: [
+          "2|2|2|2|2",
+          "x|x|x|x|x",
+          "x|x|x|x|x",
+          "2|2|2|2|2",
+          "x|x|x|x|x",
+          "5|5|5|5|5"
+        ]
+      },
+      {
+        member: "Inoue Sayuri",
+        slotsSold: [
+          "3|2|2|2|3",
+          "x|x|x|x|x",
+          "2|2|2|2|3",
+          "3|2|2|2|3",
+          "2|2|2|2|3",
+          "5|5|5|5|5"
+        ]
+      },
+      {
+        member: "Kawago Hina",
+        slotsSold: [
+          "||||",
+          "||||",
+          "|||x|x",
+          "|||x|x",
+          "x|x|15|15|15",
+          "18|15|7|x|x"
+        ]
+      },
+      {
+        member: "Saito Asuka",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "5|5|5|5|5"
+        ]
+      },
+      {
+        member: "Saitou Yuuri",
+        slotsSold: [
+          "3|3|3|3|3",
+          "7|6|6|7|4",
+          "3|3|3|3|4",
+          "4|3|3|3|4",
+          "3|3|3|3|3",
+          "6|6|6|6|6"
+        ]
+      },
+      {
+        member: "Sakurai Reika",
+        slotsSold: [
+          "|2|2|2|",
+          "x|x|x|x|x",
+          "x|x|x|x|x",
+          "x|x|x|x|x",
+          "x|x|x|x|x",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Takayama Kazumi",
+        slotsSold: [
+          "2|2|2|x|x",
+          "x|x|x|x|x",
+          "2|2|2|2|x",
+          "2|2|2|2|x",
+          "2|2|2|2|x",
+          "x|x|x|x|x"
+        ]
+      },
+      {
+        member: "Nakada Kana",
+        slotsSold: [
+          "5|5|4|5|5",
+          "x|x|x|x|x",
+          "6|5|4|4|5",
+          "8|5|5|5|7",
+          "6|4|4|4|5",
+          "7|6|6|5|6"
+        ]
+      },
+      {
+        member: "Noujou Ami",
+        slotsSold: [
+          "|||x|x",
+          "|||x|x",
+          "||||",
+          "||||",
+          "x|x|13|14|13",
+          "15|13|9|x|x"
+        ]
+      },
+      {
+        member: "Higuchi Hina",
+        slotsSold: [
+          "4|3|3|3|3",
+          "8|7|7|6|5",
+          "4|3|3|3|3",
+          "4|3|3|3|4",
+          "4|3|3|3|3",
+          "6|6|6|6|5"
+        ]
+      },
+      {
+        member: "Hoshino Minami",
+        slotsSold: [
+          "2|2|2|2|2",
+          "4|3|3|3|3",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "5|5|5|5|5"
+        ]
+      },
+      {
+        member: "Wada Maaya",
+        slotsSold: [
+          "x|x|x||",
+          "x|x|x||",
+          "x|x|x||",
+          "x|x|x||",
+          "x|x|x||",
+          "x|x|x||"
+        ]
+      },
+      {
+        member: "Itou Karin",
+        slotsSold: [
+          "||||",
+          "||||",
+          "||||",
+          "||15||",
+          "|18|12|18|",
+          "|17|10|12|14"
+        ]
+      },
+      {
+        member: "Itou Jyunna",
+        slotsSold: [
+          "|5|4|x|x",
+          "|||x|x",
+          "11|7|5|x|x",
+          "11|7|5|x|x",
+          "10|6|5|5|6",
+          "10|9|9|8|8"
+        ]
+      },
+      {
+        member: "Sasaki Kotoko",
+        slotsSold: [
+          "x|x|x||",
+          "x|x|x||",
+          "x|x|x|6|8",
+          "x|x|x|8|15",
+          "x|x|x|6|10",
+          "x|x|x|8|9"
+        ]
+      },
+      {
+        member: "Shinuchi Mai",
+        slotsSold: [
+          "3|2|2|2|2",
+          "4|3|3|3|3",
+          "2|2|2|2|2",
+          "2|2|2|2|3",
+          "2|2|2|2|2",
+          "5|5|5|5|5"
+        ]
+      },
+      {
+        member: "Suzuki Ayane",
+        slotsSold: [
+          "3|3|2|3|3",
+          "5|5|5|5|4",
+          "3|3|2|2|3",
+          "4|3|2|3|3",
+          "3|3|2|3|3",
+          "5|5|5|5|5"
+        ]
+      },
+      {
+        member: "Terada Ranze",
+        slotsSold: [
+          "4|3|3|3|3",
+          "x|x|x|x|x",
+          "4|3|3|3|3",
+          "4|3|3|3|3",
+          "4|3|2|3|3",
+          "6|5|5|5|5"
+        ]
+      },
+      {
+        member: "Hori Miyona",
+        slotsSold: [
+          "2|2|2|2|2",
+          "3|3|2|2|3",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "5|5|5|5|5"
+        ]
+      },
+      {
+        member: "Yamazaki Rena",
+        slotsSold: [
+          "5|5|4|4|4",
+          "5|7|7|6|4",
+          "7|6|4|6|7",
+          "7|5|5|6|5",
+          "4|3|3|4|4",
+          "7|6|6|6|6"
+        ]
+      },
+      {
+        member: "Watanabe Miria",
+        slotsSold: [
+          "4|4|4|3|3",
+          "x|x|x|x|x",
+          "4|3|3|4|4",
+          "5|4|3|3|4",
+          "3|3|3|3|3",
+          "6|6|5|5|5"
+        ]
+      },
+      {
+        member: "Itou Riria",
+        slotsSold: [
+          "3|2|2|2|3",
+          "6|5|5|4|4",
+          "3|2|2|2|3",
+          "3|2|2|2|3",
+          "3|2|2|2|3",
+          "5|5|5|6|6"
+        ]
+      },
+      {
+        member: "Iwamoto Renka",
+        slotsSold: [
+          "3|3|3|3|3",
+          "8|7|6|6|4",
+          "4|3|2|3|3",
+          "4|3|3|3|4",
+          "3|3|3|3|3",
+          "6|6|6|6|6"
+        ]
+      },
+      {
+        member: "Umezawa Minami",
+        slotsSold: [
+          "x|x|x|x|x",
+          "x|x|x|x|x",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "5|5|5|5|5"
+        ]
+      },
+      {
+        member: "Oozono Momoko",
+        slotsSold: [
+          "2|2|2|2|2",
+          "3|3|3|3|3",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "5|5|5|5|5"
+        ]
+      },
+      {
+        member: "Sakaguchi Tamami",
+        slotsSold: [
+          "5|4|4|4|4",
+          "||||",
+          "6|5|4|5|6",
+          "6|5|4|4|6",
+          "5|4|3|4|4",
+          "7|7|6|6|7"
+        ]
+      },
+      {
+        member: "Sato Kaede",
+        slotsSold: [
+          "4|3|3|4|3",
+          "10|10|7|8|9",
+          "5|3|3|3|4",
+          "5|4|3|4|5",
+          "4|3|3|3|3",
+          "6|6|6|6|5"
+        ]
+      },
+      {
+        member: "Nakamura Reno",
+        slotsSold: [
+          "||||",
+          "||||",
+          "||14||",
+          "|14|7|13|",
+          "|14|9|11|16",
+          "17|13|10|10|11"
+        ]
+      },
+      {
+        member: "Mukai Hazuki",
+        slotsSold: [
+          "|5|5|5|5",
+          "||||",
+          "7|5|4|4|7",
+          "8|5|5|6|9",
+          "7|5|4|5|6",
+          "9|7|7|7|7"
+        ]
+      },
+      {
+        member: "Yamashita Mizuki",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "5|5|5|5|5"
+        ]
+      },
+      {
+        member: "Yoshida Ayano Cristi",
+        slotsSold: [
+          "||||",
+          "||||",
+          "|12|6|8|",
+          "|14|9|9|",
+          "|12|7|8|10",
+          "14|9|8|8|11"
+        ]
+      },
+      {
+        member: "Yoda Yuuki",
+        slotsSold: [
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "2|2|2|2|2",
+          "5|5|5|5|5"
+        ]
+      }
+    ]
+  },
+  {
+    cd: {
       num: 22,
       type: "Single",
       title: "\u5E30\u308A\u9053\u306F\u9060\u56DE\u308A\u3057\u305F\u304F\u306A\u308B"
@@ -129,7 +3009,7 @@ const data = [
         ]
       },
       {
-        member: "Ito Jyunna",
+        member: "Itou Jyunna",
         slotsSold: [
           "10|6|4|6|",
           "x|x|x|x|x",
@@ -217,7 +3097,7 @@ const data = [
         ]
       },
       {
-        member: "Ito Riria",
+        member: "Itou Riria",
         slotsSold: [
           "3|2|2|2|3",
           "3|3|3|3|4",
@@ -242,7 +3122,7 @@ const data = [
         member: "Umezawa Minami",
         slotsSold: [
           "2|2|2|2|2",
-          "||||",
+          "x|x|x|x|x",
           "2|2|2|2|2",
           "2|2|2|2|2",
           "2|2|2|2|2",
@@ -469,7 +3349,7 @@ const data = [
         ]
       },
       {
-        member: "Ito Jyunna",
+        member: "Itou Jyunna",
         slotsSold: [
           "||||",
           "6|5|4|5|5",
@@ -533,7 +3413,7 @@ const data = [
         ]
       },
       {
-        member: "Ito Riria",
+        member: "Itou Riria",
         slotsSold: [
           "4|3|3|3|3",
           "2|2|2|2|2",
@@ -843,7 +3723,7 @@ const data = [
         ]
       },
       {
-        member: "Ito Jyunna",
+        member: "Itou Jyunna",
         slotsSold: [
           "||||",
           "6|4|4|4|6",
@@ -942,7 +3822,7 @@ const data = [
         ]
       },
       {
-        member: "Ito Riria",
+        member: "Itou Riria",
         slotsSold: [
           "||||",
           "4|2|3|3|3",
@@ -1278,7 +4158,7 @@ const data = [
         ]
       },
       {
-        member: "Ito Jyunna",
+        member: "Itou Jyunna",
         slotsSold: [
           "||||",
           "||||",
@@ -1377,7 +4257,7 @@ const data = [
         ]
       },
       {
-        member: "Ito Riria",
+        member: "Itou Riria",
         slotsSold: [
           "|5|4|5|5",
           "||7|9|",
@@ -1694,7 +4574,7 @@ const data = [
         ]
       },
       {
-        member: "Ito Jyunna",
+        member: "Itou Jyunna",
         slotsSold: [
           "||||",
           "||||",
@@ -1771,7 +4651,7 @@ const data = [
         ]
       },
       {
-        member: "Ito Riria",
+        member: "Itou Riria",
         slotsSold: [
           "|5|5|6|6",
           "|6|6|8|",
@@ -2100,7 +4980,7 @@ const data = [
         ]
       },
       {
-        member: "Ito Jyunna",
+        member: "Itou Jyunna",
         slotsSold: [
           "||||",
           "||||",
@@ -2166,7 +5046,7 @@ const data = [
         ]
       },
       {
-        member: "Ito Riria",
+        member: "Itou Riria",
         slotsSold: [
           "x|x|x|x|x",
           "||||",
@@ -2564,7 +5444,7 @@ const data = [
         ]
       },
       {
-        member: "Ito Jyunna",
+        member: "Itou Jyunna",
         slotsSold: [
           "4|5|5|5|5",
           "x|x|x|x|x",
@@ -2630,7 +5510,7 @@ const data = [
         ]
       },
       {
-        member: "Ito Riria",
+        member: "Itou Riria",
         slotsSold: [
           "||||",
           "||||",
@@ -3039,7 +5919,7 @@ const data = [
         ]
       },
       {
-        member: "Ito Riria",
+        member: "Itou Riria",
         slotsSold: [
           "||||",
           "x|x|x|x|x",
@@ -3408,7 +6288,7 @@ const data = [
         ]
       },
       {
-        member: "Ito Riria",
+        member: "Itou Riria",
         slotsSold: [
           "||||",
           "||||",
@@ -3735,7 +6615,7 @@ const data = [
         ]
       },
       {
-        member: "Ito Riria",
+        member: "Itou Riria",
         slotsSold: [
           "||||",
           "||||",
@@ -4184,7 +7064,7 @@ const data = [
         ]
       },
       {
-        member: "Ito Riria",
+        member: "Itou Riria",
         slotsSold: [
           "||||",
           "||||",
@@ -4606,6 +7486,39 @@ const membersdata = [
     status: ""
   },
   {
+    member: "Ikuta Erika",
+    kanji: "\u751F\u7530\u7D75\u68A8\u82B1",
+    furi: "\u3044\u304F\u305F \u3048\u308A\u304B",
+    gen: 1,
+    dob: "1997-01-22",
+    from: "\u30C7\u30E5\u30C3\u30BB\u30EB\u30C9\u30EB\u30D5",
+    bloodtype: "A",
+    height: 160,
+    status: "2021-12-31"
+  },
+  {
+    member: "Ikoma Rina",
+    kanji: "\u751F\u99D2 \u91CC\u5948",
+    furi: "\u3044\u3053\u307E \u308A\u306A",
+    gen: 1,
+    dob: "1995-12-29",
+    from: "\u79CB\u7530",
+    bloodtype: "AB",
+    height: 153,
+    status: "2018-05-06"
+  },
+  {
+    member: "Itou Marika",
+    kanji: "\u4F0A\u85E4 \u4E07\u7406\u83EF",
+    furi: "\u3044\u3068\u3046 \u307E\u308A\u304B",
+    gen: 1,
+    dob: "1996-02-20",
+    from: "\u795E\u5948\u5DDD",
+    bloodtype: "O",
+    height: 156,
+    status: "2017-12-23"
+  },
+  {
     member: "Inoue Sayuri",
     kanji: "\u4E95\u4E0A \u5C0F\u767E\u5408",
     furi: "\u3044\u306E\u3046\u3048 \u3055\u3086\u308A",
@@ -4615,6 +7528,39 @@ const membersdata = [
     bloodtype: "B",
     height: 156,
     status: "2020-04-27"
+  },
+  {
+    member: "Etou Misa",
+    kanji: "\u885B\u85E4 \u7F8E\u5F69",
+    furi: "\u3048\u3068\u3046 \u307F\u3055",
+    gen: 1,
+    dob: "1993-01-04",
+    bloodtype: "AB",
+    from: "\u5927\u5206",
+    height: 163,
+    status: "2019-03-31"
+  },
+  {
+    member: "Kawamura Mahiro",
+    kanji: "\u5DDD\u6751 \u771F\u6D0B",
+    furi: "\u304B\u308F\u3080\u3089 \u307E\u3072\u308D",
+    gen: 1,
+    dob: "1995-07-23",
+    from: "\u5927\u962A",
+    bloodtype: "A",
+    height: 158,
+    status: "2018-03-31"
+  },
+  {
+    member: "Kawago Hina",
+    kanji: "\u5DDD\u5F8C \u967D\u83DC",
+    furi: "\u304B\u308F\u3054 \u3072\u306A",
+    gen: 1,
+    dob: "1998-03-22",
+    from: "\u9577\u5D0E",
+    bloodtype: "O",
+    height: 161,
+    status: "2018-12-20"
   },
   {
     member: "Saito Asuka",
@@ -4628,15 +7574,37 @@ const membersdata = [
     status: ""
   },
   {
+    member: "Saitou Chiharu",
+    kanji: "\u658E\u85E4 \u3061\u306F\u308B",
+    furi: "\u3055\u3044\u3068\u3046 \u3061\u306F\u308B",
+    gen: 1,
+    dob: "1997-02-17",
+    from: "\u57FC\u7389",
+    bloodtype: "A",
+    height: 166,
+    status: "2018-07-16"
+  },
+  {
     member: "Saitou Yuuri",
     kanji: "\u6589\u85E4 \u512A\u91CC",
-    furi: "\u3055\u3055\u3044\u3068\u3046 \u3086\u3046\u308A",
+    furi: "\u3055\u3044\u3068\u3046 \u3086\u3046\u308A",
     gen: 1,
     dob: "1993-07-20",
     from: "\u6771\u4EAC",
     bloodtype: "O",
     height: 157,
     status: "2019-06-30"
+  },
+  {
+    member: "Sakurai Reika",
+    kanji: "\u685C\u4E95 \u73B2\u9999",
+    furi: "\u3055\u304F\u3089\u3044 \u308C\u3044\u304B",
+    gen: 1,
+    dob: "1994-05-16",
+    bloodtype: "A",
+    from: "\u795E\u5948\u5DDD",
+    height: 155,
+    status: "2019-09-01"
   },
   {
     member: "Takayama Kazumi",
@@ -4661,6 +7629,50 @@ const membersdata = [
     status: "2020-10-25"
   },
   {
+    member: "Nakamoto Himeka",
+    kanji: "\u4E2D\u5143 \u65E5\u82BD\u9999",
+    furi: "\u306A\u304B\u3082\u3068 \u3072\u3081\u304B",
+    gen: 1,
+    dob: "1996-04-13",
+    from: "\u5E83\u5CF6",
+    bloodtype: "O",
+    height: 161,
+    status: "2017-11-19"
+  },
+  {
+    member: "Nishino Nanase",
+    kanji: "\u897F\u91CE \u4E03\u702C",
+    furi: "\u306B\u3057\u306E \u306A\u306A\u305B",
+    gen: 1,
+    dob: "1994-05-25",
+    from: "\u5927\u962A",
+    bloodtype: "O",
+    height: 159,
+    status: "2018-12-31"
+  },
+  {
+    member: "Noujou Ami",
+    kanji: "\u80FD\u689D \u611B\u672A",
+    furi: "\u306E\u3046\u3058\u3087\u3046 \u3042\u307F",
+    gen: 1,
+    dob: "1994-10-18",
+    from: "\u795E\u5948\u5DDD",
+    bloodtype: "A",
+    height: 162,
+    status: "2018-12-15"
+  },
+  {
+    member: "Hashimoto Nanami",
+    kanji: "\u6A4B\u672C \u5948\u3005\u672A",
+    furi: "\u306F\u3057\u3082\u3068 \u306A\u306A\u307F",
+    gen: 1,
+    dob: "1993-02-20",
+    from: "\u5317\u6D77\u9053",
+    bloodtype: "B",
+    height: 163,
+    status: "2017-02-20"
+  },
+  {
     member: "Higuchi Hina",
     kanji: "\u6A0B\u53E3 \u65E5\u5948",
     furi: "\u3055\u3044\u3068\u3046  \u3042\u3059\u304B",
@@ -4670,6 +7682,17 @@ const membersdata = [
     bloodtype: "A",
     height: 161,
     status: ""
+  },
+  {
+    member: "Fukagawa Mai",
+    kanji: "\u6DF1\u5DDD \u9EBB\u8863",
+    furi: "\u3075\u304B\u304C\u308F \u307E\u3044",
+    gen: 1,
+    dob: "1991-03-29",
+    from: "\u9759\u5CA1",
+    bloodtype: "O",
+    height: 162,
+    status: "2016-06-16"
   },
   {
     member: "Hoshino Minami",
@@ -4694,6 +7717,17 @@ const membersdata = [
     status: "2021-07-13"
   },
   {
+    member: "Wakatsuki Yumi",
+    kanji: "\u82E5\u6708 \u4F51\u7F8E",
+    furi: "\u308F\u304B\u3064\u304D \u3086\u307F",
+    gen: 1,
+    dob: "1994-06-27",
+    from: "\u9759\u5CA1",
+    bloodtype: "O",
+    height: 157,
+    status: "2018-11-30"
+  },
+  {
     member: "Wada Maaya",
     kanji: "\u548C\u7530 \u307E\u3042\u3084",
     furi: "\u308F\u3060 \u307E\u3042\u3084",
@@ -4716,7 +7750,7 @@ const membersdata = [
     status: "2019-05-24"
   },
   {
-    member: "Ito Jyunna",
+    member: "Itou Jyunna",
     kanji: "\u4F0A\u85E4 \u7D14\u5948",
     furi: "\u3044\u3068\u3046 \u3058\u3085\u3093\u306A",
     gen: 2,
@@ -4725,6 +7759,17 @@ const membersdata = [
     bloodtype: "A",
     height: 166,
     status: "2021-08-31"
+  },
+  {
+    member: "Sagara Iori",
+    kanji: "\u76F8\u697D \u4F0A\u7E54",
+    furi: "\u3055\u304C\u3089 \u3044\u304A\u308A",
+    gen: 2,
+    dob: "1997-11-26",
+    from: "\u57FC\u7389",
+    bloodtype: "O",
+    height: 164,
+    status: "2018-07-16"
   },
   {
     member: "Sasaki Kotoko",
@@ -4815,7 +7860,7 @@ const membersdata = [
     status: "2021-08-31"
   },
   {
-    member: "Ito Riria",
+    member: "Itou Riria",
     kanji: "\u4F0A\u85E4 \u7406\u3005\u674F",
     furi: "\u3044\u3068\u3046 \u308A\u308A\u3042",
     gen: 3,

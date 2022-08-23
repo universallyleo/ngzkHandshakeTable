@@ -85,7 +85,7 @@ function processData(){
         mode="overallProgression";
     }
     if (seriesOpt == "receptionProgression"){
-        includings = selectedCDsData;
+        includings = selectedCDsData.reverse();
         members = selectedMembers;
         mode="receptionProgression";
         extra={atdraw: selectedDraw};
