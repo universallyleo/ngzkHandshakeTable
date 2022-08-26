@@ -37,7 +37,7 @@ let sortOpt="kana";
 let compareCD=false;
 let atdraw=-1;
 let capture=false;
-let selectedCD=data[data.length-1], compareToCDData;
+let selectedCD=data[data.length-1], compareToCDData, hideTable=false;
 
 function exportImg(canvas){
     var link=document.createElement("a");
@@ -129,12 +129,14 @@ $: if (!compareCD) {compare=null;compareToCDData=null;}
     <div class="advanceOption">
         <label>
             <input type="checkbox" name="compareCD" id="compareCD" bind:checked={compareCD}>
-            過去の売り上げとの差
+            過去との差
         </label>
         {#if compareCD}
-        <div in:fly="{{ x: 300, duration: 800 }}">
-            → 対象CD:
-            <SelectOneCD bind:selectedCDData={compareToCDData} exclude={selectedCD?[cdData(selectedCD.cd)]:[{value:-1}]}/>
+        <div style="display:flex; flex-grow:1" in:fly="{{ x: 300, duration: 800 }}">
+            → 
+            <span style="margin-right:3px">対象:
+                <SelectOneCD bind:selectedCDData={compareToCDData} exclude={selectedCD?[cdData(selectedCD.cd)]:[{value:-1}]}/>
+            </span>
                 <label>
                 <select
                     id="drawSelect"
@@ -147,7 +149,13 @@ $: if (!compareCD) {compare=null;compareToCDData=null;}
                 {/each}
                 </select>次受付</label>
             {#if atdraw>0}
+                <div in:fly="{{ x: 300, duration: 800 }}" style="margin-left:auto;margin-right:2px;width:max-content;">
                 <button on:click={()=>compare=getCompare()}>比べる</button>
+                <label style="margin-left:auto;">
+                    <input type="checkbox" name="hideTable" bind:value={hideTable}>
+                    完売表をかくす
+                </label>
+                </div>
             {/if}
         </div>
         {/if}
@@ -155,7 +163,7 @@ $: if (!compareCD) {compare=null;compareToCDData=null;}
 </div>
 
 <section id="slotstable" class="main">
-<SlotTable data={selectedCD} {filterOpt} {groupOpt} {sortOpt} {compare} {capture}/>
+<SlotTable data={selectedCD} {filterOpt} {groupOpt} {sortOpt} {compare} {capture} {hideTable}/>
 </section>
 
 <style>

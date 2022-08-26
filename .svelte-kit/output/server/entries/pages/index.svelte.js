@@ -1,5 +1,5 @@
 import { c as create_ssr_component, e as escape, n as null_to_empty, a as each, b as add_attribute, v as validate_component } from "../../_app/immutable/chunks/index-16508633.js";
-import { g as getMember, c as compareData, a as cdData, e as expandDataList, s as sortList, p as partitionToGroup, d as data, S as SelectOneCD } from "../../_app/immutable/chunks/SelectOneCD-1bc62451.js";
+import { g as getMember, c as compareData, a as cdData, e as expandDataList, s as sortList, p as partitionToGroup, d as data, S as SelectOneCD } from "../../_app/immutable/chunks/SelectOneCD-31777001.js";
 import { find, min } from "lodash-es";
 import "html2canvas";
 const DataRow_svelte_svelte_type_style_lang = "";
@@ -18,6 +18,7 @@ const DataRow = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { addClasses = "" } = $$props;
   let { compare = null } = $$props;
   let { capture } = $$props;
+  let { hideTable } = $$props;
   const decoratedItem = (c) => {
     if (c == "x")
       return { content: "x", classes: "NAslot" };
@@ -37,6 +38,8 @@ const DataRow = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     $$bindings.compare(compare);
   if ($$props.capture === void 0 && $$bindings.capture && capture !== void 0)
     $$bindings.capture(capture);
+  if ($$props.hideTable === void 0 && $$bindings.hideTable && hideTable !== void 0)
+    $$bindings.hideTable(hideTable);
   $$result.css.add(css$3);
   mbInfo = getMember(row.member);
   decoratedTbl = row.slotsSoldex.map((dayslots) => {
@@ -55,16 +58,16 @@ const DataRow = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     <div class="${"soldFraction svelte-1wjzmnk"}">${escape(row.numSold[0])}/${escape(row.numSold[1])}</div></td>
 
 
-${each(decoratedTbl, (daySlots) => {
+${!hideTable ? `${each(decoratedTbl, (daySlots) => {
     return `${each(daySlots, (slot, i) => {
       return `   
-    <td class="${[
+        <td class="${[
         escape(null_to_empty(slot.classes), true) + " svelte-1wjzmnk",
         i == daySlots.length - 1 ? "lastcell" : ""
       ].join(" ").trim()}">${slot.content != "x" ? `${escape(slot.content)}` : `${capture ? `x` : ``}`}
-        </td>`;
+            </td>`;
     })}`;
-  })}
+  })}` : ``}
 ${compare ? `<td class="${escape(null_to_empty(compareCellClasses), true) + " svelte-1wjzmnk"}"><div class="${"compareGrid svelte-1wjzmnk"}"><div>${escape(compareOutput.prev)}
                 ${compareOutput.extraprev ? `<br>${escape(compareOutput.extraprev)}` : ``}</div>
             <div>\u2192</div>
@@ -88,6 +91,7 @@ const RowGroups = create_ssr_component(($$result, $$props, $$bindings, slots) =>
   let { lastDraw } = $$props;
   let { compare = null } = $$props;
   let { capture } = $$props;
+  let { hideTable = false } = $$props;
   if ($$props.group === void 0 && $$bindings.group && group !== void 0)
     $$bindings.group(group);
   if ($$props.lastDraw === void 0 && $$bindings.lastDraw && lastDraw !== void 0)
@@ -96,6 +100,8 @@ const RowGroups = create_ssr_component(($$result, $$props, $$bindings, slots) =>
     $$bindings.compare(compare);
   if ($$props.capture === void 0 && $$bindings.capture && capture !== void 0)
     $$bindings.capture(capture);
+  if ($$props.hideTable === void 0 && $$bindings.hideTable && hideTable !== void 0)
+    $$bindings.hideTable(hideTable);
   $$result.css.add(css$2);
   return `<tr class="${"taggedRow svelte-179mrzs"}"><td${add_attribute("rowspan", group.has.length, 0)} class="${"tagCell svelte-179mrzs"}">${escape(group.label)}</td>
 	${validate_component(DataRow, "DataRow").$$render(
@@ -105,13 +111,25 @@ const RowGroups = create_ssr_component(($$result, $$props, $$bindings, slots) =>
       lastDraw,
       addClasses: group.has.length == 1 ? "topRow bottomRow" : "topRow",
       compare,
-      capture
+      capture,
+      hideTable
     },
     {},
     {}
   )}</tr>
 ${each(group.has.slice(1, -1), (row) => {
-    return `<tr class="${"normalRow svelte-179mrzs"}">${validate_component(DataRow, "DataRow").$$render($$result, { row, lastDraw, compare, capture }, {}, {})}
+    return `<tr class="${"normalRow svelte-179mrzs"}">${validate_component(DataRow, "DataRow").$$render(
+      $$result,
+      {
+        row,
+        lastDraw,
+        compare,
+        capture,
+        hideTable
+      },
+      {},
+      {}
+    )}
 	</tr>`;
   })}
 ${group.has.length > 1 ? `<tr class="${"svelte-179mrzs"}">${validate_component(DataRow, "DataRow").$$render(
@@ -121,7 +139,8 @@ ${group.has.length > 1 ? `<tr class="${"svelte-179mrzs"}">${validate_component(D
       lastDraw,
       addClasses: "bottomRow",
       compare,
-      capture
+      capture,
+      hideTable
     },
     {},
     {}
@@ -145,6 +164,7 @@ const SlotTable = create_ssr_component(($$result, $$props, $$bindings, slots) =>
   let { sortOpt } = $$props;
   let { compare = null } = $$props;
   let { capture } = $$props;
+  let { hideTable = false } = $$props;
   function filterList(list, option = filterOpt) {
     switch (option) {
       case "showall":
@@ -171,6 +191,8 @@ const SlotTable = create_ssr_component(($$result, $$props, $$bindings, slots) =>
     $$bindings.compare(compare);
   if ($$props.capture === void 0 && $$bindings.capture && capture !== void 0)
     $$bindings.capture(capture);
+  if ($$props.hideTable === void 0 && $$bindings.hideTable && hideTable !== void 0)
+    $$bindings.hideTable(hideTable);
   $$result.css.add(css$1);
   title = cdData(data2.cd).display;
   expandedData = expandDataList(data2);
@@ -183,22 +205,35 @@ const SlotTable = create_ssr_component(($$result, $$props, $$bindings, slots) =>
   }).numSold;
   capture = capture;
   title2 = compare ? cdData(compare.cdData.cd).display : "";
+  hideTable = compare ? hideTable : false;
   return `
 
 <div class="${"container svelte-81drp5"}"><table class="${"table-bordered svelte-81drp5"}"><caption class="${"text-center svelte-81drp5"}">${escape(title)} (\u6700\u5F8C\u66F4\u65B0\uFF1A${escape(lastDraw)}\u6B21\u53D7\u4ED8) 
-    ${compare ? `\xA0\xA0[ vs ${escape(title2)} ${escape(compare.atdraw)}\u6B21\u53D7\u4ED8 ]` : ``}</caption>
+    ${compare ? `${hideTable ? `<br>` : ``}
+      \xA0\xA0[ vs ${escape(title2)} ${escape(compare.atdraw)}\u6B21\u53D7\u4ED8 ]` : ``}</caption>
   <thead><tr>
       <th class="${"svelte-81drp5"}"></th>
       <th class="${"svelte-81drp5"}"><div class="${"soldFraction svelte-81drp5"}">${escape(totalSold[0])}/${escape(totalSold[1])}</div></th>
-      ${each(data2.meetDates, (date) => {
+      ${!hideTable ? `${each(data2.meetDates, (date) => {
     return `<th colspan="${"5"}" class="${"svelte-81drp5"}">${escape(date)}</th>`;
-  })}
+  })}` : ``}
       ${compare ? `<th class="${"svelte-81drp5"}">\u904E\u53BB\u3068\u306E\u5DEE</th>` : ``}</tr></thead>
   <tbody>${groupOpt == "none" ? `
       ${each(data2.table, (row) => {
     return `<tr>${validate_component(DataRow, "DataRow").$$render($$result, { row, lastDraw, compare, capture }, {}, {})}</tr>`;
   })}` : `${each(finalTb, (rowGp) => {
-    return `${validate_component(RowGroups, "RowGroups").$$render($$result, { group: rowGp, lastDraw, compare, capture }, {}, {})}`;
+    return `${validate_component(RowGroups, "RowGroups").$$render(
+      $$result,
+      {
+        group: rowGp,
+        lastDraw,
+        compare,
+        capture,
+        hideTable
+      },
+      {},
+      {}
+    )}`;
   })}`}</tbody></table></div>
 `;
 });
@@ -242,7 +277,7 @@ const Routes = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let sortOpt = "kana";
   let compareCD = false;
   let capture = false;
-  let selectedCD = data[data.length - 1], compareToCDData;
+  let selectedCD = data[data.length - 1], compareToCDData, hideTable = false;
   function getCompare() {
     return null;
   }
@@ -298,7 +333,7 @@ const Routes = create_ssr_component(($$result, $$props, $$bindings, slots) => {
                     </label>`;
     })}</div></li></ul></div>
     <div class="${"advanceOption svelte-1xvsvl6"}"><label><input type="${"checkbox"}" name="${"compareCD"}" id="${"compareCD"}" class="${"svelte-1xvsvl6"}"${add_attribute("checked", compareCD, 1)}>
-            \u904E\u53BB\u306E\u58F2\u308A\u4E0A\u3052\u3068\u306E\u5DEE
+            \u904E\u53BB\u3068\u306E\u5DEE
         </label>
         ${``}</div></div>
 
@@ -310,7 +345,8 @@ const Routes = create_ssr_component(($$result, $$props, $$bindings, slots) => {
         groupOpt,
         sortOpt,
         compare,
-        capture
+        capture,
+        hideTable
       },
       {},
       {}

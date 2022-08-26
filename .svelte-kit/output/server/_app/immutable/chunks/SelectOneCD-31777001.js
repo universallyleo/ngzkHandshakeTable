@@ -1,11 +1,12 @@
 import { c as create_ssr_component, a as each, b as add_attribute, e as escape } from "./index-16508633.js";
-import { concat, pullAll, without, differenceWith, isEqual, findIndex, zip } from "lodash-es";
+import { concat, pullAll, without, range, differenceWith, isEqual, findIndex, zip } from "lodash-es";
 const data = [
   {
     cd: {
       num: 17,
       type: "Single",
-      title: "\u30A4\u30F3\u30D5\u30EB\u30A8\u30F3\u30B5\u30FC"
+      title: "\u30A4\u30F3\u30D5\u30EB\u30A8\u30F3\u30B5\u30FC",
+      release: "2017-03-22"
     },
     lastDraw: 14,
     meetDates: [
@@ -607,7 +608,8 @@ const data = [
     cd: {
       num: 3,
       type: "Album",
-      title: "\u751F\u307E\u308C\u3066\u304B\u3089\u521D\u3081\u3066\u898B\u305F\u5922"
+      title: "\u751F\u307E\u308C\u3066\u304B\u3089\u521D\u3081\u3066\u898B\u305F\u5922",
+      release: "2017-05-24"
     },
     lastDraw: 10,
     meetDates: [
@@ -981,7 +983,8 @@ const data = [
     cd: {
       num: 18,
       type: "Single",
-      title: "\u9003\u3052\u6C34"
+      title: "\u9003\u3052\u6C34",
+      release: "2017-08-09"
     },
     lastDraw: 20,
     meetDates: [
@@ -1481,7 +1484,8 @@ const data = [
     cd: {
       num: 19,
       type: "Single",
-      title: "\u3044\u3064\u304B\u3067\u304D\u308B\u304B\u3089\u4ECA\u65E5\u3067\u304D\u308B"
+      title: "\u3044\u3064\u304B\u3067\u304D\u308B\u304B\u3089\u4ECA\u65E5\u3067\u304D\u308B",
+      release: "2018-04-25"
     },
     lastDraw: 14,
     meetDates: [
@@ -1938,7 +1942,8 @@ const data = [
     cd: {
       num: 1,
       type: "U.Album",
-      title: "\u50D5\u3060\u3051\u306E\u541B"
+      title: "\u50D5\u3060\u3051\u306E\u541B",
+      release: "2018-01-10"
     },
     lastDraw: 13,
     meetDates: [
@@ -2066,7 +2071,8 @@ const data = [
     cd: {
       num: 20,
       type: "Single",
-      title: "\u30B7\u30F3\u30AF\u30ED\u30CB\u30B7\u30C6\u30A3"
+      title: "\u30B7\u30F3\u30AF\u30ED\u30CB\u30B7\u30C6\u30A3",
+      release: "2018-04-25"
     },
     lastDraw: 14,
     meetDates: [
@@ -2492,7 +2498,8 @@ const data = [
     cd: {
       num: 21,
       type: "Single",
-      title: "\u30B8\u30B3\u30C1\u30E5\u30FC\u3067\u884C\u3053\u3046!"
+      title: "\u30B8\u30B3\u30C1\u30E5\u30FC\u3067\u884C\u3053\u3046!",
+      release: "2018-08-08"
     },
     lastDraw: 21,
     meetDates: [
@@ -2885,7 +2892,8 @@ const data = [
     cd: {
       num: 22,
       type: "Single",
-      title: "\u5E30\u308A\u9053\u306F\u9060\u56DE\u308A\u3057\u305F\u304F\u306A\u308B"
+      title: "\u5E30\u308A\u9053\u306F\u9060\u56DE\u308A\u3057\u305F\u304F\u306A\u308B",
+      release: "2018-11-14"
     },
     lastDraw: 19,
     meetDates: [
@@ -3234,7 +3242,8 @@ const data = [
     cd: {
       num: 4,
       type: "Album",
-      title: "\u4ECA\u304C\u601D\u3044\u51FA\u306B\u306A\u308B\u307E\u3067"
+      title: "\u4ECA\u304C\u601D\u3044\u51FA\u306B\u306A\u308B\u307E\u3067",
+      release: "2019-04-17"
     },
     lastDraw: 7,
     meetDates: [
@@ -3602,7 +3611,8 @@ const data = [
     cd: {
       num: 23,
       type: "Single",
-      title: "Sing Out!"
+      title: "Sing Out!",
+      release: "2019-05-29"
     },
     lastDraw: 17,
     meetDates: [
@@ -4069,7 +4079,8 @@ const data = [
     cd: {
       num: 24,
       type: "Single",
-      title: "\u591C\u660E\u3051\u307E\u3067\u5F37\u304C\u3089\u306A\u304F\u3066\u3082\u3044\u3044"
+      title: "\u591C\u660E\u3051\u307E\u3067\u5F37\u304C\u3089\u306A\u304F\u3066\u3082\u3044\u3044",
+      release: "2019-09-04"
     },
     lastDraw: 17,
     meetDates: [
@@ -4504,7 +4515,8 @@ const data = [
     cd: {
       num: 25,
       type: "Single",
-      title: "\u3057\u3042\u308F\u305B\u306E\u4FDD\u8B77\u8272"
+      title: "\u3057\u3042\u308F\u305B\u306E\u4FDD\u8B77\u8272",
+      release: "2020-03-25"
     },
     lastDraw: 20,
     meetDates: [
@@ -4909,7 +4921,8 @@ const data = [
     cd: {
       num: 26,
       type: "Single",
-      title: "\u50D5\u306F\u50D5\u3092\u597D\u304D\u306B\u306A\u308B"
+      title: "\u50D5\u306F\u50D5\u3092\u597D\u304D\u306B\u306A\u308B",
+      release: "2021-01-27"
     },
     lastDraw: 12,
     meetDates: [
@@ -5359,7 +5372,8 @@ const data = [
     cd: {
       num: 27,
       type: "Single",
-      title: "\u3054\u3081\u3093\u306DFingers crossed"
+      title: "\u3054\u3081\u3093\u306DFingers crossed",
+      release: "2021-06-09"
     },
     lastDraw: 15,
     meetDates: [
@@ -5822,7 +5836,8 @@ const data = [
     cd: {
       num: 28,
       type: "Single",
-      title: "\u541B\u306B\u53F1\u3089\u308C\u305F"
+      title: "\u541B\u306B\u53F1\u3089\u308C\u305F",
+      release: "2021-09-22"
     },
     lastDraw: 19,
     meetDates: [
@@ -6221,7 +6236,8 @@ const data = [
     cd: {
       num: 1,
       type: "Best",
-      title: "Time flies"
+      title: "Time flies",
+      release: "2021-12-15"
     },
     lastDraw: 14,
     meetDates: [
@@ -6509,7 +6525,8 @@ const data = [
     cd: {
       num: 29,
       type: "Single",
-      title: "Actually..."
+      title: "Actually...",
+      release: "2022-03-23"
     },
     lastDraw: 20,
     meetDates: [
@@ -7005,7 +7022,8 @@ const data = [
     cd: {
       num: 30,
       type: "Single",
-      title: "\u597D\u304D\u3068\u3044\u3046\u306E\u306F\u30ED\u30C3\u30AF\u3060\u305C!"
+      title: "\u597D\u304D\u3068\u3044\u3046\u306E\u306F\u30ED\u30C3\u30AF\u3060\u305C!",
+      release: "2022-08-31"
     },
     lastDraw: 4,
     meetDates: [
@@ -8309,9 +8327,6 @@ function getMember(name) {
     };
   }
 }
-function getMembers(listOfNames) {
-  return listOfNames.map((x) => getMember(x));
-}
 function involvedMembers(cdData2, dataform = "full") {
   return cdData2.table.map((x) => dataform == "name" ? x.member : getMember(x.member));
 }
@@ -8337,13 +8352,17 @@ const groupID2label = (id) => {
   }
 };
 const ordering = {
+  furi: (a, b) => a.localeCompare(b, "ja"),
   gen: (a, b) => a - b,
   group: (a, b) => {
     let o = ["grad", "sbt", "und", ...[...Array(5).keys()].map((x) => `gen${x + 1}`)];
     return o.indexOf(a) - o.indexOf(b);
   },
   "dob-year": (a, b) => a - b,
-  soldstatus: (a, b) => a ? -1 : b ? 1 : 0
+  soldstatus: (a, b) => a ? -1 : b ? 1 : 0,
+  genFuri: (a, b) => composeCompares([globalThis.gen, globalThis.furi], [a.gen, a.furi], [b.gen, b.furi]),
+  ISODateDescend: compareISODateDescend,
+  ISODateAscend: (a, b) => compareISODateDescend(b, a)
 };
 const opt2label = (opt, val) => {
   switch (opt) {
@@ -8495,8 +8514,7 @@ function sortPlainList(mbdatalist, opt = "kana") {
     }
     case "kana":
       return mbdatalist.sort((a, b) => {
-        let [aa, bb] = getMembers([a.member, b.member]);
-        return aa.furi.localeCompare(bb.furi, "ja");
+        return ordering.furi(getMember(a.member).furi, getMember(b.member).furi);
       });
     default:
       return mbdatalist;
@@ -8548,6 +8566,20 @@ function nthColor(n) {
   ];
   return n < palette.length ? palette[n] : palette[n % palette.length];
 }
+function compareISODateDescend(a, b) {
+  let da = a.split("-").map((x) => parseInt(x)), db = b.split("-").map((x) => parseInt(x));
+  return composeCompares(
+    [0, 0, 0].map(() => {
+      return (a2, b2) => b2 - a2;
+    }),
+    da,
+    db
+  );
+}
+function composeCompares(compfuncs, a, b) {
+  let c = range(compfuncs.length).map((i) => compfuncs[i](a[i], b[i]));
+  return c.reduce((accum, curr) => accum ? accum : curr);
+}
 const SelectOneCD = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { selectedCDData } = $$props;
   let { exclude = [{ value: -1 }] } = $$props;
@@ -8562,7 +8594,7 @@ const SelectOneCD = create_ssr_component(($$result, $$props, $$bindings, slots) 
   if ($$props.exclude === void 0 && $$bindings.exclude && exclude !== void 0)
     $$bindings.exclude(exclude);
   selectedCDData = data[data.length - 1 - selected];
-  return `<select id="${"cdSelect"}" name="${"cd"}">${each(selectables, (cdidx) => {
+  return `<select id="${"cdSelect"}" size="${"1"}" name="${"cd"}">${each(selectables, (cdidx) => {
     return `<option${add_attribute("value", cdidx[1], 0)}>${escape(cdidx[0].display)}</option>`;
   })}</select>`;
 });

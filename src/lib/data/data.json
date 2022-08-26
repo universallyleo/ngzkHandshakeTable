@@ -3,7 +3,8 @@
 		"cd": {
 			"num": 17,
 			"type": "Single",
-			"title": "インフルエンサー"
+			"title": "インフルエンサー",
+			"release": "2017-03-22"
 		},
 		"lastDraw": 14,
 		"meetDates": [
@@ -605,7 +606,8 @@
 		"cd": {
 			"num": 3,
 			"type": "Album",
-			"title": "生まれてから初めて見た夢"
+			"title": "生まれてから初めて見た夢",
+			"release": "2017-05-24"
 		},
 		"lastDraw": 10,
 		"meetDates": ["2017-07-16", "2017-07-17", "2017-07-23"],
@@ -807,7 +809,8 @@
 		"cd": {
 			"num": 18,
 			"type": "Single",
-			"title": "逃げ水"
+			"title": "逃げ水",
+			"release": "2017-08-09"
 		},
 		"lastDraw": 20,
 		"meetDates": [
@@ -1048,7 +1051,8 @@
 		"cd": {
 			"num": 19,
 			"type": "Single",
-			"title": "いつかできるから今日できる"
+			"title": "いつかできるから今日できる",
+			"release": "2018-04-25"
 		},
 		"lastDraw": 14,
 		"meetDates": [
@@ -1302,7 +1306,8 @@
 		"cd": {
 			"num": 1,
 			"type": "U.Album",
-			"title": "僕だけの君"
+			"title": "僕だけの君",
+			"release": "2018-01-10"
 		},
 		"lastDraw": 13,
 		"meetDates": ["2018-01-14", "2018-02-17", "2018-03-25"],
@@ -1370,7 +1375,8 @@
 		"cd": {
 			"num": 20,
 			"type": "Single",
-			"title": "シンクロニシティ"
+			"title": "シンクロニシティ",
+			"release": "2018-04-25"
 		},
 		"lastDraw": 14,
 		"meetDates": [
@@ -1558,7 +1564,8 @@
 		"cd": {
 			"num": 21,
 			"type": "Single",
-			"title": "ジコチューで行こう!"
+			"title": "ジコチューで行こう!",
+			"release": "2018-08-08"
 		},
 		"lastDraw": 21,
 		"meetDates": [
@@ -1734,7 +1741,8 @@
 		"cd": {
 			"num": 22,
 			"type": "Single",
-			"title": "帰り道は遠回りしたくなる"
+			"title": "帰り道は遠回りしたくなる",
+			"release": "2018-11-14"
 		},
 		"lastDraw": 19,
 		"meetDates": [
@@ -1894,7 +1902,8 @@
 		"cd": {
 			"num": 4,
 			"type": "Album",
-			"title": "今が思い出になるまで"
+			"title": "今が思い出になるまで",
+			"release": "2019-04-17"
 		},
 		"lastDraw": 7,
 		"meetDates": ["2019-04-28", "2019-05-01", "2019-05-11"],
@@ -2102,7 +2111,8 @@
 		"cd": {
 			"num": 23,
 			"type": "Single",
-			"title": "Sing Out!"
+			"title": "Sing Out!",
+			"release": "2019-05-29"
 		},
 		"lastDraw": 17,
 		"meetDates": [
@@ -2310,7 +2320,8 @@
 		"cd": {
 			"num": 24,
 			"type": "Single",
-			"title": "夜明けまで強がらなくてもいい"
+			"title": "夜明けまで強がらなくてもいい",
+			"release": "2019-09-04"
 		},
 		"lastDraw": 17,
 		"meetDates": [
@@ -2507,7 +2518,8 @@
 		"cd": {
 			"num": 25,
 			"type": "Single",
-			"title": "しあわせの保護色"
+			"title": "しあわせの保護色",
+			"release": "2020-03-25"
 		},
 		"lastDraw": 20,
 		"meetDates": [
@@ -2678,7 +2690,7 @@
 		]
 	},
 	{
-		"cd": { "num": 26, "type": "Single", "title": "僕は僕を好きになる" },
+		"cd": { "num": 26, "type": "Single", "title": "僕は僕を好きになる", "release": "2021-01-27" },
 		"lastDraw": 12,
 		"meetDates": [
 			"2021-01-31",
@@ -2872,7 +2884,12 @@
 		]
 	},
 	{
-		"cd": { "num": 27, "type": "Single", "title": "ごめんねFingers crossed" },
+		"cd": {
+			"num": 27,
+			"type": "Single",
+			"title": "ごめんねFingers crossed",
+			"release": "2021-06-09"
+		},
 		"lastDraw": 15,
 		"meetDates": [
 			"2021-06-13",
@@ -3073,7 +3090,7 @@
 		]
 	},
 	{
-		"cd": { "num": 28, "type": "Single", "title": "君に叱られた" },
+		"cd": { "num": 28, "type": "Single", "title": "君に叱られた", "release": "2021-09-22" },
 		"lastDraw": 19,
 		"meetDates": [
 			"2021-09-25",
@@ -3244,7 +3261,7 @@
 		]
 	},
 	{
-		"cd": { "num": 1, "type": "Best", "title": "Time flies" },
+		"cd": { "num": 1, "type": "Best", "title": "Time flies", "release": "2021-12-15" },
 		"lastDraw": 14,
 		"meetDates": ["2022-01-15", "2022-02-05", "2022-03-11"],
 		"sbt": [
@@ -3396,7 +3413,7 @@
 		]
 	},
 	{
-		"cd": { "num": 29, "type": "Single", "title": "Actually..." },
+		"cd": { "num": 29, "type": "Single", "title": "Actually...", "release": "2022-03-23" },
 		"lastDraw": 20,
 		"meetDates": [
 			"2022-04-16",
@@ -3642,7 +3659,8 @@
 		"cd": {
 			"num": 30,
 			"type": "Single",
-			"title": "\u597d\u304d\u3068\u3044\u3046\u306e\u306f\u30ed\u30c3\u30af\u3060\u305c!"
+			"title": "好きというのはロックだぜ!",
+			"release": "2022-08-31"
 		},
 		"lastDraw": 4,
 		"meetDates": [

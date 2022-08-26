@@ -1,4 +1,4 @@
-import { without, concat, pullAll } from 'lodash-es';
+import { without, concat, pullAll, range } from 'lodash-es';
 import members from '$lib/data/members.json';
 import fulldata from '$lib/data/data.json';
 
@@ -28,8 +28,8 @@ export function getMembers(listOfNames) {
 	return listOfNames.map((x) => getMember(x));
 }
 /**
- * @param  {object} cdData  full cd data object
- * @param  {string} dataform="full"  either "full"->return full member data or "name"->return only member name
+ * @param  {object} cdData - full cd data object
+ * @param  {string} dataform - default to "full", either "full"->return full member data,  or "name"->return only member name
  */
 export function involvedMembers(cdData, dataform = 'full') {
 	return cdData.table.map((x) => (dataform == 'name' ? x.member : getMember(x.member)));
@@ -61,14 +61,20 @@ const groupID2label = (id) => {
 	}
 };
 
+/** Compare functions for various orderings;
+ */
 export const ordering = {
+	furi: (a, b) => a.localeCompare(b, 'ja'),
 	gen: (a, b) => a - b,
 	group: (a, b) => {
 		let o = ['grad', 'sbt', 'und', ...[...Array(5).keys()].map((x) => `gen${x + 1}`)];
 		return o.indexOf(a) - o.indexOf(b);
 	},
 	'dob-year': (a, b) => a - b,
-	soldstatus: (a, b) => (a ? -1 : b ? 1 : 0)
+	soldstatus: (a, b) => (a ? -1 : b ? 1 : 0),
+	genFuri: (a, b) => composeCompares([this.gen, this.furi], [a.gen, a.furi], [b.gen, b.furi]),
+	ISODateDescend: compareISODateDescend,
+	ISODateAscend: (a, b) => compareISODateDescend(b, a)
 };
 
 export const opt2label = (opt, val) => {
@@ -168,8 +174,8 @@ export function expandDataList(cdData) {
 }
 
 /** total number sold up to and including atdraw
- * @param  {Object} mbdata //Member sold data, with non-empty slotssold
- * @param  {Integer} atdraw=-1
+ * @param  {Object} mbdata - Member sold data, with non-empty slotssold
+ * @param  {Integer} atdraw - default to -1, meaning after all draw completed
  */
 export function getNumSold(mbdata, atdraw = -1) {
 	if (!mbdata) return [0, 'N/A'];
@@ -199,10 +205,8 @@ function finalSoldoutDraw(mbdata) {
 }
 
 /**
- * @param  {Array.<Object>} mbDataList
- * @param  {string} opt='gen'
- * mbDataList is an array of JSON, each must consist of a "member" key
- * opt can be: gen, bloodtype, status, from, dob-year, dob-month
+ * @param  {Array.<Object>} mbDataList - an array of JSON, each must consist of a "member" key
+ * @param  {string} opt - one of gen, bloodtype, status, from, dob-year, dob-month
  */
 export function partitionToGroup(mbDataList, opt = 'gen') {
 	if (opt == 'none') return mbDataList;
@@ -270,9 +274,12 @@ function sortPlainList(mbdatalist, opt = 'kana') {
 			});
 		}
 		case 'kana':
+			// return mbdatalist.sort((a, b) => {
+			// 	let [aa, bb] = getMembers([a.member, b.member]);
+			// 	return aa.furi.localeCompare(bb.furi, 'ja');
+			// });
 			return mbdatalist.sort((a, b) => {
-				let [aa, bb] = getMembers([a.member, b.member]);
-				return aa.furi.localeCompare(bb.furi, 'ja');
+				return ordering.furi(getMember(a.member).furi, getMember(b.member).furi);
 			});
 		default:
 			return mbdatalist;
@@ -339,4 +346,21 @@ export function nthColor(n) {
 		'#000000' //black
 	];
 	return n < palette.length ? palette[n] : palette[n % palette.length];
+}
+
+function compareISODateDescend(a, b) {
+	let da = a.split('-').map((x) => parseInt(x)),
+		db = b.split('-').map((x) => parseInt(x));
+	return composeCompares(
+		[0, 0, 0].map(() => {
+			return (a, b) => b - a;
+		}),
+		da,
+		db
+	);
+}
+
+function composeCompares(compfuncs, a, b) {
+	let c = range(compfuncs.length).map((i) => compfuncs[i](a[i], b[i]));
+	return c.reduce((accum, curr) => (accum ? accum : curr));
 }

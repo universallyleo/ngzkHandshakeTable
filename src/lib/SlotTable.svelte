@@ -9,6 +9,7 @@ export let groupOpt;
 export let sortOpt;
 export let compare=null;
 export let capture;
+export let hideTable=false;
 
 $: title = cdData(data.cd).display;
 // array of {member, slotsSoldex: Array<Array<String>>, numSold: [int, int]}
@@ -18,6 +19,7 @@ $: lastDraw = data.lastDraw;
 $: totalSold = expandedData.reduce((prev,curr)=> { return {numSold: [prev.numSold[0]+curr.numSold[0], prev.numSold[1]+curr.numSold[1]]}; }).numSold;
 $: capture = capture;
 $: title2 = compare?cdData(compare.cdData.cd).display:"";
+$: hideTable = compare?hideTable:false; //force table to be shown when not comparing
   // console.log(curr.numSold););
 //$: console.log(expandData);
 // $: numSlots = data.meetDates.length*5;
@@ -55,6 +57,7 @@ function filterList(list, option=filterOpt) {
 <table class="table-bordered">
   <caption class="text-center">{title} (最後更新：{lastDraw}次受付) 
     {#if compare}
+      {#if hideTable} <br/> {/if}
       &nbsp;&nbsp;[ vs {title2} {compare.atdraw}次受付 ]
     {/if}
   </caption>
@@ -65,9 +68,11 @@ function filterList(list, option=filterOpt) {
       {/if} -->
       <th></th>
       <th><div class="soldFraction">{totalSold[0]}/{totalSold[1]}</div></th>
-      {#each data.meetDates as date}
-          <th colspan="5">{date}</th><!--calculate weekday-->
-      {/each}
+      {#if !hideTable}
+        {#each data.meetDates as date}
+            <th colspan="5">{date}</th><!--calculate weekday-->
+        {/each}
+      {/if}
       {#if compare}
         <th>過去との差</th>
       {/if}
@@ -81,7 +86,7 @@ function filterList(list, option=filterOpt) {
       {/each}
     {:else}
       {#each finalTb as rowGp}
-        <RowGroups group={rowGp} {lastDraw} {compare} {capture}/>
+        <RowGroups group={rowGp} {lastDraw} {compare} {capture} {hideTable}/>
       {/each} 
     {/if}
   </tbody>

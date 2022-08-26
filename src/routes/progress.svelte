@@ -1,7 +1,7 @@
 <script>	
 import data from '$lib/data/data.json';
 import membersdata from '$lib/data/members.json';
-import {cdData, involvedMembers, performedInCDs} from '$lib/util.js';
+import {cdData, getMember, involvedMembers, performedInCDs, ordering} from '$lib/util.js';
 import {union, range} from 'lodash-es';
 import { fly } from 'svelte/transition';
 import ProgressTable from '$lib/ProgressTable.svelte';
@@ -85,7 +85,7 @@ function processData(){
         mode="overallProgression";
     }
     if (seriesOpt == "receptionProgression"){
-        includings = selectedCDsData.reverse();
+        includings = selectedCDsData.sort((a,b)=>(ordering.ISODateAscend)(a.cd.release,b.cd.release));
         members = selectedMembers;
         mode="receptionProgression";
         extra={atdraw: selectedDraw};

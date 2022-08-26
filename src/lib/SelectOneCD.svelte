@@ -17,7 +17,7 @@ selectedCDData = data[data.length-1-selected];
 $: selectedCDData = data[data.length-1-selected];
 </script>
 
-<select id="cdSelect" name="cd" bind:value={selected}>
+<select id="cdSelect" size="1" name="cd" bind:value={selected}>
     {#each selectables as cdidx}
         <option value={cdidx[1]}>{cdidx[0].display}</option>
     {/each}

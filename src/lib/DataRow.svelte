@@ -6,6 +6,7 @@ export let lastDraw;
 export let addClasses="";
 export let compare=null;
 export let capture;
+export let hideTable;
 
 $: mbInfo = getMember(row.member);
 //$: splitTbl = row.slotsSold.map(x=>x.split("|"));
@@ -41,14 +42,16 @@ $: compareOutput = compare!=null?compareData(row,find(compare.cdData.table, ['me
 </td>
 
 <!-- TODO: look up member info to determine display method -->
-{#each decoratedTbl as daySlots}
-    {#each daySlots as slot,i (i)}
-    <!-- border-left with 1px is not renderable...... so just handle last cell is enough -->   
-    <td class={slot.classes} class:lastcell={i==daySlots.length-1}>
-        {#if slot.content != "x"} {slot.content} {:else if capture}x{/if}
-        </td>
+{#if !hideTable}
+    {#each decoratedTbl as daySlots}
+        {#each daySlots as slot,i (i)}
+        <!-- border-left with 1px is not renderable...... so just handle last cell is enough -->   
+        <td class={slot.classes} class:lastcell={i==daySlots.length-1}>
+            {#if slot.content != "x"} {slot.content} {:else if capture}x{/if}
+            </td>
+        {/each}
     {/each}
-{/each}
+{/if}
 {#if compare}
     <td class={compareCellClasses}>
         <div class="compareGrid">

@@ -4,6 +4,7 @@ export let group;
 export let lastDraw;
 export let compare=null;
 export let capture;
+export let hideTable=false;
 /*
 group: DataList
 interface DataList {
@@ -29,16 +30,17 @@ function taggingCellMOToggle(e) {
 		addClasses={group.has.length == 1 ? 'topRow bottomRow' : 'topRow'}
 		{compare}
 		{capture}
+		{hideTable}
 	/>
 </tr>
 {#each group.has.slice(1, -1) as row (row.member)}
 	<tr class="normalRow">
-		<DataRow {row} {lastDraw} {compare} {capture}/>
+		<DataRow {row} {lastDraw} {compare} {capture} {hideTable}/>
 	</tr>
 {/each}
 {#if group.has.length > 1}
 	<tr>
-		<DataRow row={group.has[group.has.length - 1]} {lastDraw} addClasses="bottomRow" {compare} {capture}/>
+		<DataRow row={group.has[group.has.length - 1]} {lastDraw} addClasses="bottomRow" {compare} {capture} {hideTable}/>
 	</tr>
 {/if}
 
