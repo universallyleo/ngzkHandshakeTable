@@ -12,7 +12,7 @@ export const ChocolateyInstall = "C:\\ProgramData\\chocolatey";
 export const ChocolateyLastPathUpdate = "132269448547353040";
 
 /** @type {import('$env/static/private').CHROME_CRASHPAD_PIPE_NAME} */
-export const CHROME_CRASHPAD_PIPE_NAME = "\\\\.\\pipe\\crashpad_20452_LVSGJUIKXJXMXPRN";
+export const CHROME_CRASHPAD_PIPE_NAME = "\\\\.\\pipe\\crashpad_5960_KPMHJMEULFUYVSID";
 
 /** @type {import('$env/static/private').COLOR} */
 export const COLOR = "1";
@@ -46,6 +46,12 @@ export const DriverData = "C:\\Windows\\System32\\Drivers\\DriverData";
 
 /** @type {import('$env/static/private').EDITOR} */
 export const EDITOR = "notepad.exe";
+
+/** @type {import('$env/static/private').FPS_BROWSER_APP_PROFILE_STRING} */
+export const FPS_BROWSER_APP_PROFILE_STRING = "Internet Explorer";
+
+/** @type {import('$env/static/private').FPS_BROWSER_USER_PROFILE_STRING} */
+export const FPS_BROWSER_USER_PROFILE_STRING = "Default";
 
 /** @type {import('$env/static/private').GIT_ASKPASS} */
 export const GIT_ASKPASS = "c:\\Users\\Aaron Chan\\AppData\\Local\\Programs\\Microsoft VS Code\\resources\\app\\extensions\\git\\dist\\askpass.sh";
