@@ -3,7 +3,7 @@ export const manifest = {
 	assets: new Set([".nojekyll","favicon.png"]),
 	mimeTypes: {".png":"image/png"},
 	_: {
-		entry: {"file":"_app/immutable/start-75caa00e.js","imports":["_app/immutable/start-75caa00e.js","_app/immutable/chunks/index-8ee25611.js","_app/immutable/chunks/paths-b9644fda.js"],"stylesheets":[]},
+		entry: {"file":"_app/immutable/start-2871398e.js","imports":["_app/immutable/start-2871398e.js","_app/immutable/chunks/index-8ee25611.js","_app/immutable/chunks/paths-b9644fda.js"],"stylesheets":[]},
 		nodes: [
 			() => import('./nodes/0.js'),
 			() => import('./nodes/1.js'),

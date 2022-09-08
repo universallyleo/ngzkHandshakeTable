@@ -8,8 +8,7 @@ declare module '$env/static/public' {
 declare module '$env/static/private' {
 	export const ALLUSERSPROFILE: string;
 	export const APPDATA: string;
-	export const ChocolateyInstall: string;
-	export const ChocolateyLastPathUpdate: string;
+	export const APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL: string;
 	export const CHROME_CRASHPAD_PIPE_NAME: string;
 	export const COLOR: string;
 	export const COLORTERM: string;
@@ -17,14 +16,10 @@ declare module '$env/static/private' {
 	export const CommonProgramW6432: string;
 	export const COMPUTERNAME: string;
 	export const ComSpec: string;
-	export const DokanLibrary1: string;
-	export const DokanLibrary1_LibraryPath_x64: string;
-	export const DokanLibrary1_LibraryPath_x86: string;
 	export const DriverData: string;
 	export const EDITOR: string;
 	export const FPS_BROWSER_APP_PROFILE_STRING: string;
 	export const FPS_BROWSER_USER_PROFILE_STRING: string;
-	export const GIT_ASKPASS: string;
 	export const HOME: string;
 	export const HOMEDRIVE: string;
 	export const HOMEPATH: string;
@@ -59,11 +54,11 @@ declare module '$env/static/private' {
 	export const NPM_PREFIX_NPM_CLI_JS: string;
 	export const NUMBER_OF_PROCESSORS: string;
 	export const OneDrive: string;
+	export const OneDriveConsumer: string;
 	export const ORIGINAL_XDG_CURRENT_DESKTOP: string;
 	export const OS: string;
 	export const Path: string;
 	export const PATHEXT: string;
-	export const PNPM_HOME: string;
 	export const PROCESSOR_ARCHITECTURE: string;
 	export const PROCESSOR_IDENTIFIER: string;
 	export const PROCESSOR_LEVEL: string;
@@ -85,11 +80,8 @@ declare module '$env/static/private' {
 	export const USERDOMAIN_ROAMINGPROFILE: string;
 	export const USERNAME: string;
 	export const USERPROFILE: string;
-	export const VBOX_MSI_INSTALL_PATH: string;
-	export const VSCODE_GIT_ASKPASS_EXTRA_ARGS: string;
-	export const VSCODE_GIT_ASKPASS_MAIN: string;
-	export const VSCODE_GIT_ASKPASS_NODE: string;
-	export const VSCODE_GIT_IPC_HANDLE: string;
 	export const windir: string;
-	export const ZES_ENABLE_SYSMAN: string;
+	export const WSLENV: string;
+	export const WT_PROFILE_ID: string;
+	export const WT_SESSION: string;
 }
