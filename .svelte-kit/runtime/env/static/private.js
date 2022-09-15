@@ -5,11 +5,8 @@ export const ALLUSERSPROFILE = "C:\\ProgramData";
 /** @type {import('$env/static/private').APPDATA} */
 export const APPDATA = "C:\\Users\\Aaron Chan\\AppData\\Roaming";
 
-/** @type {import('$env/static/private').APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL} */
-export const APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = "true";
-
 /** @type {import('$env/static/private').CHROME_CRASHPAD_PIPE_NAME} */
-export const CHROME_CRASHPAD_PIPE_NAME = "\\\\.\\pipe\\crashpad_10356_DONNGOBECBWXFJAA";
+export const CHROME_CRASHPAD_PIPE_NAME = "\\\\.\\pipe\\crashpad_12568_BPUQGNMEZDZGHXVA";
 
 /** @type {import('$env/static/private').COLOR} */
 export const COLOR = "1";
@@ -153,7 +150,7 @@ export const ORIGINAL_XDG_CURRENT_DESKTOP = "undefined";
 export const OS = "Windows_NT";
 
 /** @type {import('$env/static/private').Path} */
-export const Path = "C:\\Users\\Aaron Chan\\Documents\\GitHub\\ngzkHandshakeTable\\node_modules\\.bin;C:\\Users\\Aaron Chan\\Documents\\GitHub\\node_modules\\.bin;C:\\Users\\Aaron Chan\\Documents\\node_modules\\.bin;C:\\Users\\Aaron Chan\\node_modules\\.bin;C:\\Users\\node_modules\\.bin;C:\\node_modules\\.bin;C:\\Program Files\\nodejs\\node_modules\\npm\\node_modules\\@npmcli\\run-script\\lib\\node-gyp-bin;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Microsoft VS Code\\bin;C:\\Program Files\\nodejs\\;C:\\Users\\Aaron Chan\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\;C:\\Users\\Aaron Chan\\AppData\\Local\\Programs\\Python\\Python310\\;C:\\Users\\Aaron Chan\\AppData\\Local\\Microsoft\\WindowsApps;C:\\texlive\\2020\\bin\\win32;C:\\Users\\Aaron Chan\\AppData\\Local\\GitHubDesktop\\bin;C:\\Users\\Aaron Chan\\AppData\\Roaming\\npm";
+export const Path = "C:\\Users\\Aaron Chan\\Documents\\GitHub\\ngzkHandshakeTable\\node_modules\\.bin;C:\\Users\\Aaron Chan\\Documents\\GitHub\\node_modules\\.bin;C:\\Users\\Aaron Chan\\Documents\\node_modules\\.bin;C:\\Users\\Aaron Chan\\node_modules\\.bin;C:\\Users\\node_modules\\.bin;C:\\node_modules\\.bin;C:\\Program Files\\nodejs\\node_modules\\npm\\node_modules\\@npmcli\\run-script\\lib\\node-gyp-bin;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Microsoft VS Code\\bin;C:\\Program Files\\nodejs\\;C:\\texlive\\2022\\bin\\win32;C:\\Users\\Aaron Chan\\AppData\\Local\\Programs\\Python\\Python310\\Scripts\\;C:\\Users\\Aaron Chan\\AppData\\Local\\Programs\\Python\\Python310\\;C:\\Users\\Aaron Chan\\AppData\\Local\\Microsoft\\WindowsApps;C:\\texlive\\2020\\bin\\win32;C:\\Users\\Aaron Chan\\AppData\\Local\\GitHubDesktop\\bin;C:\\Users\\Aaron Chan\\AppData\\Roaming\\npm";
 
 /** @type {import('$env/static/private').PATHEXT} */
 export const PATHEXT = ".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.CPL";
@@ -223,12 +220,3 @@ export const USERPROFILE = "C:\\Users\\Aaron Chan";
 
 /** @type {import('$env/static/private').windir} */
 export const windir = "C:\\WINDOWS";
-
-/** @type {import('$env/static/private').WSLENV} */
-export const WSLENV = "WT_SESSION::WT_PROFILE_ID";
-
-/** @type {import('$env/static/private').WT_PROFILE_ID} */
-export const WT_PROFILE_ID = "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}";
-
-/** @type {import('$env/static/private').WT_SESSION} */
-export const WT_SESSION = "6b682285-c323-4b34-b031-b4b4fad47f3e";
