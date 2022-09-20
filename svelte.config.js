@@ -13,9 +13,10 @@ const config = {
 		paths: {
 			// change below to your repo name
 			base: dev ? '' : '/ngzkHandshakeTable'
-		},
+		}
 		// hydrate the <div id="svelte"> element in src/app.html
-		prerender: { default: true }
+		// needed to be remove from Sept 2022.
+		// prerender: { default: true }
 	}
 };
 

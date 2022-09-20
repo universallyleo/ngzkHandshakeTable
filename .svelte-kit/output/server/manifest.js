@@ -3,47 +3,38 @@ export const manifest = {
 	assets: new Set([".nojekyll","favicon.png"]),
 	mimeTypes: {".png":"image/png"},
 	_: {
-		entry: {"file":"_app/immutable/start-e4f73e31.js","imports":["_app/immutable/start-e4f73e31.js","_app/immutable/chunks/index-8ee25611.js","_app/immutable/chunks/paths-b9644fda.js"],"stylesheets":[]},
+		entry: {"file":"_app/immutable/start-9185f602.js","imports":["_app/immutable/start-9185f602.js","_app/immutable/chunks/index-206563de.js","_app/immutable/chunks/singletons-e5f4a5c4.js","_app/immutable/chunks/paths-6cd3a76e.js"],"stylesheets":[]},
 		nodes: [
 			() => import('./nodes/0.js'),
 			() => import('./nodes/1.js'),
-			() => import('./nodes/3.js'),
 			() => import('./nodes/2.js'),
+			() => import('./nodes/3.js'),
 			() => import('./nodes/4.js')
 		],
 		routes: [
 			{
-				type: 'page',
 				id: "",
 				pattern: /^\/$/,
 				names: [],
 				types: [],
-				path: "/",
-				shadow: null,
-				a: [0,2],
-				b: [1]
+				page: { layouts: [0], errors: [1], leaf: 2 },
+				endpoint: null
 			},
 			{
-				type: 'page',
 				id: "about",
 				pattern: /^\/about\/?$/,
 				names: [],
 				types: [],
-				path: "/about",
-				shadow: null,
-				a: [0,3],
-				b: [1]
+				page: { layouts: [0], errors: [1], leaf: 3 },
+				endpoint: null
 			},
 			{
-				type: 'page',
 				id: "progress",
 				pattern: /^\/progress\/?$/,
 				names: [],
 				types: [],
-				path: "/progress",
-				shadow: null,
-				a: [0,4],
-				b: [1]
+				page: { layouts: [0], errors: [1], leaf: 4 },
+				endpoint: null
 			}
 		],
 		matchers: async () => {

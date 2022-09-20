@@ -188,7 +188,7 @@ export function getNumSold(mbdata, atdraw = -1) {
 		: [expanded.filter((x) => (x.match(/^\d+$/) ? parseInt(x) <= bound : false)).length, total];
 }
 
-function finalSoldoutDraw(mbdata) {
+export function finalSoldoutDraw(mbdata) {
 	return mbdata
 		? expandSoldslots(mbdata)
 				.flat()

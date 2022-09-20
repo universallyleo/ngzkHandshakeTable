@@ -1,7 +1,7 @@
 <script>
 import RowGroups from "./RowGroups.svelte";
 import DataRow from "./DataRow.svelte";
-import {cdData, expandDataList, partitionToGroup, sortList} from '$lib/util.js';
+import {cdData, expandDataList, partitionToGroup, sortList, finalSoldoutDraw} from '$lib/util.js';
 export let data;
 //export let group="gen"; //allow: gen, dob-year, dob-month, bloodtype, from
 export let filterOpt;
@@ -39,6 +39,8 @@ function filterList(list, option=filterOpt) {
 			return list;
 		case "hasunsold":
       return list.filter(x=>x.numSold[0]<x.numSold[1]);
+    case "hasunsold+latest":
+      return list.filter(x=>x.numSold[0]<x.numSold[1] || finalSoldoutDraw(x)==lastDraw);
     case "hassoldout":
       return list.filter(x=>x.numSold[0]>0);
     case "hassoldoutnonfull":
