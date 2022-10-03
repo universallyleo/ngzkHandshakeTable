@@ -12,7 +12,7 @@ const error_template = ({ status, message }) => "<!DOCTYPE html>\n<html lang=\"e
 
 let read = null;
 
-set_paths({"base":"/ngzkHandshakeTable","assets":""});
+set_paths({"base":"","assets":""});
 
 let default_protocol = 'https';
 

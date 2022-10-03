@@ -1,5 +1,5 @@
 <script>	
-import data from '$lib/data/data.json';
+// import data from '$lib/data/data.json';
 import membersdata from '$lib/data/members.json';
 import {cdData, involvedMembers, performedInCDs, ordering} from '$lib/util.js';
 import {union, range, includes} from 'lodash-es';
@@ -9,6 +9,9 @@ import SelectOneCD from '$lib/SelectOneCD.svelte';
 import SelectCDs from '$lib/SelectCDs.svelte';
 import RemoveCDTypes from '$lib/RemoveCDTypes.svelte';
 import SelectMembersPanel from '$lib/SelectMembersPanel.svelte';
+
+export let data;
+const fulldata=data.arr;
 
 let seriesTypes = [
     {"display": "個別円盤の各受付完売数推移", "value": "cdProgression"}, 
@@ -24,9 +27,8 @@ let fixOpt = "fixCD";
 let mode = "fixCD";
 
 let members = ["Yumiki Nao", "Kanagawa Saya", "Sato Kaede"];
-let includings = [data[data.length-1]];
-
-let selectedCD=data[data.length-1];
+let includings = [fulldata[fulldata.length-1]];
+let selectedCD=fulldata[fulldata.length-1];
 let selectedMembers=members;
 let selectables=involvedMembers(selectedCD);
 let removeTypes = [];
@@ -48,23 +50,23 @@ $: {
         }
     }
     if (seriesOpt == "overallProgression"){
-        selectables = union(data.map(x=>involvedMembers(x)).flat());
+        selectables = union(fulldata.map(x=>involvedMembers(x)).flat());
     }
     if (seriesOpt == "receptionProgression"){
-        selectables = union(data.map(x=>involvedMembers(x)).flat());
+        selectables = union(fulldata.map(x=>involvedMembers(x)).flat());
         lastDraw = selectedCDsData.length>1?Math.max(...(selectedCDsData.map(x=>x.lastDraw))):1;
     }
 }
 
 function findStartingCD(memberNameList){
-    for (let i=0; i<data.length; i++){
+    for (let i=0; i<fulldata.length; i++){
         let found = false;
         for (let mb of memberNameList){
-            found ||= !!data[i].table.find((x)=>x.member==mb);
+            found ||= !!fulldata[i].table.find((x)=>x.member==mb);
         }
         if (found) return i;
     }
-    return data.length; //everyone in list not in any CD, something is strange
+    return fulldata.length; //everyone in list not in any CD, something is strange
 }
 
 function processData(){
@@ -82,7 +84,7 @@ function processData(){
     }
     if (seriesOpt == "overallProgression"){
         //should produce error if all MB not in any recorded cd; but this should not happen
-        includings = data.slice(findStartingCD(selectedMembers)).filter(x=>!includes(removeTypes, x.cd.type));  
+        includings = fulldata.slice(findStartingCD(selectedMembers)).filter(x=>!includes(removeTypes, x.cd.type));  
         members = selectedMembers;
         mode="overallProgression";
     }
@@ -104,7 +106,8 @@ function processData(){
     <ul class="twocols">
         <li>
             <div class="leftcol">系列構成:</div>
-            <div class="rightcol">{#each seriesTypes as ser}
+            <div class="rightcol">
+                {#each seriesTypes as ser}
                 <label>
                     <input type="radio" name="seriesOpt" bind:group={seriesOpt} id={ser.value} value={ser.value}>
                     {ser.display}

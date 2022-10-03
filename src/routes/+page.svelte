@@ -1,11 +1,14 @@
 <script>
-import data from '$lib/data/data.json';
+//import data from '$lib/data/data.json';
 import {cdData} from '$lib/util.js';
 import { min } from 'lodash-es';
 import html2canvas from "html2canvas";
 import SlotTable from '$lib/SlotTable.svelte';
 import SelectOneCD from '$lib/SelectOneCD.svelte';
 import { fly,fade } from 'svelte/transition';
+
+export let data;
+const fulldata = data.arr;
 
 let selected = 0;
 
@@ -38,12 +41,12 @@ let sortOpt="kana";
 let compareCD=false;
 let atdraw=-1;
 let capture=false;
-let selectedCD=data[data.length-1], compareToCDData, hideTable=false;
+let selectedCD=fulldata[fulldata.length-1], compareToCDData, hideTable=false;
 
 function exportImg(canvas){
     var link=document.createElement("a");
     document.body.appendChild(link);
-    link.download = `${data[selected].cd.num}${data[selected].cd.type}-${data[selected].lastDraw}.jpg`;
+    link.download = `${fulldata[selected].cd.num}${fulldata[selected].cd.type}-${fulldata[selected].lastDraw}.jpg`;
     link.href = canvas.toDataURL();
     link.target = '_blank';
     link.click();
@@ -100,12 +103,14 @@ $: if (!compareCD) {compare=null;compareToCDData=null;}
             </li>
             <li>
                 <div class="leftcol">Group:</div>
-                <div class="rightcol">{#each groupMethod as grp}
+                <div class="rightcol">
+                    {#each groupMethod as grp}
                     <label>
                         <input type="radio" name="groupOpt" bind:group={groupOpt} id={grp.value} value={grp.value}>
                         {grp.display}
                     </label>
-                    {/each}</div>
+                    {/each}
+                </div>
             </li>
             <li>
                 <div class="leftcol">Filter:</div>

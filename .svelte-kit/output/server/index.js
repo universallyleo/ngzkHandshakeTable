@@ -1907,7 +1907,7 @@ async function respond(request, options, state) {
     cookies,
     getClientAddress: state.getClientAddress || (() => {
       throw new Error(
-        `${"@sveltejs/adapter-static"} does not specify getClientAddress. Please raise an issue`
+        `${"@sveltejs/adapter-auto"} does not specify getClientAddress. Please raise an issue`
       );
     }),
     locals: {},
@@ -2127,7 +2127,7 @@ const error_template = ({ status, message }) => '<!DOCTYPE html>\n<html lang="en
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n";
 let read = null;
-set_paths({ "base": "/ngzkHandshakeTable", "assets": "" });
+set_paths({ "base": "", "assets": "" });
 let default_protocol = "https";
 function override(settings) {
   default_protocol = settings.protocol || default_protocol;
