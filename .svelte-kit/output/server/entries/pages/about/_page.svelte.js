@@ -1,4 +1,4 @@
-import { c as create_ssr_component } from "../../../_app/immutable/chunks/index-16508633.js";
+import { c as create_ssr_component } from "../../../chunks/index.js";
 const _page_svelte_svelte_type_style_lang = "";
 const css = {
   code: "h2.svelte-7pelpo{margin-bottom:2px}ul.svelte-7pelpo{margin-top:2px}",
