@@ -149,7 +149,7 @@ function processData(){
                     </select>
                 </div>
                 <div class="cdList" in:fly="{{ x: 200, duration: 700 }}">
-                    <SelectCDs bind:selectedCDsData={selectedCDsData} {selectables}/>
+                    <SelectCDs allCDData={fulldata} bind:selectedCDsData={selectedCDsData} {selectables}/>
                 </div>
                 {/if}
             </div>
@@ -165,7 +165,7 @@ function processData(){
             {#if seriesOpt=="receptionProgression"}
             <div in:fly="{{ x: 200, duration: 700 }}"> 
                 <div style="margin: 5px; padding-bottom: 5px; border-bottom: solid 1px black;">
-                    <SelectCDs bind:selectedCDsData={selectedCDsData} selectAllButton={true} />
+                    <SelectCDs allCDData={fulldata} bind:selectedCDsData={selectedCDsData} selectAllButton={true} />
                 </div>
                 <div style="margin-top: 1ch; padding-bottom: 5px; border-bottom: solid 1px black;">
                     (N= 

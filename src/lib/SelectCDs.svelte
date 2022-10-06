@@ -1,18 +1,19 @@
 <script>
-import data from '$lib/data/data.json';
+//import allCDData from '$lib/data/data.json';
 import {cdData} from '$lib/util.js';
 import {find} from 'lodash-es';
 import StateButton from '$lib/StateButton.svelte';
 
+export let allCDData;
 export let selectAllButton=false;
 export let selectedCDsData;
-export let selectables = data.map(x=> cdData(x.cd)).reverse();
+export let selectables = allCDData.map(x=> cdData(x.cd)).reverse();
 
 let selectedCDs = selectables.map(x=>x.value);
 
 const toggleSelectAll = (txt) => selectedCDs = txt.match(/選択$/)?selectables.map(x=>x.value):[];
 
-$: selectedCDsData = selectedCDs.map( x => find(data, y=> cdData(y.cd).value===x) );
+$: selectedCDsData = selectedCDs.map( x => find(allCDData, y=> cdData(y.cd).value===x) );
 </script>
 
 {#if selectAllButton}
