@@ -42,6 +42,7 @@ let compareCD=false;
 let atdraw=-1;
 let capture=false;
 let selectedCD=fulldata[fulldata.length-1], compareToCDData, hideTable=false;
+//console.log(selectedCD.lastDraw)
 
 function exportImg(canvas){
     var link=document.createElement("a");
