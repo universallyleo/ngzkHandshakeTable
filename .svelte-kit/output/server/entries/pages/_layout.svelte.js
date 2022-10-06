@@ -1,5 +1,5 @@
-import { c as create_ssr_component, e as escape } from "../../chunks/index.js";
-import { b as base } from "../../chunks/paths.js";
+import { c as create_ssr_component, e as escape } from "../../_app/immutable/chunks/index-16508633.js";
+import { b as base } from "../../_app/immutable/chunks/paths-b9644fda.js";
 const _layout_svelte_svelte_type_style_lang = "";
 const css = {
   code: `:root{font-family:'\u30E1\u30A4\u30EA\u30AA', "Meiryo", "\u30D2\u30E9\u30AE\u30CE\u89D2\u30B4 Pro", "Hiragino Kaku Gothic Pro", "\u6E38\u30B4\u30B7\u30C3\u30AF\u4F53", "Yu Gothic", YuGothic,\r

@@ -8,7 +8,8 @@ const config = {
 	kit: {
 		adapter: adapter({
 			pages: 'docs',
-			assets: 'docs'
+			assets: 'docs',
+			fallback: 'index.html'
 		}),
 		paths: {
 			// change below to your repo name

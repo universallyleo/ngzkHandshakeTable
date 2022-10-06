@@ -1,7 +1,7 @@
+import * as module from '../entries/pages/_layout.svelte.js';
 
-
+export { module };
 export const index = 2;
-export const component = async () => (await import('../entries/pages/_page.svelte.js')).default;
-export const file = '_app/immutable/components/pages/_page.svelte-1654361d.js';
-export const imports = ["_app/immutable/components/pages/_page.svelte-1654361d.js","_app/immutable/chunks/index-206563de.js","_app/immutable/chunks/index-585f75c3.js"];
-export const stylesheets = ["_app/immutable/assets/_page-4ac45655.css"];
+export const file = '_app/immutable/pages/_layout.svelte-34cf876a.js';
+export const imports = ["_app/immutable/pages/_layout.svelte-34cf876a.js","_app/immutable/chunks/index-1f84a181.js","_app/immutable/chunks/paths-b9644fda.js"];
+export const stylesheets = ["_app/immutable/assets/+layout-a9419390.css"];

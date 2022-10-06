@@ -3,38 +3,91 @@ export const manifest = {
 	assets: new Set([".nojekyll","favicon.png"]),
 	mimeTypes: {".png":"image/png"},
 	_: {
-		entry: {"file":"_app/immutable/start-be59a32a.js","imports":["_app/immutable/start-be59a32a.js","_app/immutable/chunks/index-206563de.js","_app/immutable/chunks/singletons-0699b030.js","_app/immutable/chunks/paths-6cd3a76e.js"],"stylesheets":[]},
+		entry: {"file":"_app/immutable/start-b742ef48.js","imports":["_app/immutable/start-b742ef48.js","_app/immutable/chunks/index-1f84a181.js","_app/immutable/chunks/paths-b9644fda.js"],"stylesheets":[]},
 		nodes: [
 			() => import('./nodes/0.js'),
 			() => import('./nodes/1.js'),
 			() => import('./nodes/2.js'),
 			() => import('./nodes/3.js'),
-			() => import('./nodes/4.js')
+			() => import('./nodes/4.js'),
+			() => import('./nodes/5.js'),
+			() => import('./nodes/6.js'),
+			() => import('./nodes/7.js')
 		],
 		routes: [
 			{
-				id: "",
-				pattern: /^\/$/,
+				type: 'endpoint',
+				id: "+layout.server",
+				pattern: /^\/\+layout\.server$/,
 				names: [],
 				types: [],
-				page: { layouts: [0], errors: [1], leaf: 2 },
-				endpoint: null
+				load: () => import('./entries/endpoints/_layout.server.js')
 			},
 			{
-				id: "about",
-				pattern: /^\/about\/?$/,
+				type: 'page',
+				id: "+layout",
+				pattern: /^\/\+layout\/?$/,
 				names: [],
 				types: [],
-				page: { layouts: [0], errors: [1], leaf: 3 },
-				endpoint: null
+				path: "/+layout",
+				shadow: null,
+				a: [0,2],
+				b: [1]
 			},
 			{
-				id: "progress",
-				pattern: /^\/progress\/?$/,
+				type: 'page',
+				id: "+page",
+				pattern: /^\/\+page\/?$/,
 				names: [],
 				types: [],
-				page: { layouts: [0], errors: [1], leaf: 4 },
-				endpoint: null
+				path: "/+page",
+				shadow: null,
+				a: [0,3],
+				b: [1]
+			},
+			{
+				type: 'page',
+				id: "about/+page",
+				pattern: /^\/about\/\+page\/?$/,
+				names: [],
+				types: [],
+				path: "/about/+page",
+				shadow: null,
+				a: [0,4],
+				b: [1]
+			},
+			{
+				type: 'page',
+				id: "progress/+page",
+				pattern: /^\/progress\/\+page\/?$/,
+				names: [],
+				types: [],
+				path: "/progress/+page",
+				shadow: null,
+				a: [0,5],
+				b: [1]
+			},
+			{
+				type: 'page',
+				id: "progress/ProgressGraph",
+				pattern: /^\/progress\/ProgressGraph\/?$/,
+				names: [],
+				types: [],
+				path: "/progress/ProgressGraph",
+				shadow: null,
+				a: [0,6],
+				b: [1]
+			},
+			{
+				type: 'page',
+				id: "progress/ProgressTable",
+				pattern: /^\/progress\/ProgressTable\/?$/,
+				names: [],
+				types: [],
+				path: "/progress/ProgressTable",
+				shadow: null,
+				a: [0,7],
+				b: [1]
 			}
 		],
 		matchers: async () => {
