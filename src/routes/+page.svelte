@@ -94,7 +94,7 @@ $: if (!compareCD) {compare=null;compareToCDData=null;}
             <li>
                 <div class="leftcol">CD:</div>
                 <div class="rightcol">
-                    <SelectOneCD bind:selectedCDData={selectedCD} />
+                    <SelectOneCD  allCDData={fulldata} bind:selectedCDData={selectedCD} />
                 </div>
                 
                 <div class="print">
@@ -142,7 +142,7 @@ $: if (!compareCD) {compare=null;compareToCDData=null;}
         <div style="display:flex; flex-grow:1" in:fly="{{ x: 300, duration: 800 }}">
             → 
             <span style="margin-right:3px">対象:
-                <SelectOneCD bind:selectedCDData={compareToCDData} exclude={selectedCD?[cdData(selectedCD.cd)]:[{value:-1}]}/>
+                <SelectOneCD allCDData={fulldata} bind:selectedCDData={compareToCDData} exclude={selectedCD?[cdData(selectedCD.cd)]:[{value:-1}]}/>
             </span>
                 <label>
                 <select

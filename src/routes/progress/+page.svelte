@@ -46,7 +46,7 @@ $: {
             selectables = involvedMembers(selectedCD);
         }
         if (fixOpt=="fixMember"){
-            selectables = performedInCDs(fixingMember).map(x=>cdData(x)).reverse();
+            selectables = performedInCDs(fulldata, fixingMember).map(x=>cdData(x)).reverse();
         }
     }
     if (seriesOpt == "overallProgression"){
@@ -131,7 +131,7 @@ function processData(){
                 </div>
                 {#if fixOpt=="fixCD"} 
                 <div class="selectFix" in:fly="{{ x: 200, duration: 700 }}"> 
-                    <SelectOneCD bind:selectedCDData={selectedCD} />
+                    <SelectOneCD allCDData={fulldata} bind:selectedCDData={selectedCD} />
                 </div>
                 <div class="longSelection" in:fly="{{ x: 200, duration: 700 }}">
                     <SelectMembersPanel bind:selectedMembers={selectedMembers} {selectables} />

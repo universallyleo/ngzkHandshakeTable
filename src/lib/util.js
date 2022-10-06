@@ -1,6 +1,6 @@
 import { without, concat, pullAll, range } from 'lodash-es';
 import members from '$lib/data/members.json';
-import fulldata from '$lib/data/data.json';
+// import fulldata from '$lib/data/data.json';
 
 export const isISODate = (d) => d.match(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/);
 export const isExpandedDatalist = (l) => 'slotsSoldex' in l[0];
@@ -35,7 +35,7 @@ export function involvedMembers(cdData, dataform = 'full') {
 	return cdData.table.map((x) => (dataform == 'name' ? x.member : getMember(x.member)));
 }
 
-export function performedInCDs(memberName) {
+export function performedInCDs(fulldata, memberName) {
 	return fulldata.filter((x) => !!x.table.find((y) => y.member == memberName)).map((x) => x.cd);
 }
 
