@@ -16,6 +16,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          # repository: universallyleo/ngzkHandshakeScrape
+          ref: main
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
@@ -24,3 +28,8 @@ jobs:
       - run: npm ci # clean install
       - run: npm run build
       # - run: npm test
+
+      - name: Auto commit
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Github Action auto update on ${{ env.today }}
