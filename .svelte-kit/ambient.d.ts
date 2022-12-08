@@ -55,6 +55,7 @@ declare module '$env/static/private' {
 	export const GITHUB_HEAD_REF: string;
 	export const npm_config_userconfig: string;
 	export const npm_config_local_prefix: string;
+	export const SYSTEMD_EXEC_PID: string;
 	export const npm_config_engine_strict: string;
 	export const GITHUB_GRAPHQL_URL: string;
 	export const COLOR: string;
@@ -110,8 +111,6 @@ declare module '$env/static/private' {
 	export const GITHUB_ACTION_REF: string;
 	export const DEBIAN_FRONTEND: string;
 	export const GITHUB_ACTIONS: string;
-	export const STATS_KEEPALIVE: string;
-	export const STATS_PFS: string;
 	export const npm_package_version: string;
 	export const npm_lifecycle_event: string;
 	export const GITHUB_REF_PROTECTED: string;
@@ -210,6 +209,7 @@ declare module '$env/dynamic/private' {
 		GITHUB_HEAD_REF: string;
 		npm_config_userconfig: string;
 		npm_config_local_prefix: string;
+		SYSTEMD_EXEC_PID: string;
 		npm_config_engine_strict: string;
 		GITHUB_GRAPHQL_URL: string;
 		COLOR: string;
@@ -265,8 +265,6 @@ declare module '$env/dynamic/private' {
 		GITHUB_ACTION_REF: string;
 		DEBIAN_FRONTEND: string;
 		GITHUB_ACTIONS: string;
-		STATS_KEEPALIVE: string;
-		STATS_PFS: string;
 		npm_package_version: string;
 		npm_lifecycle_event: string;
 		GITHUB_REF_PROTECTED: string;
