@@ -2,7 +2,7 @@ name: Update JSON weekly
 
 on:
   schedule:
-    - cron: 2 5 * * THU
+    - cron: '2 5 * * THU'
 
 # env:
 #     NAME: value
