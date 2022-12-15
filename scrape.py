@@ -292,6 +292,8 @@ if __name__ == "__main__":
         print(log)
         sys.exit()
 
+    cd["lastDraw"] = newlastdraw
+
     for mb in tabledata:
         old = [
             {
