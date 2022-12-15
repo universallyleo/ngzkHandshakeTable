@@ -7497,7 +7497,7 @@ const data = [
       title: "\u3053\u3053\u306B\u306F\u306A\u3044\u3082\u306E",
       release: "2022-12-07"
     },
-    lastDraw: 5,
+    lastDraw: 6,
     meetDates: [
       "2022-12-25",
       "2023-01-08",
