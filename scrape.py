@@ -6,9 +6,12 @@ import requests
 from io import open as iopen  # to make sure we are not using File.open
 import json
 from bs4 import BeautifulSoup
+import firebase_admin
+from firebase_admin import credentials, firestore
 
 # get environment variable (stored under vercel project setting)
 forTUNE_data = json.loads(os.environ["COOKIES"])
+firebase_cred = json.loads(os.environ["FIREBASE_SERVICE_ACCOUNT_KEY"])
 
 cookies = forTUNE_data["cookies"]
 user_agent = forTUNE_data["user_agent"]
@@ -221,6 +224,33 @@ def updateMBTable(old, new, newentry):
     return old
 
 
+def updateToFirebase(newlastdraw, tabledata):
+    #############################
+    # initialise firebase
+    #############################
+    log = "Initialising Firebase\n"
+    if not firebase_admin._apps:
+        cred = credentials.Certificate(firebase_cred)
+        firebase_admin.initialize_app(cred)
+    db = firestore.client()
+    log += "Requesting table from Firebase\n"
+    tables_ref = db.collection("tables")
+    queryres = (
+        tables_ref.where("cd.num", "==", CDNUM)
+        .where("cd.type", "==", CDTYPE)
+        .limit(1)
+        .get()[0]
+    )
+    cd_ref = queryres.reference
+    #############################
+    # Update firebase record
+    #############################
+    log += "Update data to Firebase\n"
+    cd_ref.update({"lastDraw": newlastdraw, "table": tabledata})
+    log += "Firebase update finished\n"
+    return log
+
+
 ####################################################
 ###########   Main Program Starts Here   ###########
 ####################################################
@@ -323,5 +353,10 @@ if __name__ == "__main__":
     #############################
     with iopen(str(f"{datafolder}data.json"), "w") as outfile:
         json.dump(fulldata, outfile, indent=3)
+
+    #############################
+    # Firebase manipulation
+    #############################
+    log += updateToFirebase(newlastdraw, tabledata)
 
     print(log)
