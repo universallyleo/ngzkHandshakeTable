@@ -2,13 +2,7 @@ name: Update JSON weekly
 
 on:
   schedule:
-    - cron: '40 8 * * THU'
-    #- cron: '5 5 * * THU'
-#on:
-#  push:
-#    branches: [main]
-#  pull_request:
-#    branches: [main]
+    - cron: '3 5 * * THU'
 
 # env:
 #     NAME: value
