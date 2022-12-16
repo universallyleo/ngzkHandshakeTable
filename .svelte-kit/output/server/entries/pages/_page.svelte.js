@@ -4,7 +4,7 @@ import { find, min } from "lodash-es";
 import "html2canvas";
 const DataRow_svelte_svelte_type_style_lang = "";
 const css$3 = {
-  code: `.soldFraction.svelte-1wjzmnk{display:inline;float:right;color:#777}.memberName.svelte-1wjzmnk{width:240px;max-width:300px;padding-left:.4em;padding-right:.2em;border-right:1px solid black;border-top:1px solid #ddd;border-bottom:1px solid #ddd}.NAslot.svelte-1wjzmnk{width:26px;height:1.8ch;padding:0;box-sizing:border-box;border:1px solid #ddd;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 100 100'><line x1='0' y1='0' x2='100' y2='100' stroke='black' vector-effect='non-scaling-stroke'/><line x1='0' y1='100' x2='100' y2='0' stroke='black' vector-effect='non-scaling-stroke'/></svg>");background-color:hsl(0, 0%, 80%);background-repeat:no-repeat;background-position:center center;background-size:100% 1.75ch;text-align:center}.slot.svelte-1wjzmnk{width:26px;height:1.8ch;padding:0;overflow:clip;box-sizing:border-box;border:1px solid #ddd;text-align:center}.lastDrawSlot.svelte-1wjzmnk{background-color:yellow}.soldSlot.svelte-1wjzmnk{background-color:hsl(211, 62%, 80%)}.lastcell.svelte-1wjzmnk{border-right:1px solid black !important}.topRow.svelte-1wjzmnk{border-top:1px solid black !important}.bottomRow.svelte-1wjzmnk{border-bottom:1px solid black !important}.compareCell.svelte-1wjzmnk{border:1px solid #ddd;text-align:center}.compareGrid.svelte-1wjzmnk{width:180px;min-height:100%;height:100%;margin:0;display:grid;gap:0;grid-template-columns:55px 12px 55px 60px;grid-template-rows:100%;justify-items:center;align-items:stretch;align-content:stretch}.plusCell.svelte-1wjzmnk{color:hsl(120, 100%, 40%)}.minusCell.svelte-1wjzmnk{color:red}`,
+  code: `.soldFraction.svelte-1vjwv0v{display:inline;float:right;color:#777}.memberName.svelte-1vjwv0v{width:240px;max-width:300px;padding-left:.4em;padding-right:.2em;border-right:1px solid black;border-top:1px solid #ddd;border-bottom:1px solid #ddd}.NAslot.svelte-1vjwv0v{width:26px;height:1.8ch;padding:0;box-sizing:border-box;border:1px solid #ddd;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 100 100'><line x1='0' y1='0' x2='100' y2='100' stroke='black' vector-effect='non-scaling-stroke'/><line x1='0' y1='100' x2='100' y2='0' stroke='black' vector-effect='non-scaling-stroke'/></svg>");background-color:hsl(0, 0%, 80%);background-repeat:no-repeat;background-position:center center;background-size:100% 1.75ch;text-align:center}.slot.svelte-1vjwv0v{width:26px;height:1.8ch;padding:0;overflow:clip;box-sizing:border-box;border:1px solid #ddd;text-align:center}.lastDrawSlot.svelte-1vjwv0v{background-color:yellow}.soldSlot.svelte-1vjwv0v{background-color:hsl(211, 62%, 80%)}.unconfirmedSlot.svelte-1vjwv0v{background-color:hsl(0, 0%, 80%)}.lastcell.svelte-1vjwv0v{border-right:1px solid black !important}.topRow.svelte-1vjwv0v{border-top:1px solid black !important}.bottomRow.svelte-1vjwv0v{border-bottom:1px solid black !important}.compareCell.svelte-1vjwv0v{border:1px solid #ddd;text-align:center}.compareGrid.svelte-1vjwv0v{width:180px;min-height:100%;height:100%;margin:0;display:grid;gap:0;grid-template-columns:55px 12px 55px 60px;grid-template-rows:100%;justify-items:center;align-items:stretch;align-content:stretch}.plusCell.svelte-1vjwv0v{color:hsl(120, 100%, 40%)}.minusCell.svelte-1vjwv0v{color:red}`,
   map: null
 };
 const DataRow = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -22,6 +22,11 @@ const DataRow = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   const decoratedItem = (c) => {
     if (c == "x")
       return { content: "x", classes: "NAslot" };
+    if (c == "?")
+      return {
+        content: "?",
+        classes: "slot unconfirmedSlot"
+      };
     if (c != "?" && lastDraw == parseInt(c))
       return { content: c, classes: "slot lastDrawSlot" };
     if (c != "?" && parseInt(c) > 0 && parseInt(c) < lastDraw)
@@ -54,27 +59,27 @@ const DataRow = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   classesOnMbCell = `memberName ${addClasses}`;
   compareCellClasses = `compareCell lastcell ${addClasses}`;
   compareOutput = compare != null ? compareData(row, find(compare.cdData.table, ["member", row.member]), compare.atdraw) : null;
-  return `<td class="${escape(null_to_empty(classesOnMbCell), true) + " svelte-1wjzmnk"}">${escape(mbInfo.kanji)}
-    <div class="${"soldFraction svelte-1wjzmnk"}">${escape(row.numSold[0])}/${escape(row.numSold[1])}</div></td>
+  return `<td class="${escape(null_to_empty(classesOnMbCell), true) + " svelte-1vjwv0v"}">${escape(mbInfo.kanji)}
+    <div class="${"soldFraction svelte-1vjwv0v"}">${escape(row.numSold[0])}/${escape(row.numSold[1])}</div></td>
 
 
 ${!hideTable ? `${each(decoratedTbl, (daySlots) => {
     return `${each(daySlots, (slot, i) => {
       return `   
         <td class="${[
-        escape(null_to_empty(slot.classes), true) + " svelte-1wjzmnk",
+        escape(null_to_empty(slot.classes), true) + " svelte-1vjwv0v",
         i == daySlots.length - 1 ? "lastcell" : ""
       ].join(" ").trim()}">${slot.content != "x" ? `${escape(slot.content)}` : `${capture ? `x` : ``}`}
             </td>`;
     })}`;
   })}` : ``}
-${compare ? `<td class="${escape(null_to_empty(compareCellClasses), true) + " svelte-1wjzmnk"}"><div class="${"compareGrid svelte-1wjzmnk"}"><div>${escape(compareOutput.prev)}
+${compare ? `<td class="${escape(null_to_empty(compareCellClasses), true) + " svelte-1vjwv0v"}"><div class="${"compareGrid svelte-1vjwv0v"}"><div>${escape(compareOutput.prev)}
                 ${compareOutput.extraprev ? `<br>${escape(compareOutput.extraprev)}` : ``}</div>
             <div>\u2192</div>
             <div>${escape(compareOutput.curr)}
                 ${compareOutput.extracurr ? `<br>${escape(compareOutput.extracurr)}` : ``}</div>
             <div class="${[
-    "svelte-1wjzmnk",
+    "svelte-1vjwv0v",
     (compareOutput.diff[0] === "+" ? "plusCell" : "") + " " + (compareOutput.diff[0] === "-" ? "minusCell" : "")
   ].join(" ").trim()}">${compareOutput.diff != "0" ? `<span class="${"color:black"}">[ </span>
                     ${escape(compareOutput.diff)}
