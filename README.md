@@ -9,6 +9,7 @@
 - [乃木坂46・欅坂46握手会情報まとめ](https://ameblo.jp/seto-kasumi/) ー 完売情報
 - [ツイーターユーザー ✝︎ジ〜ン✝︎](https://twitter.com/lovefiaa) ー 完売情報
 - Scraped from [ngzkHandshakeScrape](https://github.com/universallyleo/ngzkHandshakeScrape) since 30th Single ３次受付
+- Scraped using GitHub Action, running Python script based on [ngzkHandshakeScrape](https://github.com/universallyleo/ngzkHandshakeScrape), since 31st Single 6次受付
 
 # Acknowledgement
 - この完売表は [✝︎ジ〜ン✝︎](https://twitter.com/lovefiaa) のをもとにしてデザインしたものです。
@@ -16,7 +17,6 @@
 
 # TODO
 - Add 曜日 and 握手会会場 info
-- New table (or graph): Sales progression, and accumulated sales numebr
 - Rewrite using class so functions related to individual member's data become methods
 - Finish recording all old data (current earliest: 17th Single)
 

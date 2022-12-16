@@ -13,6 +13,7 @@ $: mbInfo = getMember(row.member);
 
 const decoratedItem = (c)=>{
     if (c=="x") return {content: "x", classes: "NAslot"};
+    if (c=="?") return {content: "?", classes: "slot unconfirmedSlot"};
     if (c!="?" && lastDraw==parseInt(c)) return {content: c, classes: "slot lastDrawSlot"}; 
     if (c!="?" && parseInt(c)>0 && parseInt(c)<lastDraw) return {content: c, classes: "slot soldSlot"};
     //if (lastDraw-1>0 && lastDraw-1==parseInt(c)) return {content: c, classes: "slot lastlastDrawSlot"}; 
@@ -25,7 +26,7 @@ $: decoratedTbl = row.slotsSoldex.map( dayslots => {
         let itm = decoratedItem(s);
         //itm.classes += i==0?" firstcell":i==dayslots.length-1?" lastcell":"";
         //itm.classes += i==dayslots.length-1?" lastcell":"";
-        itm.classes += ` ${addClasses}`;
+        itm.classes += ` ${addClasses}`;      
         res.push(itm); 
     }
     return res;
@@ -118,7 +119,7 @@ $: compareOutput = compare!=null?compareData(row,find(compare.cdData.table, ['me
              rgba(0,0,0,1) 50%,
              rgba(0,0,0,0) calc(50% + 0.8px),
              rgba(0,0,0,0) 100%); */
-    background-color: hsl(0, 0%, 80%);
+    background-color: hsl(0, 0%, 50%);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 100% 1.75ch;
@@ -140,6 +141,9 @@ $: compareOutput = compare!=null?compareData(row,find(compare.cdData.table, ['me
 }
 .soldSlot{
     background-color: hsl(211, 62%, 80%);
+}
+.unconfirmedSlot{
+    background-color: hsl(0, 0%, 80%);
 }
 .lastcell{
     border-right: 1px solid black !important;
