@@ -13,6 +13,7 @@ $: mbInfo = getMember(row.member);
 
 const decoratedItem = (c)=>{
     if (c=="x") return {content: "x", classes: "NAslot"};
+    if (c=="?") return {content: "?", classes: "slot unconfirmedSlot"};
     if (c!="?" && lastDraw==parseInt(c)) return {content: c, classes: "slot lastDrawSlot"}; 
     if (c!="?" && parseInt(c)>0 && parseInt(c)<lastDraw) return {content: c, classes: "slot soldSlot"};
     //if (lastDraw-1>0 && lastDraw-1==parseInt(c)) return {content: c, classes: "slot lastlastDrawSlot"}; 
@@ -140,6 +141,9 @@ $: compareOutput = compare!=null?compareData(row,find(compare.cdData.table, ['me
 }
 .soldSlot{
     background-color: hsl(211, 62%, 80%);
+}
+.unconfirmedSlot{
+    background-color: hsl(0, 0%, 80%);
 }
 .lastcell{
     border-right: 1px solid black !important;
