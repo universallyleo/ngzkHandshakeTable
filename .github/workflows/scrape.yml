@@ -1,14 +1,14 @@
-name: Update JSON weekly
+name: Update DB weekly
 
 on:
   schedule:
-    - cron: '3 5 * * THU'
+    - cron: "3 5 * * THU"
 
 # env:
 #     NAME: value
 
 jobs:
-  modify-json:
+  modify-db:
     name: Update json file via Python
     runs-on: ubuntu-latest
     steps:
@@ -38,8 +38,16 @@ jobs:
       - name: Scrape with Python # run main.py
         env:
           COOKIES: ${{ secrets.FORTUNE_COOKIES }}
-          FIREBASE_SERVICE_ACCOUNT_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
+          FIREBASE_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
         run: python scrape.py old/data_${{ env.today }}.json
+
+      - name: Setup and Build with Nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: "npm"
+      - run: npm ci ## clean install
+      - run: npm run build
 
       - name: Auto commit
         uses: stefanzweifel/git-auto-commit-action@v4
