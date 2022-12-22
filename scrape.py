@@ -361,6 +361,6 @@ if __name__ == "__main__":
     #############################
     # Firebase manipulation
     #############################
-    #log += updateToFirebase(newlastdraw, tabledata)
+    log += updateToFirebase(newlastdraw, tabledata)
 
     print(log)
