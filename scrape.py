@@ -11,7 +11,6 @@ from firebase_admin import credentials, firestore
 
 # get environment variable (stored under vercel project setting)
 forTUNE_data = json.loads(os.environ["COOKIES"])
-firebase_cred = json.loads(os.environ["FIREBASE_KEY"])
 
 cookies = forTUNE_data["cookies"]
 user_agent = forTUNE_data["user_agent"]
@@ -225,6 +224,7 @@ def updateMBTable(old, new, newentry):
 
 
 def updateToFirebase(newlastdraw, tabledata):
+    firebase_cred = json.loads(os.environ["FIREBASE_KEY"])
     #############################
     # initialise firebase
     #############################
@@ -361,6 +361,6 @@ if __name__ == "__main__":
     #############################
     # Firebase manipulation
     #############################
-    log += updateToFirebase(newlastdraw, tabledata)
+    #log += updateToFirebase(newlastdraw, tabledata)
 
     print(log)
