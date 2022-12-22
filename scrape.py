@@ -242,12 +242,16 @@ def updateToFirebase(newlastdraw, tabledata):
         .get()[0]
     )
     cd_ref = queryres.reference
+    cd_fromFB = queryres.to_dict()
     #############################
     # Update firebase record
     #############################
-    log += "Update data to Firebase\n"
-    cd_ref.update({"lastDraw": newlastdraw, "table": tabledata})
-    log += "Firebase update finished\n"
+    if cd_fromFB["lastDraw"] >= newlastdraw:
+        log += f"Already scraped draw {thisDraw}\nAbort update of Firebase\n"
+    else:
+        log += "Update data to Firebase\n"
+        cd_ref.update({"lastDraw": newlastdraw, "table": tabledata})
+        log += "Firebase update finished\n"
     return log
 
 
