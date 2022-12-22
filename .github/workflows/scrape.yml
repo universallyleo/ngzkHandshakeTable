@@ -38,6 +38,7 @@ jobs:
       - name: Scrape with Python # run main.py
         env:
           COOKIES: ${{ secrets.FORTUNE_COOKIES }}
+          FIREBASE_SERVICE_ACCOUNT_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
         run: python scrape.py old/data_${{ env.today }}.json
 
       - name: Auto commit
