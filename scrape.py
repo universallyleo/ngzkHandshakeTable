@@ -11,7 +11,7 @@ from firebase_admin import credentials, firestore
 
 # get environment variable (stored under vercel project setting)
 forTUNE_data = json.loads(os.environ["COOKIES"])
-firebase_cred = json.loads(os.environ["FIREBASE_SERVICE_ACCOUNT_KEY"])
+firebase_cred = json.loads(os.environ["FIREBASE_KEY"])
 
 cookies = forTUNE_data["cookies"]
 user_agent = forTUNE_data["user_agent"]
