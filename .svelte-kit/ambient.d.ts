@@ -37,8 +37,10 @@ declare module '$env/static/private' {
 	export const npm_node_execpath: string;
 	export const JAVA_HOME_8_X64: string;
 	export const SHLVL: string;
+	export const LD_LIBRARY_PATH: string;
 	export const npm_config_noproxy: string;
 	export const HOME: string;
+	export const Python_ROOT_DIR: string;
 	export const RUNNER_TEMP: string;
 	export const GITHUB_EVENT_PATH: string;
 	export const npm_package_json: string;
@@ -64,6 +66,7 @@ declare module '$env/static/private' {
 	export const DOTNET_SKIP_FIRST_TIME_EXPERIENCE: string;
 	export const JAVA_HOME_17_X64: string;
 	export const ImageVersion: string;
+	export const pythonLocation: string;
 	export const RUNNER_OS: string;
 	export const GITHUB_API_URL: string;
 	export const SWIFT_PATH: string;
@@ -73,11 +76,14 @@ declare module '$env/static/private' {
 	export const GITHUB_WORKFLOW: string;
 	export const _: string;
 	export const npm_config_prefix: string;
+	export const PKG_CONFIG_PATH: string;
 	export const GITHUB_RUN_ID: string;
+	export const Python2_ROOT_DIR: string;
 	export const npm_config_cache: string;
 	export const GOROOT_1_17_X64: string;
 	export const GITHUB_REF_TYPE: string;
 	export const BOOTSTRAP_HASKELL_NONINTERACTIVE: string;
+	export const Python3_ROOT_DIR: string;
 	export const GITHUB_BASE_REF: string;
 	export const ImageOS: string;
 	export const PERFLOG_LOCATION_SETTING: string;
@@ -96,6 +102,7 @@ declare module '$env/static/private' {
 	export const GITHUB_ACTION: string;
 	export const GITHUB_RUN_NUMBER: string;
 	export const GITHUB_TRIGGERING_ACTOR: string;
+	export const today: string;
 	export const RUNNER_ARCH: string;
 	export const XDG_RUNTIME_DIR: string;
 	export const AGENT_TOOLSDIRECTORY: string;
@@ -191,8 +198,10 @@ declare module '$env/dynamic/private' {
 		npm_node_execpath: string;
 		JAVA_HOME_8_X64: string;
 		SHLVL: string;
+		LD_LIBRARY_PATH: string;
 		npm_config_noproxy: string;
 		HOME: string;
+		Python_ROOT_DIR: string;
 		RUNNER_TEMP: string;
 		GITHUB_EVENT_PATH: string;
 		npm_package_json: string;
@@ -218,6 +227,7 @@ declare module '$env/dynamic/private' {
 		DOTNET_SKIP_FIRST_TIME_EXPERIENCE: string;
 		JAVA_HOME_17_X64: string;
 		ImageVersion: string;
+		pythonLocation: string;
 		RUNNER_OS: string;
 		GITHUB_API_URL: string;
 		SWIFT_PATH: string;
@@ -227,11 +237,14 @@ declare module '$env/dynamic/private' {
 		GITHUB_WORKFLOW: string;
 		_: string;
 		npm_config_prefix: string;
+		PKG_CONFIG_PATH: string;
 		GITHUB_RUN_ID: string;
+		Python2_ROOT_DIR: string;
 		npm_config_cache: string;
 		GOROOT_1_17_X64: string;
 		GITHUB_REF_TYPE: string;
 		BOOTSTRAP_HASKELL_NONINTERACTIVE: string;
+		Python3_ROOT_DIR: string;
 		GITHUB_BASE_REF: string;
 		ImageOS: string;
 		PERFLOG_LOCATION_SETTING: string;
@@ -250,6 +263,7 @@ declare module '$env/dynamic/private' {
 		GITHUB_ACTION: string;
 		GITHUB_RUN_NUMBER: string;
 		GITHUB_TRIGGERING_ACTOR: string;
+		today: string;
 		RUNNER_ARCH: string;
 		XDG_RUNTIME_DIR: string;
 		AGENT_TOOLSDIRECTORY: string;
