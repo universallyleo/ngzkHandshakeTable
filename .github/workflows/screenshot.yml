@@ -1,0 +1,22 @@
+name: Element's screenshot
+on:
+  schedule:
+    - cron: "15 5 * * THU"
+
+jobs:
+  screenshots:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Take screenshot
+        uses: karol-brejna-i/webpage-screenshot-action@v1
+        with:
+          url: https://universallyleo.github.io/ngzkHandshakeTable/
+          mode: element
+          xpath: .//*[@id="slotstable"]
+          output: ./static/screenshot.png
+
+      - name: Auto commit
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          branch: main
+          commit_message: Github Action screenshot update
