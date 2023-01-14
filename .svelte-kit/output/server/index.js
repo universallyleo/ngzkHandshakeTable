@@ -2108,7 +2108,7 @@ async function respond(request, options, state) {
     return handle_fatal_error(event, options, error2);
   }
 }
-const app_template = ({ head, body, assets: assets2, nonce }) => '<!DOCTYPE html>\n<html lang="en">\n\n<head>\n	<meta charset="utf-8" />\n	<link rel="icon" href="' + assets2 + '/favicon_32x32.png" />\n	<meta name="viewport" content="width=device-width, initial-scale=1" />\n	' + head + "\n</head>\n\n<body>\n	<div>" + body + "</div>\n</body>\n\n</html>";
+const app_template = ({ head, body, assets: assets2, nonce }) => '<!DOCTYPE html>\r\n<html lang="en">\r\n\r\n<head>\r\n	<meta charset="utf-8" />\r\n	<link rel="icon" href="' + assets2 + '/favicon_32x32.png" />\r\n	<meta property="og:image" content="' + assets2 + '/screenshot.png" />\r\n	<meta property="og:description" content="\u30A4\u30F3\u30BF\u30E9\u30AF\u30C6\u30A3\u30D6\u5F0F \u4E43\u6728\u574246\u63E1\u624B\u4F1A\u5B8C\u58F2\u8868 Interactive Nogizaka46 Meet-and-Greet soldout table">\r\n	<meta name="viewport" content="width=device-width, initial-scale=1" />\r\n	' + head + "\r\n</head>\r\n\r\n<body>\r\n	<div>" + body + "</div>\r\n</body>\r\n\r\n</html>";
 const error_template = ({ status, message }) => '<!DOCTYPE html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<title>' + message + `</title>
 
 		<style>
