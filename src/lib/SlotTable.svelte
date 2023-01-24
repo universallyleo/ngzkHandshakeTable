@@ -1,9 +1,9 @@
 <script>
 import RowGroups from "./RowGroups.svelte";
 import DataRow from "./DataRow.svelte";
-import {cdData, expandDataList, partitionToGroup, sortList, finalSoldoutDraw} from '$lib/util.js';
+import {cdAlias, expandDataList, partitionToGroup, sortList, finalSoldoutDraw} from '$lib/processData.js';
 export let data;
-//export let group="gen"; //allow: gen, dob-year, dob-month, bloodtype, from
+//export let group="gen"; //allow: gen, dobyear, dobmonth, bloodtype, from
 export let filterOpt;
 export let groupOpt;
 export let sortOpt;
@@ -11,14 +11,14 @@ export let compare=null;
 export let capture;
 export let hideTable=false;
 
-$: title = cdData(data.cd).display;
+$: title = cdAlias(data.cd).display;
 // array of {member, slotsSoldex: Array<Array<String>>, numSold: [int, int]}
 $: expandedData = expandDataList(data);
 $: finalTb = sortList(partitionToGroup(filterList(expandedData,filterOpt),groupOpt),sortOpt);
 $: lastDraw = data.lastDraw;
 $: totalSold = expandedData.reduce((prev,curr)=> { return {numSold: [prev.numSold[0]+curr.numSold[0], prev.numSold[1]+curr.numSold[1]]}; }).numSold;
 $: capture = capture;
-$: title2 = compare?cdData(compare.cdData.cd).display:"";
+$: title2 = compare?cdAlias(compare.cdData.cd).display:"";
 $: hideTable = compare?hideTable:false; //force table to be shown when not comparing
   // console.log(curr.numSold););
 //$: console.log(expandData);

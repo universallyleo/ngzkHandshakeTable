@@ -1,5 +1,6 @@
 <script>
-import {getMember,cdData,nthColor,getNumSold} from '$lib/util.js';
+import {getMember,cdAlias,getNumSold} from '$lib/processData.js';
+import {nthColor} from '$lib/util.js';
 import {range, find} from 'lodash-es';
 import ProgressGraph from './ProgressGraph.svelte';
 
@@ -86,13 +87,13 @@ $: {
                 datum.push(cdprogression(x,includings[0]));
                 seriesLabels.push(getMember(x).kanji);
             });
-            title = `対象円盤： ${cdData(datum[0].cd).display}`;
+            title = `対象円盤： ${cdAlias(datum[0].cd).display}`;
             numSlots = includings[0].lastDraw;
         }
         if (mode=="fixMember"){
             includings.map(x=> {
                 datum.push(cdprogression(members[0],x));
-                seriesLabels.push(cdData(x.cd).display);
+                seriesLabels.push(cdAlias(x.cd).display);
             });
             title = `対象メンバー： ${getMember(datum[0].member).kanji}`;
             numSlots = Math.max(...includings.map((x)=>x.lastDraw));
@@ -112,7 +113,7 @@ $: {
         title = "総完売数推移";
         caption = "累計総完売数";
         subcaption = "(円盤の総完売部数 / 最大可能完売数)";
-        xAxisLabels = includings.map(x=>cdData(x.cd).display);
+        xAxisLabels = includings.map(x=>cdAlias(x.cd).display);
         headings = xAxisLabels.map(x=>x.replace(/\s/,'<br>')); // dunno y I can't just {@html lb.replace(...)}
     }
     if (mode=="receptionProgression"){
@@ -127,7 +128,7 @@ $: {
         title = `${extra.atdraw}次受付までの完売数推移`;
         caption = `${extra.atdraw}次受付までの完売数`;
         subcaption = " / 円盤の最大可能完売数";
-        xAxisLabels = includings.map(x=>cdData(x.cd).display);
+        xAxisLabels = includings.map(x=>cdAlias(x.cd).display);
         headings = xAxisLabels.map(x=>x.replace(/\s/,'<br>'));
     }
     datum = datum;

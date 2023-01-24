@@ -21,6 +21,7 @@ function taggingCellMOToggle(e) {
 </script>
 
 <tr class="taggedRow">
+	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<td rowspan={group.has.length} class="tagCell" on:click|stopPropagation={taggingCellMOToggle}
 		>{group.label}</td
 	>

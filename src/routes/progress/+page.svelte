@@ -1,7 +1,7 @@
 <script>	
 import data from '$lib/data/data.json';
 import membersdata from '$lib/data/members.json';
-import {cdData, involvedMembers, performedInCDs, ordering} from '$lib/util.js';
+import {cdAlias, involvedMembers, performedInCDs, ordering} from '$lib/processData.js';
 import {union, range, includes} from 'lodash-es';
 import { fly } from 'svelte/transition';
 import ProgressTable from './ProgressTable.svelte';
@@ -44,7 +44,7 @@ $: {
             selectables = involvedMembers(selectedCD);
         }
         if (fixOpt=="fixMember"){
-            selectables = performedInCDs(fixingMember).map(x=>cdData(x)).reverse();
+            selectables = performedInCDs(fixingMember).map(x=>cdAlias(x)).reverse();
         }
     }
     if (seriesOpt == "overallProgression"){

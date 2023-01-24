@@ -1,6 +1,6 @@
 <script>
 import data from '$lib/data/data.json';
-import {cdData} from '$lib/util.js';
+import {cdAlias} from '$lib/processData.js';
 import { min } from 'lodash-es';
 import html2canvas from "html2canvas";
 import SlotTable from '$lib/SlotTable.svelte';
@@ -22,8 +22,8 @@ let filterOpt="showall";
 let groupMethod=[
     {"display": "期別分け", "value": "gen"},
     {"display": "選抜・アンダー・他", "value": "group"},
-    {"display": "誕生年別", "value": "dob-year"},
-    // {"display": "学年別 (to be corrected)", "value": "dob-year"},
+    {"display": "誕生年別", "value": "dobyear"},
+    // {"display": "学年別 (to be corrected)", "value": "dobyear"},
     {"display": "完売・未完売", "value": "soldstatus"},
     // {"display": "なし", "value": "none"},
 ];
@@ -39,6 +39,7 @@ let compareCD=false;
 let atdraw=-1;
 let capture=false;
 let selectedCD=data[data.length-1], compareToCDData, hideTable=false;
+//console.log(cdDateRange);
 
 function exportImg(canvas){
     var link=document.createElement("a");
@@ -136,7 +137,7 @@ $: if (!compareCD) {compare=null;compareToCDData=null;}
         <div style="display:flex; flex-grow:1" in:fly="{{ x: 300, duration: 800 }}">
             → 
             <span style="margin-right:3px">対象:
-                <SelectOneCD bind:selectedCDData={compareToCDData} exclude={selectedCD?[cdData(selectedCD.cd)]:[{value:-1}]}/>
+                <SelectOneCD bind:selectedCDData={compareToCDData} exclude={selectedCD?[cdAlias(selectedCD.cd)]:[{value:-1}]}/>
             </span>
                 <label>
                 <select

@@ -1,5 +1,5 @@
 <script>
-import {getMember,compareData} from '$lib/util.js';
+import {getMember,compareData} from '$lib/processData.js';
 import {find} from 'lodash-es';
 export let row;
 export let lastDraw;
@@ -32,7 +32,7 @@ $: decoratedTbl = row.slotsSoldex.map( dayslots => {
     return res;
 });
 
-$: classesOnMbCell = `memberName ${addClasses}`;
+$: classesOnMbCell = `memberName ${addClasses} ${row.bdayMeet!=0?'bday':''}`;
 $: compareCellClasses = `compareCell lastcell ${addClasses}`;
 $: compareOutput = compare!=null?compareData(row,find(compare.cdData.table, ['member',row.member]),compare.atdraw):null;
 </script>
@@ -82,6 +82,10 @@ $: compareOutput = compare!=null?compareData(row,find(compare.cdData.table, ['me
 {/if}
 
 <style>
+.bday{
+    background: yellow;
+}
+
 .soldFraction{
     display:inline;
     float: right;
