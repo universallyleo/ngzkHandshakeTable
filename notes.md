@@ -9,3 +9,7 @@ As of mid-September, SvelteKit has a few breaking changes.  I needed to do the f
 5.  Check sveltejs/kit version is correct from package-lock.json
 6.  Running `npm run dev` and opening the page an error about add data prop is thrown, since I do not use `load` function in this webapp, I just need to remove the forced error added to my `page.svelte`. 
 7.  Everything seems to work fine now.
+
+# Dynamic routing and Search Param
+
+Since dynamic routing does not really work with SSG (see https://github.com/sveltejs/kit/issues/4278), I opted to use search param, following the guide: https://stackoverflow.com/questions/71379031/how-do-get-query-string-parameter-in-sveltekit

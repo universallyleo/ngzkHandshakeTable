@@ -1,12 +1,11 @@
 {
 	"compilerOptions": {
-		"baseUrl": "..",
 		"paths": {
 			"$lib": [
-				"src/lib"
+				"../src/lib"
 			],
 			"$lib/*": [
-				"src/lib/*"
+				"../src/lib/*"
 			]
 		},
 		"rootDirs": [
@@ -27,6 +26,7 @@
 	},
 	"include": [
 		"ambient.d.ts",
+		"./types/**/$types.d.ts",
 		"../vite.config.ts",
 		"../src/**/*.js",
 		"../src/**/*.ts",
@@ -40,6 +40,9 @@
 	],
 	"exclude": [
 		"../node_modules/**",
-		"./[!ambient.d.ts]**"
+		"./[!ambient.d.ts]**",
+		"../src/service-worker.js",
+		"../src/service-worker.ts",
+		"../src/service-worker.d.ts"
 	]
 }

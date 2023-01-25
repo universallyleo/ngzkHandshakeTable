@@ -68,13 +68,16 @@ export function mbBdayInRange(memberName, dateRange) {
 		if (rangeInfo.idx == 0) {
 			res.idx = 0;
 			res.meetDate = dateRange.meets[0];
+			return res;
 		}
 		if (rangeInfo.idx == dateRange.ranges.length - 1) {
 			res.idx = dateRange.meets.length;
-			res.meetDate = dateRange.meets[dateRange.meets.length];
+			res.meetDate = dateRange.meets[dateRange.meets.length - 1];
+			return res;
 		}
 		res.idx = rangeInfo.idx - 1;
 		res.meetDate = dateRange.meets[res.idx];
+		return res;
 	}
 	return res;
 }
@@ -394,6 +397,10 @@ export function cdAlias(cd) {
 
 	let display = `${cd.num}${nth(cd.num)} ${cd.type}`;
 	return { display: display, value: value };
+}
+
+export function findCDIndex(alias) {
+	return fulldata.findIndex((x) => cdAlias(x.cd).value == alias);
 }
 
 function getUnderList(cdData) {

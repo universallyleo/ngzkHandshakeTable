@@ -11,7 +11,7 @@ let cdlist = data.map(x=> cdAlias(x.cd)).reverse();
 let temp = differenceWith(cdlist, exclude, isEqual);
 let indices = temp.map( x => findIndex(cdlist, y=>x.value===y.value));
 let selectables = zip(temp,indices);
-let selected = selectables[0][1];
+export let selected = selectables[0][1];
 selectedCDData = data[data.length-1-selected];
 
 $: selectedCDData = data[data.length-1-selected];

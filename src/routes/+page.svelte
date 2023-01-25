@@ -1,6 +1,7 @@
 <script>
-import data from '$lib/data/data.json';
-import {cdAlias} from '$lib/processData.js';
+import fulldata from '$lib/data/data.json';
+import {onMount} from 'svelte';
+import {cdAlias, findCDIndex} from '$lib/processData.js';
 import { min } from 'lodash-es';
 import html2canvas from "html2canvas";
 import SlotTable from '$lib/SlotTable.svelte';
@@ -38,13 +39,16 @@ let sortOpt="kana";
 let compareCD=false;
 let atdraw=-1;
 let capture=false;
-let selectedCD=data[data.length-1], compareToCDData, hideTable=false;
+let selectedIndex = 0;
+//let selectedCD=data.cd==null?fulldata[fulldata.length-1]:fulldata[findCDIndex(data.cd)];
+let selectedCDData=fulldata[fulldata.length-1];
+let compareToCDData, hideTable=false;
 //console.log(cdDateRange);
 
 function exportImg(canvas){
     var link=document.createElement("a");
     document.body.appendChild(link);
-    link.download = `${data[selected].cd.num}${data[selected].cd.type}-${data[selected].lastDraw}.jpg`;
+    link.download = `${fulldata[selected].cd.num}${fulldata[selected].cd.type}-${fulldata[selected].lastDraw}.jpg`;
     link.href = canvas.toDataURL();
     link.target = '_blank';
     link.click();
@@ -70,12 +74,20 @@ function imgOut(method){
 
 function getCompare(){
     if (!compareCD) return null;
-    if (compareToCDData.cd === selectedCD.cd) return null;
+    if (compareToCDData.cd === selectedCDData.cd) return null;
     if (atdraw<0) return null;
     return {"cdData": compareToCDData, "atdraw": atdraw};
 }
 
-$: selectableDraw = compareToCDData?min([compareToCDData.lastDraw, selectedCD.lastDraw]):0
+onMount(async ()=>{
+    let cdalias = (new URL(window.location)).searchParams.get('cd');
+    if (cdalias!=null) {
+        selectedIndex = fulldata.length-1-findCDIndex(cdalias);
+        //selectedCDData = fulldata[findCDIndex(cdalias)];
+    }
+});
+
+$: selectableDraw = compareToCDData?min([compareToCDData.lastDraw, selectedCDData.lastDraw]):0
 $: compare=getCompare();
 $: if (!compareCD) {compare=null;compareToCDData=null;}
 </script>
@@ -91,7 +103,7 @@ $: if (!compareCD) {compare=null;compareToCDData=null;}
             <li>
                 <div class="leftcol">CD:</div>
                 <div class="rightcol">
-                    <SelectOneCD bind:selectedCDData={selectedCD} />
+                    <SelectOneCD bind:selectedCDData={selectedCDData} bind:selected={selectedIndex}/>
                 </div>
                 
                 <div class="print">
@@ -137,7 +149,7 @@ $: if (!compareCD) {compare=null;compareToCDData=null;}
         <div style="display:flex; flex-grow:1" in:fly="{{ x: 300, duration: 800 }}">
             → 
             <span style="margin-right:3px">対象:
-                <SelectOneCD bind:selectedCDData={compareToCDData} exclude={selectedCD?[cdAlias(selectedCD.cd)]:[{value:-1}]}/>
+                <SelectOneCD bind:selectedCDData={compareToCDData} exclude={selectedCDData?[cdAlias(selectedCDData.cd)]:[{value:-1}]}/>
             </span>
                 <label>
                 <select
@@ -165,7 +177,7 @@ $: if (!compareCD) {compare=null;compareToCDData=null;}
 </div>
 
 <section id="slotstable" class="main" in:fly="{{ y: 200, duration: 500 }}">
-<SlotTable data={selectedCD} {filterOpt} {groupOpt} {sortOpt} {compare} {capture} {hideTable}/>
+<SlotTable data={selectedCDData} {filterOpt} {groupOpt} {sortOpt} {compare} {capture} {hideTable}/>
 </section>
 
 <style>

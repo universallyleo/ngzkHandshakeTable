@@ -32,13 +32,21 @@ $: decoratedTbl = row.slotsSoldex.map( dayslots => {
     return res;
 });
 
-$: classesOnMbCell = `memberName ${addClasses} ${row.bdayMeet!=0?'bday':''}`;
+$: classesOnMbCell = `memberName ${addClasses}`;
 $: compareCellClasses = `compareCell lastcell ${addClasses}`;
 $: compareOutput = compare!=null?compareData(row,find(compare.cdData.table, ['member',row.member]),compare.atdraw):null;
 </script>
 
 
-<td class={classesOnMbCell}>{mbInfo.kanji}
+<td class={classesOnMbCell}>{mbInfo.kanji} 
+    {#if row.bdayMeet!=0}
+    <div class="tooltip">
+        [誕]
+        <div class="tt-right">
+            誕生:{row.bdayMeet.bday.slice(0,2)}月{row.bdayMeet.bday.slice(3)}日 → {row.bdayMeet.meetDate}
+        </div>
+    </div>
+    {/if}
     <div class="soldFraction">{row.numSold[0]}/{row.numSold[1]}</div>
 </td>
 
@@ -82,9 +90,42 @@ $: compareOutput = compare!=null?compareData(row,find(compare.cdData.table, ['me
 {/if}
 
 <style>
-.bday{
-    background: yellow;
+.tooltip{
+    display:inline-block;
+    position:relative;
+    transform:translate(0,-3px);
+    border-bottom:1px dotted #666;
+    text-align:left;
+    color: #777;
+    font-size: 11px;
+    line-height:11px;
+    margin: 0;
+    cursor:pointer;
 }
+.tt-right{
+    min-width:220px;
+    max-width:600px;
+    top:50%;
+    left:100%;
+    margin-left:20px;
+    transform:translate(0, -50%);
+    padding:12px;
+    color:#666666;
+    background-color:#FFFFE0;
+    font-weight:normal;
+    font-size:13px;
+    line-height:1rem;
+    border-radius:8px;
+    position:absolute;
+    z-index:99999999;
+    box-sizing:border-box;
+    box-shadow:0 1px 8px rgba(0,0,0,0.5);
+    display:none;
+}
+.tooltip:hover .tt-right {
+    display:block;
+}
+
 
 .soldFraction{
     display:inline;
