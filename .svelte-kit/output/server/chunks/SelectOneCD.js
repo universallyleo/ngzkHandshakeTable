@@ -1,5 +1,5 @@
 import { c as create_ssr_component, f as each, h as add_attribute, e as escape } from "./index.js";
-import { concat, pullAll, without, range, differenceWith, isEqual, findIndex, zip } from "lodash-es";
+import { range, concat, pullAll, without, differenceWith, isEqual, findIndex, zip } from "lodash-es";
 const data = [
   {
     cd: {
@@ -7497,7 +7497,7 @@ const data = [
       title: "\u3053\u3053\u306B\u306F\u306A\u3044\u3082\u306E",
       release: "2022-12-07"
     },
-    lastDraw: 10,
+    lastDraw: 11,
     meetDates: [
       "2022-12-25",
       "2023-01-08",
@@ -7573,9 +7573,9 @@ const data = [
           "4|4|3|4|4",
           "6||6||",
           "||||",
+          "||11||",
           "||||",
-          "||||",
-          "||||"
+          "||11||"
         ]
       },
       {
@@ -7663,7 +7663,7 @@ const data = [
           "||||",
           "||||",
           "||||",
-          "||||"
+          "||11||"
         ]
       },
       {
@@ -7684,8 +7684,8 @@ const data = [
           "3|4|4|4|5",
           "8|7|6|8|9",
           "8|8|6|8|9",
-          "||10||",
-          "|||9|6"
+          "11||10||11",
+          "||11|9|6"
         ]
       },
       {
@@ -7900,6 +7900,83 @@ const data = [
     ]
   }
 ];
+const now = new Date().toISOString().slice(0, 10);
+const monthDays = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365];
+function dayInYear(mmdd, year) {
+  if (year <= 2e3 || year >= 3e3)
+    throw new Error(`Year must be in range 2001~2099 (input year ${year})`);
+  let m = parseInt(mmdd.slice(0, 2));
+  let d = parseInt(mmdd.slice(3));
+  return monthDays[m - 1] + d + (year % 4 == 0 && m > 2 ? 1 : 0);
+}
+function dayFrom(date, from = now) {
+  let year = parseInt(from.slice(0, 4));
+  let dayAtFrom = dayInYear(from.slice(5), year);
+  let noyearDate = date.length > 5 ? date.slice(5) : date;
+  let diff = dayInYear(noyearDate, year) - dayAtFrom;
+  return diff >= 0 ? diff : dayInYear(noyearDate, year + 1) + (365 + (year % 0 != 0) - dayAtFrom);
+}
+function datesToRanges(dates) {
+  let from = dates[0];
+  return dates.map((x) => dayFrom(x, from));
+}
+function nearestNumberInSortedArr(target, arr) {
+  return arr.reduce(
+    (best, curr, currIdx) => {
+      let diff = target - curr;
+      return Math.abs(diff) < Math.abs(best.diff) ? { val: curr, idx: currIdx, diff } : best;
+    },
+    { val: arr[0], idx: 0, diff: target - arr[0] }
+  );
+}
+function offsetISOdays(date, days) {
+  let d = new Date(date);
+  d.setDate(d.getDate() + days);
+  return { date: d.toISOString().slice(0, 10), obj: d };
+}
+const isISODate = (d) => d.match(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/);
+function nth(n) {
+  return ["st", "nd", "rd"][((n + 90) % 100 - 10) % 10 - 1] || "th";
+}
+function nthColor(n) {
+  const palette = [
+    "#911eb4",
+    "#3cb44b",
+    "#4363d8",
+    "#e6194b",
+    "#42d4f4",
+    "#f58231",
+    "#f032e6",
+    "#469990",
+    "#fabed4",
+    "#dcbeff",
+    "#9a6324",
+    "#fffac8",
+    "#800000",
+    "#aaffc3",
+    "#000075",
+    "#ffe119",
+    "#bfef45",
+    "#808000",
+    "#ffd8b1",
+    "#000000"
+  ];
+  return n < palette.length ? palette[n] : palette[n % palette.length];
+}
+function compareISODateDescend(a, b) {
+  let da = a.split("-").map((x) => parseInt(x)), db = b.split("-").map((x) => parseInt(x));
+  return composeCompares(
+    [0, 0, 0].map(() => {
+      return (a2, b2) => b2 - a2;
+    }),
+    da,
+    db
+  );
+}
+function composeCompares(compfuncs, a, b) {
+  let c = range(compfuncs.length).map((i) => compfuncs[i](a[i], b[i]));
+  return c.reduce((accum, curr) => accum ? accum : curr);
+}
 const membersdata = [
   {
     member: "Akimoto Manatsu",
@@ -8716,7 +8793,65 @@ const membersdata = [
     status: "5\u671F\u751F"
   }
 ];
-const isISODate = (d) => d.match(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/);
+function getCDDateRange() {
+  let cdDates = data.map((x) => {
+    return {
+      cd: cdAlias(x.cd),
+      release: x.cd.release,
+      releaset: new Date(x.cd.release),
+      meets: x.meetDates
+    };
+  });
+  cdDates.sort((a, b) => a.releaset.getTime() - b.releaset.getTime());
+  let endDates = cdDates.slice(1).map((x) => x.release);
+  let lastdate = new Date(cdDates[cdDates.length - 1].meets.slice(-1)[0]);
+  lastdate.setDate(lastdate.getDate() + 30);
+  endDates.push(lastdate.toISOString().slice(0, 10));
+  cdDates[0].start = cdDates[0].release;
+  cdDates[0].startt = cdDates[0].releaset;
+  for (let i = 0; i < cdDates.length; i++) {
+    let trueEnd = offsetISOdays(endDates[i], -1);
+    cdDates[i].end = trueEnd.date;
+    cdDates[i].endt = trueEnd.obj;
+    if (i > 0) {
+      let trueStart = offsetISOdays(cdDates[i - 1].meets.slice(-1)[0], 1);
+      cdDates[i].start = trueStart.date;
+      cdDates[i].startt = trueStart.obj;
+    }
+    cdDates[i].dates = [cdDates[i].start, ...cdDates[i].meets, cdDates[i].end];
+    cdDates[i].ranges = datesToRanges(cdDates[i].dates);
+  }
+  return cdDates;
+}
+var cdDateRange = getCDDateRange();
+function mbBdayInRange(memberName, dateRange) {
+  let mb = getMember(memberName);
+  let bdayCount = dayFrom(mb.dob, dateRange.start);
+  let isInRange = bdayCount <= dateRange.ranges[dateRange.ranges.length - 1];
+  let res = {
+    inRange: false,
+    meetDate: "",
+    idx: -1
+  };
+  if (isInRange) {
+    res.inRange = true;
+    let rangeInfo = nearestNumberInSortedArr(bdayCount, dateRange.ranges);
+    if (rangeInfo.idx == 0) {
+      res.idx = 0;
+      res.meetDate = dateRange.meets[0];
+      return res;
+    }
+    if (rangeInfo.idx == dateRange.ranges.length - 1) {
+      res.idx = dateRange.meets.length;
+      res.meetDate = dateRange.meets[dateRange.meets.length - 1];
+      return res;
+    }
+    res.idx = rangeInfo.idx - 1;
+    res.meetDate = dateRange.meets[res.idx];
+    return res;
+  }
+  return res;
+}
 const isExpandedDatalist = (l) => "slotsSoldex" in l[0];
 function getMember(name) {
   let res = membersdata.filter((x) => x.member == name);
@@ -8736,8 +8871,8 @@ function getMember(name) {
     };
   }
 }
-function involvedMembers(cdData2, dataform = "full") {
-  return cdData2.table.map((x) => dataform == "name" ? x.member : getMember(x.member));
+function involvedMembers(cdData, dataform = "full") {
+  return cdData.table.map((x) => dataform == "name" ? x.member : getMember(x.member));
 }
 const status2label = (s) => {
   if (isISODate(s)) {
@@ -8767,7 +8902,8 @@ const ordering = {
     let o = ["grad", "sbt", "und", ...[...Array(5).keys()].map((x) => `gen${x + 1}`)];
     return o.indexOf(a) - o.indexOf(b);
   },
-  "dob-year": (a, b) => a - b,
+  dobyear: (a, b) => a - b,
+  nextBDay: (a, b) => a - b,
   soldstatus: (a, b) => a ? -1 : b ? 1 : 0,
   genFuri: (a, b) => composeCompares([globalThis.gen, globalThis.furi], [a.gen, a.furi], [b.gen, b.furi]),
   ISODateDescend: compareISODateDescend,
@@ -8783,9 +8919,9 @@ const opt2label = (opt, val) => {
       return status2label(val);
     case "bloodtype":
       return val != "\u4E0D\u660E" ? `${val}\u578B` : "\u4E0D\u660E";
-    case "dob-year":
+    case "dobyear":
       return isISODate(val) ? `${val.slice(0, 4)}\u5E74` : `${val}\u5E74`;
-    case "dob-month":
+    case "dobmonth":
       return isISODate(val) ? `${val.slice(5, 7)}\u6708` : `${val}\u6708`;
     case "soldstatus":
       return val ? "\u5B8C\u58F2" : "\u672A\u5B8C\u58F2";
@@ -8841,15 +8977,21 @@ function compareData(mbdataNow, mbdataCompare, atdraw = -1) {
     };
   }
 }
-function expandDataList(cdData2) {
+function expandDataList(cdData) {
   let groups = concat(
     [
-      { id: "sbt", has: cdData2.sbt },
-      { id: "und", has: getUnderList(cdData2) }
+      { id: "sbt", has: cdData.sbt },
+      { id: "und", has: getUnderList(cdData) }
     ],
-    cdData2.addgroups ? cdData2.addgroups : []
+    cdData.addgroups ? cdData.addgroups : []
   );
-  return cdData2.table.map((x) => expandMBData(x, groups));
+  let dateRange = cdDateRange.filter((x) => x.release == cdData.cd.release)[0];
+  let res = cdData.table.map((x) => expandMBData(x, groups));
+  res.map((x) => {
+    let info = mbBdayInRange(x.member, dateRange);
+    x["bdayMeet"] = info.inRange ? { bday: getMember(x.member).dob.slice(5), meetDate: info.meetDate, idx: info.idx } : 0;
+  });
+  return res;
 }
 function getNumSold(mbdata, atdraw = -1) {
   if (!mbdata)
@@ -8878,10 +9020,10 @@ function partitionToGroup(mbDataList, opt = "gen") {
     let mb = getMember(mbdata.member);
     let val;
     switch (opt) {
-      case "dob-year":
+      case "dobyear":
         val = mb.dob.slice(0, 4);
         break;
-      case "dob-month":
+      case "dobmonth":
         val = mb.dob.slice(5, 7);
         break;
       case "group":
@@ -8929,19 +9071,16 @@ function sortPlainList(mbdatalist, opt = "kana") {
       return mbdatalist;
   }
 }
-function nth(n) {
-  return ["st", "nd", "rd"][((n + 90) % 100 - 10) % 10 - 1] || "th";
-}
-function cdData(cd) {
+function cdAlias(cd) {
   let value = `${cd.num}${cd.type}`;
   let display = `${cd.num}${nth(cd.num)} ${cd.type}`;
   return { display, value };
 }
-function getUnderList(cdData2) {
-  let mblist = cdData2.table.map((x) => x.member);
-  if ("addgroups" in cdData2)
-    cdData2.addgroups.map((x) => pullAll(mblist, x.has));
-  return without(mblist, ...cdData2.sbt);
+function getUnderList(cdData) {
+  let mblist = cdData.table.map((x) => x.member);
+  if ("addgroups" in cdData)
+    cdData.addgroups.map((x) => pullAll(mblist, x.has));
+  return without(mblist, ...cdData.sbt);
 }
 function determineGroup(mb, groups) {
   for (let g of groups) {
@@ -8950,58 +9089,21 @@ function determineGroup(mb, groups) {
   }
   return "NoData";
 }
-function nthColor(n) {
-  const palette = [
-    "#911eb4",
-    "#3cb44b",
-    "#4363d8",
-    "#e6194b",
-    "#42d4f4",
-    "#f58231",
-    "#f032e6",
-    "#469990",
-    "#fabed4",
-    "#dcbeff",
-    "#9a6324",
-    "#fffac8",
-    "#800000",
-    "#aaffc3",
-    "#000075",
-    "#ffe119",
-    "#bfef45",
-    "#808000",
-    "#ffd8b1",
-    "#000000"
-  ];
-  return n < palette.length ? palette[n] : palette[n % palette.length];
-}
-function compareISODateDescend(a, b) {
-  let da = a.split("-").map((x) => parseInt(x)), db = b.split("-").map((x) => parseInt(x));
-  return composeCompares(
-    [0, 0, 0].map(() => {
-      return (a2, b2) => b2 - a2;
-    }),
-    da,
-    db
-  );
-}
-function composeCompares(compfuncs, a, b) {
-  let c = range(compfuncs.length).map((i) => compfuncs[i](a[i], b[i]));
-  return c.reduce((accum, curr) => accum ? accum : curr);
-}
 const SelectOneCD = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { selectedCDData } = $$props;
   let { exclude = [{ value: -1 }] } = $$props;
-  let cdlist = data.map((x) => cdData(x.cd)).reverse();
+  let cdlist = data.map((x) => cdAlias(x.cd)).reverse();
   let temp = differenceWith(cdlist, exclude, isEqual);
   let indices = temp.map((x) => findIndex(cdlist, (y) => x.value === y.value));
   let selectables = zip(temp, indices);
-  let selected = selectables[0][1];
+  let { selected = selectables[0][1] } = $$props;
   selectedCDData = data[data.length - 1 - selected];
   if ($$props.selectedCDData === void 0 && $$bindings.selectedCDData && selectedCDData !== void 0)
     $$bindings.selectedCDData(selectedCDData);
   if ($$props.exclude === void 0 && $$bindings.exclude && exclude !== void 0)
     $$bindings.exclude(exclude);
+  if ($$props.selected === void 0 && $$bindings.selected && selected !== void 0)
+    $$bindings.selected(selected);
   selectedCDData = data[data.length - 1 - selected];
   return `<select id="${"cdSelect"}" size="${"1"}" name="${"cd"}">${each(selectables, (cdidx) => {
     return `<option${add_attribute("value", cdidx[1], 0)}>${escape(cdidx[0].display)}</option>`;
@@ -9009,7 +9111,7 @@ const SelectOneCD = create_ssr_component(($$result, $$props, $$bindings, slots) 
 });
 export {
   SelectOneCD as S,
-  cdData as a,
+  cdAlias as a,
   getNumSold as b,
   compareData as c,
   data as d,

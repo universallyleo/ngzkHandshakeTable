@@ -1,5 +1,5 @@
 import { c as create_ssr_component, o as onDestroy, e as escape, h as add_attribute, f as each, v as validate_component, i as createEventDispatcher } from "../../../chunks/index.js";
-import { g as getMember, a as cdData, n as nthColor, b as getNumSold, i as involvedMembers, d as data, S as SelectOneCD } from "../../../chunks/SelectOneCD.js";
+import { g as getMember, a as cdAlias, n as nthColor, b as getNumSold, i as involvedMembers, d as data, S as SelectOneCD } from "../../../chunks/SelectOneCD.js";
 import { range, find, uniq } from "lodash-es";
 import "chart.js/auto/auto.mjs";
 import "chartjs-plugin-datalabels";
@@ -121,13 +121,13 @@ const ProgressTable = create_ssr_component(($$result, $$props, $$bindings, slots
             datum.push(cdprogression(x, includings[0]));
             seriesLabels.push(getMember(x).kanji);
           });
-          title = `\u5BFE\u8C61\u5186\u76E4\uFF1A ${cdData(datum[0].cd).display}`;
+          title = `\u5BFE\u8C61\u5186\u76E4\uFF1A ${cdAlias(datum[0].cd).display}`;
           numSlots = includings[0].lastDraw;
         }
         if (mode == "fixMember") {
           includings.map((x) => {
             datum.push(cdprogression(members[0], x));
-            seriesLabels.push(cdData(x.cd).display);
+            seriesLabels.push(cdAlias(x.cd).display);
           });
           title = `\u5BFE\u8C61\u30E1\u30F3\u30D0\u30FC\uFF1A ${getMember(datum[0].member).kanji}`;
           numSlots = Math.max(...includings.map((x) => x.lastDraw));
@@ -147,7 +147,7 @@ const ProgressTable = create_ssr_component(($$result, $$props, $$bindings, slots
         title = "\u7DCF\u5B8C\u58F2\u6570\u63A8\u79FB";
         caption = "\u7D2F\u8A08\u7DCF\u5B8C\u58F2\u6570";
         subcaption = "(\u5186\u76E4\u306E\u7DCF\u5B8C\u58F2\u90E8\u6570 / \u6700\u5927\u53EF\u80FD\u5B8C\u58F2\u6570)";
-        xAxisLabels = includings.map((x) => cdData(x.cd).display);
+        xAxisLabels = includings.map((x) => cdAlias(x.cd).display);
         headings = xAxisLabels.map((x) => x.replace(/\s/, "<br>"));
       }
       if (mode == "receptionProgression") {
@@ -168,7 +168,7 @@ const ProgressTable = create_ssr_component(($$result, $$props, $$bindings, slots
         title = `${extra.atdraw}\u6B21\u53D7\u4ED8\u307E\u3067\u306E\u5B8C\u58F2\u6570\u63A8\u79FB`;
         caption = `${extra.atdraw}\u6B21\u53D7\u4ED8\u307E\u3067\u306E\u5B8C\u58F2\u6570`;
         subcaption = " / \u5186\u76E4\u306E\u6700\u5927\u53EF\u80FD\u5B8C\u58F2\u6570";
-        xAxisLabels = includings.map((x) => cdData(x.cd).display);
+        xAxisLabels = includings.map((x) => cdAlias(x.cd).display);
         headings = xAxisLabels.map((x) => x.replace(/\s/, "<br>"));
       }
       datum = datum;

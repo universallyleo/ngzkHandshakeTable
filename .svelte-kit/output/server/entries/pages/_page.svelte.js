@@ -1,10 +1,10 @@
 import { c as create_ssr_component, e as escape, d as null_to_empty, f as each, h as add_attribute, v as validate_component } from "../../chunks/index.js";
-import { g as getMember, c as compareData, a as cdData, e as expandDataList, s as sortList, p as partitionToGroup, f as finalSoldoutDraw, d as data, S as SelectOneCD } from "../../chunks/SelectOneCD.js";
+import { g as getMember, c as compareData, a as cdAlias, e as expandDataList, s as sortList, p as partitionToGroup, f as finalSoldoutDraw, d as data, S as SelectOneCD } from "../../chunks/SelectOneCD.js";
 import { find, min } from "lodash-es";
 import "html2canvas";
 const DataRow_svelte_svelte_type_style_lang = "";
 const css$3 = {
-  code: `.soldFraction.svelte-1vjwv0v{display:inline;float:right;color:#777}.memberName.svelte-1vjwv0v{width:240px;max-width:300px;padding-left:.4em;padding-right:.2em;border-right:1px solid black;border-top:1px solid #ddd;border-bottom:1px solid #ddd}.NAslot.svelte-1vjwv0v{width:26px;height:1.8ch;padding:0;box-sizing:border-box;border:1px solid #ddd;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 100 100'><line x1='0' y1='0' x2='100' y2='100' stroke='black' vector-effect='non-scaling-stroke'/><line x1='0' y1='100' x2='100' y2='0' stroke='black' vector-effect='non-scaling-stroke'/></svg>");background-color:hsl(0, 0%, 80%);background-repeat:no-repeat;background-position:center center;background-size:100% 1.75ch;text-align:center}.slot.svelte-1vjwv0v{width:26px;height:1.8ch;padding:0;overflow:clip;box-sizing:border-box;border:1px solid #ddd;text-align:center}.lastDrawSlot.svelte-1vjwv0v{background-color:yellow}.soldSlot.svelte-1vjwv0v{background-color:hsl(211, 62%, 80%)}.unconfirmedSlot.svelte-1vjwv0v{background-color:hsl(0, 0%, 80%)}.lastcell.svelte-1vjwv0v{border-right:1px solid black !important}.topRow.svelte-1vjwv0v{border-top:1px solid black !important}.bottomRow.svelte-1vjwv0v{border-bottom:1px solid black !important}.compareCell.svelte-1vjwv0v{border:1px solid #ddd;text-align:center}.compareGrid.svelte-1vjwv0v{width:180px;min-height:100%;height:100%;margin:0;display:grid;gap:0;grid-template-columns:55px 12px 55px 60px;grid-template-rows:100%;justify-items:center;align-items:stretch;align-content:stretch}.plusCell.svelte-1vjwv0v{color:hsl(120, 100%, 40%)}.minusCell.svelte-1vjwv0v{color:red}`,
+  code: `.tooltip.svelte-1l3ojy7.svelte-1l3ojy7{display:inline-block;position:relative;transform:translate(0,-3px);border-bottom:1px dotted #666;text-align:left;color:#777;font-size:11px;line-height:11px;margin:0;cursor:pointer}.tt-right.svelte-1l3ojy7.svelte-1l3ojy7{min-width:220px;max-width:600px;top:50%;left:100%;margin-left:20px;transform:translate(0, -50%);padding:12px;color:#666666;background-color:#FFFFE0;font-weight:normal;font-size:13px;line-height:1rem;border-radius:8px;position:absolute;z-index:99999999;box-sizing:border-box;box-shadow:0 1px 8px rgba(0,0,0,0.5);display:none}.tooltip.svelte-1l3ojy7:hover .tt-right.svelte-1l3ojy7{display:block}.soldFraction.svelte-1l3ojy7.svelte-1l3ojy7{display:inline;float:right;color:#777}.memberName.svelte-1l3ojy7.svelte-1l3ojy7{width:240px;max-width:300px;padding-left:.4em;padding-right:.2em;border-right:1px solid black;border-top:1px solid #ddd;border-bottom:1px solid #ddd}.NAslot.svelte-1l3ojy7.svelte-1l3ojy7{width:26px;height:1.8ch;padding:0;box-sizing:border-box;border:1px solid #ddd;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 100 100'><line x1='0' y1='0' x2='100' y2='100' stroke='black' vector-effect='non-scaling-stroke'/><line x1='0' y1='100' x2='100' y2='0' stroke='black' vector-effect='non-scaling-stroke'/></svg>");background-color:hsl(0, 0%, 80%);background-repeat:no-repeat;background-position:center center;background-size:100% 1.75ch;text-align:center}.slot.svelte-1l3ojy7.svelte-1l3ojy7{width:26px;height:1.8ch;padding:0;overflow:clip;box-sizing:border-box;border:1px solid #ddd;text-align:center}.lastDrawSlot.svelte-1l3ojy7.svelte-1l3ojy7{background-color:yellow}.soldSlot.svelte-1l3ojy7.svelte-1l3ojy7{background-color:hsl(211, 62%, 80%)}.unconfirmedSlot.svelte-1l3ojy7.svelte-1l3ojy7{background-color:hsl(0, 0%, 80%)}.lastcell.svelte-1l3ojy7.svelte-1l3ojy7{border-right:1px solid black !important}.topRow.svelte-1l3ojy7.svelte-1l3ojy7{border-top:1px solid black !important}.bottomRow.svelte-1l3ojy7.svelte-1l3ojy7{border-bottom:1px solid black !important}.compareCell.svelte-1l3ojy7.svelte-1l3ojy7{border:1px solid #ddd;text-align:center}.compareGrid.svelte-1l3ojy7.svelte-1l3ojy7{width:180px;min-height:100%;height:100%;margin:0;display:grid;gap:0;grid-template-columns:55px 12px 55px 60px;grid-template-rows:100%;justify-items:center;align-items:stretch;align-content:stretch}.plusCell.svelte-1l3ojy7.svelte-1l3ojy7{color:hsl(120, 100%, 40%)}.minusCell.svelte-1l3ojy7.svelte-1l3ojy7{color:red}`,
   map: null
 };
 const DataRow = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -59,27 +59,29 @@ const DataRow = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   classesOnMbCell = `memberName ${addClasses}`;
   compareCellClasses = `compareCell lastcell ${addClasses}`;
   compareOutput = compare != null ? compareData(row, find(compare.cdData.table, ["member", row.member]), compare.atdraw) : null;
-  return `<td class="${escape(null_to_empty(classesOnMbCell), true) + " svelte-1vjwv0v"}">${escape(mbInfo.kanji)}
-    <div class="${"soldFraction svelte-1vjwv0v"}">${escape(row.numSold[0])}/${escape(row.numSold[1])}</div></td>
+  return `<td class="${escape(null_to_empty(classesOnMbCell), true) + " svelte-1l3ojy7"}">${escape(mbInfo.kanji)} 
+    ${row.bdayMeet != 0 ? `<div class="${"tooltip svelte-1l3ojy7"}">[\u8A95]
+        <div class="${"tt-right svelte-1l3ojy7"}">\u8A95\u751F:${escape(row.bdayMeet.bday.slice(0, 2))}\u6708${escape(row.bdayMeet.bday.slice(3))}\u65E5 \u2192 ${escape(row.bdayMeet.meetDate)}</div></div>` : ``}
+    <div class="${"soldFraction svelte-1l3ojy7"}">${escape(row.numSold[0])}/${escape(row.numSold[1])}</div></td>
 
 
 ${!hideTable ? `${each(decoratedTbl, (daySlots) => {
     return `${each(daySlots, (slot, i) => {
       return `   
         <td class="${[
-        escape(null_to_empty(slot.classes), true) + " svelte-1vjwv0v",
+        escape(null_to_empty(slot.classes), true) + " svelte-1l3ojy7",
         i == daySlots.length - 1 ? "lastcell" : ""
       ].join(" ").trim()}">${slot.content != "x" ? `${escape(slot.content)}` : `${capture ? `x` : ``}`}
             </td>`;
     })}`;
   })}` : ``}
-${compare ? `<td class="${escape(null_to_empty(compareCellClasses), true) + " svelte-1vjwv0v"}"><div class="${"compareGrid svelte-1vjwv0v"}"><div>${escape(compareOutput.prev)}
+${compare ? `<td class="${escape(null_to_empty(compareCellClasses), true) + " svelte-1l3ojy7"}"><div class="${"compareGrid svelte-1l3ojy7"}"><div>${escape(compareOutput.prev)}
                 ${compareOutput.extraprev ? `<br>${escape(compareOutput.extraprev)}` : ``}</div>
             <div>\u2192</div>
             <div>${escape(compareOutput.curr)}
                 ${compareOutput.extracurr ? `<br>${escape(compareOutput.extracurr)}` : ``}</div>
             <div class="${[
-    "svelte-1vjwv0v",
+    "svelte-1l3ojy7",
     (compareOutput.diff[0] === "+" ? "plusCell" : "") + " " + (compareOutput.diff[0] === "-" ? "minusCell" : "")
   ].join(" ").trim()}">${compareOutput.diff != "0" ? `<span class="${"color:black"}">[ </span>
                     ${escape(compareOutput.diff)}
@@ -108,7 +110,8 @@ const RowGroups = create_ssr_component(($$result, $$props, $$bindings, slots) =>
   if ($$props.hideTable === void 0 && $$bindings.hideTable && hideTable !== void 0)
     $$bindings.hideTable(hideTable);
   $$result.css.add(css$2);
-  return `<tr class="${"taggedRow svelte-179mrzs"}"><td${add_attribute("rowspan", group.has.length, 0)} class="${"tagCell svelte-179mrzs"}">${escape(group.label)}</td>
+  return `<tr class="${"taggedRow svelte-179mrzs"}">
+	<td${add_attribute("rowspan", group.has.length, 0)} class="${"tagCell svelte-179mrzs"}">${escape(group.label)}</td>
 	${validate_component(DataRow, "DataRow").$$render(
     $$result,
     {
@@ -201,7 +204,7 @@ const SlotTable = create_ssr_component(($$result, $$props, $$bindings, slots) =>
   if ($$props.hideTable === void 0 && $$bindings.hideTable && hideTable !== void 0)
     $$bindings.hideTable(hideTable);
   $$result.css.add(css$1);
-  title = cdData(data2.cd).display;
+  title = cdAlias(data2.cd).display;
   expandedData = expandDataList(data2);
   finalTb = sortList(partitionToGroup(filterList(expandedData, filterOpt), groupOpt), sortOpt);
   lastDraw = data2.lastDraw;
@@ -211,7 +214,7 @@ const SlotTable = create_ssr_component(($$result, $$props, $$bindings, slots) =>
     };
   }).numSold;
   capture = capture;
-  title2 = compare ? cdData(compare.cdData.cd).display : "";
+  title2 = compare ? cdAlias(compare.cdData.cd).display : "";
   hideTable = compare ? hideTable : false;
   return `
 
@@ -271,7 +274,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let groupMethod = [
     { "display": "\u671F\u5225\u5206\u3051", "value": "gen" },
     { "display": "\u9078\u629C\u30FB\u30A2\u30F3\u30C0\u30FC\u30FB\u4ED6", "value": "group" },
-    { "display": "\u8A95\u751F\u5E74\u5225", "value": "dob-year" },
+    { "display": "\u8A95\u751F\u5E74\u5225", "value": "dobyear" },
     {
       "display": "\u5B8C\u58F2\u30FB\u672A\u5B8C\u58F2",
       "value": "soldstatus"
@@ -285,7 +288,9 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let sortOpt = "kana";
   let compareCD = false;
   let capture = false;
-  let selectedCD = data[data.length - 1], compareToCDData, hideTable = false;
+  let selectedIndex = 0;
+  let selectedCDData = data[data.length - 1];
+  let compareToCDData, hideTable = false;
   function getCompare() {
     return null;
   }
@@ -300,17 +305,21 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
         compareToCDData = null;
       }
     }
-    compareToCDData ? min([compareToCDData.lastDraw, selectedCD.lastDraw]) : 0;
+    compareToCDData ? min([compareToCDData.lastDraw, selectedCDData.lastDraw]) : 0;
     compare = getCompare();
     $$rendered = `${$$result.head += `${$$result.title = `<title>\u4E43\u6728\u574246\u30A4\u30F3\u30BF\u30E9\u30AF\u30C6\u30A3\u30D6\u5F0F\u5B8C\u58F2\u8868</title>`, ""}<meta name="${"description"}" content="${"\u4E43\u6728\u574246\u30A4\u30F3\u30BF\u30E9\u30AF\u30C6\u30A3\u30D6\u5F0F\u5B8C\u58F2\u8868"}" data-svelte="svelte-ya5rpn">`, ""}
 
 <div class="${"optionForm svelte-1xvsvl6"}"><div class="${"optionsContainer svelte-1xvsvl6"}"><ul class="${"twocols svelte-1xvsvl6"}"><li class="${"svelte-1xvsvl6"}"><div class="${"leftcol svelte-1xvsvl6"}">CD:</div>
                 <div class="${"rightcol"}">${validate_component(SelectOneCD, "SelectOneCD").$$render(
       $$result,
-      { selectedCDData: selectedCD },
+      { selectedCDData, selected: selectedIndex },
       {
         selectedCDData: ($$value) => {
-          selectedCD = $$value;
+          selectedCDData = $$value;
+          $$settled = false;
+        },
+        selected: ($$value) => {
+          selectedIndex = $$value;
           $$settled = false;
         }
       },
@@ -348,7 +357,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 <section id="${"slotstable"}" class="${"main svelte-1xvsvl6"}">${validate_component(SlotTable, "SlotTable").$$render(
       $$result,
       {
-        data: selectedCD,
+        data: selectedCDData,
         filterOpt,
         groupOpt,
         sortOpt,
