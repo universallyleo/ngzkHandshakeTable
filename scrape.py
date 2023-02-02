@@ -297,7 +297,8 @@ if __name__ == "__main__":
         for x in soup.find("span", class_="badgeStatus _accept").parent.stripped_strings
     ][1]
     # sample:  txt = '第11次受付'
-    thisDraw = int(re.search("\d+", txt).group(0))
+    thisDraw = int(re.search("\d+", txt).group(0))-1
+    # need -1 since we are scraping n-th draw result at (n+1)-st reception
     print(thisDraw)
 
     # Scrape
