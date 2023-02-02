@@ -8968,7 +8968,7 @@ function expandMBData(mbdata, groups) {
   return res;
 }
 function compareData(mbdataNow, mbdataCompare, atdraw = -1) {
-  let [m, totalThen] = getNumSold(mbdataCompare, atdraw), [n, totalNow] = getNumSold(mbdataNow, atdraw);
+  let [m, totalThen] = getNumSold(mbdataCompare, atdraw), [n, totalNow] = getNumSold(mbdataNow);
   let lastTimeSoldout = m == totalThen, currentSoldout = n == totalNow, bothSoldout = lastTimeSoldout && currentSoldout;
   if (bothSoldout) {
     return {

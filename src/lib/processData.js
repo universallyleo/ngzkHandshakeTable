@@ -200,7 +200,7 @@ export function expandMBData(mbdata, groups) {
 
 export function compareData(mbdataNow, mbdataCompare, atdraw = -1) {
 	let [m, totalThen] = getNumSold(mbdataCompare, atdraw),
-		[n, totalNow] = getNumSold(mbdataNow, atdraw);
+		[n, totalNow] = getNumSold(mbdataNow);
 	//let diff = n !== 'N/A' ? `${m - n > 0 ? '+' : ''}${m - n}` : '';
 	let lastTimeSoldout = m == totalThen,
 		currentSoldout = n == totalNow,
