@@ -1,41 +1,16 @@
 export const manifest = {
 	appDir: "_app",
+	appPath: "ngzkHandshakeTable/_app",
 	assets: new Set([".nojekyll","favicon_32x32.png","screenshot.png"]),
 	mimeTypes: {".png":"image/png"},
 	_: {
-		entry: {"file":"_app/immutable/start-2fd79835.js","imports":["_app/immutable/start-2fd79835.js","_app/immutable/chunks/index-206563de.js","_app/immutable/chunks/singletons-c920c35b.js","_app/immutable/chunks/paths-6cd3a76e.js"],"stylesheets":[]},
+		entry: {"file":"_app/immutable/start-16943c3e.js","imports":["_app/immutable/start-16943c3e.js","_app/immutable/chunks/index-ab941ede.js","_app/immutable/chunks/singletons-54b0b033.js","_app/immutable/chunks/shared-23917130.js"],"stylesheets":[],"fonts":[]},
 		nodes: [
 			() => import('./nodes/0.js'),
-			() => import('./nodes/1.js'),
-			() => import('./nodes/2.js'),
-			() => import('./nodes/3.js'),
-			() => import('./nodes/4.js')
+			() => import('./nodes/1.js')
 		],
 		routes: [
-			{
-				id: "",
-				pattern: /^\/$/,
-				names: [],
-				types: [],
-				page: { layouts: [0], errors: [1], leaf: 2 },
-				endpoint: null
-			},
-			{
-				id: "about",
-				pattern: /^\/about\/?$/,
-				names: [],
-				types: [],
-				page: { layouts: [0], errors: [1], leaf: 3 },
-				endpoint: null
-			},
-			{
-				id: "progress",
-				pattern: /^\/progress\/?$/,
-				names: [],
-				types: [],
-				page: { layouts: [0], errors: [1], leaf: 4 },
-				endpoint: null
-			}
+			
 		],
 		matchers: async () => {
 			
