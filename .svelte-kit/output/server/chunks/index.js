@@ -91,7 +91,7 @@ function validate_component(component, name) {
   if (!component || !component.$$render) {
     if (name === "svelte:component")
       name += " this={...}";
-    throw new Error(`<${name}> is not a valid SSR component. You may need to review your build config to ensure that dependencies are compiled, rather than imported as pre-compiled modules`);
+    throw new Error(`<${name}> is not a valid SSR component. You may need to review your build config to ensure that dependencies are compiled, rather than imported as pre-compiled modules. Otherwise you may need to fix a <${name}>.`);
   }
   return component;
 }
@@ -102,6 +102,7 @@ function create_ssr_component(fn) {
     const $$ = {
       on_destroy,
       context: new Map(context || (parent_component ? parent_component.$$.context : [])),
+      // these will be immediately discarded
       on_mount: [],
       before_update: [],
       after_update: [],
@@ -123,6 +124,7 @@ function create_ssr_component(fn) {
         css: {
           code: Array.from(result.css).map((css) => css.code).join("\n"),
           map: null
+          // TODO
         },
         head: result.title + result.head
       };
@@ -137,7 +139,7 @@ function add_attribute(name, value, boolean) {
   return ` ${name}${assignment}`;
 }
 export {
-  safe_not_equal as a,
+  setContext as a,
   subscribe as b,
   create_ssr_component as c,
   null_to_empty as d,
@@ -149,6 +151,6 @@ export {
   missing_component as m,
   noop as n,
   onDestroy as o,
-  setContext as s,
+  safe_not_equal as s,
   validate_component as v
 };

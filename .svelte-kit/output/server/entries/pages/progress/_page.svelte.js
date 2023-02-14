@@ -48,6 +48,7 @@ const ProgressTable = create_ssr_component(($$result, $$props, $$bindings, slots
       cd: cd.cd,
       member: memberName,
       main: [],
+      // accummulated num of sold
       sub: Array(cd.lastDraw).fill(0)
     };
     let mbTable = find(cd.table, ["member", memberName]);
@@ -121,7 +122,7 @@ const ProgressTable = create_ssr_component(($$result, $$props, $$bindings, slots
             datum.push(cdprogression(x, includings[0]));
             seriesLabels.push(getMember(x).kanji);
           });
-          title = `\u5BFE\u8C61\u5186\u76E4\uFF1A ${cdAlias(datum[0].cd).display}`;
+          title = `対象円盤： ${cdAlias(datum[0].cd).display}`;
           numSlots = includings[0].lastDraw;
         }
         if (mode == "fixMember") {
@@ -129,12 +130,12 @@ const ProgressTable = create_ssr_component(($$result, $$props, $$bindings, slots
             datum.push(cdprogression(members[0], x));
             seriesLabels.push(cdAlias(x.cd).display);
           });
-          title = `\u5BFE\u8C61\u30E1\u30F3\u30D0\u30FC\uFF1A ${getMember(datum[0].member).kanji}`;
+          title = `対象メンバー： ${getMember(datum[0].member).kanji}`;
           numSlots = Math.max(...includings.map((x) => x.lastDraw));
         }
         datum.map((t) => extendCDProgressData(t, numSlots));
-        caption = "\u7D2F\u8A08\u5B8C\u58F2\u6570\u306E\u63A8\u79FB";
-        subcaption = "(N\u6B21\u53D7\u4ED8\u306E\u5B8C\u58F2\u6570)";
+        caption = "累計完売数の推移";
+        subcaption = "(N次受付の完売数)";
         let lengths = datum.map((entry) => entry.main.length);
         maxlength = Math.max(...lengths);
         xAxisLabels = range(1, maxlength + 1);
@@ -144,9 +145,9 @@ const ProgressTable = create_ssr_component(($$result, $$props, $$bindings, slots
         numSlots = includings.length;
         datum = members.map((x) => soldProgressionPerCD(x));
         seriesLabels = members.map((x) => getMember(x).kanji);
-        title = "\u7DCF\u5B8C\u58F2\u6570\u63A8\u79FB";
-        caption = "\u7D2F\u8A08\u7DCF\u5B8C\u58F2\u6570";
-        subcaption = "(\u5186\u76E4\u306E\u7DCF\u5B8C\u58F2\u90E8\u6570 / \u6700\u5927\u53EF\u80FD\u5B8C\u58F2\u6570)";
+        title = "総完売数推移";
+        caption = "累計総完売数";
+        subcaption = "(円盤の総完売部数 / 最大可能完売数)";
         xAxisLabels = includings.map((x) => cdAlias(x.cd).display);
         headings = xAxisLabels.map((x) => x.replace(/\s/, "<br>"));
       }
@@ -165,9 +166,9 @@ const ProgressTable = create_ssr_component(($$result, $$props, $$bindings, slots
         });
         console.log(datum);
         seriesLabels = members.map((x) => getMember(x).kanji);
-        title = `${extra.atdraw}\u6B21\u53D7\u4ED8\u307E\u3067\u306E\u5B8C\u58F2\u6570\u63A8\u79FB`;
-        caption = `${extra.atdraw}\u6B21\u53D7\u4ED8\u307E\u3067\u306E\u5B8C\u58F2\u6570`;
-        subcaption = " / \u5186\u76E4\u306E\u6700\u5927\u53EF\u80FD\u5B8C\u58F2\u6570";
+        title = `${extra.atdraw}次受付までの完売数推移`;
+        caption = `${extra.atdraw}次受付までの完売数`;
+        subcaption = " / 円盤の最大可能完売数";
         xAxisLabels = includings.map((x) => cdAlias(x.cd).display);
         headings = xAxisLabels.map((x) => x.replace(/\s/, "<br>"));
       }
@@ -180,6 +181,7 @@ const ProgressTable = create_ssr_component(($$result, $$props, $$bindings, slots
           borderColor: `${nthColor(i)}`,
           backgroundColor: `${nthColor(i)}`,
           pointHitRadius: 20,
+          // larger area for intersect detection
           segment: {
             borderColor: (ctx) => skipped(ctx, "rgb(0,0,0,0.5)"),
             borderDash: (ctx) => skipped(ctx, [6, 6])
@@ -247,12 +249,12 @@ const SelectMembersPanel = create_ssr_component(($$result, $$props, $$bindings, 
   selectGrouping = uniq(selectables.map((x) => x.gen)).sort((a, b) => parseInt(a) - parseInt(b)).map((n) => {
     return {
       "gen": n,
-      "labels": [`\u5168${n}\u671F\u751F\u9078\u3076`, `\u5168${n}\u671F\u751F\u5916\u3059`],
+      "labels": [`全${n}期生選ぶ`, `全${n}期生外す`],
       "consistsOf": selectables.filter((x) => x.gen == n)
     };
   });
-  return `${selectables.length > 1 ? `${validate_component(StateButton, "StateButton").$$render($$result, { states: ["\u5168\u54E1\u9078\u3076", "\u5168\u54E1\u5916\u3059"] }, {}, {})}
-<span class="${"weaker svelte-1iemf7s"}">18\u500B\u4EE5\u4E0B\u3092\u9078\u629E\u3059\u308B\u3053\u3068\u3092\u63A8\u5968\u3057\u307E\u3059</span> <br>` : ``}
+  return `${selectables.length > 1 ? `${validate_component(StateButton, "StateButton").$$render($$result, { states: ["全員選ぶ", "全員外す"] }, {}, {})}
+<span class="${"weaker svelte-1iemf7s"}">18個以下を選択することを推奨します</span> <br>` : ``}
 <div class="${"memberGrouping svelte-1iemf7s"}">${each(selectGrouping, (mbgroup) => {
     return `<div class="${"groupList svelte-1iemf7s"}">${validate_component(StateButton, "StateButton").$$render($$result, { states: mbgroup.labels }, {}, {})}
     ${each(mbgroup.consistsOf, (itm) => {
@@ -265,27 +267,27 @@ const SelectMembersPanel = create_ssr_component(($$result, $$props, $$bindings, 
 });
 const _page_svelte_svelte_type_style_lang = "";
 const css = {
-  code: 'input.svelte-1h0bd66.svelte-1h0bd66.svelte-1h0bd66,button.svelte-1h0bd66.svelte-1h0bd66.svelte-1h0bd66{font-size:inherit;font-family:inherit;line-height:1.2}button.svelte-1h0bd66.svelte-1h0bd66.svelte-1h0bd66:focus:not(:focus-visible){outline:none}.optionsContainer.svelte-1h0bd66.svelte-1h0bd66.svelte-1h0bd66{width:max-content;margin:10px 1ch;padding:2px 6px;border:1px solid black;display:flex}ul.twocols.svelte-1h0bd66.svelte-1h0bd66.svelte-1h0bd66{display:inline-block;text-align:left;margin:0;padding:0}ul.twocols.svelte-1h0bd66>li.svelte-1h0bd66.svelte-1h0bd66{margin:15px;display:flex;justify-content:left;margin:0}ul.twocols.svelte-1h0bd66>li.svelte-1h0bd66>div.leftcol.svelte-1h0bd66{margin-top:0;margin-bottom:.5ch;margin-right:.2em;width:75px}ul.twocols.svelte-1h0bd66>li.svelte-1h0bd66>div.rightcol.svelte-1h0bd66{margin-top:0;margin-bottom:.5ch;margin-right:1em}.print.svelte-1h0bd66.svelte-1h0bd66.svelte-1h0bd66{display:flex;justify-content:center;align-items:center}button.print.svelte-1h0bd66.svelte-1h0bd66.svelte-1h0bd66::before,button.print.svelte-1h0bd66.svelte-1h0bd66.svelte-1h0bd66::after{flex:auto;min-width:50px;height:1px;display:block;content:"";background-color:black}button.print.svelte-1h0bd66.svelte-1h0bd66.svelte-1h0bd66::before{margin-right:25px}button.print.svelte-1h0bd66.svelte-1h0bd66.svelte-1h0bd66::after{margin-left:25px}.cdList.svelte-1h0bd66.svelte-1h0bd66.svelte-1h0bd66{grid-area:2/1/3/3}.cdProgressionOption.svelte-1h0bd66.svelte-1h0bd66.svelte-1h0bd66{display:grid;grid-template-columns:255px auto;grid-template-rows:auto;grid-template-areas:"row1L row2R"\n                        "longbox longbox"}.fixOption.svelte-1h0bd66.svelte-1h0bd66.svelte-1h0bd66{grid-area:"row1L";margin-left:5px;margin-top:.2ch;margin-bottom:1ch}.selectFix.svelte-1h0bd66.svelte-1h0bd66.svelte-1h0bd66{grid-area:"row1R";margin-top:.2ch;margin-bottom:1ch}.longSelection.svelte-1h0bd66.svelte-1h0bd66.svelte-1h0bd66{margin-left:5px;grid-area:2/1/3/3}',
+  code: 'input.svelte-1h0bd66.svelte-1h0bd66.svelte-1h0bd66,button.svelte-1h0bd66.svelte-1h0bd66.svelte-1h0bd66{font-size:inherit;font-family:inherit;line-height:1.2}button.svelte-1h0bd66.svelte-1h0bd66.svelte-1h0bd66:focus:not(:focus-visible){outline:none}.optionsContainer.svelte-1h0bd66.svelte-1h0bd66.svelte-1h0bd66{width:max-content;margin:10px 1ch;padding:2px 6px;border:1px solid black;display:flex}ul.twocols.svelte-1h0bd66.svelte-1h0bd66.svelte-1h0bd66{display:inline-block;text-align:left;margin:0;padding:0}ul.twocols.svelte-1h0bd66>li.svelte-1h0bd66.svelte-1h0bd66{margin:15px;display:flex;justify-content:left;margin:0}ul.twocols.svelte-1h0bd66>li.svelte-1h0bd66>div.leftcol.svelte-1h0bd66{margin-top:0;margin-bottom:.5ch;margin-right:.2em;width:75px}ul.twocols.svelte-1h0bd66>li.svelte-1h0bd66>div.rightcol.svelte-1h0bd66{margin-top:0;margin-bottom:.5ch;margin-right:1em}.print.svelte-1h0bd66.svelte-1h0bd66.svelte-1h0bd66{display:flex;justify-content:center;align-items:center}button.print.svelte-1h0bd66.svelte-1h0bd66.svelte-1h0bd66::before,button.print.svelte-1h0bd66.svelte-1h0bd66.svelte-1h0bd66::after{flex:auto;min-width:50px;height:1px;display:block;content:"";background-color:black}button.print.svelte-1h0bd66.svelte-1h0bd66.svelte-1h0bd66::before{margin-right:25px}button.print.svelte-1h0bd66.svelte-1h0bd66.svelte-1h0bd66::after{margin-left:25px}.cdList.svelte-1h0bd66.svelte-1h0bd66.svelte-1h0bd66{grid-area:2/1/3/3}.cdProgressionOption.svelte-1h0bd66.svelte-1h0bd66.svelte-1h0bd66{display:grid;grid-template-columns:255px auto;grid-template-rows:auto;grid-template-areas:"row1L row2R"\r\n                        "longbox longbox"}.fixOption.svelte-1h0bd66.svelte-1h0bd66.svelte-1h0bd66{grid-area:"row1L";margin-left:5px;margin-top:.2ch;margin-bottom:1ch}.selectFix.svelte-1h0bd66.svelte-1h0bd66.svelte-1h0bd66{grid-area:"row1R";margin-top:.2ch;margin-bottom:1ch}.longSelection.svelte-1h0bd66.svelte-1h0bd66.svelte-1h0bd66{margin-left:5px;grid-area:2/1/3/3}',
   map: null
 };
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let seriesTypes = [
     {
-      "display": "\u500B\u5225\u5186\u76E4\u306E\u5404\u53D7\u4ED8\u5B8C\u58F2\u6570\u63A8\u79FB",
+      "display": "個別円盤の各受付完売数推移",
       "value": "cdProgression"
     },
     {
-      "display": "\u500B\u5225\u30E1\u30F3\u30D0\u30FC\u306E\u7DCF\u5B8C\u58F2\u6570\u63A8\u79FB",
+      "display": "個別メンバーの総完売数推移",
       "value": "overallProgression"
     },
     {
-      "display": "\u500B\u5225\u30E1\u30F3\u30D0\u30FC\u306EN\u6B21\u53D7\u4ED8\u307E\u3067\u306E\u5B8C\u58F2\u6570\u63A8\u79FB",
+      "display": "個別メンバーのN次受付までの完売数推移",
       "value": "receptionProgression"
     }
   ];
   let fixTypes = [
-    { "display": "\u5186\u76E4", "value": "fixCD" },
-    { "display": "\u30E1\u30F3\u30D0\u30FC", "value": "fixMember" }
+    { "display": "円盤", "value": "fixCD" },
+    { "display": "メンバー", "value": "fixMember" }
   ];
   let seriesOpt = "cdProgression";
   let fixOpt = "fixCD";
@@ -310,17 +312,17 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
         }
       }
     }
-    $$rendered = `${$$result.head += `${$$result.title = `<title>\u4E43\u6728\u574246\u5B8C\u58F2\u6570\u63A8\u79FB</title>`, ""}<meta name="${"description"}" content="${"\u4E43\u6728\u574246\u5B8C\u58F2\u6570\u63A8\u79FB"}" data-svelte="svelte-xnpnvr">`, ""}
+    $$rendered = `${$$result.head += `<!-- HEAD_svelte-xnpnvr_START -->${$$result.title = `<title>乃木坂46完売数推移</title>`, ""}<meta name="${"description"}" content="${"乃木坂46完売数推移"}"><!-- HEAD_svelte-xnpnvr_END -->`, ""}
 
-<div class="${"optionsContainer svelte-1h0bd66"}"><ul class="${"twocols svelte-1h0bd66"}"><li class="${"svelte-1h0bd66"}"><div class="${"leftcol svelte-1h0bd66"}">\u7CFB\u5217\u69CB\u6210:</div>
+<div class="${"optionsContainer svelte-1h0bd66"}"><ul class="${"twocols svelte-1h0bd66"}"><li class="${"svelte-1h0bd66"}"><div class="${"leftcol svelte-1h0bd66"}">系列構成:</div>
             <div class="${"rightcol svelte-1h0bd66"}">${each(seriesTypes, (ser) => {
       return `
                 <label><input type="${"radio"}" name="${"seriesOpt"}"${add_attribute("id", ser.value, 0)}${add_attribute("value", ser.value, 0)} class="${"svelte-1h0bd66"}"${ser.value === seriesOpt ? add_attribute("checked", true, 1) : ""}>
                     ${escape(ser.display)}
                 </label>`;
     })}</div></li>
-        <li class="${"svelte-1h0bd66"}"><div class="${"leftcol svelte-1h0bd66"}">\u30C7\u30FC\u30BF:</div>
-            <div class="${"rightcol svelte-1h0bd66"}">${`<div class="${"cdProgressionOption svelte-1h0bd66"}"><div class="${"fixOption svelte-1h0bd66"}">\u56FA\u5B9A\u5BFE\u8C61:
+        <li class="${"svelte-1h0bd66"}"><div class="${"leftcol svelte-1h0bd66"}">データ:</div>
+            <div class="${"rightcol svelte-1h0bd66"}">${`<div class="${"cdProgressionOption svelte-1h0bd66"}"><div class="${"fixOption svelte-1h0bd66"}">固定対象:
                 ${each(fixTypes, (ft) => {
       return `<label><input type="${"radio"}" name="${"fixOpt"}"${add_attribute("id", ft.value, 0)}${add_attribute("value", ft.value, 0)} class="${"svelte-1h0bd66"}"${ft.value === fixOpt ? add_attribute("checked", true, 1) : ""}>
                         ${escape(ft.display)}
@@ -354,7 +356,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
             ${``}
 
             ${``}</div></li>
-        <li class="${"svelte-1h0bd66"}"><div style="${"width: 50%; margin: 1ch auto 5px auto;"}"><button class="${"print svelte-1h0bd66"}">\u30B0\u30E9\u30D5\u4F5C\u6210\u3059\u308B</button></div></li></ul></div>
+        <li class="${"svelte-1h0bd66"}"><div style="${"width: 50%; margin: 1ch auto 5px auto;"}"><button class="${"print svelte-1h0bd66"}">グラフ作成する</button></div></li></ul></div>
 
 ${validate_component(ProgressTable, "ProgressTable").$$render($$result, { mode, members, includings, extra }, {}, {})}`;
   } while (!$$settled);
