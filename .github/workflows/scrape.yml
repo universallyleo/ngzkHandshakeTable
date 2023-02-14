@@ -33,7 +33,7 @@ jobs:
         run: echo "today=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
 
       - name: Copy original json
-        run: mv ./src/lib/data/data.json ./src/lib/data/old/data_${{ env.today }}.json
+        run: cp ./src/lib/data/data.json ./src/lib/data/old/data_${{ env.today }}.json
 
       - name: Scrape with Python # run main.py
         env:
