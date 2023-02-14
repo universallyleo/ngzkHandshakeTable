@@ -1,0 +1,56 @@
+name: Update DB weekly
+
+on:
+  schedule:
+    - cron: "3 5 * * THU"
+
+# env:
+#     NAME: value
+
+jobs:
+  modify-db:
+    name: Update json file via Python
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check-out repo for use
+        uses: actions/checkout@v3
+        with:
+          # repository: universallyleo/ngzkHandshakeScrape
+          ref: main
+        # token: ${{ secrets.GITHUB_TOKEN }}
+        # path: ${{ env.DEVOPS_DIR }}
+
+      - name: Setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9" # install the python version needed
+
+      - name: Install python packages
+        run: pip install -r requirements.txt
+
+      - name: Get current date
+        id: date
+        run: echo "today=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+
+      - name: Copy original json
+        run: cp ./src/lib/data/data.json ./src/lib/data/old/data_${{ env.today }}.json
+
+      - name: Scrape with Python # run main.py
+        env:
+          COOKIES: ${{ secrets.FORTUNE_COOKIES }}
+          FIREBASE_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
+        run: python scrape.py old/data_${{ env.today }}.json
+
+      - name: Setup and Build with Nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: "npm"
+      - run: npm ci ## clean install
+      - run: npm run build
+
+      - name: Auto commit
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          branch: main
+          commit_message: Github Action auto update on ${{ env.today }}
