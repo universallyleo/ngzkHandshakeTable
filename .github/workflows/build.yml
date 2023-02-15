@@ -1,0 +1,36 @@
+name: Build on change to src
+
+on:
+  push:
+    paths:
+      - "src/**"
+
+jobs:
+  rebuild-and-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check-out repo for use
+        uses: actions/checkout@v3
+        with:
+          # repository: universallyleo/ngzkHandshakeScrape
+          ref: main
+        # token: ${{ secrets.GITHUB_TOKEN }}
+        # path: ${{ env.DEVOPS_DIR }}
+
+      - name: Setup and Build with Nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: "npm"
+      - run: npm ci ## clean install
+      - run: npm run build
+
+      - name: Get current date
+        id: date
+        run: echo "today=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+
+      - name: Auto commit
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          branch: main
+          commit_message: Github Action auto rebuild on ${{ env.today }}

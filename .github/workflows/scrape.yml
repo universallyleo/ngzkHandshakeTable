@@ -35,22 +35,14 @@ jobs:
       - name: Copy original json
         run: cp ./src/lib/data/data.json ./src/lib/data/old/data_${{ env.today }}.json
 
-      - name: Scrape with Python # run main.py
+      - name: Scrape with Python # run scrape.py
         env:
           COOKIES: ${{ secrets.FORTUNE_COOKIES }}
           FIREBASE_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
         run: python scrape.py old/data_${{ env.today }}.json
 
-      - name: Setup and Build with Nodejs
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: "npm"
-      - run: npm ci ## clean install
-      - run: npm run build
-
       - name: Auto commit
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           branch: main
-          commit_message: Github Action auto update on ${{ env.today }}
+          commit_message: Auto DB update ${{ env.today }}
