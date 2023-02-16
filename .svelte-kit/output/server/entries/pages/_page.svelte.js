@@ -60,8 +60,8 @@ const DataRow = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   compareCellClasses = `compareCell lastcell ${addClasses}`;
   compareOutput = compare != null ? compareData(row, find(compare.cdData.table, ["member", row.member]), compare.atdraw) : null;
   return `<td class="${escape(null_to_empty(classesOnMbCell), true) + " svelte-1l3ojy7"}">${escape(mbInfo.kanji)} 
-    ${row.bdayMeet != 0 ? `<div class="${"tooltip svelte-1l3ojy7"}">[誕]
-        <div class="${"tt-right svelte-1l3ojy7"}">誕生:${escape(row.bdayMeet.bday.slice(0, 2))}月${escape(row.bdayMeet.bday.slice(3))}日 → ${escape(row.bdayMeet.meetDate)}</div></div>` : ``}
+    ${row.bdayMeet != 0 ? `<div class="${"tooltip svelte-1l3ojy7"}">[\u8A95]
+        <div class="${"tt-right svelte-1l3ojy7"}">\u8A95\u751F:${escape(row.bdayMeet.bday.slice(0, 2))}\u6708${escape(row.bdayMeet.bday.slice(3))}\u65E5 \u2192 ${escape(row.bdayMeet.meetDate)}</div></div>` : ``}
     <div class="${"soldFraction svelte-1l3ojy7"}">${escape(row.numSold[0])}/${escape(row.numSold[1])}</div></td>
 
 
@@ -77,7 +77,7 @@ ${!hideTable ? `${each(decoratedTbl, (daySlots) => {
   })}` : ``}
 ${compare ? `<td class="${escape(null_to_empty(compareCellClasses), true) + " svelte-1l3ojy7"}"><div class="${"compareGrid svelte-1l3ojy7"}"><div>${escape(compareOutput.prev)}
                 ${compareOutput.extraprev ? `<br>${escape(compareOutput.extraprev)}` : ``}</div>
-            <div>→</div>
+            <div>\u2192</div>
             <div>${escape(compareOutput.curr)}
                 ${compareOutput.extracurr ? `<br>${escape(compareOutput.extracurr)}` : ``}</div>
             <div class="${[
@@ -218,16 +218,16 @@ const SlotTable = create_ssr_component(($$result, $$props, $$bindings, slots) =>
   hideTable = compare ? hideTable : false;
   return `
 
-<div class="${"container svelte-81drp5"}"><table class="${"table-bordered svelte-81drp5"}"><caption class="${"text-center svelte-81drp5"}">${escape(title)} (最後更新：${escape(lastDraw)}次受付) 
+<div class="${"container svelte-81drp5"}"><table class="${"table-bordered svelte-81drp5"}"><caption class="${"text-center svelte-81drp5"}">${escape(title)} (\u6700\u5F8C\u66F4\u65B0\uFF1A${escape(lastDraw)}\u6B21\u53D7\u4ED8) 
     ${compare ? `${hideTable ? `<br>` : ``}
-        [ vs ${escape(title2)} ${escape(compare.atdraw)}次受付 ]` : ``}</caption>
+      \xA0\xA0[ vs ${escape(title2)} ${escape(compare.atdraw)}\u6B21\u53D7\u4ED8 ]` : ``}</caption>
   <thead><tr>
       <th class="${"svelte-81drp5"}"></th>
       <th class="${"svelte-81drp5"}"><div class="${"soldFraction svelte-81drp5"}">${escape(totalSold[0])}/${escape(totalSold[1])}</div></th>
       ${!hideTable ? `${each(data2.meetDates, (date) => {
     return `<th colspan="${"5"}" class="${"svelte-81drp5"}">${escape(date)}</th>`;
   })}` : ``}
-      ${compare ? `<th class="${"svelte-81drp5"}">過去との差</th>` : ``}</tr></thead>
+      ${compare ? `<th class="${"svelte-81drp5"}">\u904E\u53BB\u3068\u306E\u5DEE</th>` : ``}</tr></thead>
   <tbody>${groupOpt == "none" ? `
       ${each(data2.table, (row) => {
     return `<tr>${validate_component(DataRow, "DataRow").$$render($$result, { row, lastDraw, compare, capture }, {}, {})}</tr>`;
@@ -255,36 +255,35 @@ const css = {
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let compare;
   let filterMethod = [
-    { "display": "全メンバー", "value": "showall" },
-    { "display": "未完売あり", "value": "hasunsold" },
+    { "display": "\u5168\u30E1\u30F3\u30D0\u30FC", "value": "showall" },
+    { "display": "\u672A\u5B8C\u58F2\u3042\u308A", "value": "hasunsold" },
     {
-      "display": "未完売あり、又は直近更新あり",
+      "display": "\u672A\u5B8C\u58F2\u3042\u308A\u3001\u53C8\u306F\u76F4\u8FD1\u66F4\u65B0\u3042\u308A",
       "value": "hasunsold+latest"
     },
     {
-      "display": "一部以上完売",
+      "display": "\u4E00\u90E8\u4EE5\u4E0A\u5B8C\u58F2",
       "value": "hassoldout"
     },
     {
-      "display": "一部以上完売、全完売なし",
+      "display": "\u4E00\u90E8\u4EE5\u4E0A\u5B8C\u58F2\u3001\u5168\u5B8C\u58F2\u306A\u3057",
       "value": "hassoldoutnonfull"
     }
   ];
   let filterOpt = "showall";
   let groupMethod = [
-    { "display": "期別分け", "value": "gen" },
-    { "display": "選抜・アンダー・他", "value": "group" },
-    { "display": "誕生年別", "value": "dobyear" },
-    // {"display": "学年別 (to be corrected)", "value": "dobyear"},
+    { "display": "\u671F\u5225\u5206\u3051", "value": "gen" },
+    { "display": "\u9078\u629C\u30FB\u30A2\u30F3\u30C0\u30FC\u30FB\u4ED6", "value": "group" },
+    { "display": "\u8A95\u751F\u5E74\u5225", "value": "dobyear" },
     {
-      "display": "完売・未完売",
+      "display": "\u5B8C\u58F2\u30FB\u672A\u5B8C\u58F2",
       "value": "soldstatus"
     }
   ];
   let groupOpt = "gen";
   let sortMethod = [
-    { "display": "五十音順", "value": "kana" },
-    { "display": "完売数順", "value": "numsold" }
+    { "display": "\u4E94\u5341\u97F3\u9806", "value": "kana" },
+    { "display": "\u5B8C\u58F2\u6570\u9806", "value": "numsold" }
   ];
   let sortOpt = "kana";
   let compareCD = false;
@@ -308,7 +307,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     }
     compareToCDData ? min([compareToCDData.lastDraw, selectedCDData.lastDraw]) : 0;
     compare = getCompare();
-    $$rendered = `${$$result.head += `<!-- HEAD_svelte-ya5rpn_START -->${$$result.title = `<title>乃木坂46インタラクティブ式完売表</title>`, ""}<meta name="${"description"}" content="${"乃木坂46インタラクティブ式完売表"}"><!-- HEAD_svelte-ya5rpn_END -->`, ""}
+    $$rendered = `${$$result.head += `${$$result.title = `<title>\u4E43\u6728\u574246\u30A4\u30F3\u30BF\u30E9\u30AF\u30C6\u30A3\u30D6\u5F0F\u5B8C\u58F2\u8868</title>`, ""}<meta name="${"description"}" content="${"\u4E43\u6728\u574246\u30A4\u30F3\u30BF\u30E9\u30AF\u30C6\u30A3\u30D6\u5F0F\u5B8C\u58F2\u8868"}" data-svelte="svelte-ya5rpn">`, ""}
 
 <div class="${"optionForm svelte-1xvsvl6"}"><div class="${"optionsContainer svelte-1xvsvl6"}"><ul class="${"twocols svelte-1xvsvl6"}"><li class="${"svelte-1xvsvl6"}"><div class="${"leftcol svelte-1xvsvl6"}">CD:</div>
                 <div class="${"rightcol"}">${validate_component(SelectOneCD, "SelectOneCD").$$render(
@@ -327,8 +326,8 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       {}
     )}</div>
                 
-                <div class="${"print svelte-1xvsvl6"}"><button class="${"svelte-1xvsvl6"}">画像輸出</button>
-                    <button title="${"Does not work on Firefox unless ClipboardItem is enabled"}" class="${"svelte-1xvsvl6"}">画像コピー</button></div></li>
+                <div class="${"print svelte-1xvsvl6"}"><button class="${"svelte-1xvsvl6"}">\u753B\u50CF\u8F38\u51FA</button>
+                    <button title="${"Does not work on Firefox unless ClipboardItem is enabled"}" class="${"svelte-1xvsvl6"}">\u753B\u50CF\u30B3\u30D4\u30FC</button></div></li>
             <li class="${"svelte-1xvsvl6"}"><div class="${"leftcol svelte-1xvsvl6"}">Group:</div>
                 <div class="${"rightcol"}">${each(groupMethod, (grp) => {
       return `
@@ -351,7 +350,7 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
                     </label>`;
     })}</div></li></ul></div>
     <div class="${"advanceOption svelte-1xvsvl6"}"><label><input type="${"checkbox"}" name="${"compareCD"}" id="${"compareCD"}" class="${"svelte-1xvsvl6"}"${add_attribute("checked", compareCD, 1)}>
-            過去との差
+            \u904E\u53BB\u3068\u306E\u5DEE
         </label>
         ${``}</div></div>
 
