@@ -7532,10 +7532,10 @@ const data = [
       "Shibata Yuna",
       "Tamura Mayu",
       "Tsutsui Ayame",
+      "Hayakawa Seira",
       "Yumiki Nao",
       "Sakaguchi Tamami",
-      "Hayashi Runa",
-      "Hayakawa Seira"
+      "Hayashi Runa"
     ],
     addgroups: [
       {
@@ -7927,7 +7927,6 @@ const data = [
       "2023-06-25"
     ],
     sbt: [
-      "Suzuki Ayane",
       "Iwamoto Renka",
       "Umezawa Minami",
       "Kubo Shiori",
@@ -7936,29 +7935,18 @@ const data = [
       "Endo Sakura",
       "Kaki Haruka",
       "Kanagawa Saya",
+      "Sato Rika",
       "Shibata Yuna",
       "Tamura Mayu",
       "Tsutsui Ayame",
+      "Hayakawa Seira",
+      "Matsuo Miyu",
       "Yumiki Nao",
-      "Inoue Nagi"
-    ],
-    addgroups: [
-      {
-        id: "gen5",
-        has: [
-          "Ioki Mao",
-          "Ikeda Teresa",
-          "Ichinose Miku",
-          "Inoue Nagi",
-          "Okamoto Hina",
-          "Ogawa Aya",
-          "Okuda Iroha",
-          "Kawasaki Sakura",
-          "Sugawara Satsuki",
-          "Tomisato Nao",
-          "Nakanishi Aruno"
-        ]
-      }
+      "Ioki Mao",
+      "Ichinose Miku",
+      "Inoue Nagi",
+      "Kawasaki Sakura",
+      "Sugawara Satsuki"
     ],
     table: [
       {
