@@ -44,6 +44,33 @@ export function datesToRanges(dates) {
 	return dates.map((x) => dayFrom(x, from));
 }
 
+export function JPDateDisplay(date) {
+	let gps = date.split('-');
+	return gps.length > 2 ? `${gps[0]}年${gps[1]}月${gps[2]}日` : `${gps[0]}月${gps[1]}日`;
+}
+
+export function bdayToGakunen(date) {
+	let birthyear = parseInt(date.slice(0, 4));
+	return parseInt(date.slice(5, 7)) < 4
+		? `${birthyear - 1}`.slice(2, 4) + '/' + date.slice(2, 4)
+		: date.slice(2, 4) + '/' + `${birthyear + 1}`.slice(2, 4);
+}
+
+export function sortGakunen(a, b) {
+	let [c, d] = [a, b].map((x) => parseInt(x.slice(0, 2)));
+	[c, d] = [c, d].map((x) => (x > 80 ? 1900 + x : 2000 + x));
+	return c - d;
+}
+
+export function getAge(date) {
+	var today = new Date();
+	var birthDate = new Date(date);
+	var age = today.getFullYear() - birthDate.getFullYear();
+	var m = today.getMonth() - birthDate.getMonth();
+	age -= m < 0 || (m === 0 && today.getDate() < birthDate.getDate()) ? 1 : 0;
+	return age;
+}
+
 export function nearestNumberInSortedArr(target, arr) {
 	//more readable version...
 	return arr.reduce(

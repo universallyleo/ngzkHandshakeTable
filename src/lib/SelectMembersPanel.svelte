@@ -4,6 +4,7 @@ import StateButton from '$lib/StateButton.svelte';
 
 export let selectables;
 export let selectedMembers;
+export let nolimit=false;
 
 $: selectGrouping = uniq(selectables.map(x=>x.gen)).sort((a,b)=> parseInt(a)-parseInt(b)).map(n=>{
                 return { "gen": n,
@@ -29,8 +30,13 @@ const toggleSelectAll = (txt) => selectedMembers = txt.match(/選ぶ$/)?selectab
 </script>
 
 {#if selectables.length>1}
+<div class="memberGrouping">
 <StateButton states={["全員選ぶ", "全員外す"]} on:changeFrom={(ev)=>toggleSelectAll(ev.detail.text)}/>
-<span class="weaker">18個以下を選択することを推奨します</span> <br>
+    {#if !nolimit}
+    <span class="weaker">18個以下を選択することを推奨します</span>
+    {/if}
+    <br>
+</div>
 {/if}
 <div class="memberGrouping">
 {#each selectGrouping as mbgroup}
@@ -58,6 +64,8 @@ const toggleSelectAll = (txt) => selectedMembers = txt.match(/選ぶ$/)?selectab
 .memberGrouping{
     margin-top: 1ch;
     margin-right: 2em;
+    width:max-content;
+    padding-left: 1rem;
     display: grid;
     grid-auto-flow: column;
     grid-template-columns: repeat(auto-fill,auto);

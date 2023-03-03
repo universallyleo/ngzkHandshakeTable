@@ -85,7 +85,7 @@ export function mbBdayInRange(memberName, dateRange) {
 export const isExpandedDatalist = (l) => 'slotsSoldex' in l[0];
 
 export function getMember(name) {
-	let res = members.filter((x) => x.member == name);
+	let res = members.filter(({ member }) => member == name);
 	if (res.length != 0) {
 		res[0]['stripped_kanji'] = res[0].kanji.replace(' ', '');
 		return res[0];
@@ -107,16 +107,20 @@ export function getMembers(listOfNames) {
 	return listOfNames.map((x) => getMember(x));
 }
 
+export function getAllMembers() {
+	return members.map(({ member }) => getMember(member));
+}
+
 /**
  * @param  {object} cdData - full cd data object
  * @param  {string} dataform - default to "full", either "full"->return full member data,  or "name"->return only member name
  */
 export function involvedMembers(cdData, dataform = 'full') {
-	return cdData.table.map((x) => (dataform == 'name' ? x.member : getMember(x.member)));
+	return cdData.table.map(({ member }) => (dataform == 'name' ? member : getMember(member)));
 }
 
 export function performedInCDs(memberName) {
-	return fulldata.filter((x) => !!x.table.find((y) => y.member == memberName)).map((x) => x.cd);
+	return fulldata.filter((x) => !!x.table.find((y) => y.member == memberName)).map(({ cd }) => cd);
 }
 
 const status2label = (s) => {
@@ -251,7 +255,7 @@ export function expandDataList(cdData) {
 		],
 		cdData.addgroups ? cdData.addgroups : []
 	);
-	let dateRange = cdDateRange.filter((x) => x.release == cdData.cd.release)[0];
+	let dateRange = cdDateRange.filter(({ release }) => release == cdData.cd.release)[0];
 	// if (cdData.cd.num == 31) {
 	// 	console.log('31st single ', dateRange);
 	// }
