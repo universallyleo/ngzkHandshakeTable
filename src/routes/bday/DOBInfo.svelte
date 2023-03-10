@@ -37,10 +37,10 @@
         grid-template-rows: repeat(3, 1fr);
     }
 
-    .pic {
+    /* .pic {
         width: 100%;
         border: 1px solid #bbb;
-    }
+    } */
 
     .cell {
         width: 100%;
