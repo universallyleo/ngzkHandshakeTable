@@ -4,8 +4,10 @@ on:
   push:
     branches:
       - main
-    #paths:
-    #  - "src/**"
+    paths:
+      - "src/**"
+      - "static/**"
+      - "svelte.config.js"
 
 jobs:
   rebuild-and-commit:
