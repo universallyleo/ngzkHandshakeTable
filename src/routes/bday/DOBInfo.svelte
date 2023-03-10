@@ -28,7 +28,6 @@
         /* display: grid; */
         /* grid-template-columns: 200px 70px; */
         height: fit-content;
-        /* color: #cc0000; */
     }
 
     .tbl {
