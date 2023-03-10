@@ -1,12 +1,5 @@
 <script>
-    // import fulldata from '$lib/data/data.json';
-    // import membersdata from '$lib/data/members.json';
-    // import {getMember} from '$lib/processData.js';
-    // import {ordering} from '$lib/processData.js';
     import {JPDateDisplay, getAge} from '$lib/util.js';
-    // import {groupBy} from 'lodash-es';
-    //import { fly,fade } from 'svelte/transition';
-    //let temp = [ getMember('Yumiki Nao'), getMember('Sato Kaede') ];
     
     export let memberData;
 
