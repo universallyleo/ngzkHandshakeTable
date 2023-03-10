@@ -1,6 +1,4 @@
 <script>
-    // import fulldata from '$lib/data/data.json';
-    // import membersdata from '$lib/data/members.json';
     import SelectMembersPanel from "$lib/SelectMembersPanel.svelte";
     import DOBInfo from "./DOBInfo.svelte";
     import { getMember, getAllMembers } from "$lib/processData.js";

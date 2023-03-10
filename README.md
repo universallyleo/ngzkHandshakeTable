@@ -1,38 +1,19 @@
-# create-svelte
+# ngzkHandshakeTable
+ Display handshake/meet-and-greet sales of each Nogizaka46 CD in a reasonably good-looking table.
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+-[完売表の見方 (JP)](https://ameblo.jp/seto-kasumi/entry-11695182533.html) 
+-[完売表の見方 (ZH-TW)](https://pttyes.com/SakaTalk/M.1648729058.A.59E) 
 
-## Creating a project
+# データ源
+- [乃木坂46公式サイト](nogizaka46.com) - メンバー情報
+- [乃木坂46・欅坂46握手会情報まとめ](https://ameblo.jp/seto-kasumi/) ー 完売情報
+- [ツイーターユーザー ✝︎ジ〜ン✝︎](https://twitter.com/lovefiaa) ー 完売情報
+- Scraped from [ngzkHandshakeScrape](https://github.com/universallyleo/ngzkHandshakeScrape) since 30th Single ３次受付
 
-If you're seeing this, you've probably already done this step. Congrats!
+# Acknowledgement
+- この完売表は [✝︎ジ〜ン✝︎](https://twitter.com/lovefiaa) のをもとにしてデザインしたものです。
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+# TODO
+- Add 曜日 and 握手会会場 info
+- Rewrite using class so functions related to individual member's data become methods
+- Finish recording all old data (current earliest: 17th Single)
