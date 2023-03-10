@@ -8402,7 +8402,7 @@ const membersdata = [
     from: "\u57FC\u7389",
     bloodtype: "B",
     height: 154,
-    status: ""
+    graduation: "2023-02-26"
   },
   {
     member: "Ikuta Erika",
@@ -8413,7 +8413,7 @@ const membersdata = [
     from: "\u30C7\u30E5\u30C3\u30BB\u30EB\u30C9\u30EB\u30D5",
     bloodtype: "A",
     height: 160,
-    status: "2021-12-31"
+    graduation: "2021-12-31"
   },
   {
     member: "Ikoma Rina",
@@ -8424,7 +8424,7 @@ const membersdata = [
     from: "\u79CB\u7530",
     bloodtype: "AB",
     height: 153,
-    status: "2018-05-06"
+    graduation: "2018-05-06"
   },
   {
     member: "Itou Marika",
@@ -8435,7 +8435,7 @@ const membersdata = [
     from: "\u795E\u5948\u5DDD",
     bloodtype: "O",
     height: 156,
-    status: "2017-12-23"
+    graduation: "2017-12-23"
   },
   {
     member: "Inoue Sayuri",
@@ -8446,7 +8446,7 @@ const membersdata = [
     from: "\u57FC\u7389",
     bloodtype: "B",
     height: 156,
-    status: "2020-04-27"
+    graduation: "2020-04-27"
   },
   {
     member: "Etou Misa",
@@ -8457,7 +8457,7 @@ const membersdata = [
     bloodtype: "AB",
     from: "\u5927\u5206",
     height: 163,
-    status: "2019-03-31"
+    graduation: "2019-03-31"
   },
   {
     member: "Kawamura Mahiro",
@@ -8468,7 +8468,7 @@ const membersdata = [
     from: "\u5927\u962A",
     bloodtype: "A",
     height: 158,
-    status: "2018-03-31"
+    graduation: "2018-03-31"
   },
   {
     member: "Kawago Hina",
@@ -8479,7 +8479,7 @@ const membersdata = [
     from: "\u9577\u5D0E",
     bloodtype: "O",
     height: 161,
-    status: "2018-12-20"
+    graduation: "2018-12-20"
   },
   {
     member: "Saito Asuka",
@@ -8490,7 +8490,7 @@ const membersdata = [
     from: "\u6771\u4EAC",
     bloodtype: "O",
     height: 158,
-    status: ""
+    graduation: "2022-12-31"
   },
   {
     member: "Saitou Chiharu",
@@ -8501,7 +8501,7 @@ const membersdata = [
     from: "\u57FC\u7389",
     bloodtype: "A",
     height: 166,
-    status: "2018-07-16"
+    graduation: "2018-07-16"
   },
   {
     member: "Saitou Yuuri",
@@ -8512,7 +8512,7 @@ const membersdata = [
     from: "\u6771\u4EAC",
     bloodtype: "O",
     height: 157,
-    status: "2019-06-30"
+    graduation: "2019-06-30"
   },
   {
     member: "Sakurai Reika",
@@ -8523,7 +8523,7 @@ const membersdata = [
     bloodtype: "A",
     from: "\u795E\u5948\u5DDD",
     height: 155,
-    status: "2019-09-01"
+    graduation: "2019-09-01"
   },
   {
     member: "Takayama Kazumi",
@@ -8534,7 +8534,7 @@ const membersdata = [
     from: "\u5343\u8449",
     bloodtype: "A",
     height: 162,
-    status: "2021-11-21"
+    graduation: "2021-11-21"
   },
   {
     member: "Nakada Kana",
@@ -8545,7 +8545,7 @@ const membersdata = [
     from: "\u57FC\u7389",
     bloodtype: "A",
     height: 158,
-    status: "2020-10-25"
+    graduation: "2020-10-25"
   },
   {
     member: "Nakamoto Himeka",
@@ -8556,7 +8556,7 @@ const membersdata = [
     from: "\u5E83\u5CF6",
     bloodtype: "O",
     height: 161,
-    status: "2017-11-19"
+    graduation: "2017-11-19"
   },
   {
     member: "Nishino Nanase",
@@ -8567,7 +8567,7 @@ const membersdata = [
     from: "\u5927\u962A",
     bloodtype: "O",
     height: 159,
-    status: "2018-12-31"
+    graduation: "2018-12-31"
   },
   {
     member: "Noujou Ami",
@@ -8578,7 +8578,7 @@ const membersdata = [
     from: "\u795E\u5948\u5DDD",
     bloodtype: "A",
     height: 162,
-    status: "2018-12-15"
+    graduation: "2018-12-15"
   },
   {
     member: "Hashimoto Nanami",
@@ -8589,7 +8589,7 @@ const membersdata = [
     from: "\u5317\u6D77\u9053",
     bloodtype: "B",
     height: 163,
-    status: "2017-02-20"
+    graduation: "2017-02-20"
   },
   {
     member: "Higuchi Hina",
@@ -8600,7 +8600,7 @@ const membersdata = [
     from: "\u6771\u4EAC",
     bloodtype: "A",
     height: 161,
-    status: ""
+    graduation: "2022-10-31"
   },
   {
     member: "Fukagawa Mai",
@@ -8611,7 +8611,7 @@ const membersdata = [
     from: "\u9759\u5CA1",
     bloodtype: "O",
     height: 162,
-    status: "2016-06-16"
+    graduation: "2016-06-16"
   },
   {
     member: "Hoshino Minami",
@@ -8622,7 +8622,7 @@ const membersdata = [
     from: "\u795E\u5948\u5DDD",
     bloodtype: "B",
     height: 155,
-    status: "2022-02-12"
+    graduation: "2022-02-12"
   },
   {
     member: "Matsumura Sayuri",
@@ -8633,7 +8633,7 @@ const membersdata = [
     from: "\u5927\u962A",
     bloodtype: "B",
     height: 164,
-    status: "2021-07-13"
+    graduation: "2021-07-13"
   },
   {
     member: "Wakatsuki Yumi",
@@ -8644,7 +8644,7 @@ const membersdata = [
     from: "\u9759\u5CA1",
     bloodtype: "O",
     height: 157,
-    status: "2018-11-30"
+    graduation: "2018-11-30"
   },
   {
     member: "Wada Maaya",
@@ -8655,7 +8655,7 @@ const membersdata = [
     from: "\u5E83\u5CF6",
     bloodtype: "O",
     height: 161,
-    status: ""
+    graduation: "2022-12-04"
   },
   {
     member: "Itou Karin",
@@ -8666,7 +8666,7 @@ const membersdata = [
     from: "\u795E\u5948\u5DDD",
     bloodtype: "O",
     height: 153,
-    status: "2019-05-24"
+    graduation: "2019-05-24"
   },
   {
     member: "Itou Jyunna",
@@ -8677,7 +8677,7 @@ const membersdata = [
     from: "\u795E\u5948\u5DDD",
     bloodtype: "A",
     height: 166,
-    status: "2021-08-31"
+    graduation: "2021-08-31"
   },
   {
     member: "Sagara Iori",
@@ -8688,7 +8688,7 @@ const membersdata = [
     from: "\u57FC\u7389",
     bloodtype: "O",
     height: 164,
-    status: "2018-07-16"
+    graduation: "2018-07-16"
   },
   {
     member: "Sasaki Kotoko",
@@ -8699,7 +8699,7 @@ const membersdata = [
     from: "\u57FC\u7389",
     bloodtype: "A",
     height: 163,
-    status: "2020-03-31"
+    graduation: "2020-03-31"
   },
   {
     member: "Shinuchi Mai",
@@ -8710,7 +8710,7 @@ const membersdata = [
     from: "\u57FC\u7389",
     bloodtype: "B",
     height: 165,
-    status: "2022-02-10"
+    graduation: "2022-02-10"
   },
   {
     member: "Terada Ranze",
@@ -8721,7 +8721,7 @@ const membersdata = [
     from: "\u6771\u4EAC",
     bloodtype: "\u4E0D\u660E",
     height: 155,
-    status: "2021-12-12"
+    graduation: "2021-12-12"
   },
   {
     member: "Kitano Hinako",
@@ -8732,7 +8732,7 @@ const membersdata = [
     from: "\u5343\u8449",
     bloodtype: "O",
     height: 158,
-    status: "2022-04-30"
+    graduation: "2022-04-30"
   },
   {
     member: "Suzuki Ayane",
@@ -8743,7 +8743,7 @@ const membersdata = [
     from: "\u5E83\u5CF6",
     bloodtype: "O",
     height: 161,
-    status: ""
+    graduation: ""
   },
   {
     member: "Hori Miyona",
@@ -8754,7 +8754,7 @@ const membersdata = [
     from: "\u5C90\u961C",
     bloodtype: "O",
     height: 162,
-    status: "2021-03-28"
+    graduation: "2021-03-28"
   },
   {
     member: "Yamazaki Rena",
@@ -8765,7 +8765,7 @@ const membersdata = [
     from: "\u6771\u4EAC",
     bloodtype: "B",
     height: 164,
-    status: "2022-07-17"
+    graduation: "2022-07-17"
   },
   {
     member: "Watanabe Miria",
@@ -8776,7 +8776,7 @@ const membersdata = [
     from: "\u6771\u4EAC",
     bloodtype: "O",
     height: 153,
-    status: "2021-08-31"
+    graduation: "2021-08-31"
   },
   {
     member: "Itou Riria",
@@ -8787,7 +8787,7 @@ const membersdata = [
     from: "\u6C96\u7E04",
     bloodtype: "B",
     height: 154,
-    status: ""
+    graduation: ""
   },
   {
     member: "Iwamoto Renka",
@@ -8798,7 +8798,7 @@ const membersdata = [
     from: "\u6771\u4EAC",
     bloodtype: "B",
     height: 159,
-    status: ""
+    graduation: ""
   },
   {
     member: "Umezawa Minami",
@@ -8809,7 +8809,7 @@ const membersdata = [
     from: "\u795E\u5948\u5DDD",
     bloodtype: "A",
     height: 170,
-    status: ""
+    graduation: ""
   },
   {
     member: "Oozono Momoko",
@@ -8820,7 +8820,7 @@ const membersdata = [
     from: "\u9E7F\u5150\u5CF6",
     bloodtype: "O",
     height: 156,
-    status: "2021-09-04"
+    graduation: "2021-09-04"
   },
   {
     member: "Kubo Shiori",
@@ -8831,7 +8831,7 @@ const membersdata = [
     from: "\u5BAE\u57CE",
     bloodtype: "O",
     height: 161,
-    status: ""
+    graduation: ""
   },
   {
     member: "Sakaguchi Tamami",
@@ -8842,7 +8842,7 @@ const membersdata = [
     from: "\u6771\u4EAC",
     bloodtype: "A",
     height: 161,
-    status: ""
+    graduation: ""
   },
   {
     member: "Sato Kaede",
@@ -8853,7 +8853,7 @@ const membersdata = [
     from: "\u611B\u77E5",
     bloodtype: "A",
     height: 161,
-    status: ""
+    graduation: ""
   },
   {
     member: "Nakamura Reno",
@@ -8864,7 +8864,7 @@ const membersdata = [
     from: "\u6771\u4EAC",
     bloodtype: "\u4E0D\u660E",
     height: 167,
-    status: ""
+    graduation: ""
   },
   {
     member: "Mukai Hazuki",
@@ -8875,7 +8875,7 @@ const membersdata = [
     from: "\u6771\u4EAC",
     bloodtype: "A",
     height: 152,
-    status: ""
+    graduation: ""
   },
   {
     member: "Yamashita Mizuki",
@@ -8886,7 +8886,7 @@ const membersdata = [
     from: "\u6771\u4EAC",
     bloodtype: "O",
     height: 160,
-    status: ""
+    graduation: ""
   },
   {
     member: "Yoshida Ayano Cristi",
@@ -8897,7 +8897,7 @@ const membersdata = [
     from: "\u5927\u5206",
     bloodtype: "A",
     height: 161,
-    status: ""
+    graduation: ""
   },
   {
     member: "Yoda Yuuki",
@@ -8908,7 +8908,7 @@ const membersdata = [
     from: "\u798F\u5CA1",
     bloodtype: "O",
     height: 153,
-    status: ""
+    graduation: ""
   },
   {
     member: "Endo Sakura",
@@ -8919,7 +8919,7 @@ const membersdata = [
     from: "\u611B\u77E5",
     bloodtype: "\u4E0D\u660E",
     height: 164,
-    status: ""
+    graduation: ""
   },
   {
     member: "Kaki Haruka",
@@ -8930,7 +8930,7 @@ const membersdata = [
     from: "\u6803\u6728",
     bloodtype: "A",
     height: 166,
-    status: ""
+    graduation: ""
   },
   {
     member: "Kakehashi Sayaka",
@@ -8941,7 +8941,7 @@ const membersdata = [
     from: "\u5CA1\u5C71",
     bloodtype: "B\u578B",
     height: 154,
-    status: ""
+    graduation: ""
   },
   {
     member: "Kanagawa Saya",
@@ -8952,7 +8952,7 @@ const membersdata = [
     from: "\u5317\u6D77\u9053",
     bloodtype: "O",
     height: 165,
-    status: ""
+    graduation: ""
   },
   {
     member: "Kitagawa Yuri",
@@ -8963,7 +8963,7 @@ const membersdata = [
     from: "\u30AB\u30EA\u30D5\u30A9\u30EB\u30CB\u30A2\u5DDE",
     bloodtype: "\u4E0D\u660E",
     height: 165,
-    status: ""
+    graduation: ""
   },
   {
     member: "Kuromi Haruka",
@@ -8974,7 +8974,7 @@ const membersdata = [
     from: "\u6771\u4EAC",
     bloodtype: "O",
     height: 162,
-    status: ""
+    graduation: ""
   },
   {
     member: "Sato Rika",
@@ -8985,7 +8985,7 @@ const membersdata = [
     from: "\u5CA9\u624B",
     bloodtype: "B",
     height: 160,
-    status: ""
+    graduation: ""
   },
   {
     member: "Shibata Yuna",
@@ -8996,7 +8996,7 @@ const membersdata = [
     from: "\u5343\u8449",
     bloodtype: "A",
     height: 160,
-    status: ""
+    graduation: ""
   },
   {
     member: "Seimiya Rei",
@@ -9007,7 +9007,7 @@ const membersdata = [
     from: "\u57FC\u7389",
     bloodtype: "O",
     height: 164,
-    status: ""
+    graduation: ""
   },
   {
     member: "Tamura Mayu",
@@ -9018,7 +9018,7 @@ const membersdata = [
     from: "\u57FC\u7389",
     bloodtype: "A",
     height: 160,
-    status: ""
+    graduation: ""
   },
   {
     member: "Tsutsui Ayame",
@@ -9029,7 +9029,7 @@ const membersdata = [
     from: "\u611B\u77E5",
     bloodtype: "O",
     height: 160,
-    status: ""
+    graduation: ""
   },
   {
     member: "Hayakawa Seira",
@@ -9040,7 +9040,7 @@ const membersdata = [
     from: "\u5927\u962A",
     bloodtype: "A",
     height: 164,
-    status: "rest"
+    graduation: "rest"
   },
   {
     member: "Hayashi Runa",
@@ -9051,7 +9051,7 @@ const membersdata = [
     from: "\u795E\u5948\u5DDD",
     bloodtype: "O",
     height: 164,
-    status: ""
+    graduation: ""
   },
   {
     member: "Matsuo Miyu",
@@ -9062,7 +9062,7 @@ const membersdata = [
     from: "\u5343\u8449",
     bloodtype: "O",
     height: 167,
-    status: ""
+    graduation: ""
   },
   {
     member: "Yakubo Mio",
@@ -9073,7 +9073,7 @@ const membersdata = [
     from: "\u6771\u4EAC",
     bloodtype: "B",
     height: 153,
-    status: ""
+    graduation: ""
   },
   {
     member: "Yumiki Nao",
@@ -9084,7 +9084,7 @@ const membersdata = [
     from: "\u4EAC\u90FD",
     bloodtype: "A",
     height: 165,
-    status: ""
+    graduation: ""
   },
   {
     member: "Ioki Mao",
@@ -9095,7 +9095,7 @@ const membersdata = [
     from: "\u5175\u5EAB",
     bloodtype: "O",
     height: 166,
-    status: "5\u671F\u751F"
+    graduation: "5\u671F\u751F"
   },
   {
     member: "Ikeda Teresa",
@@ -9106,7 +9106,7 @@ const membersdata = [
     from: "\u6771\u4EAC",
     bloodtype: "\u4E0D\u660E",
     height: 159,
-    status: "5\u671F\u751F"
+    graduation: "5\u671F\u751F"
   },
   {
     member: "Ichinose Miku",
@@ -9117,7 +9117,7 @@ const membersdata = [
     from: "\u798F\u5CA1",
     bloodtype: "B",
     height: 156,
-    status: "5\u671F\u751F"
+    graduation: "5\u671F\u751F"
   },
   {
     member: "Inoue Nagi",
@@ -9128,7 +9128,7 @@ const membersdata = [
     from: "\u795E\u5948\u5DDD",
     bloodtype: "B",
     height: 156,
-    status: "5\u671F\u751F"
+    graduation: "5\u671F\u751F"
   },
   {
     member: "Okamoto Hina",
@@ -9139,7 +9139,7 @@ const membersdata = [
     from: "\u611B\u77E5",
     bloodtype: "A",
     height: 158,
-    status: "5\u671F\u751F"
+    graduation: "5\u671F\u751F"
   },
   {
     member: "Ogawa Aya",
@@ -9150,7 +9150,7 @@ const membersdata = [
     from: "\u5343\u8449",
     bloodtype: "B",
     height: 154,
-    status: "5\u671F\u751F"
+    graduation: "5\u671F\u751F"
   },
   {
     member: "Okuda Iroha",
@@ -9161,7 +9161,7 @@ const membersdata = [
     from: "\u5343\u8449",
     bloodtype: "A",
     height: 157,
-    status: "5\u671F\u751F"
+    graduation: "5\u671F\u751F"
   },
   {
     member: "Kawasaki Sakura",
@@ -9172,7 +9172,7 @@ const membersdata = [
     from: "\u795E\u5948\u5DDD",
     bloodtype: "\u4E0D\u660E",
     height: 155,
-    status: "5\u671F\u751F"
+    graduation: "5\u671F\u751F"
   },
   {
     member: "Sugawara Satsuki",
@@ -9183,7 +9183,7 @@ const membersdata = [
     from: "\u5343\u8449",
     bloodtype: "A",
     height: 157,
-    status: "5\u671F\u751F"
+    graduation: "5\u671F\u751F"
   },
   {
     member: "Tomisato Nao",
@@ -9194,7 +9194,7 @@ const membersdata = [
     from: "\u5343\u8449",
     bloodtype: "O",
     height: 164,
-    status: "5\u671F\u751F"
+    graduation: "5\u671F\u751F"
   },
   {
     member: "Nakanishi Aruno",
@@ -9205,7 +9205,7 @@ const membersdata = [
     from: "\u5343\u8449",
     bloodtype: "A",
     height: 157,
-    status: "5\u671F\u751F"
+    graduation: "5\u671F\u751F"
   }
 ];
 function getCDDateRange() {
@@ -9282,7 +9282,7 @@ function getMember(name) {
       gen: 0,
       dob: "1900-01-01",
       from: "",
-      status: "none"
+      graduation: "none"
     };
   }
 }
@@ -9292,7 +9292,7 @@ function getAllMembers() {
 function involvedMembers(cdData, dataform = "full") {
   return cdData.table.map(({ member }) => dataform == "name" ? member : getMember(member));
 }
-const status2label = (s) => {
+const graduation2label = (s) => {
   if (isISODate(s)) {
     return "OG";
   } else {
@@ -9333,8 +9333,8 @@ const opt2label = (opt, val) => {
       return `${val}\u671F\u751F`;
     case "group":
       return groupID2label(val);
-    case "status":
-      return status2label(val);
+    case "graduation":
+      return graduation2label(val);
     case "bloodtype":
       return val != "\u4E0D\u660E" ? `${val}\u578B` : "\u4E0D\u660E";
     case "dobyear":
