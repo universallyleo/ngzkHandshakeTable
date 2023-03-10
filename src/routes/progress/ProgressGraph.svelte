@@ -1,110 +1,110 @@
 <script>
-import {onMount, afterUpdate, onDestroy} from 'svelte';
-import Chart from 'chart.js/auto/auto.mjs'; //make everything in Chart available
-import ChartDataLabels from 'chartjs-plugin-datalabels';
+    import { onMount, afterUpdate, onDestroy } from "svelte";
+    import Chart from "chart.js/auto"; //make everything in Chart available
+    import ChartDataLabels from "chartjs-plugin-datalabels";
 
-//to be made export
-export let progressData; 
-export let title;
-export let maxlength;
+    //to be made export
+    export let progressData;
+    export let title;
+    export let maxlength;
 
-$: progressData.spanGaps = true;
-$: config.data = progressData;
+    $: progressData.spanGaps = true;
+    $: config.data = progressData;
 
-/****** Graph related setup ******/
-let canvasContainer;
+    /****** Graph related setup ******/
+    let canvasContainer;
 
-const tooltipLine = {
-    id: 'tooltipLine',
-    beforeDraw: chart => {
-        if (chart.tooltip._active && chart.tooltip._active.length){
-            const ctx = chart.ctx;
-            ctx.save();
-            const activePoint = chart.tooltip._active[0];
-            ctx.beginPath();
-            ctx.setLineDash([5,7]);
-            ctx.moveTo(activePoint.element.x, chart.chartArea.top);
-            ctx.lineTo(activePoint.element.x, chart.chartArea.bottom);
-            ctx.lineWidth = 2;
-            ctx.strokeStyle = 'black';
-            ctx.stroke();
-            ctx.restore();
-        }
-    }
-}
-
-const config = {
-    type: 'line',
-    data: [],
-    options:{
-        layout:{
-            padding: 10
-        },
-        responsive: true,
-        hover: {
-            mode: 'dataset',
-            intersect: true
-        },
-        interaction: {
-            mode: 'index'
-        },
-        scales:{
-            y:{
-                // max: 30,
-                // suggestedMax: 30
+    const tooltipLine = {
+        id: "tooltipLine",
+        beforeDraw: (chart) => {
+            if (chart.tooltip._active && chart.tooltip._active.length) {
+                const ctx = chart.ctx;
+                ctx.save();
+                const activePoint = chart.tooltip._active[0];
+                ctx.beginPath();
+                ctx.setLineDash([5, 7]);
+                ctx.moveTo(activePoint.element.x, chart.chartArea.top);
+                ctx.lineTo(activePoint.element.x, chart.chartArea.bottom);
+                ctx.lineWidth = 2;
+                ctx.strokeStyle = "black";
+                ctx.stroke();
+                ctx.restore();
             }
         },
-        plugins:{
-            legend:{
-                position: 'top',
-                labels: { padding: 15 }
+    };
+
+    const config = {
+        type: "line",
+        data: [],
+        options: {
+            layout: {
+                padding: 10,
             },
-            title:{
-                display:true,
-                font:{
-                    size: 20
+            responsive: true,
+            hover: {
+                mode: "dataset",
+                intersect: true,
+            },
+            interaction: {
+                mode: "index",
+            },
+            scales: {
+                y: {
+                    // max: 30,
+                    // suggestedMax: 30
                 },
-                text: ""
             },
-            datalabels:{
-                borderRadius: 6,
-                align: 'center',
-                anchor: 'center',
-                padding:{
-                    top: 2,
-                    bottom: 1
-                }
-            }
-        }
-    },
-    plugins: [tooltipLine] //see https://youtu.be/rLUwF1UQcbI
-}
+            plugins: {
+                legend: {
+                    position: "top",
+                    labels: { padding: 15 },
+                },
+                title: {
+                    display: true,
+                    font: {
+                        size: 20,
+                    },
+                    text: "",
+                },
+                datalabels: {
+                    borderRadius: 6,
+                    align: "center",
+                    anchor: "center",
+                    padding: {
+                        top: 2,
+                        bottom: 1,
+                    },
+                },
+            },
+        },
+        plugins: [tooltipLine], //see https://youtu.be/rLUwF1UQcbI
+    };
 
-let thechart;
-$: maxlength = progressData?progressData.datasets[0].data.length:0;
-$: canvasWidth=Math.max(maxlength * 80,1000); 
-$: config.options.plugins.title.text = title;
-// $: maxValue = Math.max( ...(progressData.datasets.map( x=> 
-//         Math.max( ...(x.data.map(y=> Number.isInteger(y)?y:0 )) ) 
-//     ).flat()) ); 
-// $: config.options.scales.y.max =  Math.ceil((maxValue+1)/roundupFactor)*roundupFactor;  //round up (maxValue+1) to the nearest 5s
-onMount(()=>{
-    Chart.register(ChartDataLabels);  //make ChartDataLabel available
-    const ctx = thechart.getContext('2d'); 
-    thechart = new Chart(ctx, config); //initialise
-});
+    let thechart;
+    $: maxlength = progressData ? progressData.datasets[0].data.length : 0;
+    $: canvasWidth = Math.max(maxlength * 80, 1000);
+    $: config.options.plugins.title.text = title;
+    // $: maxValue = Math.max( ...(progressData.datasets.map( x=>
+    //         Math.max( ...(x.data.map(y=> Number.isInteger(y)?y:0 )) )
+    //     ).flat()) );
+    // $: config.options.scales.y.max =  Math.ceil((maxValue+1)/roundupFactor)*roundupFactor;  //round up (maxValue+1) to the nearest 5s
+    onMount(() => {
+        Chart.register(ChartDataLabels); //make ChartDataLabel available
+        const ctx = thechart.getContext("2d");
+        thechart = new Chart(ctx, config); //initialise
+    });
 
-afterUpdate(()=>{
-    if (!thechart) return;
-    thechart.update(); 
-});
+    afterUpdate(() => {
+        if (!thechart) return;
+        thechart.update();
+    });
 
-onDestroy(()=>{
-    if (thechart) thechart.destroy();
-    thechart = null;
-});
+    onDestroy(() => {
+        if (thechart) thechart.destroy();
+        thechart = null;
+    });
 </script>
 
 <div bind:this={canvasContainer} style="width:{canvasWidth}px">
-    <canvas bind:this={thechart}></canvas>
+    <canvas bind:this={thechart} />
 </div>
