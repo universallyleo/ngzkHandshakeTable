@@ -6,14 +6,22 @@
 	import { getMember, getAllMembers, partitionToGroup } from '$lib/processData.js';
 	import { ordering } from '$lib/processData.js';
 	import { bdayToGakunen, sortGakunen } from '$lib/util.js';
-	import { groupBy } from 'lodash-es';
+	import { groupBy, uniq, partition } from 'lodash-es';
 	//import { fly,fade } from 'svelte/transition';
 	//let temp = [ getMember('Yumiki Nao'), getMember('Sato Kaede') ];
 	let selectables = getAllMembers();
 	let selectedMembers = [];
 	let sorted = [];
 	let gpOpt = 'none';
-	let genNum = 1;
+	let gens = [];
+	let mbpanel
+
+	function reset(){
+		selectedMembers=[];
+		sorted=[];
+		gens=[];
+		mbpanel.reset();
+	}
 
 	function sortyear() {
 		let mbdata = selectedMembers.map((x) => {
@@ -30,9 +38,10 @@
 			x[1].sort((a, b) => ordering.ISODateAscend(a['dob'], b['dob']))
 		]);
 		if (gpOpt == 'gen') {
-			sorted = sorted.map((yrGp) => [yrGp[0], partitionToGroup(yrGp[1])]);
-			// sorted[i] = ["yy/YY", [ {label:"5期生",val:5,has:[{mbdata1},...]}, {label:"",val:4,has:[]},... ]]
-			genNum = sorted.reduce((prev, curr) => (curr[1].length >= prev ? curr[1].length : prev), 0); //number of columns needed
+			gens = uniq(mbdata.map(x=>x.gen)).sort((a,b)=>a-b);
+			for(let yrGp of sorted){
+				yrGp[1] = gens.map((i)=> {return {label: `${i}期生`, value:i, has: yrGp[1].filter(mb=>mb.gen==i)};});
+			}
 		}
 	}
 </script>
@@ -45,13 +54,13 @@
 <div class="optionItem">
 	グループ分け：
 	<label>
-		<input type="radio" name="gpOpt" bind:group={gpOpt} value={'none'} /> なし
+		<input type="radio" name="gpOpt" bind:group={gpOpt} value={'none'} on:click={reset}/> なし
 	</label>
 	<label>
-		<input type="radio" name="gpOpt" bind:group={gpOpt} value={'gen'} /> 期別
+		<input type="radio" name="gpOpt" bind:group={gpOpt} value={'gen'} on:click={reset}/> 期別
 	</label>
 </div>
-<SelectMembersPanel bind:selectedMembers {selectables} nolimit={true} />
+<SelectMembersPanel bind:selectedMembers {selectables} nolimit={true} bind:this={mbpanel}/>
 <div style="width: 50%; margin: 1ch auto 5px auto;">
 	<button on:click={sortyear} class="print">生成</button>
 </div>
@@ -71,16 +80,16 @@
             {/each}
         </div>
         {:else}
-        <div class="yrgrouplist grouped">
-            {#each yrgroup[1] as groupData}
+		<div class="yrgrouplistByGen">
+			{#each yrgroup[1] as groupData}
                 <div class="yrgrpSubcolumn">
-                    <span style="width: 50%; margin-left:auto; margin-right:auto;">{groupData.label}</span>
+                    <!-- <span style="width: 50%; margin-left:auto; margin-right:auto;">{groupData.label}</span> -->
                     {#each groupData.has as memberData}
                         <DOBInfo {memberData} />
                     {/each}
                 </div>
             {/each}
-        </div>
+		</div>
         {/if}
     </div>
 	{/each}
@@ -109,22 +118,37 @@
 	}
 	.yrgrouplist {
 		display: grid;
-		grid-template-columns: repeat(4, max-content);
+		grid-template-columns: repeat(4, 205px);
 		grid-template-rows: repeat(auto-fit, 1fr);
 		justify-items: center;
 		grid-gap: 4px;
 	}
+	.yrgrouplistByGen{
+		display: flex;
+		flex-direction: row;
+		/*  I don't know why grid is not working the way I want
+		display: grid;
+		grid-template-columns: repeat(auto-fit, 280px);
+		grid-template-rows: 8ch;
+		justify-items: center;
+		grid-gap: 4px; */
+	}
     .yrgrpSubcolumn{
         padding: 2px;
-        border: 1px solid black;
+        /* border: 1px solid black; */
         display: flex;
         flex-direction: column;
+		width: 205px;
         /* display: grid;
-		grid-auto-flow: column;
-		grid-template-columns: max-content auto;
+		grid-auto-flow: row;
+		grid-template-columns: 1fr;
+		grid-template-rows: repeat(auto-fit, 1fr);
         grid-gap: 5px; */
 		/* height: fit-content; */
     }
+	.yrgrpSubcolumn div {
+		align-self: start;
+	}
 	/* .yrgrouplist div{
     display:block;
     width:100%;

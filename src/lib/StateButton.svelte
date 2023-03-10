@@ -13,6 +13,8 @@ function toggle(){
 	});
     stateIndex = stateIndex==states.length-1?0:stateIndex+1;
 }
+
+export function resetState(s){ stateIndex=s; }
 </script>
 
 <button on:click={toggle}>

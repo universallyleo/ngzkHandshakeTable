@@ -20,15 +20,16 @@
             <span style="color: {genColor[memberData.gen-1]}">{memberData.gen}期生</span></div>
         <div class="cell">{JPDateDisplay(memberData.dob)}</div>
     </div>
-    <div class="pic">pic</div>
+    <!-- TODO: <div class="pic">profile pic</div> -->
 </div>
 
 <style>
 .card{
-    width:280px;
+    width:200px;
+    /* height: 8ch; */
     border: 1px solid hsl(291, 57%, 50%);
-    display: grid;
-    grid-template-columns: 220px 60px;
+    /* display: grid; */
+    /* grid-template-columns: 200px 70px; */
     height: fit-content;
     /* color: #cc0000; */
 }

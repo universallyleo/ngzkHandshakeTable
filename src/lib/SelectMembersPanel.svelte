@@ -6,11 +6,12 @@ export let selectables;
 export let selectedMembers;
 export let nolimit=false;
 
-$: selectGrouping = uniq(selectables.map(x=>x.gen)).sort((a,b)=> parseInt(a)-parseInt(b)).map(n=>{
+let selectGrouping = uniq(selectables.map(x=>x.gen)).sort((a,b)=> parseInt(a)-parseInt(b)).map(n=>{
                 return { "gen": n,
                     "labels": [`全${n}期生選ぶ`, `全${n}期生外す`],
                     "consistsOf": selectables.filter(x=>x.gen==n)};
             });
+let gpBtn = Array(selectGrouping.length);
 
 function toggleSelectGroup(group,txt){
     let gp = selectGrouping.find( x=> x.gen==parseInt(group) );
@@ -26,6 +27,10 @@ function toggleSelectGroup(group,txt){
     selectedMembers = selectedMembers; // force svelte update the array
 }
 
+export function reset(){
+    for(let x of gpBtn){ x.resetState(0); }
+}
+
 const toggleSelectAll = (txt) => selectedMembers = txt.match(/選ぶ$/)?selectables.map(x=>x.member):[];
 </script>
 
@@ -39,9 +44,9 @@ const toggleSelectAll = (txt) => selectedMembers = txt.match(/選ぶ$/)?selectab
 </div>
 {/if}
 <div class="memberGrouping">
-{#each selectGrouping as mbgroup}
+{#each selectGrouping as mbgroup, i}
     <div class="groupList">
-    <StateButton states={mbgroup.labels}  on:changeFrom={(ev)=>toggleSelectGroup(mbgroup.gen,ev.detail.text)}/>
+    <StateButton states={mbgroup.labels}  bind:this={gpBtn[i]} on:changeFrom={(ev)=>toggleSelectGroup(mbgroup.gen,ev.detail.text)}/>
     {#each mbgroup.consistsOf as itm}
         <label>
         <input type="checkbox" name="selectedMembers" bind:group={selectedMembers} value={itm.member}>
