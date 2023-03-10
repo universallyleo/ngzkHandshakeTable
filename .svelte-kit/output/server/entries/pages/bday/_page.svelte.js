@@ -1,4 +1,4 @@
-import { c as create_ssr_component, e as escape, v as validate_component, f as each } from "../../../chunks/index.js";
+import { c as create_ssr_component, e as escape, h as add_attribute, v as validate_component, f as each } from "../../../chunks/index.js";
 import { S as SelectMembersPanel } from "../../../chunks/SelectMembersPanel.js";
 import { b as getAge, J as JPDateDisplay, h as getAllMembers } from "../../../chunks/processData.js";
 const DOBInfo_svelte_svelte_type_style_lang = "";
@@ -21,7 +21,7 @@ const DOBInfo = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 });
 const _page_svelte_svelte_type_style_lang = "";
 const css = {
-  code: '.yrgroup.svelte-1nkie6a.svelte-1nkie6a{border:1px solid #999;display:grid;grid-auto-flow:column;grid-template-columns:max-content auto;grid-gap:5px;height:fit-content;padding:5px}.yrCell.svelte-1nkie6a.svelte-1nkie6a{border-right:1px solid black;align-self:center;justify-self:center;height:100%;display:grid}.yrCell.svelte-1nkie6a>div.svelte-1nkie6a{padding:5px;align-self:center}.yrgrouplist.svelte-1nkie6a.svelte-1nkie6a{display:grid;grid-template-columns:repeat(4,max-content);grid-template-rows:repeat(auto-fit, 1fr);justify-items:center;grid-gap:4px}.timeline.svelte-1nkie6a.svelte-1nkie6a{width:max-content;display:flex;flex-direction:column}.print.svelte-1nkie6a.svelte-1nkie6a{display:flex;justify-content:center;align-items:center}button.print.svelte-1nkie6a.svelte-1nkie6a::before,button.print.svelte-1nkie6a.svelte-1nkie6a::after{flex:auto;min-width:50px;height:1px;display:block;content:"";background-color:black}button.print.svelte-1nkie6a.svelte-1nkie6a::before{margin-right:25px}button.print.svelte-1nkie6a.svelte-1nkie6a::after{margin-left:25px}',
+  code: ".yrgroup.svelte-d4eoe8.svelte-d4eoe8{border:1px solid #999;display:grid;grid-auto-flow:column;grid-template-columns:max-content auto;grid-gap:5px;height:fit-content;padding:5px}.yrCell.svelte-d4eoe8.svelte-d4eoe8{border-right:1px solid black;align-self:center;justify-self:center;height:100%;display:grid}.yrCell.svelte-d4eoe8>div.svelte-d4eoe8{padding:5px;align-self:center}.yrgrouplist.svelte-d4eoe8.svelte-d4eoe8{display:grid;grid-template-columns:repeat(4, max-content);grid-template-rows:repeat(auto-fit, 1fr);justify-items:center;grid-gap:4px}.yrgrpSubcolumn.svelte-d4eoe8.svelte-d4eoe8{padding:2px;border:1px solid black;display:flex;flex-direction:column}.timeline.svelte-d4eoe8.svelte-d4eoe8{width:max-content;display:flex;flex-direction:column}.print.svelte-d4eoe8.svelte-d4eoe8{display:flex;justify-content:center;align-items:center}button.print.svelte-d4eoe8.svelte-d4eoe8::before,button.print.svelte-d4eoe8.svelte-d4eoe8::after{flex:auto;min-width:50px;height:1px;display:block;content:'';background-color:black}button.print.svelte-d4eoe8.svelte-d4eoe8::before{margin-right:25px}button.print.svelte-d4eoe8.svelte-d4eoe8::after{margin-left:25px}.optionItem.svelte-d4eoe8.svelte-d4eoe8{margin-left:1rem;margin-top:1ch;margin-bottom:1ch}",
   map: null
 };
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -33,8 +33,13 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let $$rendered;
   do {
     $$settled = true;
-    $$rendered = `${$$result.head += `${$$result.title = `<title>\u4E43\u6728\u574246 \u30FC \u8A95\u751F\u65E5\u30FB\u5B66\u5E74\u30C7\u30FC\u30BF</title>`, ""}<meta name="${"description"}" content="${"\u4E43\u6728\u574246\u8A95\u751F\u65E5\u30FB\u5B66\u5E74\u30C7\u30FC\u30BF"}" data-svelte="svelte-2b3h23">`, ""}
+    $$rendered = `${$$result.head += `${$$result.title = `<title>\u4E43\u6728\u574246 \u30FC \u8A95\u751F\u65E5\u30FB\u5B66\u5E74\u30C7\u30FC\u30BF</title>`, ""}<meta name="${"description"}" content="${"\u4E43\u6728\u574246\u8A95\u751F\u65E5\u30FB\u5B66\u5E74\u30C7\u30FC\u30BF"}" data-svelte="svelte-1dox1w3">`, ""}
 
+<div class="${"optionItem svelte-d4eoe8"}">\u30B0\u30EB\u30FC\u30D7\u5206\u3051\uFF1A
+	<label><input type="${"radio"}" name="${"gpOpt"}"${add_attribute("value", "none", 0)}${add_attribute("checked", true, 1)}> \u306A\u3057
+	</label>
+	<label><input type="${"radio"}" name="${"gpOpt"}"${add_attribute("value", "gen", 0)}${""}> \u671F\u5225
+	</label></div>
 ${validate_component(SelectMembersPanel, "SelectMembersPanel").$$render(
       $$result,
       {
@@ -50,13 +55,14 @@ ${validate_component(SelectMembersPanel, "SelectMembersPanel").$$render(
       },
       {}
     )}
-<div style="${"width: 50%; margin: 1ch auto 5px auto;"}"><button class="${"print svelte-1nkie6a"}">\u751F\u6210</button></div>
-<div class="${"timeline svelte-1nkie6a"}">${each(sorted, (yrgroup) => {
-      return `<div class="${"yrgroup svelte-1nkie6a"}"><div class="${"yrCell svelte-1nkie6a"}"><div class="${"svelte-1nkie6a"}">${escape(yrgroup[0])}</div></div>
-        <div class="${"yrgrouplist svelte-1nkie6a"}">${each(yrgroup[1], (memberData) => {
+<div style="${"width: 50%; margin: 1ch auto 5px auto;"}"><button class="${"print svelte-d4eoe8"}">\u751F\u6210</button></div>
+<div class="${"timeline svelte-d4eoe8"}">${each(sorted, (yrgroup) => {
+      return `<div class="${"yrgroup svelte-d4eoe8"}"><div class="${"yrCell svelte-d4eoe8"}"><div class="${"svelte-d4eoe8"}">${escape(yrgroup[0])}</div></div>
+        ${`<div class="${"yrgrouplist svelte-d4eoe8"}">${each(yrgroup[1], (memberData) => {
         return `${validate_component(DOBInfo, "DOBInfo").$$render($$result, { memberData }, {}, {})}
-            `;
-      })}</div>
+                `;
+      })}
+        </div>`}
     </div>`;
     })}
 </div>`;
