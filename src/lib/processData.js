@@ -98,7 +98,7 @@ export function getMember(name) {
 			gen: 0,
 			dob: '1900-01-01',
 			from: '',
-			status: 'none'
+			graduation: 'none'
 		};
 	}
 }
@@ -123,7 +123,7 @@ export function performedInCDs(memberName) {
 	return fulldata.filter((x) => !!x.table.find((y) => y.member == memberName)).map(({ cd }) => cd);
 }
 
-const status2label = (s) => {
+const graduation2label = (s) => {
 	if (isISODate(s)) {
 		return 'OG';
 	} else {
@@ -168,8 +168,8 @@ export const opt2label = (opt, val) => {
 			return `${val}期生`;
 		case 'group':
 			return groupID2label(val);
-		case 'status':
-			return status2label(val);
+		case 'graduation':
+			return graduation2label(val);
 		case 'bloodtype':
 			return val != '不明' ? `${val}型` : '不明';
 		case 'dobyear':
@@ -340,6 +340,7 @@ export function partitionToGroup(mbDataList, opt = 'gen') {
 		let i = withopt.indexOf(val);
 
 		if (i != -1) {
+			//create new group if value didn't exist
 			res[i].has.push(mbdata);
 		} else {
 			withopt.push(val);

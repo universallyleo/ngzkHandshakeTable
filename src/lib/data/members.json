@@ -8,7 +8,7 @@
 		"from": "埼玉",
 		"bloodtype": "B",
 		"height": 154,
-		"status": ""
+		"graduation": "2023-02-26"
 	},
 	{
 		"member": "Ikuta Erika",
@@ -19,7 +19,7 @@
 		"from": "デュッセルドルフ",
 		"bloodtype": "A",
 		"height": 160,
-		"status": "2021-12-31"
+		"graduation": "2021-12-31"
 	},
 	{
 		"member": "Ikoma Rina",
@@ -30,7 +30,7 @@
 		"from": "秋田",
 		"bloodtype": "AB",
 		"height": 153,
-		"status": "2018-05-06"
+		"graduation": "2018-05-06"
 	},
 	{
 		"member": "Itou Marika",
@@ -41,7 +41,7 @@
 		"from": "神奈川",
 		"bloodtype": "O",
 		"height": 156,
-		"status": "2017-12-23"
+		"graduation": "2017-12-23"
 	},
 	{
 		"member": "Inoue Sayuri",
@@ -52,7 +52,7 @@
 		"from": "埼玉",
 		"bloodtype": "B",
 		"height": 156,
-		"status": "2020-04-27"
+		"graduation": "2020-04-27"
 	},
 	{
 		"member": "Etou Misa",
@@ -63,7 +63,7 @@
 		"bloodtype": "AB",
 		"from": "大分",
 		"height": 163,
-		"status": "2019-03-31"
+		"graduation": "2019-03-31"
 	},
 	{
 		"member": "Kawamura Mahiro",
@@ -74,7 +74,7 @@
 		"from": "大阪",
 		"bloodtype": "A",
 		"height": 158,
-		"status": "2018-03-31"
+		"graduation": "2018-03-31"
 	},
 	{
 		"member": "Kawago Hina",
@@ -85,7 +85,7 @@
 		"from": "長崎",
 		"bloodtype": "O",
 		"height": 161,
-		"status": "2018-12-20"
+		"graduation": "2018-12-20"
 	},
 	{
 		"member": "Saito Asuka",
@@ -96,7 +96,7 @@
 		"from": "東京",
 		"bloodtype": "O",
 		"height": 158,
-		"status": ""
+		"graduation": "2022-12-31"
 	},
 	{
 		"member": "Saitou Chiharu",
@@ -107,7 +107,7 @@
 		"from": "埼玉",
 		"bloodtype": "A",
 		"height": 166,
-		"status": "2018-07-16"
+		"graduation": "2018-07-16"
 	},
 	{
 		"member": "Saitou Yuuri",
@@ -118,7 +118,7 @@
 		"from": "東京",
 		"bloodtype": "O",
 		"height": 157,
-		"status": "2019-06-30"
+		"graduation": "2019-06-30"
 	},
 	{
 		"member": "Sakurai Reika",
@@ -129,7 +129,7 @@
 		"bloodtype": "A",
 		"from": "神奈川",
 		"height": 155,
-		"status": "2019-09-01"
+		"graduation": "2019-09-01"
 	},
 	{
 		"member": "Takayama Kazumi",
@@ -140,7 +140,7 @@
 		"from": "千葉",
 		"bloodtype": "A",
 		"height": 162,
-		"status": "2021-11-21"
+		"graduation": "2021-11-21"
 	},
 	{
 		"member": "Nakada Kana",
@@ -151,7 +151,7 @@
 		"from": "埼玉",
 		"bloodtype": "A",
 		"height": 158,
-		"status": "2020-10-25"
+		"graduation": "2020-10-25"
 	},
 	{
 		"member": "Nakamoto Himeka",
@@ -162,7 +162,7 @@
 		"from": "広島",
 		"bloodtype": "O",
 		"height": 161,
-		"status": "2017-11-19"
+		"graduation": "2017-11-19"
 	},
 	{
 		"member": "Nishino Nanase",
@@ -173,7 +173,7 @@
 		"from": "大阪",
 		"bloodtype": "O",
 		"height": 159,
-		"status": "2018-12-31"
+		"graduation": "2018-12-31"
 	},
 	{
 		"member": "Noujou Ami",
@@ -184,7 +184,7 @@
 		"from": "神奈川",
 		"bloodtype": "A",
 		"height": 162,
-		"status": "2018-12-15"
+		"graduation": "2018-12-15"
 	},
 	{
 		"member": "Hashimoto Nanami",
@@ -195,7 +195,7 @@
 		"from": "北海道",
 		"bloodtype": "B",
 		"height": 163,
-		"status": "2017-02-20"
+		"graduation": "2017-02-20"
 	},
 	{
 		"member": "Higuchi Hina",
@@ -206,7 +206,7 @@
 		"from": "東京",
 		"bloodtype": "A",
 		"height": 161,
-		"status": ""
+		"graduation": "2022-10-31"
 	},
 	{
 		"member": "Fukagawa Mai",
@@ -217,7 +217,7 @@
 		"from": "静岡",
 		"bloodtype": "O",
 		"height": 162,
-		"status": "2016-06-16"
+		"graduation": "2016-06-16"
 	},
 	{
 		"member": "Hoshino Minami",
@@ -228,7 +228,7 @@
 		"from": "神奈川",
 		"bloodtype": "B",
 		"height": 155,
-		"status": "2022-02-12"
+		"graduation": "2022-02-12"
 	},
 	{
 		"member": "Matsumura Sayuri",
@@ -239,7 +239,7 @@
 		"from": "大阪",
 		"bloodtype": "B",
 		"height": 164,
-		"status": "2021-07-13"
+		"graduation": "2021-07-13"
 	},
 	{
 		"member": "Wakatsuki Yumi",
@@ -250,7 +250,7 @@
 		"from": "静岡",
 		"bloodtype": "O",
 		"height": 157,
-		"status": "2018-11-30"
+		"graduation": "2018-11-30"
 	},
 	{
 		"member": "Wada Maaya",
@@ -261,7 +261,7 @@
 		"from": "広島",
 		"bloodtype": "O",
 		"height": 161,
-		"status": ""
+		"graduation": "2022-12-04"
 	},
 	{
 		"member": "Itou Karin",
@@ -272,7 +272,7 @@
 		"from": "神奈川",
 		"bloodtype": "O",
 		"height": 153,
-		"status": "2019-05-24"
+		"graduation": "2019-05-24"
 	},
 	{
 		"member": "Itou Jyunna",
@@ -283,7 +283,7 @@
 		"from": "神奈川",
 		"bloodtype": "A",
 		"height": 166,
-		"status": "2021-08-31"
+		"graduation": "2021-08-31"
 	},
 	{
 		"member": "Sagara Iori",
@@ -294,7 +294,7 @@
 		"from": "埼玉",
 		"bloodtype": "O",
 		"height": 164,
-		"status": "2018-07-16"
+		"graduation": "2018-07-16"
 	},
 	{
 		"member": "Sasaki Kotoko",
@@ -305,7 +305,7 @@
 		"from": "埼玉",
 		"bloodtype": "A",
 		"height": 163,
-		"status": "2020-03-31"
+		"graduation": "2020-03-31"
 	},
 	{
 		"member": "Shinuchi Mai",
@@ -316,7 +316,7 @@
 		"from": "埼玉",
 		"bloodtype": "B",
 		"height": 165,
-		"status": "2022-02-10"
+		"graduation": "2022-02-10"
 	},
 	{
 		"member": "Terada Ranze",
@@ -327,7 +327,7 @@
 		"from": "東京",
 		"bloodtype": "不明",
 		"height": 155,
-		"status": "2021-12-12"
+		"graduation": "2021-12-12"
 	},
 	{
 		"member": "Kitano Hinako",
@@ -338,7 +338,7 @@
 		"from": "千葉",
 		"bloodtype": "O",
 		"height": 158,
-		"status": "2022-04-30"
+		"graduation": "2022-04-30"
 	},
 	{
 		"member": "Suzuki Ayane",
@@ -349,7 +349,7 @@
 		"from": "広島",
 		"bloodtype": "O",
 		"height": 161,
-		"status": ""
+		"graduation": ""
 	},
 	{
 		"member": "Hori Miyona",
@@ -360,7 +360,7 @@
 		"from": "岐阜",
 		"bloodtype": "O",
 		"height": 162,
-		"status": "2021-03-28"
+		"graduation": "2021-03-28"
 	},
 	{
 		"member": "Yamazaki Rena",
@@ -371,7 +371,7 @@
 		"from": "東京",
 		"bloodtype": "B",
 		"height": 164,
-		"status": "2022-07-17"
+		"graduation": "2022-07-17"
 	},
 	{
 		"member": "Watanabe Miria",
@@ -382,7 +382,7 @@
 		"from": "東京",
 		"bloodtype": "O",
 		"height": 153,
-		"status": "2021-08-31"
+		"graduation": "2021-08-31"
 	},
 	{
 		"member": "Itou Riria",
@@ -393,7 +393,7 @@
 		"from": "沖縄",
 		"bloodtype": "B",
 		"height": 154,
-		"status": ""
+		"graduation": ""
 	},
 	{
 		"member": "Iwamoto Renka",
@@ -404,7 +404,7 @@
 		"from": "東京",
 		"bloodtype": "B",
 		"height": 159,
-		"status": ""
+		"graduation": ""
 	},
 	{
 		"member": "Umezawa Minami",
@@ -415,7 +415,7 @@
 		"from": "神奈川",
 		"bloodtype": "A",
 		"height": 170,
-		"status": ""
+		"graduation": ""
 	},
 	{
 		"member": "Oozono Momoko",
@@ -426,7 +426,7 @@
 		"from": "鹿児島",
 		"bloodtype": "O",
 		"height": 156,
-		"status": "2021-09-04"
+		"graduation": "2021-09-04"
 	},
 	{
 		"member": "Kubo Shiori",
@@ -437,7 +437,7 @@
 		"from": "宮城",
 		"bloodtype": "O",
 		"height": 161,
-		"status": ""
+		"graduation": ""
 	},
 	{
 		"member": "Sakaguchi Tamami",
@@ -448,7 +448,7 @@
 		"from": "東京",
 		"bloodtype": "A",
 		"height": 161,
-		"status": ""
+		"graduation": ""
 	},
 	{
 		"member": "Sato Kaede",
@@ -459,7 +459,7 @@
 		"from": "愛知",
 		"bloodtype": "A",
 		"height": 161,
-		"status": ""
+		"graduation": ""
 	},
 	{
 		"member": "Nakamura Reno",
@@ -470,7 +470,7 @@
 		"from": "東京",
 		"bloodtype": "不明",
 		"height": 167,
-		"status": ""
+		"graduation": ""
 	},
 	{
 		"member": "Mukai Hazuki",
@@ -481,7 +481,7 @@
 		"from": "東京",
 		"bloodtype": "A",
 		"height": 152,
-		"status": ""
+		"graduation": ""
 	},
 	{
 		"member": "Yamashita Mizuki",
@@ -492,7 +492,7 @@
 		"from": "東京",
 		"bloodtype": "O",
 		"height": 160,
-		"status": ""
+		"graduation": ""
 	},
 	{
 		"member": "Yoshida Ayano Cristi",
@@ -503,7 +503,7 @@
 		"from": "大分",
 		"bloodtype": "A",
 		"height": 161,
-		"status": ""
+		"graduation": ""
 	},
 	{
 		"member": "Yoda Yuuki",
@@ -514,7 +514,7 @@
 		"from": "福岡",
 		"bloodtype": "O",
 		"height": 153,
-		"status": ""
+		"graduation": ""
 	},
 	{
 		"member": "Endo Sakura",
@@ -525,7 +525,7 @@
 		"from": "愛知",
 		"bloodtype": "不明",
 		"height": 164,
-		"status": ""
+		"graduation": ""
 	},
 	{
 		"member": "Kaki Haruka",
@@ -536,7 +536,7 @@
 		"from": "栃木",
 		"bloodtype": "A",
 		"height": 166,
-		"status": ""
+		"graduation": ""
 	},
 	{
 		"member": "Kakehashi Sayaka",
@@ -547,7 +547,7 @@
 		"from": "岡山",
 		"bloodtype": "B型",
 		"height": 154,
-		"status": ""
+		"graduation": ""
 	},
 	{
 		"member": "Kanagawa Saya",
@@ -558,7 +558,7 @@
 		"from": "北海道",
 		"bloodtype": "O",
 		"height": 165,
-		"status": ""
+		"graduation": ""
 	},
 	{
 		"member": "Kitagawa Yuri",
@@ -569,7 +569,7 @@
 		"from": "カリフォルニア州",
 		"bloodtype": "不明",
 		"height": 165,
-		"status": ""
+		"graduation": ""
 	},
 	{
 		"member": "Kuromi Haruka",
@@ -580,7 +580,7 @@
 		"from": "東京",
 		"bloodtype": "O",
 		"height": 162,
-		"status": ""
+		"graduation": ""
 	},
 	{
 		"member": "Sato Rika",
@@ -591,7 +591,7 @@
 		"from": "岩手",
 		"bloodtype": "B",
 		"height": 160,
-		"status": ""
+		"graduation": ""
 	},
 	{
 		"member": "Shibata Yuna",
@@ -602,7 +602,7 @@
 		"from": "千葉",
 		"bloodtype": "A",
 		"height": 160,
-		"status": ""
+		"graduation": ""
 	},
 	{
 		"member": "Seimiya Rei",
@@ -613,7 +613,7 @@
 		"from": "埼玉",
 		"bloodtype": "O",
 		"height": 164,
-		"status": ""
+		"graduation": ""
 	},
 	{
 		"member": "Tamura Mayu",
@@ -624,7 +624,7 @@
 		"from": "埼玉",
 		"bloodtype": "A",
 		"height": 160,
-		"status": ""
+		"graduation": ""
 	},
 	{
 		"member": "Tsutsui Ayame",
@@ -635,7 +635,7 @@
 		"from": "愛知",
 		"bloodtype": "O",
 		"height": 160,
-		"status": ""
+		"graduation": ""
 	},
 	{
 		"member": "Hayakawa Seira",
@@ -646,7 +646,7 @@
 		"from": "大阪",
 		"bloodtype": "A",
 		"height": 164,
-		"status": "rest"
+		"graduation": "rest"
 	},
 	{
 		"member": "Hayashi Runa",
@@ -657,7 +657,7 @@
 		"from": "神奈川",
 		"bloodtype": "O",
 		"height": 164,
-		"status": ""
+		"graduation": ""
 	},
 	{
 		"member": "Matsuo Miyu",
@@ -668,7 +668,7 @@
 		"from": "千葉",
 		"bloodtype": "O",
 		"height": 167,
-		"status": ""
+		"graduation": ""
 	},
 	{
 		"member": "Yakubo Mio",
@@ -679,7 +679,7 @@
 		"from": "東京",
 		"bloodtype": "B",
 		"height": 153,
-		"status": ""
+		"graduation": ""
 	},
 	{
 		"member": "Yumiki Nao",
@@ -690,7 +690,7 @@
 		"from": "京都",
 		"bloodtype": "A",
 		"height": 165,
-		"status": ""
+		"graduation": ""
 	},
 	{
 		"member": "Ioki Mao",
@@ -701,7 +701,7 @@
 		"from": "兵庫",
 		"bloodtype": "O",
 		"height": 166,
-		"status": "5期生"
+		"graduation": "5期生"
 	},
 	{
 		"member": "Ikeda Teresa",
@@ -712,7 +712,7 @@
 		"from": "東京",
 		"bloodtype": "不明",
 		"height": 159,
-		"status": "5期生"
+		"graduation": "5期生"
 	},
 	{
 		"member": "Ichinose Miku",
@@ -723,7 +723,7 @@
 		"from": "福岡",
 		"bloodtype": "B",
 		"height": 156,
-		"status": "5期生"
+		"graduation": "5期生"
 	},
 	{
 		"member": "Inoue Nagi",
@@ -734,7 +734,7 @@
 		"from": "神奈川",
 		"bloodtype": "B",
 		"height": 156,
-		"status": "5期生"
+		"graduation": "5期生"
 	},
 	{
 		"member": "Okamoto Hina",
@@ -745,7 +745,7 @@
 		"from": "愛知",
 		"bloodtype": "A",
 		"height": 158,
-		"status": "5期生"
+		"graduation": "5期生"
 	},
 	{
 		"member": "Ogawa Aya",
@@ -756,7 +756,7 @@
 		"from": "千葉",
 		"bloodtype": "B",
 		"height": 154,
-		"status": "5期生"
+		"graduation": "5期生"
 	},
 	{
 		"member": "Okuda Iroha",
@@ -767,7 +767,7 @@
 		"from": "千葉",
 		"bloodtype": "A",
 		"height": 157,
-		"status": "5期生"
+		"graduation": "5期生"
 	},
 	{
 		"member": "Kawasaki Sakura",
@@ -778,7 +778,7 @@
 		"from": "神奈川",
 		"bloodtype": "不明",
 		"height": 155,
-		"status": "5期生"
+		"graduation": "5期生"
 	},
 	{
 		"member": "Sugawara Satsuki",
@@ -789,7 +789,7 @@
 		"from": "千葉",
 		"bloodtype": "A",
 		"height": 157,
-		"status": "5期生"
+		"graduation": "5期生"
 	},
 	{
 		"member": "Tomisato Nao",
@@ -800,7 +800,7 @@
 		"from": "千葉",
 		"bloodtype": "O",
 		"height": 164,
-		"status": "5期生"
+		"graduation": "5期生"
 	},
 	{
 		"member": "Nakanishi Aruno",
@@ -811,6 +811,6 @@
 		"from": "千葉",
 		"bloodtype": "A",
 		"height": 157,
-		"status": "5期生"
+		"graduation": "5期生"
 	}
 ]
