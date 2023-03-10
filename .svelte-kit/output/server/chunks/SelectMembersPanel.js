@@ -9,8 +9,13 @@ const StateButton = create_ssr_component(($$result, $$props, $$bindings, slots) 
   let { states = [] } = $$props;
   let stateIndex = 0;
   createEventDispatcher();
+  function resetState(s) {
+    stateIndex = s;
+  }
   if ($$props.states === void 0 && $$bindings.states && states !== void 0)
     $$bindings.states(states);
+  if ($$props.resetState === void 0 && $$bindings.resetState && resetState !== void 0)
+    $$bindings.resetState(resetState);
   $$result.css.add(css$1);
   return `<button class="${"svelte-1dxr33i"}">${escape(states[stateIndex])}
 </button>`;
@@ -21,36 +26,59 @@ const css = {
   map: null
 };
 const SelectMembersPanel = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  let selectGrouping;
   let { selectables } = $$props;
   let { selectedMembers } = $$props;
   let { nolimit = false } = $$props;
-  if ($$props.selectables === void 0 && $$bindings.selectables && selectables !== void 0)
-    $$bindings.selectables(selectables);
-  if ($$props.selectedMembers === void 0 && $$bindings.selectedMembers && selectedMembers !== void 0)
-    $$bindings.selectedMembers(selectedMembers);
-  if ($$props.nolimit === void 0 && $$bindings.nolimit && nolimit !== void 0)
-    $$bindings.nolimit(nolimit);
-  $$result.css.add(css);
-  selectGrouping = uniq(selectables.map((x) => x.gen)).sort((a, b) => parseInt(a) - parseInt(b)).map((n) => {
+  let selectGrouping = uniq(selectables.map((x) => x.gen)).sort((a, b) => parseInt(a) - parseInt(b)).map((n) => {
     return {
       "gen": n,
       "labels": [`\u5168${n}\u671F\u751F\u9078\u3076`, `\u5168${n}\u671F\u751F\u5916\u3059`],
       "consistsOf": selectables.filter((x) => x.gen == n)
     };
   });
-  return `${selectables.length > 1 ? `<div class="${"memberGrouping svelte-1edzgs0"}">${validate_component(StateButton, "StateButton").$$render($$result, { states: ["\u5168\u54E1\u9078\u3076", "\u5168\u54E1\u5916\u3059"] }, {}, {})}
+  let gpBtn = Array(selectGrouping.length);
+  function reset() {
+    for (let x of gpBtn) {
+      x.resetState(0);
+    }
+  }
+  if ($$props.selectables === void 0 && $$bindings.selectables && selectables !== void 0)
+    $$bindings.selectables(selectables);
+  if ($$props.selectedMembers === void 0 && $$bindings.selectedMembers && selectedMembers !== void 0)
+    $$bindings.selectedMembers(selectedMembers);
+  if ($$props.nolimit === void 0 && $$bindings.nolimit && nolimit !== void 0)
+    $$bindings.nolimit(nolimit);
+  if ($$props.reset === void 0 && $$bindings.reset && reset !== void 0)
+    $$bindings.reset(reset);
+  $$result.css.add(css);
+  let $$settled;
+  let $$rendered;
+  do {
+    $$settled = true;
+    $$rendered = `${selectables.length > 1 ? `<div class="${"memberGrouping svelte-1edzgs0"}">${validate_component(StateButton, "StateButton").$$render($$result, { states: ["\u5168\u54E1\u9078\u3076", "\u5168\u54E1\u5916\u3059"] }, {}, {})}
     ${!nolimit ? `<span class="${"weaker svelte-1edzgs0"}">18\u500B\u4EE5\u4E0B\u3092\u9078\u629E\u3059\u308B\u3053\u3068\u3092\u63A8\u5968\u3057\u307E\u3059</span>` : ``}
     <br></div>` : ``}
-<div class="${"memberGrouping svelte-1edzgs0"}">${each(selectGrouping, (mbgroup) => {
-    return `<div class="${"groupList svelte-1edzgs0"}">${validate_component(StateButton, "StateButton").$$render($$result, { states: mbgroup.labels }, {}, {})}
+<div class="${"memberGrouping svelte-1edzgs0"}">${each(selectGrouping, (mbgroup, i) => {
+      return `<div class="${"groupList svelte-1edzgs0"}">${validate_component(StateButton, "StateButton").$$render(
+        $$result,
+        { states: mbgroup.labels, this: gpBtn[i] },
+        {
+          this: ($$value) => {
+            gpBtn[i] = $$value;
+            $$settled = false;
+          }
+        },
+        {}
+      )}
     ${each(mbgroup.consistsOf, (itm) => {
-      return `<label><input type="${"checkbox"}" name="${"selectedMembers"}"${add_attribute("value", itm.member, 0)} class="${"svelte-1edzgs0"}"${~selectedMembers.indexOf(itm.member) ? add_attribute("checked", true, 1) : ""}>
+        return `<label><input type="${"checkbox"}" name="${"selectedMembers"}"${add_attribute("value", itm.member, 0)} class="${"svelte-1edzgs0"}"${~selectedMembers.indexOf(itm.member) ? add_attribute("checked", true, 1) : ""}>
         ${escape(itm.kanji)}</label>`;
-    })}
+      })}
     </div>`;
-  })}
+    })}
 </div>`;
+  } while (!$$settled);
+  return $$rendered;
 });
 export {
   SelectMembersPanel as S

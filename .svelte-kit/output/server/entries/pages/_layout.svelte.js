@@ -10,6 +10,7 @@ const Layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   $$result.css.add(css);
   return `<nav><ul class="${"svelte-mrj498"}"><li class="${"svelte-mrj498"}"><a href="${escape(base, true) + "/"}" class="${"svelte-mrj498"}">\u5B8C\u58F2\u8868</a></li>
         <li class="${"svelte-mrj498"}"><a href="${escape(base, true) + "/progress"}" class="${"svelte-mrj498"}">\u63A8\u79FB\u30B0\u30E9\u30D5</a></li>
+        <li class="${"svelte-mrj498"}"><a href="${escape(base, true) + "/bday"}" class="${"svelte-mrj498"}">\u5B66\u5E74\u9806\u756A</a></li>
         <li class="${"svelte-mrj498"}"><a href="${escape(base, true) + "/about"}" class="${"svelte-mrj498"}">About</a></li></ul></nav>
 ${slots.default ? slots.default({}) : ``}
 

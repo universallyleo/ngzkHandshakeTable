@@ -9095,7 +9095,7 @@ const membersdata = [
     from: "\u5175\u5EAB",
     bloodtype: "O",
     height: 166,
-    graduation: "5\u671F\u751F"
+    graduation: ""
   },
   {
     member: "Ikeda Teresa",
@@ -9106,7 +9106,7 @@ const membersdata = [
     from: "\u6771\u4EAC",
     bloodtype: "\u4E0D\u660E",
     height: 159,
-    graduation: "5\u671F\u751F"
+    graduation: ""
   },
   {
     member: "Ichinose Miku",
@@ -9117,7 +9117,7 @@ const membersdata = [
     from: "\u798F\u5CA1",
     bloodtype: "B",
     height: 156,
-    graduation: "5\u671F\u751F"
+    graduation: ""
   },
   {
     member: "Inoue Nagi",
@@ -9128,7 +9128,7 @@ const membersdata = [
     from: "\u795E\u5948\u5DDD",
     bloodtype: "B",
     height: 156,
-    graduation: "5\u671F\u751F"
+    graduation: ""
   },
   {
     member: "Okamoto Hina",
@@ -9139,7 +9139,7 @@ const membersdata = [
     from: "\u611B\u77E5",
     bloodtype: "A",
     height: 158,
-    graduation: "5\u671F\u751F"
+    graduation: ""
   },
   {
     member: "Ogawa Aya",
@@ -9150,7 +9150,7 @@ const membersdata = [
     from: "\u5343\u8449",
     bloodtype: "B",
     height: 154,
-    graduation: "5\u671F\u751F"
+    graduation: ""
   },
   {
     member: "Okuda Iroha",
@@ -9161,7 +9161,7 @@ const membersdata = [
     from: "\u5343\u8449",
     bloodtype: "A",
     height: 157,
-    graduation: "5\u671F\u751F"
+    graduation: ""
   },
   {
     member: "Kawasaki Sakura",
@@ -9172,7 +9172,7 @@ const membersdata = [
     from: "\u795E\u5948\u5DDD",
     bloodtype: "\u4E0D\u660E",
     height: 155,
-    graduation: "5\u671F\u751F"
+    graduation: ""
   },
   {
     member: "Sugawara Satsuki",
@@ -9183,29 +9183,29 @@ const membersdata = [
     from: "\u5343\u8449",
     bloodtype: "A",
     height: 157,
-    graduation: "5\u671F\u751F"
+    graduation: ""
   },
   {
     member: "Tomisato Nao",
     kanji: "\u51A8\u91CC \u5948\u592E",
     furi: "\u3068\u307F\u3055\u3068 \u306A\u304A",
     gen: 5,
-    dob: "2006\u5E749\u670818",
+    dob: "2006-09-18",
     from: "\u5343\u8449",
     bloodtype: "O",
     height: 164,
-    graduation: "5\u671F\u751F"
+    graduation: ""
   },
   {
     member: "Nakanishi Aruno",
     kanji: "\u4E2D\u897F \u30A2\u30EB\u30CE",
     furi: "\u306A\u304B\u306B\u3057 \u30A2\u30EB\u30CE",
     gen: 5,
-    dob: "2003\u5E743\u670817",
+    dob: "2003-03-17",
     from: "\u5343\u8449",
     bloodtype: "A",
     height: 157,
-    graduation: "5\u671F\u751F"
+    graduation: ""
   }
 ];
 function getCDDateRange() {

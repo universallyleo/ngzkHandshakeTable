@@ -5,7 +5,7 @@
 /// <reference types="@sveltejs/kit" />
 
 /**
- * Environment variables [loaded by Vite](https://vitejs.dev/guide/env-and-mode.html#env-files) from `.env` files and `process.env`. Like [`$env/dynamic/private`](https://kit.svelte.dev/docs/modules#$env-dynamic-private), this module cannot be imported into client-side code. This module only includes variables that _do not_ begin with [`config.kit.env.publicPrefix`](https://kit.svelte.dev/docs/configuration#env).
+ * Environment variables [loaded by Vite](https://vitejs.dev/guide/env-and-mode.html#env-files) from `.env` files and `process.env`. Like [`$env/dynamic/private`](https://kit.svelte.dev/docs/modules#$env-dynamic-private), this module cannot be imported into public-facing code. This module only includes variables that _do not_ begin with [`config.kit.env.publicPrefix`](https://kit.svelte.dev/docs/configuration#env).
  * 
  * _Unlike_ [`$env/dynamic/private`](https://kit.svelte.dev/docs/modules#$env-dynamic-private), the values exported from this module are statically injected into your bundle at build time, enabling optimisations like dead code elimination.
  * 
@@ -37,10 +37,8 @@ declare module '$env/static/private' {
 	export const npm_node_execpath: string;
 	export const JAVA_HOME_8_X64: string;
 	export const SHLVL: string;
-	export const LD_LIBRARY_PATH: string;
 	export const npm_config_noproxy: string;
 	export const HOME: string;
-	export const Python_ROOT_DIR: string;
 	export const RUNNER_TEMP: string;
 	export const GITHUB_EVENT_PATH: string;
 	export const npm_package_json: string;
@@ -60,15 +58,14 @@ declare module '$env/static/private' {
 	export const npm_config_local_prefix: string;
 	export const SYSTEMD_EXEC_PID: string;
 	export const npm_config_engine_strict: string;
-	export const npm_config_globalconfig: string;
-	export const npm_config_global_prefix: string;
-	export const npm_config_init_module: string;
-	export const npm_config_local_prefix: string;
+	export const GITHUB_GRAPHQL_URL: string;
+	export const COLOR: string;
+	export const GOROOT_1_20_X64: string;
+	export const NVM_DIR: string;
 	export const npm_config_metrics_registry: string;
 	export const DOTNET_SKIP_FIRST_TIME_EXPERIENCE: string;
 	export const JAVA_HOME_17_X64: string;
 	export const ImageVersion: string;
-	export const pythonLocation: string;
 	export const RUNNER_OS: string;
 	export const GITHUB_API_URL: string;
 	export const SWIFT_PATH: string;
@@ -78,14 +75,11 @@ declare module '$env/static/private' {
 	export const GITHUB_WORKFLOW: string;
 	export const _: string;
 	export const npm_config_prefix: string;
-	export const PKG_CONFIG_PATH: string;
 	export const GITHUB_RUN_ID: string;
-	export const Python2_ROOT_DIR: string;
 	export const npm_config_cache: string;
 	export const GOROOT_1_17_X64: string;
 	export const GITHUB_REF_TYPE: string;
 	export const BOOTSTRAP_HASKELL_NONINTERACTIVE: string;
-	export const Python3_ROOT_DIR: string;
 	export const GITHUB_WORKFLOW_SHA: string;
 	export const GITHUB_BASE_REF: string;
 	export const ImageOS: string;
@@ -106,7 +100,6 @@ declare module '$env/static/private' {
 	export const GITHUB_ACTION: string;
 	export const GITHUB_RUN_NUMBER: string;
 	export const GITHUB_TRIGGERING_ACTOR: string;
-	export const today: string;
 	export const RUNNER_ARCH: string;
 	export const XDG_RUNTIME_DIR: string;
 	export const AGENT_TOOLSDIRECTORY: string;
@@ -118,47 +111,54 @@ declare module '$env/static/private' {
 	export const GITHUB_REF_NAME: string;
 	export const GITHUB_REPOSITORY: string;
 	export const npm_lifecycle_script: string;
-	export const npm_node_execpath: string;
-	export const npm_package_json: string;
-	export const npm_package_name: string;
+	export const ANDROID_NDK_ROOT: string;
+	export const GITHUB_ACTION_REF: string;
+	export const DEBIAN_FRONTEND: string;
+	export const GITHUB_REPOSITORY_ID: string;
+	export const GITHUB_ACTIONS: string;
+	export const STATS_NM: string;
 	export const npm_package_version: string;
-	export const NPM_PREFIX_NPM_CLI_JS: string;
-	export const NUMBER_OF_PROCESSORS: string;
-	export const OneDrive: string;
-	export const ORIGINAL_XDG_CURRENT_DESKTOP: string;
-	export const OS: string;
-	export const Path: string;
-	export const PATHEXT: string;
-	export const PNPM_HOME: string;
-	export const PROCESSOR_ARCHITECTURE: string;
-	export const PROCESSOR_IDENTIFIER: string;
-	export const PROCESSOR_LEVEL: string;
-	export const PROCESSOR_REVISION: string;
-	export const ProgramData: string;
-	export const ProgramFiles: string;
-	export const ProgramW6432: string;
-	export const PROMPT: string;
-	export const PSModulePath: string;
-	export const PUBLIC: string;
-	export const SESSIONNAME: string;
-	export const SystemDrive: string;
-	export const SystemRoot: string;
-	export const TEMP: string;
-	export const TERM_PROGRAM: string;
-	export const TERM_PROGRAM_VERSION: string;
-	export const TMP: string;
-	export const USERDOMAIN: string;
-	export const USERDOMAIN_ROAMINGPROFILE: string;
-	export const USERNAME: string;
-	export const USERPROFILE: string;
-	export const VBOX_MSI_INSTALL_PATH: string;
-	export const VSCODE_GIT_ASKPASS_EXTRA_ARGS: string;
-	export const VSCODE_GIT_ASKPASS_MAIN: string;
-	export const VSCODE_GIT_ASKPASS_NODE: string;
-	export const VSCODE_GIT_IPC_HANDLE: string;
-	export const VSCODE_INJECTION: string;
-	export const windir: string;
-	export const ZES_ENABLE_SYSMAN: string;
+	export const npm_lifecycle_event: string;
+	export const GITHUB_REF_PROTECTED: string;
+	export const GITHUB_WORKSPACE: string;
+	export const ACCEPT_EULA: string;
+	export const GITHUB_JOB: string;
+	export const RUNNER_PERFLOG: string;
+	export const GITHUB_SHA: string;
+	export const GITHUB_RUN_ATTEMPT: string;
+	export const GITHUB_REF: string;
+	export const GITHUB_ACTOR: string;
+	export const ANDROID_SDK_ROOT: string;
+	export const LEIN_HOME: string;
+	export const npm_config_globalconfig: string;
+	export const npm_config_init_module: string;
+	export const GITHUB_PATH: string;
+	export const JAVA_HOME: string;
+	export const PWD: string;
+	export const GITHUB_ACTOR_ID: string;
+	export const RUNNER_WORKSPACE: string;
+	export const npm_execpath: string;
+	export const HOMEBREW_CLEANUP_PERIODIC_FULL_DAYS: string;
+	export const GITHUB_EVENT_NAME: string;
+	export const HOMEBREW_NO_AUTO_UPDATE: string;
+	export const ANDROID_HOME: string;
+	export const GITHUB_SERVER_URL: string;
+	export const GECKOWEBDRIVER: string;
+	export const LEIN_JAR: string;
+	export const GHCUP_INSTALL_BASE_PREFIX: string;
+	export const GITHUB_OUTPUT: string;
+	export const npm_config_global_prefix: string;
+	export const EDGEWEBDRIVER: string;
+	export const npm_command: string;
+	export const ANDROID_NDK: string;
+	export const SGX_AESM_ADDR: string;
+	export const CHROME_BIN: string;
+	export const SELENIUM_JAR_PATH: string;
+	export const ANDROID_NDK_HOME: string;
+	export const GITHUB_STEP_SUMMARY: string;
+	export const INIT_CWD: string;
+	export const EDITOR: string;
+	export const NODE_ENV: string;
 }
 
 /**
@@ -177,7 +177,7 @@ declare module '$env/static/public' {
 /**
  * This module provides access to runtime environment variables, as defined by the platform you're running on. For example if you're using [`adapter-node`](https://github.com/sveltejs/kit/tree/master/packages/adapter-node) (or running [`vite preview`](https://kit.svelte.dev/docs/cli)), this is equivalent to `process.env`. This module only includes variables that _do not_ begin with [`config.kit.env.publicPrefix`](https://kit.svelte.dev/docs/configuration#env).
  * 
- * This module cannot be imported into client-side code.
+ * This module cannot be imported into public-facing code.
  * 
  * ```ts
  * import { env } from '$env/dynamic/private';
@@ -199,10 +199,8 @@ declare module '$env/dynamic/private' {
 		npm_node_execpath: string;
 		JAVA_HOME_8_X64: string;
 		SHLVL: string;
-		LD_LIBRARY_PATH: string;
 		npm_config_noproxy: string;
 		HOME: string;
-		Python_ROOT_DIR: string;
 		RUNNER_TEMP: string;
 		GITHUB_EVENT_PATH: string;
 		npm_package_json: string;
@@ -222,15 +220,14 @@ declare module '$env/dynamic/private' {
 		npm_config_local_prefix: string;
 		SYSTEMD_EXEC_PID: string;
 		npm_config_engine_strict: string;
-		npm_config_globalconfig: string;
-		npm_config_global_prefix: string;
-		npm_config_init_module: string;
-		npm_config_local_prefix: string;
+		GITHUB_GRAPHQL_URL: string;
+		COLOR: string;
+		GOROOT_1_20_X64: string;
+		NVM_DIR: string;
 		npm_config_metrics_registry: string;
 		DOTNET_SKIP_FIRST_TIME_EXPERIENCE: string;
 		JAVA_HOME_17_X64: string;
 		ImageVersion: string;
-		pythonLocation: string;
 		RUNNER_OS: string;
 		GITHUB_API_URL: string;
 		SWIFT_PATH: string;
@@ -240,14 +237,11 @@ declare module '$env/dynamic/private' {
 		GITHUB_WORKFLOW: string;
 		_: string;
 		npm_config_prefix: string;
-		PKG_CONFIG_PATH: string;
 		GITHUB_RUN_ID: string;
-		Python2_ROOT_DIR: string;
 		npm_config_cache: string;
 		GOROOT_1_17_X64: string;
 		GITHUB_REF_TYPE: string;
 		BOOTSTRAP_HASKELL_NONINTERACTIVE: string;
-		Python3_ROOT_DIR: string;
 		GITHUB_WORKFLOW_SHA: string;
 		GITHUB_BASE_REF: string;
 		ImageOS: string;
@@ -268,7 +262,6 @@ declare module '$env/dynamic/private' {
 		GITHUB_ACTION: string;
 		GITHUB_RUN_NUMBER: string;
 		GITHUB_TRIGGERING_ACTOR: string;
-		today: string;
 		RUNNER_ARCH: string;
 		XDG_RUNTIME_DIR: string;
 		AGENT_TOOLSDIRECTORY: string;
@@ -280,48 +273,54 @@ declare module '$env/dynamic/private' {
 		GITHUB_REF_NAME: string;
 		GITHUB_REPOSITORY: string;
 		npm_lifecycle_script: string;
-		npm_node_execpath: string;
-		npm_package_json: string;
-		npm_package_name: string;
+		ANDROID_NDK_ROOT: string;
+		GITHUB_ACTION_REF: string;
+		DEBIAN_FRONTEND: string;
+		GITHUB_REPOSITORY_ID: string;
+		GITHUB_ACTIONS: string;
+		STATS_NM: string;
 		npm_package_version: string;
-		NPM_PREFIX_NPM_CLI_JS: string;
-		NUMBER_OF_PROCESSORS: string;
-		OneDrive: string;
-		ORIGINAL_XDG_CURRENT_DESKTOP: string;
-		OS: string;
-		Path: string;
-		PATHEXT: string;
-		PNPM_HOME: string;
-		PROCESSOR_ARCHITECTURE: string;
-		PROCESSOR_IDENTIFIER: string;
-		PROCESSOR_LEVEL: string;
-		PROCESSOR_REVISION: string;
-		ProgramData: string;
-		ProgramFiles: string;
-		ProgramW6432: string;
-		PROMPT: string;
-		PSModulePath: string;
-		PUBLIC: string;
-		SESSIONNAME: string;
-		SystemDrive: string;
-		SystemRoot: string;
-		TEMP: string;
-		TERM_PROGRAM: string;
-		TERM_PROGRAM_VERSION: string;
-		TMP: string;
-		USERDOMAIN: string;
-		USERDOMAIN_ROAMINGPROFILE: string;
-		USERNAME: string;
-		USERPROFILE: string;
-		VBOX_MSI_INSTALL_PATH: string;
-		VSCODE_GIT_ASKPASS_EXTRA_ARGS: string;
-		VSCODE_GIT_ASKPASS_MAIN: string;
-		VSCODE_GIT_ASKPASS_NODE: string;
-		VSCODE_GIT_IPC_HANDLE: string;
-		VSCODE_INJECTION: string;
-		windir: string;
-		ZES_ENABLE_SYSMAN: string;
-		[key: `PUBLIC_${string}`]: undefined;
+		npm_lifecycle_event: string;
+		GITHUB_REF_PROTECTED: string;
+		GITHUB_WORKSPACE: string;
+		ACCEPT_EULA: string;
+		GITHUB_JOB: string;
+		RUNNER_PERFLOG: string;
+		GITHUB_SHA: string;
+		GITHUB_RUN_ATTEMPT: string;
+		GITHUB_REF: string;
+		GITHUB_ACTOR: string;
+		ANDROID_SDK_ROOT: string;
+		LEIN_HOME: string;
+		npm_config_globalconfig: string;
+		npm_config_init_module: string;
+		GITHUB_PATH: string;
+		JAVA_HOME: string;
+		PWD: string;
+		GITHUB_ACTOR_ID: string;
+		RUNNER_WORKSPACE: string;
+		npm_execpath: string;
+		HOMEBREW_CLEANUP_PERIODIC_FULL_DAYS: string;
+		GITHUB_EVENT_NAME: string;
+		HOMEBREW_NO_AUTO_UPDATE: string;
+		ANDROID_HOME: string;
+		GITHUB_SERVER_URL: string;
+		GECKOWEBDRIVER: string;
+		LEIN_JAR: string;
+		GHCUP_INSTALL_BASE_PREFIX: string;
+		GITHUB_OUTPUT: string;
+		npm_config_global_prefix: string;
+		EDGEWEBDRIVER: string;
+		npm_command: string;
+		ANDROID_NDK: string;
+		SGX_AESM_ADDR: string;
+		CHROME_BIN: string;
+		SELENIUM_JAR_PATH: string;
+		ANDROID_NDK_HOME: string;
+		GITHUB_STEP_SUMMARY: string;
+		INIT_CWD: string;
+		EDITOR: string;
+		NODE_ENV: string;
 		[key: string]: string | undefined;
 	}
 }
@@ -338,6 +337,6 @@ declare module '$env/dynamic/private' {
  */
 declare module '$env/dynamic/public' {
 	export const env: {
-		[key: `PUBLIC_${string}`]: string | undefined;
+		[key: string]: string | undefined;
 	}
 }
