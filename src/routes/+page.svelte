@@ -1,1 +1,1 @@
-Click a link
+Click a link to continue
