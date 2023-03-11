@@ -1,1 +1,0 @@
-import{S as i,i as l,s as o,q as r,r as c,b as u,H as e,h as f}from"../chunks/index.b9180cdf.js";function m(s){let t;return{c(){t=r("Click a link")},l(a){t=c(a,"Click a link")},m(a,n){u(a,t,n)},p:e,i:e,o:e,d(a){a&&f(t)}}}class d extends i{constructor(t){super(),l(this,t,null,m,o,{})}}export{d as default};
