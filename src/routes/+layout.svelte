@@ -6,7 +6,7 @@
     <ul>
         <li><a href="{base}/">完売表</a></li>
         <li><a href="{base}/progress">推移グラフ</a></li>
-        <li><a href="{base}/bday">学年順番</a></li>
+        <li><a href="{base}/bday">生誕・学年順</a></li>
         <li><a href="{base}/about">About</a></li>
     </ul>
 </nav>
@@ -40,7 +40,7 @@
         border-bottom: solid black 1px;
     }
     li {
-        margin-right: 15px;
+        margin-right: 20px;
     }
 
     a {

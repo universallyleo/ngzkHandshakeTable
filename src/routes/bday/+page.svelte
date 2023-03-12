@@ -1,10 +1,14 @@
 <script>
     import SelectMembersPanel from "$lib/SelectMembersPanel.svelte";
     import DOBInfo from "./DOBInfo.svelte";
-    import { getMember, getAllMembers } from "$lib/processData.js";
-    import { ordering } from "$lib/processData.js";
-    import { bdayToGakunen, sortGakunen } from "$lib/util.js";
-    import { groupBy, uniq } from "lodash-es";
+    import {
+        getMember,
+        getAllMembers,
+        partitionToGroup,
+        ordering,
+    } from "$lib/processData.js";
+    import { ISODateToNum, upcomingDOBByMonthsFromNow } from "$lib/util.js";
+    import { uniq } from "lodash-es";
     //import { fly,fade } from 'svelte/transition';
     //let temp = [ getMember('Yumiki Nao'), getMember('Sato Kaede') ];
     let selectables = getAllMembers();
@@ -13,6 +17,7 @@
     let gpOpt = "none";
     let gens = [];
     let mbpanel;
+    let listType = "dob";
 
     function reset() {
         selectedMembers = [];
@@ -22,27 +27,42 @@
     }
 
     function sortyear() {
-        let mbdata = selectedMembers.map((x) => {
-            let y = getMember(x);
-            y["yr"] = bdayToGakunen(y["dob"]);
-            return y;
-        });
-        let yrGroupsArr = Object.entries(groupBy(mbdata, ({ yr }) => yr)).sort(
-            (a, b) => sortGakunen(a[0], b[0])
-        );
-        // each item in array is of the form [ "yy/YY", [{mbdata1}, {mbdata2}, ...] ]
-        sorted = yrGroupsArr.map((x) => [
-            x[0],
-            x[1].sort((a, b) => ordering.ISODateAscend(a["dob"], b["dob"])),
-        ]);
+        let mbdata = selectedMembers.map(getMember);
+        if (listType == "nextBday") {
+            let bdays = mbdata.map((x) => x.dob);
+            let groupedMonths = upcomingDOBByMonthsFromNow(bdays);
+            // an array with items [d, ["date1", "date2",..]], increasing in d=month of date1, date2,...
+            sorted = [];
+            for (let monthGp of groupedMonths) {
+                let month = ISODateToNum(monthGp[1][0], "m");
+                sorted.push({
+                    label: `${month}月`,
+                    value: month,
+                    has: monthGp[1]
+                        .map((date) =>
+                            mbdata.filter(
+                                (x) => x.dob.slice(5) == date.slice(5)
+                            )
+                        )
+                        .flat(),
+                });
+            }
+        } else if (listType == "dob") {
+            sorted = partitionToGroup(
+                mbdata,
+                "gakunen",
+                ordering.ISODateAscend
+            );
+        }
+        // each item in array is of the form { label: "yy/YY", value: "yy/YY", has: [{mbdata1}, {mbdata2}, ...] ]
         if (gpOpt == "gen") {
             gens = uniq(mbdata.map((x) => x.gen)).sort((a, b) => a - b);
             for (let yrGp of sorted) {
-                yrGp[1] = gens.map((i) => {
+                yrGp.has = gens.map((i) => {
                     return {
                         label: `${i}期生`,
                         value: i,
-                        has: yrGp[1].filter((mb) => mb.gen == i),
+                        has: yrGp.has.filter((mb) => mb.gen == i),
                     };
                 });
             }
@@ -56,25 +76,48 @@
 </svelte:head>
 
 <div class="optionItem">
-    グループ分け：
-    <label>
-        <input
-            type="radio"
-            name="gpOpt"
-            bind:group={gpOpt}
-            value={"none"}
-            on:click={reset}
-        /> なし
-    </label>
-    <label>
-        <input
-            type="radio"
-            name="gpOpt"
-            bind:group={gpOpt}
-            value={"gen"}
-            on:click={reset}
-        /> 期別
-    </label>
+    <div>
+        ソート：
+        <label
+            ><input
+                type="radio"
+                name="list"
+                bind:group={listType}
+                value="dob"
+                on:click={reset}
+            />生年月日</label
+        >
+        <label
+            ><input
+                type="radio"
+                name="list"
+                bind:group={listType}
+                value="nextBday"
+                on:click={reset}
+            />次生誕日先</label
+        >
+    </div>
+    <div>
+        グループ分け：
+        <label>
+            <input
+                type="radio"
+                name="gpOpt"
+                bind:group={gpOpt}
+                value={"none"}
+                on:click={reset}
+            /> なし
+        </label>
+        <label>
+            <input
+                type="radio"
+                name="gpOpt"
+                bind:group={gpOpt}
+                value={"gen"}
+                on:click={reset}
+            /> 期別
+        </label>
+    </div>
 </div>
 <SelectMembersPanel
     bind:selectedMembers
@@ -89,20 +132,17 @@
     {#each sorted as yrgroup}
         <div class="yrgroup">
             <div class="yrCell">
-                <div>{yrgroup[0]}</div>
+                <div>{yrgroup.label}</div>
             </div>
             {#if gpOpt == "none"}
                 <div class="yrgrouplist">
-                    {#each yrgroup[1] as memberData}
+                    {#each yrgroup.has as memberData}
                         <DOBInfo {memberData} />
-                        <!-- <div>
-                {mb["kanji"]} <br> ({JPDateDisplay(mb["dob"].slice(5))})
-                </div> -->
                     {/each}
                 </div>
             {:else}
                 <div class="yrgrouplistByGen">
-                    {#each yrgroup[1] as groupData}
+                    {#each yrgroup.has as groupData}
                         <div class="yrgrpSubcolumn">
                             <!-- <span style="width: 50%; margin-left:auto; margin-right:auto;">{groupData.label}</span> -->
                             {#each groupData.has as memberData}
@@ -121,7 +161,7 @@
         border: 1px solid #999;
         display: grid;
         grid-auto-flow: column;
-        grid-template-columns: max-content auto;
+        grid-template-columns: 60px auto;
         grid-gap: 5px;
         height: fit-content;
         padding: 5px;
@@ -131,10 +171,12 @@
         align-self: center;
         justify-self: center;
         height: 100%;
+        width: 100%;
         display: grid;
     }
     .yrCell > div {
         padding: 5px;
+        justify-self: center;
         align-self: center;
     }
     .yrgrouplist {
