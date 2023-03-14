@@ -15,20 +15,13 @@
     let selectedMembers = [];
     let sorted = [];
     let gpOpt = "none";
-    let gens = [];
     let mbpanel;
     let listType = "dob";
-
-    function reset() {
-        selectedMembers = [];
-        sorted = [];
-        gens = [];
-        mbpanel.reset();
-    }
 
     function sortyear() {
         let mbdata = selectedMembers.map(getMember);
         if (listType == "nextBday") {
+            // TODO: merge with partitionToGroup
             let bdays = mbdata.map((x) => x.dob);
             let groupedMonths = upcomingDOBByMonthsFromNow(bdays);
             // an array with items [d, ["date1", "date2",..]], increasing in d=month of date1, date2,...
@@ -51,22 +44,16 @@
             sorted = partitionToGroup(
                 mbdata,
                 "gakunen",
+                [],
                 ordering.ISODateAscend
             );
         }
         // each item in array is of the form { label: "yy/YY", value: "yy/YY", has: [{mbdata1}, {mbdata2}, ...] ]
-        if (gpOpt == "gen") {
-            gens = uniq(mbdata.map((x) => x.gen)).sort((a, b) => a - b);
-            for (let yrGp of sorted) {
-                yrGp.has = gens.map((i) => {
-                    return {
-                        label: `${i}期生`,
-                        value: i,
-                        has: yrGp.has.filter((mb) => mb.gen == i),
-                    };
-                });
-            }
-        }
+        // add partitions by generations
+        let gens = uniq(mbdata.map((x) => x.gen)).sort((a, b) => a - b);
+        sorted.forEach(
+            (yrGp) => (yrGp.hasGen = partitionToGroup(yrGp.has, "gen", gens))
+        );
     }
 </script>
 
@@ -75,6 +62,12 @@
     <meta name="description" content="乃木坂46誕生日・学年データ" />
 </svelte:head>
 
+<SelectMembersPanel
+    bind:selectedMembers
+    {selectables}
+    nolimit={true}
+    bind:this={mbpanel}
+/>
 <div class="optionItem">
     <div>
         ソート：
@@ -84,7 +77,7 @@
                 name="list"
                 bind:group={listType}
                 value="dob"
-                on:click={reset}
+                on:click={(sorted = [])}
             />生年月日</label
         >
         <label
@@ -93,7 +86,7 @@
                 name="list"
                 bind:group={listType}
                 value="nextBday"
-                on:click={reset}
+                on:click={(sorted = [])}
             />次生誕日先</label
         >
     </div>
@@ -105,26 +98,14 @@
                 name="gpOpt"
                 bind:group={gpOpt}
                 value={"none"}
-                on:click={reset}
             /> なし
         </label>
         <label>
-            <input
-                type="radio"
-                name="gpOpt"
-                bind:group={gpOpt}
-                value={"gen"}
-                on:click={reset}
-            /> 期別
+            <input type="radio" name="gpOpt" bind:group={gpOpt} value={"gen"} />
+            期別
         </label>
     </div>
 </div>
-<SelectMembersPanel
-    bind:selectedMembers
-    {selectables}
-    nolimit={true}
-    bind:this={mbpanel}
-/>
 <div style="width: 50%; margin: 1ch auto 5px auto;">
     <button on:click={sortyear} class="print">生成</button>
 </div>
@@ -134,24 +115,21 @@
             <div class="yrCell">
                 <div>{yrgroup.label}</div>
             </div>
-            {#if gpOpt == "none"}
-                <div class="yrgrouplist">
+            <div class={gpOpt === "none" ? "yrgrouplist" : "yrgrouplistByGen"}>
+                {#if gpOpt === "none"}
                     {#each yrgroup.has as memberData}
                         <DOBInfo {memberData} />
                     {/each}
-                </div>
-            {:else}
-                <div class="yrgrouplistByGen">
-                    {#each yrgroup.has as groupData}
+                {:else}
+                    {#each yrgroup.hasGen as groupData}
                         <div class="yrgrpSubcolumn">
-                            <!-- <span style="width: 50%; margin-left:auto; margin-right:auto;">{groupData.label}</span> -->
                             {#each groupData.has as memberData}
                                 <DOBInfo {memberData} />
                             {/each}
                         </div>
                     {/each}
-                </div>
-            {/if}
+                {/if}
+            </div>
         </div>
     {/each}
 </div>

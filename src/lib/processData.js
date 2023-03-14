@@ -14,6 +14,14 @@ import {
 import members from "$lib/data/members.json";
 import fulldata from "$lib/data/data.json";
 
+/**
+ * GroupedData
+ * @typedef {Object} GroupedData
+ * @property {string} label
+ * @property {string|number} value
+ * @property {Array<any>} has
+ */
+
 function getCDDateRange() {
     let cdDates = fulldata.map((x) => {
         return {
@@ -347,10 +355,15 @@ export function finalSoldoutDraw(mbdata) {
 /**
  * @param  {Array.<Object>} mbDataList - an array of JSON, each must consist of a "member" key
  * @param  {string} opt - one of gen, bloodtype, status, from, dobyear, dobmonth
+ * @param {Array.<any>} includes - foces empty entry presented in includes even if no member satisfies critera
+ * @param {function} subsort - sort each "has" item using subsort
+ * @param {string} subsortOpt - ordering used for subsort
+ * @return {Array.<GroupedData>}
  */
 export function partitionToGroup(
     mbDataList,
     opt = "gen",
+    includes = [],
     subsort = null,
     subsortOpt = "dobAscend"
 ) {
@@ -390,6 +403,12 @@ export function partitionToGroup(
         } else {
             withopt.push(val);
             res.push({ label: opt2label(opt, val), value: val, has: [mbdata] });
+        }
+    }
+    for (let val of includes) {
+        if (withopt.indexOf(val) == -1) {
+            withopt.push(val);
+            res.push({ label: opt2label(opt, val), value: val, has: [] });
         }
     }
     if (subsort)
