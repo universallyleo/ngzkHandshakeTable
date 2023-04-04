@@ -1,0 +1,121 @@
+[
+    {
+        "cd": {
+            "num": 26,
+            "type": "Single",
+            "release": "2021-01-26"
+        },
+        "sales": {
+            "daily": [445852, 66793, 25514, 16147, 21197, 13778],
+            "weekOne": 589338,
+            "accumulate": 718787,
+            "bi": {
+                "soku": 592366,
+                "weekOne": 678684,
+                "accumulate": 829946
+            }
+        }
+    },
+    {
+        "cd": {
+            "num": 27,
+            "type": "Single",
+            "release": "2021-06-09"
+        },
+        "sales": {
+            "daily": [450171, 63879, 35196, 14362, 15386, 10734],
+            "weekOne": 589751,
+            "accumulate": 698661,
+            "bi": {
+                "soku": 622871,
+                "weekOne": 704346,
+                "accumulate": 824688
+            }
+        }
+    },
+    {
+        "cd": {
+            "num": 28,
+            "type": "Single",
+            "release": "2021-09-22"
+        },
+        "sales": {
+            "daily": [408815, 56282, 26825, 21481, 13017, 9367],
+            "weekOne": 535794,
+            "accumulate": 624823,
+            "bi": {
+                "soku": 577954,
+                "weekOne": 658176,
+                "accumulate": 768935
+            }
+        }
+    },
+    {
+        "cd": {
+            "num": 29,
+            "type": "Single",
+            "release": "2022-03-23"
+        },
+        "sales": {
+            "daily": [345669, 59151, 27202, 16131, 9990, 9261],
+            "weekOne": 463439,
+            "accumulate": 588211,
+            "bi": {
+                "soku": 499423,
+                "weekOne": 561071,
+                "accumulate": 733091
+            }
+        }
+    },
+    {
+        "cd": {
+            "num": 30,
+            "type": "Single",
+            "release": "2022-08-31"
+        },
+        "sales": {
+            "daily": [435467, 67617, 26956, 17773, 16222, 12544],
+            "weekOne": 576597,
+            "accumulate": 680384,
+            "bi": {
+                "soku": 603150,
+                "weekOne": 720302,
+                "accumulate": 860480
+            }
+        }
+    },
+    {
+        "cd": {
+            "num": 31,
+            "type": "Single",
+            "release": "2022-12-07"
+        },
+        "sales": {
+            "daily": [489327, 77651, 33537, 21508, 18581, 13343],
+            "weekOne": 653998,
+            "accumulate": 768388,
+            "bi": {
+                "soku": 734293,
+                "weekOne": 830384,
+                "accumulate": 980906
+            }
+        }
+    },
+    {
+        "cd": {
+            "num": 32,
+            "type": "Single",
+            "release": "2023-03-29"
+        },
+        "sales": {
+            "daily": [419000, 49243, 23788, 9154, 8425, 7232],
+            "weekOne": 0,
+            "accumulate": 0,
+            "bi": {
+                "soku": 609458,
+                "weekOne": 0,
+                "accumulate": 0
+            }
+        }
+    }
+]

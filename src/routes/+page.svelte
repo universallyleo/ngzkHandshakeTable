@@ -7,8 +7,7 @@
     import SlotTable from "$lib/SlotTable.svelte";
     import SelectOneCD from "$lib/SelectOneCD.svelte";
     import { fly, fade } from "svelte/transition";
-
-    let selected = 0;
+    import StateButton from "../lib/StateButton.svelte";
 
     let filterMethod = [
         { display: "全メンバー", value: "showall" },
@@ -36,11 +35,9 @@
         // {"display": "生年月日順", "value": "dob"}
     ];
     let sortOpt = "kana";
-    let compareCD = false;
     let atdraw = -1;
     let capture = false;
     let selectedIndex = 0;
-    //let selectedCD=data.cd==null?fulldata[fulldata.length-1]:fulldata[findCDIndex(data.cd)];
     let selectedCDData = fulldata[fulldata.length - 1];
     let compareToCDData,
         hideTable = false;
@@ -76,10 +73,16 @@
 
     function getCompare() {
         let compare =
-            !compareCD || compareToCDData.cd === selectedCDData.cd || atdraw < 0
+            compareToCDData.cd === selectedCDData.cd || atdraw < 0
                 ? null
                 : { cdData: compareToCDData, atdraw: atdraw };
         ST.updateCompare(compare);
+        hideTable = !!compare;
+    }
+
+    function compareReset() {
+        ST.updateCompare(null);
+        hideTable = false;
     }
 
     onMount(async () => {
@@ -93,9 +96,7 @@
     $: selectableDraw = compareToCDData
         ? min([compareToCDData.lastDraw, selectedCDData.lastDraw])
         : 0;
-    $: if (!compareCD) {
-        compareToCDData = null;
-    }
+    $: atdraw = selectableDraw ? selectableDraw : 0;
 </script>
 
 <svelte:head>
@@ -178,21 +179,9 @@
         </ul>
     </div>
     <div class="advanceOption">
-        <label>
-            <input
-                type="checkbox"
-                name="compareCD"
-                id="compareCD"
-                bind:checked={compareCD}
-            />
-            過去との差
-        </label>
-        {#if compareCD}
-            <div
-                style="display:flex; flex-grow:1"
-                in:fly={{ x: 300, duration: 800 }}
-            >
-                →
+        <div style="display:flex; flex-grow:1">
+            <div>
+                過去との差 →
                 <span style="margin-right:3px"
                     >対象:
                     <SelectOneCD
@@ -214,24 +203,22 @@
                         {/each}
                     </select>次受付</label
                 >
-                {#if atdraw > 0}
-                    <div
-                        in:fly={{ x: 300, duration: 800 }}
-                        style="margin-left:auto;margin-right:2px;width:max-content;"
-                    >
-                        <button on:click={() => getCompare()}>比べる</button>
-                        <label style="margin-left:auto;">
-                            <input
-                                type="checkbox"
-                                name="hideTable"
-                                bind:checked={hideTable}
-                            />
-                            完売表をかくす
-                        </label>
-                    </div>
-                {/if}
             </div>
-        {/if}
+            <!-- <div
+                    in:fly={{ x: 300, duration: 800 }}
+                    style="margin-left:auto;margin-right:2px;width:max-content;"
+                > -->
+            <div style="margin-left:auto;margin-rigth:2px;width:max-content;">
+                |&nbsp;
+                <button on:click={() => getCompare()}>比べる</button>
+                <button on:click={() => compareReset()}>クリア</button>
+                &nbsp;|&nbsp;
+                <StateButton
+                    states={["完売表を示す", "完売表をかくす"]}
+                    on:changeFrom={(ev) => (hideTable = ev.detail.stateIdx)}
+                />
+            </div>
+        </div>
     </div>
 </div>
 

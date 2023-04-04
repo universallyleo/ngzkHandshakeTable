@@ -36,7 +36,7 @@
     }).numSold;
     $: capture = capture;
     $: title2 = compare ? cdAlias(compare.cdData.cd).display : "";
-    $: hideTable = compare ? hideTable : false; //force table to be shown when not comparing
+    //$: hideTable = compare ? hideTable : false; //force table to be shown when not comparing
     // console.log(curr.numSold););
     //$: console.log(expandData);
     // $: numSlots = data.meetDates.length*5;
@@ -75,6 +75,8 @@
 
     export function updateCompare(comparedata) {
         compare = comparedata;
+        hideTable = comparedata ? hideTable : false; //force table to be shown when not comparing
+        console.log("SlotTable.updateCompare ended.  hideTable = ", hideTable);
     }
 </script>
 
