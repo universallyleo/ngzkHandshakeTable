@@ -1,4 +1,5 @@
 <script>
+    import ColorDiv from "$lib/ColorDiv.svelte";
     import { JPDateDisplay, getAge } from "$lib/util.js";
 
     export let memberData;
@@ -12,8 +13,11 @@
         <div class="cell">
             {getAge(memberData.dob)}歳 ／
             <span style="color: {genColor[memberData.gen - 1]}"
-                >{memberData.gen}期生</span
-            >
+                >{memberData.gen}期生
+            </span>
+            ／
+            <ColorDiv colorName={memberData.penlight[0]} />
+            <ColorDiv colorName={memberData.penlight[1]} />
         </div>
         <div class="cell">{JPDateDisplay(memberData.dob)}</div>
     </div>
@@ -27,6 +31,7 @@
         border: 1px solid hsl(291, 57%, 50%);
         /* display: grid; */
         /* grid-template-columns: 200px 70px; */
+        margin: 2px;
         height: fit-content;
     }
 

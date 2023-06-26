@@ -109,11 +109,11 @@
         },
         "sales": {
             "daily": [419000, 49243, 23788, 9154, 8425, 7232],
-            "weekOne": 0,
+            "weekOne": 516884,
             "accumulate": 0,
             "bi": {
                 "soku": 609458,
-                "weekOne": 0,
+                "weekOne": 663277,
                 "accumulate": 0
             }
         }

@@ -125,6 +125,16 @@ export function getAllMembers() {
     return members.map(({ member }) => getMember(member));
 }
 
+export function getCurrentMembers() {
+    return members.reduce(
+        (res, { member, graduation }) =>
+            graduation === "" || graduation === "rest"
+                ? res.push(getMember(member)) && res
+                : res,
+        []
+    );
+}
+
 /**
  * @param  {object} cdData - full cd data object
  * @param  {string} dataform - default to "full", either "full"->return full member data,  or "name"->return only member name

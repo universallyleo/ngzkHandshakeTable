@@ -8,8 +8,7 @@
         "from": "埼玉",
         "bloodtype": "B",
         "height": 154,
-        "graduation": "2023-02-26",
-        "penlight": ["red", "pink"]
+        "graduation": "2023-02-26"
     },
     {
         "member": "Ikuta Erika",
@@ -20,8 +19,7 @@
         "from": "デュッセルドルフ",
         "bloodtype": "A",
         "height": 160,
-        "graduation": "2021-12-31",
-        "penlight": ["yellow", "yellow"]
+        "graduation": "2021-12-31"
     },
     {
         "member": "Ikoma Rina",
@@ -32,8 +30,7 @@
         "from": "秋田",
         "bloodtype": "AB",
         "height": 153,
-        "graduation": "2018-05-06",
-        "penlight": ["blue", "purple"]
+        "graduation": "2018-05-06"
     },
     {
         "member": "Itou Marika",
@@ -44,8 +41,7 @@
         "from": "神奈川",
         "bloodtype": "O",
         "height": 156,
-        "graduation": "2017-12-23",
-        "penlight": ["green", "purple"]
+        "graduation": "2017-12-23"
     },
     {
         "member": "Inoue Sayuri",
@@ -56,8 +52,7 @@
         "from": "埼玉",
         "bloodtype": "B",
         "height": 156,
-        "graduation": "2020-04-27",
-        "penlight": ["white", "white"]
+        "graduation": "2020-04-27"
     },
     {
         "member": "Etou Misa",
@@ -68,8 +63,7 @@
         "bloodtype": "AB",
         "from": "大分",
         "height": 163,
-        "graduation": "2019-03-31",
-        "penlight": ["red", "red"]
+        "graduation": "2019-03-31"
     },
     {
         "member": "Kawamura Mahiro",
@@ -80,8 +74,7 @@
         "from": "大阪",
         "bloodtype": "A",
         "height": 158,
-        "graduation": "2018-03-31",
-        "penlight": ["red", "white"]
+        "graduation": "2018-03-31"
     },
     {
         "member": "Kawago Hina",
@@ -92,8 +85,7 @@
         "from": "長崎",
         "bloodtype": "O",
         "height": 161,
-        "graduation": "2018-12-20",
-        "penlight": ["red", "red"]
+        "graduation": "2018-12-20"
     },
     {
         "member": "Saito Asuka",
@@ -104,8 +96,7 @@
         "from": "東京",
         "bloodtype": "O",
         "height": 158,
-        "graduation": "2022-12-31",
-        "penlight": ["water", "white"]
+        "graduation": "2022-12-31"
     },
     {
         "member": "Saitou Chiharu",
@@ -116,8 +107,7 @@
         "from": "埼玉",
         "bloodtype": "A",
         "height": 166,
-        "graduation": "2018-07-16",
-        "penlight": ["blue", "red"]
+        "graduation": "2018-07-16"
     },
     {
         "member": "Saitou Yuuri",
@@ -128,8 +118,7 @@
         "from": "東京",
         "bloodtype": "O",
         "height": 157,
-        "graduation": "2019-06-30",
-        "penlight": ["pink", "white"]
+        "graduation": "2019-06-30"
     },
     {
         "member": "Sakurai Reika",
@@ -140,8 +129,7 @@
         "bloodtype": "A",
         "from": "神奈川",
         "height": 155,
-        "graduation": "2019-09-01",
-        "penlight": ["red", "pink"]
+        "graduation": "2019-09-01"
     },
     {
         "member": "Takayama Kazumi",
@@ -152,8 +140,7 @@
         "from": "千葉",
         "bloodtype": "A",
         "height": 162,
-        "graduation": "2021-11-21",
-        "penlight": ["water", "pink"]
+        "graduation": "2021-11-21"
     },
     {
         "member": "Nakada Kana",
@@ -164,8 +151,7 @@
         "from": "埼玉",
         "bloodtype": "A",
         "height": 158,
-        "graduation": "2020-10-25",
-        "penlight": ["black", "white"]
+        "graduation": "2020-10-25"
     },
     {
         "member": "Nakamoto Himeka",
@@ -176,8 +162,7 @@
         "from": "広島",
         "bloodtype": "O",
         "height": 161,
-        "graduation": "2017-11-19",
-        "penlight": ["pink", "pink"]
+        "graduation": "2017-11-19"
     },
     {
         "member": "Nishino Nanase",
@@ -188,8 +173,7 @@
         "from": "大阪",
         "bloodtype": "O",
         "height": 159,
-        "graduation": "2018-12-31",
-        "penlight": ["green", "white"]
+        "graduation": "2018-12-31"
     },
     {
         "member": "Noujou Ami",
@@ -200,8 +184,7 @@
         "from": "神奈川",
         "bloodtype": "A",
         "height": 162,
-        "graduation": "2018-12-15",
-        "penlight": ["orange", "orange"]
+        "graduation": "2018-12-15"
     },
     {
         "member": "Hashimoto Nanami",
@@ -212,8 +195,7 @@
         "from": "北海道",
         "bloodtype": "B",
         "height": 163,
-        "graduation": "2017-02-20",
-        "penlight": ["green", "green"]
+        "graduation": "2017-02-20"
     },
     {
         "member": "Higuchi Hina",
@@ -224,8 +206,7 @@
         "from": "東京",
         "bloodtype": "A",
         "height": 161,
-        "graduation": "2022-10-31",
-        "penlight": ["purple", "orange"]
+        "graduation": "2022-10-31"
     },
     {
         "member": "Fukagawa Mai",
@@ -236,8 +217,7 @@
         "from": "静岡",
         "bloodtype": "O",
         "height": 162,
-        "graduation": "2016-06-16",
-        "penlight": ["green", "purple"]
+        "graduation": "2016-06-16"
     },
     {
         "member": "Hoshino Minami",
@@ -248,8 +228,7 @@
         "from": "神奈川",
         "bloodtype": "B",
         "height": 155,
-        "graduation": "2022-02-12",
-        "penlight": ["white", "white"]
+        "graduation": "2022-02-12"
     },
     {
         "member": "Matsumura Sayuri",
@@ -260,8 +239,7 @@
         "from": "大阪",
         "bloodtype": "B",
         "height": 164,
-        "graduation": "2021-07-13",
-        "penlight": ["red", "red"]
+        "graduation": "2021-07-13"
     },
     {
         "member": "Wakatsuki Yumi",
@@ -272,8 +250,7 @@
         "from": "静岡",
         "bloodtype": "O",
         "height": 157,
-        "graduation": "2018-11-30",
-        "penlight": ["blue", "blue"]
+        "graduation": "2018-11-30"
     },
     {
         "member": "Wada Maaya",
@@ -284,8 +261,7 @@
         "from": "広島",
         "bloodtype": "O",
         "height": 161,
-        "graduation": "2022-12-04",
-        "penlight": ["yellow", "orange"]
+        "graduation": "2022-12-04"
     },
     {
         "member": "Itou Karin",
@@ -296,8 +272,7 @@
         "from": "神奈川",
         "bloodtype": "O",
         "height": 153,
-        "graduation": "2019-05-24",
-        "penlight": ["green", "purple"]
+        "graduation": "2019-05-24"
     },
     {
         "member": "Itou Jyunna",
@@ -308,8 +283,7 @@
         "from": "神奈川",
         "bloodtype": "A",
         "height": 166,
-        "graduation": "2021-08-31",
-        "penlight": ["water", "pink"]
+        "graduation": "2021-08-31"
     },
     {
         "member": "Sagara Iori",
@@ -320,8 +294,7 @@
         "from": "埼玉",
         "bloodtype": "O",
         "height": 164,
-        "graduation": "2018-07-16",
-        "penlight": ["green", "orange"]
+        "graduation": "2018-07-16"
     },
     {
         "member": "Sasaki Kotoko",
@@ -332,8 +305,7 @@
         "from": "埼玉",
         "bloodtype": "A",
         "height": 163,
-        "graduation": "2020-03-31",
-        "penlight": ["blue", "green"]
+        "graduation": "2020-03-31"
     },
     {
         "member": "Shinuchi Mai",
@@ -344,8 +316,7 @@
         "from": "埼玉",
         "bloodtype": "B",
         "height": 165,
-        "graduation": "2022-02-10",
-        "penlight": ["blue", "purple"]
+        "graduation": "2022-02-10"
     },
     {
         "member": "Terada Ranze",
@@ -356,8 +327,7 @@
         "from": "東京",
         "bloodtype": "不明",
         "height": 155,
-        "graduation": "2021-12-12",
-        "penlight": ["red", "white"]
+        "graduation": "2021-12-12"
     },
     {
         "member": "Kitano Hinako",
@@ -368,8 +338,7 @@
         "from": "千葉",
         "bloodtype": "O",
         "height": 158,
-        "graduation": "2022-04-30",
-        "penlight": ["pink", "yellowgreen"]
+        "graduation": "2022-04-30"
     },
     {
         "member": "Suzuki Ayane",
@@ -380,8 +349,7 @@
         "from": "広島",
         "bloodtype": "O",
         "height": 161,
-        "graduation": "2023-03-28",
-        "penlight": ["white", "purple"]
+        "graduation": "2023-03-28"
     },
     {
         "member": "Hori Miyona",
@@ -392,8 +360,7 @@
         "from": "岐阜",
         "bloodtype": "O",
         "height": 162,
-        "graduation": "2021-03-28",
-        "penlight": ["white", "orange"]
+        "graduation": "2021-03-28"
     },
     {
         "member": "Yamazaki Rena",
@@ -404,8 +371,7 @@
         "from": "東京",
         "bloodtype": "B",
         "height": 164,
-        "graduation": "2022-07-17",
-        "penlight": ["yellow", "white"]
+        "graduation": "2022-07-17"
     },
     {
         "member": "Watanabe Miria",
@@ -416,8 +382,7 @@
         "from": "東京",
         "bloodtype": "O",
         "height": 153,
-        "graduation": "2021-08-31",
-        "penlight": ["yellow", "yellowgreen"]
+        "graduation": "2021-08-31"
     },
     {
         "member": "Itou Riria",
@@ -428,8 +393,7 @@
         "from": "沖縄",
         "bloodtype": "B",
         "height": 154,
-        "graduation": "",
-        "penlight": ["purple", "red"]
+        "graduation": ""
     },
     {
         "member": "Iwamoto Renka",
@@ -440,8 +404,7 @@
         "from": "東京",
         "bloodtype": "B",
         "height": 159,
-        "graduation": "",
-        "penlight": ["red", "pink"]
+        "graduation": ""
     },
     {
         "member": "Umezawa Minami",
@@ -452,8 +415,7 @@
         "from": "神奈川",
         "bloodtype": "A",
         "height": 170,
-        "graduation": "",
-        "penlight": ["blue", "water"]
+        "graduation": ""
     },
     {
         "member": "Oozono Momoko",
@@ -464,8 +426,7 @@
         "from": "鹿児島",
         "bloodtype": "O",
         "height": 156,
-        "graduation": "2021-09-04",
-        "penlight": ["pink", "green"]
+        "graduation": "2021-09-04"
     },
     {
         "member": "Kubo Shiori",
@@ -476,8 +437,7 @@
         "from": "宮城",
         "bloodtype": "O",
         "height": 161,
-        "graduation": "",
-        "penlight": ["water", "yellow"]
+        "graduation": ""
     },
     {
         "member": "Sakaguchi Tamami",
@@ -488,8 +448,7 @@
         "from": "東京",
         "bloodtype": "A",
         "height": 161,
-        "graduation": "",
-        "penlight": ["purple", "yellow"]
+        "graduation": ""
     },
     {
         "member": "Sato Kaede",
@@ -500,8 +459,7 @@
         "from": "愛知",
         "bloodtype": "A",
         "height": 161,
-        "graduation": "",
-        "penlight": ["red", "red"]
+        "graduation": ""
     },
     {
         "member": "Nakamura Reno",
@@ -512,8 +470,7 @@
         "from": "東京",
         "bloodtype": "不明",
         "height": 167,
-        "graduation": "",
-        "penlight": ["blue", "white"]
+        "graduation": ""
     },
     {
         "member": "Mukai Hazuki",
@@ -524,8 +481,7 @@
         "from": "東京",
         "bloodtype": "A",
         "height": 152,
-        "graduation": "",
-        "penlight": ["yellow", "yellow"]
+        "graduation": ""
     },
     {
         "member": "Yamashita Mizuki",
@@ -536,8 +492,7 @@
         "from": "東京",
         "bloodtype": "O",
         "height": 160,
-        "graduation": "",
-        "penlight": ["blue", "yellow"]
+        "graduation": ""
     },
     {
         "member": "Yoshida Ayano Cristi",
@@ -548,8 +503,7 @@
         "from": "大分",
         "bloodtype": "A",
         "height": 161,
-        "graduation": "",
-        "penlight": ["pink", "purple"]
+        "graduation": ""
     },
     {
         "member": "Yoda Yuuki",
@@ -560,8 +514,7 @@
         "from": "福岡",
         "bloodtype": "O",
         "height": 153,
-        "graduation": "",
-        "penlight": ["red", "green"]
+        "graduation": ""
     },
     {
         "member": "Endo Sakura",
@@ -572,8 +525,7 @@
         "from": "愛知",
         "bloodtype": "不明",
         "height": 164,
-        "graduation": "",
-        "penlight": ["pink", "white"]
+        "graduation": ""
     },
     {
         "member": "Kaki Haruka",
@@ -584,8 +536,7 @@
         "from": "栃木",
         "bloodtype": "A",
         "height": 166,
-        "graduation": "",
-        "penlight": ["orange", "green"]
+        "graduation": ""
     },
     {
         "member": "Kakehashi Sayaka",
@@ -596,8 +547,7 @@
         "from": "岡山",
         "bloodtype": "B型",
         "height": 154,
-        "graduation": "rest",
-        "penlight": ["pink", "orange"]
+        "graduation": "rest"
     },
     {
         "member": "Kanagawa Saya",
@@ -608,8 +558,7 @@
         "from": "北海道",
         "bloodtype": "O",
         "height": 165,
-        "graduation": "",
-        "penlight": ["water", "red"]
+        "graduation": ""
     },
     {
         "member": "Kitagawa Yuri",
@@ -620,8 +569,7 @@
         "from": "カリフォルニア州",
         "bloodtype": "不明",
         "height": 165,
-        "graduation": "2023-06-30",
-        "penlight": ["water", "orange"]
+        "graduation": "2023-06-30"
     },
     {
         "member": "Kuromi Haruka",
@@ -632,8 +580,7 @@
         "from": "東京",
         "bloodtype": "O",
         "height": 162,
-        "graduation": "",
-        "penlight": ["purple", "green"]
+        "graduation": ""
     },
     {
         "member": "Sato Rika",
@@ -644,8 +591,7 @@
         "from": "岩手",
         "bloodtype": "B",
         "height": 160,
-        "graduation": "",
-        "penlight": ["pink", "turquoise"]
+        "graduation": ""
     },
     {
         "member": "Shibata Yuna",
@@ -656,8 +602,7 @@
         "from": "千葉",
         "bloodtype": "A",
         "height": 160,
-        "graduation": "",
-        "penlight": ["blue", "yellowgreen"]
+        "graduation": ""
     },
     {
         "member": "Seimiya Rei",
@@ -668,8 +613,7 @@
         "from": "埼玉",
         "bloodtype": "O",
         "height": 164,
-        "graduation": "",
-        "penlight": ["orange", "orange"]
+        "graduation": ""
     },
     {
         "member": "Tamura Mayu",
@@ -680,8 +624,7 @@
         "from": "埼玉",
         "bloodtype": "A",
         "height": 160,
-        "graduation": "",
-        "penlight": ["purple", "water"]
+        "graduation": ""
     },
     {
         "member": "Tsutsui Ayame",
@@ -692,8 +635,7 @@
         "from": "愛知",
         "bloodtype": "O",
         "height": 160,
-        "graduation": "",
-        "penlight": ["purple", "purple"]
+        "graduation": ""
     },
     {
         "member": "Hayakawa Seira",
@@ -704,8 +646,7 @@
         "from": "大阪",
         "bloodtype": "A",
         "height": 164,
-        "graduation": "2023-07-13",
-        "penlight": ["blue", "blue"]
+        "graduation": "2023-07-13"
     },
     {
         "member": "Hayashi Runa",
@@ -716,8 +657,7 @@
         "from": "神奈川",
         "bloodtype": "O",
         "height": 164,
-        "graduation": "rest",
-        "penlight": ["pink", "pink"]
+        "graduation": "rest"
     },
     {
         "member": "Matsuo Miyu",
@@ -728,8 +668,7 @@
         "from": "千葉",
         "bloodtype": "O",
         "height": 167,
-        "graduation": "",
-        "penlight": ["turquoise", "white"]
+        "graduation": ""
     },
     {
         "member": "Yakubo Mio",
@@ -740,8 +679,7 @@
         "from": "東京",
         "bloodtype": "B",
         "height": 153,
-        "graduation": "",
-        "penlight": ["pink", "yellow"]
+        "graduation": ""
     },
     {
         "member": "Yumiki Nao",
@@ -752,8 +690,7 @@
         "from": "京都",
         "bloodtype": "A",
         "height": 165,
-        "graduation": "",
-        "penlight": ["red", "yellowgreen"]
+        "graduation": ""
     },
     {
         "member": "Ioki Mao",
@@ -764,8 +701,7 @@
         "from": "兵庫",
         "bloodtype": "O",
         "height": 166,
-        "graduation": "",
-        "penlight": ["turquoise", "blue"]
+        "graduation": ""
     },
     {
         "member": "Ikeda Teresa",
@@ -776,8 +712,7 @@
         "from": "東京",
         "bloodtype": "不明",
         "height": 159,
-        "graduation": "",
-        "penlight": ["green", "white"]
+        "graduation": ""
     },
     {
         "member": "Ichinose Miku",
@@ -788,8 +723,7 @@
         "from": "福岡",
         "bloodtype": "B",
         "height": 156,
-        "graduation": "",
-        "penlight": ["water", "water"]
+        "graduation": ""
     },
     {
         "member": "Inoue Nagi",
@@ -800,8 +734,7 @@
         "from": "神奈川",
         "bloodtype": "B",
         "height": 156,
-        "graduation": "",
-        "penlight": ["red", "white"]
+        "graduation": ""
     },
     {
         "member": "Okamoto Hina",
@@ -812,8 +745,7 @@
         "from": "愛知",
         "bloodtype": "A",
         "height": 158,
-        "graduation": "",
-        "penlight": ["purple", "blue"]
+        "graduation": ""
     },
     {
         "member": "Ogawa Aya",
@@ -824,8 +756,7 @@
         "from": "千葉",
         "bloodtype": "B",
         "height": 154,
-        "graduation": "",
-        "penlight": ["white", "white"]
+        "graduation": ""
     },
     {
         "member": "Okuda Iroha",
@@ -836,8 +767,7 @@
         "from": "千葉",
         "bloodtype": "A",
         "height": 157,
-        "graduation": "",
-        "penlight": ["yellowgreen", "pink"]
+        "graduation": ""
     },
     {
         "member": "Kawasaki Sakura",
@@ -848,8 +778,7 @@
         "from": "神奈川",
         "bloodtype": "不明",
         "height": 155,
-        "graduation": "",
-        "penlight": ["pink", "green"]
+        "graduation": ""
     },
     {
         "member": "Sugawara Satsuki",
@@ -860,8 +789,7 @@
         "from": "千葉",
         "bloodtype": "A",
         "height": 157,
-        "graduation": "",
-        "penlight": ["pink", "water"]
+        "graduation": ""
     },
     {
         "member": "Tomisato Nao",
@@ -872,8 +800,7 @@
         "from": "千葉",
         "bloodtype": "O",
         "height": 164,
-        "graduation": "",
-        "penlight": ["turquoise", "turquoise"]
+        "graduation": ""
     },
     {
         "member": "Nakanishi Aruno",
@@ -884,7 +811,6 @@
         "from": "千葉",
         "bloodtype": "A",
         "height": 157,
-        "graduation": "",
-        "penlight": ["water", "turquoise"]
+        "graduation": ""
     }
 ]

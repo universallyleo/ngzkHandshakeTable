@@ -1,9 +1,11 @@
 <script>
     import SelectMembersPanel from "$lib/SelectMembersPanel.svelte";
+    import StateButton from "../../lib/StateButton.svelte";
     import DOBInfo from "./DOBInfo.svelte";
     import {
         getMember,
         getAllMembers,
+        getCurrentMembers,
         partitionToGroup,
         ordering,
     } from "$lib/processData.js";
@@ -11,15 +13,20 @@
     import { uniq } from "lodash-es";
     //import { fly,fade } from 'svelte/transition';
     //let temp = [ getMember('Yumiki Nao'), getMember('Sato Kaede') ];
+    let gpOpt = "none";
+    let mbpanel;
+    let listType = "nextBday";
+    let selectFrom = "current";
     let selectables = getAllMembers();
     let selectedMembers = [];
     let sorted = [];
-    let gpOpt = "none";
-    let mbpanel;
-    let listType = "dob";
+    sortyear();
 
-    function sortyear() {
-        let mbdata = selectedMembers.map(getMember);
+    function sortyear(mbs = []) {
+        let mbdata =
+            mbs.length > 0
+                ? selectedMembers.map(getMember)
+                : getCurrentMembers();
         if (listType == "nextBday") {
             // TODO: merge with partitionToGroup
             let bdays = mbdata.map((x) => x.dob);
@@ -62,79 +69,141 @@
     <meta name="description" content="乃木坂46誕生日・学年データ" />
 </svelte:head>
 
-<SelectMembersPanel
-    bind:selectedMembers
-    {selectables}
-    nolimit={true}
-    bind:this={mbpanel}
-/>
-<div class="optionItem">
-    <div>
-        ソート：
-        <label
-            ><input
-                type="radio"
-                name="list"
-                bind:group={listType}
-                value="dob"
-                on:click={(sorted = [])}
-            />生年月日</label
-        >
-        <label
-            ><input
-                type="radio"
-                name="list"
-                bind:group={listType}
-                value="nextBday"
-                on:click={(sorted = [])}
-            />次生誕日先</label
-        >
+<div class="main">
+    <div class="optionItem">
+        <ul class="twocols">
+            <li>
+                <div class="leftcol">構成メンバー：</div>
+                <div class="rightcol">
+                    <label
+                        ><input
+                            type="radio"
+                            name="selection"
+                            bind:group={selectFrom}
+                            value="current"
+                            on:click={sortyear}
+                        />現役全員</label
+                    >
+                    <label
+                        ><input
+                            type="radio"
+                            name="selection"
+                            bind:group={selectFrom}
+                            value="all"
+                            on:click={(sorted = [])}
+                        />カスタマイズ</label
+                    >
+                    {#if selectFrom == "all"}
+                        <SelectMembersPanel
+                            bind:selectedMembers
+                            {selectables}
+                            nolimit={true}
+                            bind:this={mbpanel}
+                        />
+                    {/if}
+                </div>
+            </li>
+            <li>
+                <div class="leftcol">ソート：</div>
+                <div class="rightcol">
+                    <label>
+                        <input
+                            type="radio"
+                            name="list"
+                            bind:group={listType}
+                            value="nextBday"
+                            on:click={(sorted = [])}
+                        />次生誕日先</label
+                    >
+                    <label>
+                        <input
+                            type="radio"
+                            name="list"
+                            bind:group={listType}
+                            value="dob"
+                            on:click={(sorted = [])}
+                        />生年月日</label
+                    >
+                </div>
+            </li>
+            <li>
+                <div class="leftcol">グループ分け：</div>
+                <div class="rightcol">
+                    <label>
+                        <input
+                            type="radio"
+                            name="gpOpt"
+                            bind:group={gpOpt}
+                            value={"none"}
+                        /> なし
+                    </label>
+                    <label>
+                        <input
+                            type="radio"
+                            name="gpOpt"
+                            bind:group={gpOpt}
+                            value={"gen"}
+                        />
+                        期別
+                    </label>
+                </div>
+            </li>
+        </ul>
     </div>
-    <div>
-        グループ分け：
-        <label>
-            <input
-                type="radio"
-                name="gpOpt"
-                bind:group={gpOpt}
-                value={"none"}
-            /> なし
-        </label>
-        <label>
-            <input type="radio" name="gpOpt" bind:group={gpOpt} value={"gen"} />
-            期別
-        </label>
+    <div style="width: 50%; margin: 1ch auto 5px auto;">
+        <button on:click={sortyear} class="print">生成</button>
     </div>
-</div>
-<div style="width: 50%; margin: 1ch auto 5px auto;">
-    <button on:click={sortyear} class="print">生成</button>
-</div>
-<div class="timeline">
-    {#each sorted as yrgroup}
-        <div class="yrgroup">
-            <div class="yrCell">
-                <div>{yrgroup.label}</div>
+    <div class="timeline">
+        {#each sorted as yrgroup}
+            <div class="yrgroup">
+                <div class="yrCell">
+                    <div>{yrgroup.label}</div>
+                </div>
+                <div
+                    class={gpOpt === "none"
+                        ? "yrgrouplist"
+                        : "yrgrouplistByGen"}
+                >
+                    {#if gpOpt === "none"}
+                        {#each yrgroup.has as memberData}
+                            <DOBInfo {memberData} />
+                        {/each}
+                    {:else}
+                        {#each yrgroup.hasGen as groupData}
+                            <div class="yrgrpSubcolumn">
+                                {#each groupData.has as memberData}
+                                    <DOBInfo {memberData} />
+                                {/each}
+                            </div>
+                        {/each}
+                    {/if}
+                </div>
             </div>
-            <div class={gpOpt === "none" ? "yrgrouplist" : "yrgrouplistByGen"}>
-                {#if gpOpt === "none"}
-                    {#each yrgroup.has as memberData}
-                        <DOBInfo {memberData} />
-                    {/each}
-                {:else}
-                    {#each yrgroup.hasGen as groupData}
-                        <div class="yrgrpSubcolumn">
-                            {#each groupData.has as memberData}
-                                <DOBInfo {memberData} />
-                            {/each}
-                        </div>
-                    {/each}
-                {/if}
-            </div>
-        </div>
-    {/each}
+        {/each}
+    </div>
 </div>
 
 <style>
+    ul.twocols {
+        display: inline-block;
+        text-align: left;
+        margin: 0;
+        padding: 0;
+        /*	background-color: hsl(40, 100%, 95%);*/
+    }
+
+    ul.twocols > li {
+        margin: 0.5ch 0 0.5ch;
+        display: flex;
+        justify-content: left;
+    }
+
+    ul.twocols > li > div.leftcol {
+        flex: none;
+        margin: 0;
+        width: 8rem;
+    }
+
     .yrgroup {
         border: 1px solid #999;
         display: grid;
@@ -175,8 +244,7 @@
 		grid-gap: 4px; */
     }
     .yrgrpSubcolumn {
-        padding: 2px;
-        /* border: 1px solid black; */
+        padding: 1px;
         display: flex;
         flex-direction: column;
         width: 205px;
@@ -187,15 +255,10 @@
         grid-gap: 5px; */
         /* height: fit-content; */
     }
-    .yrgrpSubcolumn div {
+    /* .yrgrpSubcolumn div {
+        margin: 2px;
         align-self: start;
-    }
-    /* .yrgrouplist div{
-    display:block;
-    width:100%;
-    text-align: center;
-    border: 1px solid #BBB;
-} */
+    } */
     .timeline {
         /* width: 1060px; */
         width: max-content;
@@ -227,5 +290,10 @@
         margin-left: 1rem;
         margin-top: 1ch;
         margin-bottom: 1ch;
+    }
+    .main {
+        margin: 0 auto;
+        width: max-content;
+        padding: 7px;
     }
 </style>

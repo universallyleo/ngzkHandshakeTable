@@ -267,7 +267,6 @@
     }
 
     ul.twocols > li {
-        margin: 15px 0 15px;
         display: flex;
         justify-content: left;
         margin: 0;

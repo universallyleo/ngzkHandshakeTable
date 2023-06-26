@@ -224,3 +224,31 @@ export function composeCompares(compfuncs, a, b) {
     let c = range(compfuncs.length).map((i) => compfuncs[i](a[i], b[i]));
     return c.reduce((accum, curr) => (accum ? accum : curr));
 }
+
+export const colorCode = {
+    white: "#FFF",
+    orange: "#f39801",
+    blue: "#0505ff",
+    yellow: "#ffef00",
+    purple: "#911eb4",
+    green: "#009c4b",
+    pink: "#eb79ad",
+    red: "#e70012",
+    water: "#1e90ff",
+    yellowgreen: "#9aff98",
+    turquoise: "#66cccc",
+};
+
+export const colorJPName = {
+    white: "白",
+    orange: "オレンジ",
+    blue: "青",
+    yellow: "黄",
+    purple: "紫",
+    green: "緑",
+    pink: "ピンク",
+    red: "赤",
+    water: "水色",
+    yellowgreen: "黄緑",
+    turquoise: "ターコイズ",
+};
