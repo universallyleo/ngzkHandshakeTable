@@ -23,10 +23,7 @@
     sortyear();
 
     function sortyear(mbs = []) {
-        let mbdata =
-            mbs.length > 0
-                ? selectedMembers.map(getMember)
-                : getCurrentMembers();
+        let mbdata = mbs.length > 0 ? mbs.map(getMember) : getCurrentMembers();
         if (listType == "nextBday") {
             // TODO: merge with partitionToGroup
             let bdays = mbdata.map((x) => x.dob);
@@ -151,7 +148,11 @@
         </ul>
     </div>
     <div style="width: 50%; margin: 1ch auto 5px auto;">
-        <button on:click={sortyear} class="print">生成</button>
+        <button
+            on:click={() =>
+                sortyear(selectFrom == "current" ? [] : selectedMembers)}
+            class="print">生成</button
+        >
     </div>
     <div class="timeline">
         {#each sorted as yrgroup}
