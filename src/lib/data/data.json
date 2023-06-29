@@ -7460,6 +7460,10 @@
             },
             {
                 "member": "Kaki Haruka",
+                "slotsSold": ["||||", "||||", "||||", "||||", "||||", "||||"]
+            },
+            {
+                "member": "Kanagawa Saya",
                 "slotsSold": [
                     "||||",
                     "||||",
@@ -7468,10 +7472,6 @@
                     "||||",
                     "||||"
                 ]
-            },
-            {
-                "member": "Kanagawa Saya",
-                "slotsSold": ["||||", "||||", "||||", "||||", "||||", "||||"]
             },
             {
                 "member": "Kuromi Haruka",
