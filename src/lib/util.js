@@ -1,11 +1,11 @@
-import { range, sortedIndex, uniqBy } from "lodash-es";
+import { range, sortedIndex } from "lodash-es";
 
 /**
  * ISO format date (YYYY-MM-DD)
  * @typedef {string} ISODate
  */
 
-const now = new Date().toISOString().slice(0, 10); // in format '20xx-mm-dd'
+export const now = new Date().toISOString().slice(0, 10); // in format '20xx-mm-dd'
 const monthDays = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365];
 /**
  * @param  {ISODate} date
@@ -76,32 +76,51 @@ export function datesToRanges(dates) {
     return dates.map((x) => dayFrom(x, from));
 }
 
-export function upcomingDOBByMonthsFromNow(dates, from = now) {
-    let sortedDates = uniqBy(
-        dates.sort((a, b) => dayFrom(a) - dayFrom(b)),
-        (x) => x.slice(5)
-    );
-    let prevMonth = ISODateToNum(from, "m");
-    let accumDiff = ISODateToNum(sortedDates[0], "m") - prevMonth;
-    let i = 0;
-    let monthsDiff = [[accumDiff, [sortedDates[0]]]];
-
-    for (let x of sortedDates.slice(1)) {
-        let thisMonth = ISODateToNum(x, "m");
-        if (thisMonth != prevMonth) {
-            accumDiff +=
-                thisMonth - prevMonth < 0
-                    ? thisMonth + 12 - prevMonth
-                    : thisMonth - prevMonth;
-            prevMonth = thisMonth;
-            i++;
-            monthsDiff.push([accumDiff, [x]]);
+// return [num of months from current month to month of the date, date with adjusted year]
+// adjusted year = this year if month of date is after now; otherwise next year
+export function numOfMonthsFromNow(date, from = now) {
+    let origin = ISODateToNum(from, "m");
+    let target = ISODateToNum(date, "m");
+    let thisYr = ISODateToNum(from, "y");
+    let md = date.slice(5);
+    if (target - origin <= 0) {
+        if (target == origin && dayFrom(date, from) < 31) {
+            return [target - origin, `${thisYr}-${md}`];
         } else {
-            monthsDiff[i][1].push(x);
+            return [target + 12 - origin, `${thisYr + 1}-${md}`];
         }
+    } else {
+        return [target - origin, `${thisYr}-${md}`];
     }
-    return monthsDiff;
 }
+
+// return array of item, each of the form [d, ["date1", "date2", ...]]
+// where d = how many months is today away from date1
+// export function upcomingDOBByMonthsFromNow(dates, from = now) {
+//     let sortedDates = uniqBy(
+//         dates.sort((a, b) => dayFrom(a) - dayFrom(b)),
+//         (x) => x.slice(5)
+//     ); // list of "mm-dd", in order from TODAY
+//     let prevMonth = ISODateToNum(sortedDates[0], "m");
+//     let accumDiff = ISODateToNum(sortedDates[0], "m") - ISODateToNum(from, "m");
+//     let i = 0;
+//     let monthsDiff = [[accumDiff, [sortedDates[0]]]];
+//     for (let x of sortedDates.slice(1)) {
+//         let thisMonth = ISODateToNum(x, "m");
+//         if (thisMonth != prevMonth) {
+//             accumDiff +=
+//                 thisMonth - prevMonth < 0
+//                     ? thisMonth + 12 - prevMonth
+//                     : thisMonth - prevMonth;
+//             prevMonth = thisMonth;
+//             i++;
+//             monthsDiff.push([accumDiff, [x]]);
+//         } else {
+//             monthsDiff[i][1].push(x);
+//         }
+//     }
+//     return monthsDiff;
+// }
 
 export function JPDateDisplay(date) {
     let gps = date.split("-");

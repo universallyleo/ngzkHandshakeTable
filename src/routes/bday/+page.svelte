@@ -1,15 +1,12 @@
 <script>
     import SelectMembersPanel from "$lib/SelectMembersPanel.svelte";
-    import StateButton from "../../lib/StateButton.svelte";
     import DOBInfo from "./DOBInfo.svelte";
     import {
         getMember,
         getAllMembers,
         getCurrentMembers,
         partitionToGroup,
-        ordering,
     } from "$lib/processData.js";
-    import { ISODateToNum, upcomingDOBByMonthsFromNow } from "$lib/util.js";
     import { uniq } from "lodash-es";
     //import { fly,fade } from 'svelte/transition';
     //let temp = [ getMember('Yumiki Nao'), getMember('Sato Kaede') ];
@@ -18,45 +15,29 @@
     let listType = "nextBday";
     let selectFrom = "current";
     let selectables = getAllMembers();
-    let selectedMembers = [];
+    let selectedMembers = getCurrentMembers().map((x) => x.member);
     let sorted = [];
-    sortyear();
+    const partitConfig = {
+        nextBday: ["nextDOBMonth", "dobAscend"],
+        dob: ["gakunen", "dobAscend"],
+        height: ["height", "kana"],
+    };
+    customSort();
 
-    function sortyear(mbs = []) {
+    function customSort(mbs = []) {
         let mbdata = mbs.length > 0 ? mbs.map(getMember) : getCurrentMembers();
-        if (listType == "nextBday") {
-            // TODO: merge with partitionToGroup
-            let bdays = mbdata.map((x) => x.dob);
-            let groupedMonths = upcomingDOBByMonthsFromNow(bdays);
-            // an array with items [d, ["date1", "date2",..]], increasing in d=month of date1, date2,...
-            sorted = [];
-            for (let monthGp of groupedMonths) {
-                let month = ISODateToNum(monthGp[1][0], "m");
-                sorted.push({
-                    label: `${month}月`,
-                    value: month,
-                    has: monthGp[1]
-                        .map((date) =>
-                            mbdata.filter(
-                                (x) => x.dob.slice(5) == date.slice(5)
-                            )
-                        )
-                        .flat(),
-                });
-            }
-        } else if (listType == "dob") {
-            sorted = partitionToGroup(
-                mbdata,
-                "gakunen",
-                [],
-                ordering.ISODateAscend
-            );
-        }
+        sorted = partitionToGroup(
+            mbdata,
+            partitConfig[listType][0],
+            [],
+            true,
+            partitConfig[listType][1]
+        );
         // each item in array is of the form { label: "yy/YY", value: "yy/YY", has: [{mbdata1}, {mbdata2}, ...] ]
-        // add partitions by generations
+        // add further partitions by generations
         let gens = uniq(mbdata.map((x) => x.gen)).sort((a, b) => a - b);
         sorted.forEach(
-            (yrGp) => (yrGp.hasGen = partitionToGroup(yrGp.has, "gen", gens))
+            (gp) => (gp.hasGen = partitionToGroup(gp.has, "gen", gens))
         );
     }
 </script>
@@ -78,7 +59,7 @@
                             name="selection"
                             bind:group={selectFrom}
                             value="current"
-                            on:click={sortyear}
+                            on:click={customSort}
                         />現役全員</label
                     >
                     <label
@@ -119,7 +100,16 @@
                             bind:group={listType}
                             value="dob"
                             on:click={(sorted = [])}
-                        />生年月日</label
+                        />学年/生月日</label
+                    >
+                    <label>
+                        <input
+                            type="radio"
+                            name="list"
+                            bind:group={listType}
+                            value="height"
+                            on:click={(sorted = [])}
+                        />身長</label
                     >
                 </div>
             </li>
@@ -150,7 +140,7 @@
     <div style="width: 50%; margin: 1ch auto 5px auto;">
         <button
             on:click={() =>
-                sortyear(selectFrom == "current" ? [] : selectedMembers)}
+                customSort(selectFrom == "current" ? [] : selectedMembers)}
             class="print">生成</button
         >
     </div>

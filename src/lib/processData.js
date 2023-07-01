@@ -1,10 +1,13 @@
 import { without, concat, pullAll } from "lodash-es";
 import {
+    now,
+    ISODateToNum,
     dayFrom,
     nearestNumberInSortedArr,
     offsetISOdays,
     datesToRanges,
     isISODate,
+    numOfMonthsFromNow,
     nth,
     bdayToGakunen,
     sortGakunen,
@@ -112,7 +115,7 @@ export function getMember(name) {
             gen: 0,
             dob: "1900-01-01",
             from: "",
-            graduation: "none",
+            graduation: "",
         };
     }
 }
@@ -129,6 +132,8 @@ export function getCurrentMembers() {
     return members.reduce(
         (res, { member, graduation }) =>
             graduation === "" || graduation === "rest"
+                ? res.push(getMember(member)) && res
+                : compareISODateDescend(graduation, now) < 0
                 ? res.push(getMember(member)) && res
                 : res,
         []
@@ -177,7 +182,10 @@ const groupID2label = (id) => {
  */
 export const ordering = {
     furi: (a, b) => a.localeCompare(b, "ja"),
+    mbfuri: (a, b) =>
+        getMember(a.member).furi.localeCompare(getMember(b.member).furi, "ja"),
     gen: (a, b) => a - b,
+    height: (a, b) => b - a,
     group: (a, b) => {
         let o = [
             "grad",
@@ -197,18 +205,19 @@ export const ordering = {
             [b.gen, b.furi]
         ),
     gakunen: sortGakunen,
+    nextDOBMonth: (a, b) => a - b,
     ISODateDescend: compareISODateDescend,
     ISODateAscend: (a, b) => compareISODateDescend(b, a),
 };
 
 export const opt2label = (opt, val) => {
     switch (opt) {
-        case "gakunen":
-            return val;
         case "gen":
             return `${val}期生`;
         case "group":
             return groupID2label(val);
+        case "height":
+            return `${val}cm`;
         case "graduation":
             return graduation2label(val);
         case "bloodtype":
@@ -220,6 +229,8 @@ export const opt2label = (opt, val) => {
         case "soldstatus":
             return val ? "完売" : "未完売";
         case "from":
+        case "gakunen":
+        default:
             return val;
     }
 };
@@ -366,16 +377,16 @@ export function finalSoldoutDraw(mbdata) {
  * @param  {Array.<Object>} mbDataList - an array of JSON, each must consist of a "member" key
  * @param  {string} opt - one of gen, bloodtype, status, from, dobyear, dobmonth
  * @param {Array.<any>} includes - foces empty entry presented in includes even if no member satisfies critera
- * @param {function} subsort - sort each "has" item using subsort
- * @param {string} subsortOpt - ordering used for subsort
+ * @param {boolean} subsort - sort each "has" item using subsortOpt if true
+ * @param {string} subsortOrder - ordering used for subsort
  * @return {Array.<GroupedData>}
  */
 export function partitionToGroup(
     mbDataList,
     opt = "gen",
     includes = [],
-    subsort = null,
-    subsortOpt = "dobAscend"
+    subsort = false,
+    subsortOrder = "ISODateAscend"
 ) {
     if (opt == "none") return mbDataList;
 
@@ -384,7 +395,8 @@ export function partitionToGroup(
 
     for (let mbdata of mbDataList) {
         let mb = getMember(mbdata.member);
-        let val;
+        let val,
+            label = "";
         switch (opt) {
             case "gakunen":
                 val = bdayToGakunen(mb.dob);
@@ -394,6 +406,10 @@ export function partitionToGroup(
                 break;
             case "dobmonth":
                 val = mb.dob.slice(5, 7);
+                break;
+            case "nextDOBMonth":
+                val = numOfMonthsFromNow(mb.dob)[0];
+                label = `${ISODateToNum(mb.dob, "m")}月`;
                 break;
             case "group":
                 val = mbdata.group;
@@ -412,7 +428,11 @@ export function partitionToGroup(
             res[i].has.push(mbdata);
         } else {
             withopt.push(val);
-            res.push({ label: opt2label(opt, val), value: val, has: [mbdata] });
+            res.push({
+                label: label == "" ? opt2label(opt, val) : label,
+                value: val,
+                has: [mbdata],
+            });
         }
     }
     for (let val of includes) {
@@ -423,10 +443,11 @@ export function partitionToGroup(
     }
     if (subsort)
         res.forEach((x) => {
-            x.has = sortList(x.has, subsortOpt);
+            x.has = sortList(x.has, subsortOrder);
         });
     // console.log(`Sort by ${opt}`);
     // console.log(ordering[opt]);
+    // sort the groups
     return res.sort((a, b) => ordering[opt](a.value, b.value));
 }
 
@@ -443,6 +464,7 @@ export function sortList(datalist, opt = "none") {
         : sortPlainList(datalist, opt);
 }
 
+//wrapper for sort list of member data
 function sortPlainList(mbdatalist, opt = "kana") {
     switch (opt) {
         case "numsold": {
@@ -452,23 +474,20 @@ function sortPlainList(mbdatalist, opt = "kana") {
                 : mbdatalist.map((x) => expandMBData(x, ""));
             return t.sort((a, b) => {
                 let soldout = [a, b].map((x) => x.numSold[0] == x.numSold[1]);
-                if (soldout[0])
-                    return soldout[1] ? b.numSold[0] - a.numSold[0] : -1;
-                //TODO: sort by name
-                else return soldout[1] ? 1 : b.numSold[0] - a.numSold[0];
+                let primSort;
+                if (soldout[0]) {
+                    primSort = soldout[1] ? b.numSold[0] - a.numSold[0] : -1;
+                } else {
+                    primSort = soldout[1] ? 1 : b.numSold[0] - a.numSold[0];
+                }
+                // compose sort
+                return primSort !== 0 ? primSort : ordering.mbfuri(a, b);
             });
         }
         case "kana":
-            // return mbdatalist.sort((a, b) => {
-            // 	let [aa, bb] = getMembers([a.member, b.member]);
-            // 	return aa.furi.localeCompare(bb.furi, 'ja');
-            // });
-            return mbdatalist.sort((a, b) => {
-                return ordering.furi(
-                    getMember(a.member).furi,
-                    getMember(b.member).furi
-                );
-            });
+            return mbdatalist.sort(ordering.mbfuri);
+        case "nextBDay":
+            return mbdatalist.sort((a, b) => ordering.nextBDay(a.dob, b.dob));
         case "dobAscend":
             return mbdatalist.sort((a, b) =>
                 ordering.ISODateAscend(a.dob, b.dob)

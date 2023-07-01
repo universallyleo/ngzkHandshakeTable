@@ -1,7 +1,6 @@
 <script>
     import { colorCode, colorJPName } from "$lib/util.js";
     export let colorName = "white";
-    let show = false;
     $: rgb = colorCode[colorName];
 </script>
 

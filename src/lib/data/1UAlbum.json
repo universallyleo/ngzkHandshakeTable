@@ -1,0 +1,69 @@
+{
+        "cd": {
+            "num": 1,
+            "type": "U.Album",
+            "title": "\u50d5\u3060\u3051\u306e\u541b",
+            "release": "2018-01-10"
+        },
+        "lastDraw": 13,
+        "meetDates": ["2018-01-14", "2018-02-17", "2018-03-25"],
+        "sbt": [],
+        "table": [
+            {
+                "member": "Kawago Hina",
+                "slotsSold": ["x|x|x||", "x|x|x||", "|||x|x"]
+            },
+            {
+                "member": "Kawamura Mahiro",
+                "slotsSold": ["x|x|x||", "x|x|x||", "x|x|x|12|11"]
+            },
+            {
+                "member": "Saitou Chiharu",
+                "slotsSold": ["|||x|x", "||||7", "|||x|x"]
+            },
+            {
+                "member": "Noujou Ami",
+                "slotsSold": ["||||", "|||x|x", "|||x|x"]
+            },
+            {
+                "member": "Higuchi Hina",
+                "slotsSold": ["3|2|2|3|", "8|8|8|7|7", "x|x|x|x|2"]
+            },
+            {
+                "member": "Wada Maaya",
+                "slotsSold": ["x|x|x||", "x|x|x||", "x|x|x||"]
+            },
+            {
+                "member": "Itou Karin",
+                "slotsSold": ["|||x|x", "|||x|x", "||||x"]
+            },
+            {
+                "member": "Itou Jyunna",
+                "slotsSold": ["|||x|x", "|||x|x", "|||x|x"]
+            },
+            {
+                "member": "Sagara Iori",
+                "slotsSold": ["|||x|x", "|||x|x", "x|x|x||"]
+            },
+            {
+                "member": "Sasaki Kotoko",
+                "slotsSold": ["x|x|x||", "x|x|x||", "x|x|x||"]
+            },
+            {
+                "member": "Suzuki Ayane",
+                "slotsSold": ["|4|3||", "||||", "11|9|9|10|12"]
+            },
+            {
+                "member": "Terada Ranze",
+                "slotsSold": ["2|2|2|3|2", "4|5|5|6|4", "4|5|6|4|3"]
+            },
+            {
+                "member": "Yamazaki Rena",
+                "slotsSold": ["3|3|2|4|4", "5|6|7|7|5", "9|7|7|8|8"]
+            },
+            {
+                "member": "Watanabe Miria",
+                "slotsSold": ["|3|3|3|", "|8|8|7|5", "13|10|9|10|11"]
+            }
+        ]
+    }
