@@ -1,7 +1,6 @@
 <script>
-    import fulldata from "$lib/data/data.json";
     import { onMount } from "svelte";
-    import { cdAlias, findCDIndex } from "$lib/processData.js";
+    import { currentCDData, cdAlias, findCDIndex } from "$lib/processData.js";
     import { min } from "lodash-es";
     // import html2canvas from "html2canvas";
     import SlotTable from "$lib/SlotTable.svelte";
@@ -23,7 +22,6 @@
         { display: "期別分け", value: "gen" },
         { display: "選抜・アンダー・他", value: "group" },
         { display: "誕生年別", value: "dobyear" },
-        // {"display": "学年別 (to be corrected)", "value": "dobyear"},
         { display: "完売・未完売", value: "soldstatus" },
         // {"display": "なし", "value": "none"},
     ];
@@ -32,17 +30,15 @@
     let sortMethod = [
         { display: "五十音順", value: "kana" },
         { display: "完売数順", value: "numsold" },
-        // {"display": "生年月日順", "value": "dob"}
     ];
     let sortOpt = "kana";
     let atdraw = -1;
     let capture = false;
-    let selectedIndex = 0;
-    let selectedCDData = fulldata[fulldata.length - 1];
     let compareToCDData,
         hideTable = false;
     let ST;
-    //console.log(cdDateRange);
+    let selectedIndex = 0;
+    let selectedCDData = currentCDData;
 
     // function exportImg(canvas){
     //     var link=document.createElement("a");

@@ -316,8 +316,9 @@ if __name__ == "__main__":
     # read existed record and merge with new
     #############################
     datafile = str(f"{datafolder}{sys.argv[1]}")
-    fulldata = json.load(iopen(datafile, encoding="utf-8"))
-    cd = fulldata[len(fulldata) - 1]
+    # fulldata = json.load(iopen(datafile, encoding="utf-8"))
+    # cd = fulldata[len(fulldata) - 1]
+    cd = json.load(iopen(datafile, encoding="utf-8"))
 
     tabledata = cd["table"]
     dates = cd["meetDates"]
@@ -356,8 +357,9 @@ if __name__ == "__main__":
     #############################
     # Write new record to blank file
     #############################
-    with iopen(str(f"{datafolder}data.json"), "w") as outfile:
-        json.dump(fulldata, outfile, indent=3)
+    with iopen(str(f"{datafolder}current.json"), "w") as outfile:
+        json.dump(cd, outfile, indent=3)
+        # json.dump(fulldata, outfile, indent=3)
 
     #############################
     # Firebase manipulation

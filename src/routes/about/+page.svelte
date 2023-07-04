@@ -73,7 +73,7 @@
 
     <h2>おすすめサイト</h2>
     <ul>
-        <li><a href="https://nogilib.com/">NOGILIB</a></li>
+        <li><a href="https://nogilib.vercel.app/">NOGILIB</a></li>
         <li><a href="https://aknog.github.io/srdata/">SHOWROOMデータ</a></li>
         <li>
             <a href="https://blog.goo.ne.jp/kafka2002"

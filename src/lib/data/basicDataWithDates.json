@@ -1,0 +1,23 @@
+[
+    { "alias": "17Single", "release": "2017-03-22" },
+    { "alias": "3Album", "release": "2017-05-24" },
+    { "alias": "18Single", "release": "2017-08-09" },
+    { "alias": "19Single", "release": "2018-04-25" },
+    { "alias": "1U.Album", "release": "2018-01-10" },
+    { "alias": "20Single", "release": "2018-04-25" },
+    { "alias": "21Single", "release": "2018-08-08" },
+    { "alias": "22Single", "release": "2018-11-14" },
+    { "alias": "4Album", "release": "2019-04-17" },
+    { "alias": "23Single", "release": "2019-05-29" },
+    { "alias": "24Single", "release": "2019-09-04" },
+    { "alias": "25Single", "release": "2020-03-25" },
+    { "alias": "26Single", "release": "2021-01-27" },
+    { "alias": "27Single", "release": "2021-06-09" },
+    { "alias": "28Single", "release": "2021-09-22" },
+    { "alias": "1Best", "release": "2021-12-15" },
+    { "alias": "29Single", "release": "2022-03-23" },
+    { "alias": "30Single", "release": "2022-08-31" },
+    { "alias": "31Single", "release": "2022-12-07" },
+    { "alias": "32Single", "release": "2023-03-22" },
+    { "alias": "33Single", "release": "2023-08-23" }
+]

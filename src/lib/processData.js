@@ -14,8 +14,29 @@ import {
     compareISODateDescend,
     composeCompares,
 } from "$lib/util.js";
+
+/**  Loading all data */
+// * This is BAD PRACTICE
+// * In theory, should construct a class, and load data in load function
+// * then pass the loaded data to create an object, and process data from that object
+// * then return the processed data as output of load function
+import basicCDData from "$lib/data/basicData.json";
 import members from "$lib/data/members.json";
-import fulldata from "$lib/data/data.json";
+
+export const membersdata = members;
+const files = import.meta.glob("./data/ended/*.json", {
+    eager: true,
+});
+const currentCD = import.meta.glob("./data/current.json", { eager: true });
+export const currentCDData = currentCD["./data/current.json"];
+export const fulldata = new Array(basicCDData.length);
+Object.keys(files).map((path) => {
+    let parts = path.split("/");
+    let f = parts[parts.length - 1].split(".")[0];
+    fulldata[basicCDData.indexOf(f)] = files[path];
+});
+fulldata[fulldata.length - 1] = currentCDData;
+/*****/
 
 /**
  * GroupedData
@@ -28,7 +49,7 @@ import fulldata from "$lib/data/data.json";
 function getCDDateRange() {
     let cdDates = fulldata.map((x) => {
         return {
-            cd: cdAlias(x.cd),
+            cd: cdAlias(x.cd).value,
             release: x.cd.release,
             releaset: new Date(x.cd.release),
             meets: x.meetDates,
@@ -150,7 +171,7 @@ export function involvedMembers(cdData, dataform = "full") {
     );
 }
 
-export function performedInCDs(memberName) {
+export function performedInCDs(memberName, fulldata) {
     return fulldata
         .filter((x) => !!x.table.find((y) => y.member == memberName))
         .map(({ cd }) => cd);
