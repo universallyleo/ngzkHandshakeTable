@@ -2,7 +2,7 @@ name: Update DB weekly
 
 on: #push
   schedule:
-    - cron: "2 5 * * THU"
+    - cron: "2 5 * * WED"
 
 # env:
 #     NAME: value
