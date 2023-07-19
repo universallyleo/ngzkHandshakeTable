@@ -271,3 +271,17 @@ export const colorJPName = {
     yellowgreen: "黄緑",
     turquoise: "ターコイズ",
 };
+
+export const colorContrast = {
+    white: "black",
+    orange: "white",
+    blue: "white",
+    yellow: "black",
+    purple: "white",
+    green: "white",
+    pink: "white",
+    red: "white",
+    water: "white",
+    yellowgreen: "black",
+    turquoise: "white",
+};

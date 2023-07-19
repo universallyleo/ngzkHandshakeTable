@@ -11,6 +11,10 @@
     <div class="tbl">
         <div class="cell">{memberData.kanji}</div>
         <div class="cell">
+            <!-- <span style="color:#888; font-size:small">コール:</span> -->
+            {memberData.call}
+        </div>
+        <div class="cell">
             {getAge(memberData.dob)}歳 ／
             <span style="color: {genColor[memberData.gen - 1]}"
                 >{memberData.gen}期生
@@ -38,7 +42,8 @@
     .tbl {
         width: 100%;
         display: grid;
-        grid-template-rows: repeat(3, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        align-items: center;
     }
 
     /* .pic {
@@ -50,6 +55,6 @@
         width: 100%;
         text-align: center;
         border: 1px solid #bbb;
-        /* padding:3px; */
+        padding-top: 2px;
     }
 </style>

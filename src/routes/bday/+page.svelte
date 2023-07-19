@@ -7,7 +7,9 @@
         getCurrentMembers,
         partitionToGroup,
     } from "$lib/processData.js";
+    import { colorCode, colorJPName } from "$lib/util.js";
     import { uniq } from "lodash-es";
+    import ColorDiv from "../../lib/ColorDiv.svelte";
     //import { fly,fade } from 'svelte/transition';
     //let temp = [ getMember('Yumiki Nao'), getMember('Sato Kaede') ];
     let gpOpt = "none";
@@ -143,6 +145,15 @@
                 customSort(selectFrom == "current" ? [] : selectedMembers)}
             class="print">生成</button
         >
+    </div>
+    <div class="penlightInfo">
+        ペンライト（ボタンA）色順番： <br />
+        <div class="colorList">
+            {#each Object.keys(colorCode) as color}
+                <ColorDiv colorName={color} showNumber="true" size="1.8ch" />
+                {colorJPName[color]} &nbsp;
+            {/each}
+        </div>
     </div>
     <div class="timeline">
         {#each sorted as yrgroup}
@@ -286,5 +297,18 @@
         margin: 0 auto;
         width: max-content;
         padding: 7px;
+    }
+    .penlightInfo {
+        margin-top: 2ch;
+        margin-bottom: 1ch;
+        /* display: grid;
+        grid-template-rows: 1fr;
+        grid-template-columns: 1fr;
+        align-content: end; */
+    }
+    div.penlightInfo > .colorList {
+        margin: 0 auto;
+        width: max-content;
+        padding: 0.3em;
     }
 </style>
