@@ -5,10 +5,12 @@
         membersdata,
         fulldata,
         involvedMembers,
+        findStartingCD,
         performedInCDs,
         ordering,
+        getAllMembers,
     } from "$lib/processData.js";
-    import { union, range, includes } from "lodash-es";
+    import { range, includes } from "lodash-es";
     import { fly } from "svelte/transition";
     import ProgressTable from "./ProgressTable.svelte";
     import SelectOneCD from "$lib/SelectOneCD.svelte";
@@ -32,7 +34,7 @@
     let fixOpt = "fixCD";
     let mode = "fixCD";
 
-    let members = ["Yumiki Nao", "Kanagawa Saya", "Sato Kaede"];
+    let members = ["Yumiki Nao", "Kanagawa Saya"];
     let includings = [fulldata[fulldata.length - 1]];
 
     let selectedCD = fulldata[fulldata.length - 1];
@@ -53,32 +55,22 @@
                 selectables = involvedMembers(selectedCD);
             }
             if (fixOpt == "fixMember") {
-                selectables = performedInCDs(fixingMember, fulldata)
+                selectables = performedInCDs(fixingMember)
                     .map((x) => cdAlias(x))
                     .reverse();
             }
         }
         if (seriesOpt == "overallProgression") {
-            selectables = union(fulldata.map((x) => involvedMembers(x)).flat());
+            //selectables = union(fulldata.map((x) => involvedMembers(x)).flat());
+            selectables = getAllMembers();
         }
         if (seriesOpt == "receptionProgression") {
-            selectables = union(fulldata.map((x) => involvedMembers(x)).flat());
+            selectables = getAllMembers();
             lastDraw =
                 selectedCDsData.length > 1
                     ? Math.max(...selectedCDsData.map((x) => x.lastDraw))
                     : 1;
         }
-    }
-
-    function findStartingCD(memberNameList) {
-        for (let i = 0; i < fulldata.length; i++) {
-            let found = false;
-            for (let mb of memberNameList) {
-                found ||= !!fulldata[i].table.find((x) => x.member == mb);
-            }
-            if (found) return i;
-        }
-        return fulldata.length; //everyone in list not in any CD, something is strange
     }
 
     function processData() {
@@ -103,9 +95,18 @@
             mode = "overallProgression";
         }
         if (seriesOpt == "receptionProgression") {
-            includings = selectedCDsData.sort((a, b) =>
-                ordering.ISODateAscend(a.cd.release, b.cd.release)
-            );
+            let startingCD = fulldata[findStartingCD(selectedMembers)].cd;
+            includings = selectedCDsData
+                .filter(
+                    (x) =>
+                        ordering.ISODateAscend(
+                            startingCD.release,
+                            x.cd.release
+                        ) <= 0
+                )
+                .sort((a, b) =>
+                    ordering.ISODateAscend(a.cd.release, b.cd.release)
+                );
             members = selectedMembers;
             mode = "receptionProgression";
             extra = { atdraw: selectedDraw };

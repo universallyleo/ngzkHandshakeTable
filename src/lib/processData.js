@@ -146,7 +146,10 @@ export function getMembers(listOfNames) {
 }
 
 export function getAllMembers() {
-    return members.map(({ member }) => getMember(member));
+    return members.map((x) => {
+        x["stripped_kanji"] = x.kanji.replace(" ", "");
+        return x;
+    });
 }
 
 export function getCurrentMembers() {
@@ -170,8 +173,22 @@ export function involvedMembers(cdData, dataform = "full") {
         dataform == "name" ? member : getMember(member)
     );
 }
+/**
+ * @param  {Array<string>} memberNameList
+ * @return {number} position of the starting cd in fulldata array
+ */
+export function findStartingCD(memberNameList) {
+    for (let i = 0; i < fulldata.length; i++) {
+        let found = false;
+        for (let mb of memberNameList) {
+            found ||= !!fulldata[i].table.find((x) => x.member == mb);
+        }
+        if (found) return i;
+    }
+    return fulldata.length; //everyone in list not in any CD, something is strange
+}
 
-export function performedInCDs(memberName, fulldata) {
+export function performedInCDs(memberName) {
     return fulldata
         .filter((x) => !!x.table.find((y) => y.member == memberName))
         .map(({ cd }) => cd);

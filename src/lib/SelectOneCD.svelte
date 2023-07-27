@@ -12,6 +12,7 @@
         findIndex(cdlist, (y) => x.value === y.value)
     );
     let selectables = zip(temp, indices);
+
     export let selected = selectables[0][1];
     selectedCDData = fulldata[fulldata.length - 1 - selected];
 
