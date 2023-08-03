@@ -20,7 +20,7 @@
     let selectedMembers = getCurrentMembers().map((x) => x.member);
     let sorted = [];
     const partitConfig = {
-        nextBday: ["nextDOBMonth", "dobAscend"],
+        nextBday: ["nextDOBMonth", "nextBDay"],
         dob: ["gakunen", "dobAscend"],
         height: ["height", "kana"],
     };
@@ -35,6 +35,7 @@
             true,
             partitConfig[listType][1]
         );
+        // console.log(sorted);
         // each item in array is of the form { label: "yy/YY", value: "yy/YY", has: [{mbdata1}, {mbdata2}, ...] ]
         // add further partitions by generations
         let gens = uniq(mbdata.map((x) => x.gen)).sort((a, b) => a - b);
