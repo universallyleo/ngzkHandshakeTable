@@ -493,15 +493,15 @@ export function partitionToGroup(
     return res.sort((a, b) => ordering[opt](a.value, b.value));
 }
 
-// export function sortList(datalist, opt = "none") {
-//     //checked if it is a grouped list or ungrouped list
-//     return "has" in datalist[0]
-//         ? datalist.map((x) => {
-//               x.has = sortPlainList(x.has, opt);
-//               return x;
-//           })
-//         : sortPlainList(datalist, opt);
-// }
+export function sortList(datalist, opt = "none") {
+    //checked if it is a grouped list or ungrouped list
+    return "has" in datalist[0]
+        ? datalist.map((x) => {
+              x.has = sortPlainList(x.has, opt);
+              return x;
+          })
+        : sortPlainList(datalist, opt);
+}
 
 //wrapper for sort list of member data
 function sortPlainList(mbdatalist, opt = "kana") {
