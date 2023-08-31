@@ -283,7 +283,7 @@
     .main {
         margin: 0 auto;
         width: max-content;
-        padding: 7px;
+        padding: 2em;
     }
 
     /* .print {

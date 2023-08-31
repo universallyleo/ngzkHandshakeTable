@@ -14,6 +14,24 @@
 - この完売表は [✝︎ジ〜ン✝︎](https://twitter.com/lovefiaa) のをもとにしてデザインしたものです。
 
 # TODO
-- Add 曜日 and 握手会会場 info
+- Progression page
+  - improve UI
+    - allow reordering series
+    - allow resizable graph area (need to check chart.js ability)
+  - new series
+    - number of solded slot / CD
+- Member data page
+  - new sortings:
+    - kana
+    - blood type
+    - senbatsu participation
+  - redesign MB data card (?)
+- Handshake table
+  - More precise ordering for soldout member
+  - show soldout progression through each reception with fade (if possible?)
+  - show only up to certain reception
+  - Add 曜日 and 握手会会場 info
+  - allow more flexible multi-table (e.g. Sakurazaka/Hinatazaka type)
+  - n-th reception of current vs m-th reception of past
 - Rewrite using class so functions related to individual member's data become methods
 - Finish recording all old data (current earliest: 17th Single)

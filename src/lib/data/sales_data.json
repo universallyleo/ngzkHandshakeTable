@@ -117,11 +117,30 @@
         "sales": {
             "daily": [419000, 49243, 23788, 9154, 8425, 7232],
             "weekOne": 516884,
-            "accumulate": 586440,
+            "accumulate": 587321,
             "bi": {
                 "soku": 609458,
                 "weekOne": 663277,
                 "accumulate": 756835
+            }
+        },
+        "updated": "2023-07-31"
+    },
+    {
+        "cd": {
+            "num": 33,
+            "type": "Single",
+            "title": "おひとりさま天国",
+            "release": "2023-08-23"
+        },
+        "sales": {
+            "daily": [411534, 45501, 21265, 34190, 27788, 25782],
+            "weekOne": 516884,
+            "accumulate": 0,
+            "bi": {
+                "soku": 609421,
+                "weekOne": 0,
+                "accumulate": 0
             }
         },
         "updated": "2023-07-31"

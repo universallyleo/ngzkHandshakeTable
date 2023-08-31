@@ -59,6 +59,26 @@ export function dayFrom(date, from = now) {
         : dayInYear(noyearDate, year + 1) + (365 + (year % 0 != 0) - dayAtFrom);
 }
 
+function isFuture(date) {
+    let curr = new Date();
+    let target = new Date(date);
+    return target.getTime() > curr.getTime();
+}
+/**
+ * @param  {ISODate[]} dates
+ * @return -1 if all dates are in the past; otherwise, index of the first future date
+ */
+export function datesOngoing(dates) {
+    let firstFuture = -1;
+    for (let [i, date] of dates.entries()) {
+        if (isFuture(date)) {
+            firstFuture = i;
+            break;
+        }
+    }
+    return firstFuture;
+}
+
 /**
  * [d1,d2,..., dn] -> [0,d2-d1,...,dn-d1]
  * @param  {Array<ISODate>} dates

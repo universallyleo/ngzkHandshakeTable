@@ -8,6 +8,7 @@
         sortList,
         finalSoldoutDraw,
     } from "$lib/processData.js";
+    import { datesOngoing } from "$lib/util.js";
     export let data;
     //export let group="gen"; //allow: gen, dobyear, dobmonth, bloodtype, from
     export let filterOpt;
@@ -17,10 +18,12 @@
     export let hideTable = false;
 
     let compare = null;
+    let blur = -1;
 
     $: title = cdAlias(data.cd).display;
     // array of {member, slotsSoldex: Array<Array<String>>, numSold: [int, int]}
     $: expandedData = expandDataList(data);
+    $: blur = datesOngoing(data.meetDates);
     $: finalTb = sortList(
         partitionToGroup(filterList(expandedData, filterOpt), groupOpt),
         sortOpt
@@ -127,6 +130,7 @@
                         {compare}
                         {capture}
                         {hideTable}
+                        {blur}
                     />
                 {/each}
             {/if}
@@ -174,11 +178,11 @@
         padding: 0;
     }
 
-    @media screen and (max-width: 767px) {
+    /* @media screen and (max-width: 767px) {
         table caption {
             display: none;
         }
-    }
+    } */
 
     .soldFraction {
         display: inline;
