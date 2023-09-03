@@ -1,5 +1,10 @@
 import { range, sortedIndex } from "lodash-es";
 
+export function numberWithCommas(n) {
+    // alternatively: return n.toLocaleString("en-US");
+    return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 /**
  * ISO format date (YYYY-MM-DD)
  * @typedef {string} ISODate

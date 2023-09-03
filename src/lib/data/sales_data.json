@@ -4,6 +4,7 @@
             "num": 26,
             "type": "Single",
             "title": "\u50d5\u306f\u50d5\u3092\u597d\u304d\u306b\u306a\u308b",
+            "shortTitle": "僕僕",
             "release": "2021-01-26"
         },
         "sales": {
@@ -22,6 +23,7 @@
             "num": 27,
             "type": "Single",
             "title": "\u3054\u3081\u3093\u306dFingers crossed",
+            "shortTitle": "ごめんフィン",
             "release": "2021-06-09"
         },
         "sales": {
@@ -40,6 +42,7 @@
             "num": 28,
             "type": "Single",
             "title": "\u541b\u306b\u53f1\u3089\u308c\u305f",
+            "shortTitle": "君に叱",
             "release": "2021-09-22"
         },
         "sales": {
@@ -58,6 +61,7 @@
             "num": 29,
             "type": "Single",
             "title": "Actually...",
+            "shortTitle": "Actually",
             "release": "2022-03-23"
         },
         "sales": {
@@ -76,6 +80,7 @@
             "num": 30,
             "type": "Single",
             "title": "\u597d\u304d\u3068\u3044\u3046\u306e\u306f\u30ed\u30c3\u30af\u3060\u305c!",
+            "shortTitle": "好きロック",
             "release": "2022-08-31"
         },
         "sales": {
@@ -94,6 +99,7 @@
             "num": 31,
             "type": "Single",
             "title": "\u3053\u3053\u306b\u306f\u306a\u3044\u3082\u306e",
+            "shortTitle": "ここには",
             "release": "2022-12-07"
         },
         "sales": {
@@ -112,6 +118,7 @@
             "num": 32,
             "type": "Single",
             "title": "人は夢を二度見る",
+            "shortTitle": "二度見",
             "release": "2023-03-29"
         },
         "sales": {
@@ -131,18 +138,19 @@
             "num": 33,
             "type": "Single",
             "title": "おひとりさま天国",
+            "shortTitle": "とり天",
             "release": "2023-08-23"
         },
         "sales": {
             "daily": [411534, 45501, 21265, 34190, 27788, 25782],
             "weekOne": 516884,
-            "accumulate": 0,
+            "accumulate": -1,
             "bi": {
                 "soku": 609421,
-                "weekOne": 0,
-                "accumulate": 0
+                "weekOne": 713642,
+                "accumulate": -1
             }
         },
-        "updated": "2023-07-31"
+        "updated": "2023-09-03"
     }
 ]
