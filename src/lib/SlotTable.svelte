@@ -119,7 +119,7 @@
         <tbody>
             {#if groupOpt == "none"}
                 <!-- TODO: Something is strange, fix it -->
-                {#each data.table as row}
+                {#each expandedData.table as row}
                     <tr><DataRow {row} {lastDraw} {compare} {capture} /></tr>
                 {/each}
             {:else}

@@ -310,3 +310,11 @@ export const colorContrast = {
     yellowgreen: "black",
     turquoise: "white",
 };
+
+export function fillArrayByLastEntry(arr, len, defaultEntry = 0) {
+    return arr.length == 0
+        ? Array(len).fill(defaultEntry)
+        : arr.length == len
+        ? arr
+        : [...arr, Array(len - arr.length).fill(arr[arr.length - 1])];
+}

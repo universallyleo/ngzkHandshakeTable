@@ -1,4 +1,4 @@
-import { without, concat, pullAll } from "lodash-es";
+import { without, concat, pullAll, zip } from "lodash-es";
 import {
     now,
     ISODateToNum,
@@ -9,10 +9,12 @@ import {
     isISODate,
     numOfMonthsFromNow,
     nth,
+    nthColor,
     bdayToGakunen,
     sortGakunen,
     compareISODateDescend,
     composeCompares,
+    fillArrayByLastEntry,
 } from "$lib/util.js";
 
 /**  Loading all data */
@@ -246,7 +248,47 @@ export const ordering = {
     nextDOBMonth: (a, b) => a - b,
     ISODateDescend: compareISODateDescend,
     ISODateAscend: (a, b) => compareISODateDescend(b, a),
+    descendingChain: (a, b) => {
+        // data should be !increasing! array of numbers
+        let zipped =
+            a.length < b.length
+                ? zip(fillArrayByLastEntry(a, b.length), b).reverse()
+                : b.length > a.length
+                ? zip(a, fillArrayByLastEntry(b, a.length)).reverse()
+                : zip(a, b).reverse();
+        let i = 0;
+        while (i < zipped.length) {
+            let diff = zipped[i][0] - zipped[i][1];
+            if (diff != 0) {
+                return diff > 0 ? -1 : 1;
+            }
+            i++;
+        }
+        return 0; // every accumulative sold data are the same
+    },
 };
+
+export function compSoldoutDetailed(a, b) {
+    let firstComp =
+        a.soldoutAt > 0
+            ? b.soldoutAt > 0
+                ? a.soldoutAt - b.soldoutAt
+                : -1 // b not all soldout
+            : b.soldoutAt > 0
+            ? 1 // b  has all soldout, but a has not
+            : "bothRemains"; //both not all sold out
+
+    if (firstComp == "bothRemains") {
+        let secComp = b.numSold[0] - a.numSold[0];
+        return secComp == 0
+            ? ordering.descendingChain(a.accumulative, b.accumulative)
+            : secComp;
+    }
+    // both have all sold out at the same time
+    return firstComp == 0
+        ? ordering.descendingChain(a.accumulative, b.accumulative)
+        : firstComp;
+}
 
 export const opt2label = (opt, val) => {
     switch (opt) {
@@ -279,26 +321,71 @@ const expandSoldslots = (mbdata) => {
     return mbdata.slotsSoldex;
 };
 
+const accumulativeSum = (arr) => {
+    return arr.reduce((result, currentNum) => {
+        if (result.length > 0) {
+            const lastSum = result[result.length - 1];
+            result.push(lastSum + currentNum);
+        } else {
+            result.push(currentNum);
+        }
+        return result;
+    }, []);
+};
+
+/**
+ * @typedef {Object} ExpandedMemberSlotData
+ * @property {string} member
+ * @property {string[]} slotsSoldex
+ * @property {[number,number]} numSold how many sold, and number of slots
+ * @property {number} soldoutAt when all sold out (not yet sold out if 0)
+ * @property {number[]} numSoldAtEach numeSoldAt[i] = number of slots sold at the (i+1)st draw
+ * @property {number[]} accumulative accumulative[i] = sum of numSoldAtEach[i] for i=0,...,i
+ * @property {string} group sbt (Senbatsu) or und (Under), could be other group
+ */
+/**
+ * @param  {Object} mbdata raw data
+ * @param  {Object} groups possible groups in current CD
+ * @return {ExpandedMemberSlotData}
+ */
 export function expandMBData(mbdata, groups) {
     let res = {
         member: mbdata.member,
         slotsSoldex: [],
         numSold: [0, 0],
+        soldoutAt: -1,
+        numSoldAtEach: [],
+        accumulative: [],
         group: "",
     };
+    res.group = groups == "" ? "" : determineGroup(mbdata, groups);
     // res.slotsSoldex =
     // 	'slotsSoldex' in mbdata ? mbdata.slotsSoldex : mbdata.slotsSold.map((x) => x.split('|'));
     res.slotsSoldex = expandSoldslots(mbdata);
     let f = res.slotsSoldex.flat();
+    let soldatdraws = f.filter((x) =>
+        x.match(/^\d+$/) ? parseInt(x) > 0 : false
+    );
     res.numSold = [
-        f.filter((x) => (x.match(/^\d+$/) ? parseInt(x) > 0 : false)).length,
+        soldatdraws.length,
         f.filter((x) => x != "x" && x != "?").length,
     ];
-    res.group = groups == "" ? "" : determineGroup(mbdata, groups);
+    let lastsoldAt =
+        soldatdraws.length > 0
+            ? Math.max(...soldatdraws.map((x) => parseInt(x)))
+            : 0;
+    // console.log(soldatdraws.map((x) => parseInt(x)));
+    console.log(lastsoldAt);
+    res.soldoutAt = res.numSold[0] == res.numSold[1] ? lastsoldAt : -1;
+    res.numSoldAtEach = Array(lastsoldAt).fill(0);
+    soldatdraws.forEach((n) => res.numSoldAtEach[n - 1]++);
+    res.accumulative = accumulativeSum(res.numSoldAtEach);
+
     return res;
 }
 
 export function compareData(mbdataNow, mbdataCompare, atdraw = -1) {
+    //TODO: rewrite using ExpandedMemberSlotData, which has "soldoutAt" property
     let [m, totalThen] = getNumSold(mbdataCompare, atdraw),
         [n, totalNow] = getNumSold(mbdataNow);
     //let diff = n !== 'N/A' ? `${m - n > 0 ? '+' : ''}${m - n}` : '';
@@ -473,10 +560,6 @@ export function partitionToGroup(
             });
         }
     }
-    if (opt == "nextDOBMonth") {
-        console.log("withopt: ", withopt);
-        console.log("res: ", res);
-    }
     for (let val of includes) {
         if (withopt.indexOf(val) == -1) {
             withopt.push(val);
@@ -487,8 +570,6 @@ export function partitionToGroup(
         res.forEach((x) => {
             x.has = sortPlainList(x.has, subsortOrder);
         });
-    // console.log(`Sort by ${opt}`);
-    // console.log(ordering[opt]);
     // sort the groups
     return res.sort((a, b) => ordering[opt](a.value, b.value));
 }
@@ -507,21 +588,23 @@ export function sortList(datalist, opt = "none") {
 function sortPlainList(mbdatalist, opt = "kana") {
     switch (opt) {
         case "numsold": {
-            // console.log('Sorting by numSold, original list:', mbdatalist);
             let t = isExpandedDatalist(mbdatalist)
                 ? mbdatalist
                 : mbdatalist.map((x) => expandMBData(x, ""));
-            return t.sort((a, b) => {
-                let soldout = [a, b].map((x) => x.numSold[0] == x.numSold[1]);
-                let primSort;
-                if (soldout[0]) {
-                    primSort = soldout[1] ? b.numSold[0] - a.numSold[0] : -1;
-                } else {
-                    primSort = soldout[1] ? 1 : b.numSold[0] - a.numSold[0];
-                }
-                // compose sort
-                return primSort !== 0 ? primSort : ordering.mbfuri(a, b);
-            });
+            return t.sort(compSoldoutDetailed);
+
+            // return t.sort((a, b) => {
+            //     // let soldout = [a, b].map((x) => x.numSold[0] == x.numSold[1]);
+            //     // compose sort
+            //     // let firstSort;
+            //     // if (soldout[0]) {
+            //     //     firstSort = soldout[1] ? b.numSold[0] - a.numSold[0] : -1;
+            //     // } else {
+            //     //     firstSort = soldout[1] ? 1 : b.numSold[0] - a.numSold[0];
+            //     // }
+            //     let firstSort = compareAllSoldOut(a, b);
+            //     return firstSort !== 0 ? firstSort : ordering.mbfuri(a, b);
+            // });
         }
         case "kana":
             return mbdatalist.sort(ordering.mbfuri);
@@ -567,4 +650,33 @@ function determineGroup(mb, groups) {
         if (g.has.indexOf(mb.member) !== -1) return g.id;
     }
     return "NoData";
+}
+
+/**
+ * ************
+ * For chart js
+ * ************
+ */
+// dashed segment for data gap in series
+// see: https://www.chartjs.org/docs/latest/samples/line/segments.html
+const skipped = (ctx, value) =>
+    ctx.p0.skip || ctx.p1.skip ? value : undefined;
+
+export function simpleSeries(label, data, colorIndex = 0) {
+    return {
+        label: label,
+        data: data,
+        borderColor: `${nthColor(colorIndex)}`,
+        backgroundColor: `${nthColor(colorIndex)}`,
+        pointHitRadius: 20, // larger area for intersect detection
+        segment: {
+            borderColor: (ctx) => skipped(ctx, "rgb(0,0,0,0.5)"),
+            borderDash: (ctx) => skipped(ctx, [6, 6]),
+        },
+        spanGaps: true,
+        datalabels: {
+            color: "white",
+            backgroundColor: `${nthColor(colorIndex)}`,
+        },
+    };
 }

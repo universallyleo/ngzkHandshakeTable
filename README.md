@@ -27,8 +27,6 @@
     - senbatsu participation
   - redesign MB data card (?)
 - Handshake table
-  - More precise ordering for soldout member
-  - show soldout progression through each reception with fade (if possible?)
   - show only up to certain reception
   - Add 曜日 and 握手会会場 info
   - allow more flexible multi-table (e.g. Sakurazaka/Hinatazaka type)

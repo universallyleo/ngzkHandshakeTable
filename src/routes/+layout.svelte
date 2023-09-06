@@ -15,7 +15,7 @@
 
 <footer>
     Author: <a href="https://github.com/universallyleo">universallyleo</a>.
-    Soruce &#38; Manual:
+    Soruce:
     <a href="https://github.com/universallyleo/ngzkHandshakeTable">Github</a>
 </footer>
 
@@ -55,6 +55,9 @@
     }
 
     footer {
+        /* border: 1px solid black; */
+        font-size: smaller;
+        text-align: center;
         width: 50%;
         margin: 20px auto;
         display: block;

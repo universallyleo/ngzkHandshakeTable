@@ -1,6 +1,11 @@
 <script>
-    import { getMember, cdAlias, getNumSold } from "$lib/processData.js";
-    import { nthColor } from "$lib/util.js";
+    import {
+        getMember,
+        cdAlias,
+        getNumSold,
+        simpleSeries,
+    } from "$lib/processData.js";
+    // import { nthColor } from "$lib/util.js";
     import { range, find } from "lodash-es";
     import ProgressGraph from "$lib/ProgressGraph.svelte";
 
@@ -89,10 +94,6 @@
     let xAxisLabels = [];
     let headings = [];
 
-    //see: https://www.chartjs.org/docs/latest/samples/line/segments.html
-    const skipped = (ctx, value) =>
-        ctx.p0.skip || ctx.p1.skip ? value : undefined;
-
     $: {
         //prepare data series
         (seriesLabels = []), (datum = []), (xAxisLabels = []);
@@ -162,23 +163,26 @@
         //organise data series into datasets for chart.js
         let graph = { labels: xAxisLabels, datasets: [] };
         for (let i = 0; i < datum.length; i++) {
-            let res = {
-                label: seriesLabels[i],
-                data: datum[i].main,
-                borderColor: `${nthColor(i)}`,
-                backgroundColor: `${nthColor(i)}`,
-                pointHitRadius: 20, // larger area for intersect detection
-                segment: {
-                    borderColor: (ctx) => skipped(ctx, "rgb(0,0,0,0.5)"),
-                    borderDash: (ctx) => skipped(ctx, [6, 6]),
-                },
-                spanGaps: true,
-                datalabels: {
-                    color: "white",
-                    backgroundColor: `${nthColor(i)}`,
-                },
-            };
-            graph["datasets"].push(res);
+            graph["datasets"].push(
+                simpleSeries(seriesLabels[i], datum[i].main, i)
+            );
+            // let res = {
+            //     label: seriesLabels[i],
+            //     data: datum[i].main,
+            //     borderColor: `${nthColor(i)}`,
+            //     backgroundColor: `${nthColor(i)}`,
+            //     pointHitRadius: 20, // larger area for intersect detection
+            //     segment: {
+            //         borderColor: (ctx) => skipped(ctx, "rgb(0,0,0,0.5)"),
+            //         borderDash: (ctx) => skipped(ctx, [6, 6]),
+            //     },
+            //     spanGaps: true,
+            //     datalabels: {
+            //         color: "white",
+            //         backgroundColor: `${nthColor(i)}`,
+            //     },
+            // };
+            // graph["datasets"].push(res);
         }
         progressData = graph;
     }

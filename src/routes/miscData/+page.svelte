@@ -1,8 +1,8 @@
 <script>
     import salesData from "$lib/data/sales_data.json";
-    import { cdAlias } from "$lib/processData.js";
-    import { numberWithCommas, nthColor } from "$lib/util.js";
-    import { zip, find } from "lodash-es";
+    import { cdAlias, simpleSeries } from "$lib/processData.js";
+    import { numberWithCommas } from "$lib/util.js";
+    import { zip } from "lodash-es";
     import ProgressGraph from "$lib/ProgressGraph.svelte";
 
     let mx = salesData.map((x) => [
@@ -68,28 +68,11 @@
     ];
 
     $: {
-        // TODO: other series
-        let datasets = seriesData[seriesOpt].datum.map((x, i) => {
-            return {
-                label: x.label,
-                data: x.data,
-                borderColor: `${nthColor(i)}`,
-                backgroundColor: `${nthColor(i)}`,
-                pointHitRadius: 20, // larger area for intersect detection
-                // segment: {
-                //     borderColor: (ctx) => skipped(ctx, "rgb(0,0,0,0.5)"),
-                //     borderDash: (ctx) => skipped(ctx, [6, 6]),
-                // },
-                spanGaps: true,
-                datalabels: {
-                    color: "white",
-                    backgroundColor: `${nthColor(i)}`,
-                },
-            };
-        });
         progressData = {
             labels: salesData.map((x) => x.cd.shortTitle),
-            datasets: datasets,
+            datasets: seriesData[seriesOpt].datum.map((x, i) =>
+                simpleSeries(x.label, x.data, i)
+            ),
         };
         title = `シングル${seriesData[seriesOpt].label}売上推移`;
     }
