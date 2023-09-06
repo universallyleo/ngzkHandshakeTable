@@ -6,7 +6,7 @@
     //to be made export
     export let progressData;
     export let title;
-    export let maxlength;
+    export let maxlength = 10;
 
     $: progressData.spanGaps = true;
     $: config.data = progressData;

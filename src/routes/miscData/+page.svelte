@@ -1,8 +1,9 @@
 <script>
     import salesData from "$lib/data/sales_data.json";
     import { cdAlias } from "$lib/processData.js";
-    import { numberWithCommas } from "$lib/util.js";
-    import { zip } from "lodash-es";
+    import { numberWithCommas, nthColor } from "$lib/util.js";
+    import { zip, find } from "lodash-es";
+    import ProgressGraph from "$lib/ProgressGraph.svelte";
 
     let mx = salesData.map((x) => [
         cdAlias(x.cd).display,
@@ -41,7 +42,57 @@
     let aliases = transposed[1];
     let dates = transposed[2];
     let sales = transposed.slice(3);
-    // console.log(transposed);
+    let title = "";
+    let progressData = {};
+    let seriesOpt = 1;
+
+    let seriesData = [
+        {
+            label: "初日",
+            datum: [{ label: "初日", data: sales[0].slice(1) }],
+        },
+        {
+            label: "初週",
+            datum: [
+                { label: "オリコン初週", data: sales[8].slice(1) },
+                { label: "Billboard初週", data: sales[9].slice(1) },
+            ],
+        },
+        {
+            label: "累計",
+            datum: [
+                { label: "オリコン累計", data: sales[10].slice(1) },
+                { label: "Billboard累計", data: sales[11].slice(1) },
+            ],
+        },
+    ];
+
+    $: {
+        // TODO: other series
+        let datasets = seriesData[seriesOpt].datum.map((x, i) => {
+            return {
+                label: x.label,
+                data: x.data,
+                borderColor: `${nthColor(i)}`,
+                backgroundColor: `${nthColor(i)}`,
+                pointHitRadius: 20, // larger area for intersect detection
+                // segment: {
+                //     borderColor: (ctx) => skipped(ctx, "rgb(0,0,0,0.5)"),
+                //     borderDash: (ctx) => skipped(ctx, [6, 6]),
+                // },
+                spanGaps: true,
+                datalabels: {
+                    color: "white",
+                    backgroundColor: `${nthColor(i)}`,
+                },
+            };
+        });
+        progressData = {
+            labels: salesData.map((x) => x.cd.shortTitle),
+            datasets: datasets,
+        };
+        title = `シングル${seriesData[seriesOpt].label}売上推移`;
+    }
 </script>
 
 <div class="main">
@@ -75,8 +126,27 @@
         </tbody>
     </table>
 
-    <div style="margin-top:2ch; text-align:end;">
+    <div style="margin:2ch 0; text-align:end;">
         Last updated: {salesData.slice(-1)[0].updated}
+    </div>
+
+    <div style="width: max-content;margin: 0 auto;">
+        <ProgressGraph {title} {progressData} />
+        <div>
+            グラフ構成データ：
+            {#each seriesData as ser, i}
+                <label>
+                    <input
+                        type="radio"
+                        name="seriesType"
+                        bind:group={seriesOpt}
+                        id={ser.label}
+                        value={i}
+                    />
+                    {ser.label}
+                </label>
+            {/each}
+        </div>
     </div>
 </div>
 
@@ -87,6 +157,7 @@
         padding: 2em;
     }
     .table-bordered {
+        margin: 2ch 2em;
         table-layout: fixed;
         border: 1px solid #ddd !important;
         border-spacing: 0 !important;
