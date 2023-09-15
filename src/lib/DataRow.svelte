@@ -12,13 +12,21 @@
     $: mbInfo = getMember(row.member);
     //$: splitTbl = row.slotsSold.map(x=>x.split("|"));
 
-    const decoratedItem = (c) => {
-        if (c == "x") return { content: "x", classes: "NAslot" };
-        if (c == "?") return { content: "?", classes: "slot unconfirmedSlot" };
+    const decoratedItem = (c, alpha = false) => {
+        if (c == "x")
+            return { content: "x", classes: alpha ? "NASlotOpaq" : "NAslot" };
+        if (c == "?")
+            return {
+                content: "?",
+                classes: `slot unconfirmedSlot${alpha ? "Opaq" : ""}`,
+            };
         if (c != "?" && lastDraw == parseInt(c))
             return { content: c, classes: "slot lastDrawSlot" };
         if (c != "?" && parseInt(c) > 0 && parseInt(c) < lastDraw)
-            return { content: c, classes: "slot soldSlot" };
+            return {
+                content: c,
+                classes: `slot soldSlot${alpha ? "Opaq" : ""}`,
+            };
         //if (lastDraw-1>0 && lastDraw-1==parseInt(c)) return {content: c, classes: "slot lastlastDrawSlot"};
         return { content: c, classes: "slot" };
     };
@@ -26,11 +34,10 @@
     $: decoratedTbl = row.slotsSoldex.map((dayslots, i) => {
         let res = [];
         for (let s of dayslots) {
-            let itm = decoratedItem(s);
+            let itm = decoratedItem(s, i < blur);
             //itm.classes += i==0?" firstcell":i==dayslots.length-1?" lastcell":"";
             //itm.classes += i==dayslots.length-1?" lastcell":"";
             itm.classes += ` ${addClasses}`;
-            itm.classes += i < blur ? ` blur` : ``;
             res.push(itm);
         }
         return res;
@@ -170,20 +177,21 @@
         border: 1px solid #ddd;
         /* All of below shows what I want (a cross spanning the whole cell), but none will work correctly with html2canvas even with allowTaint and useCORS..... */
         background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 100 100'><line x1='0' y1='0' x2='100' y2='100' stroke='black' vector-effect='non-scaling-stroke'/><line x1='0' y1='100' x2='100' y2='0' stroke='black' vector-effect='non-scaling-stroke'/></svg>");
-        /* background: url("$lib/cross.svg"); */
-        /* background: linear-gradient(to top left,
-             rgba(0,0,0,0) 0%,
-             rgba(0,0,0,0) calc(50% - 0.8px),
-             rgba(0,0,0,1) 50%,
-             rgba(0,0,0,0) calc(50% + 0.8px),
-             rgba(0,0,0,0) 100%),
-         linear-gradient(to top right,
-             rgba(0,0,0,0) 0%,
-             rgba(0,0,0,0) calc(50% - 0.8px),
-             rgba(0,0,0,1) 50%,
-             rgba(0,0,0,0) calc(50% + 0.8px),
-             rgba(0,0,0,0) 100%); */
         background-color: hsl(0, 0%, 80%);
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 100% 1.75ch;
+        text-align: center;
+    }
+    .NAslotOpaq {
+        width: 26px;
+        height: 1.8ch;
+        padding: 0;
+        box-sizing: border-box;
+        border: 1px solid #ddd;
+        /* All of below shows what I want (a cross spanning the whole cell), but none will work correctly with html2canvas even with allowTaint and useCORS..... */
+        background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 100 100' opacity='0.5'><line x1='0' y1='0' x2='100' y2='100' stroke='black' vector-effect='non-scaling-stroke'/><line x1='0' y1='100' x2='100' y2='0' stroke='black' vector-effect='non-scaling-stroke'/></svg>");
+        background-color: hsla(0, 0%, 80%, 0.5);
         background-repeat: no-repeat;
         background-position: center center;
         background-size: 100% 1.75ch;
@@ -198,6 +206,7 @@
         box-sizing: border-box;
         border: 1px solid #ddd;
         text-align: center;
+        z-index: 0;
     }
     .lastDrawSlot {
         background-color: yellow;
@@ -205,12 +214,21 @@
     .soldSlot {
         background-color: hsl(211, 62%, 80%);
     }
+    .soldSlotOpaq {
+        background-color: hsla(211, 63%, 80%, 0.5);
+        color: rgba(0, 0, 0, 0.5);
+    }
     .unconfirmedSlot {
         background-color: hsl(0, 0%, 80%);
     }
-    .blur {
-        opacity: 0.6;
+    .unconfirmedSlotOpaq {
+        background-color: hsla(0, 0%, 80%, 0.5);
+        color: rgba(0, 0, 0, 0.5);
     }
+    /* .blur {
+        opacity: 0.6;
+        z-index: 0;
+    } */
     .lastcell {
         border-right: 1px solid black !important;
     }
@@ -227,7 +245,6 @@
         border: 1px solid #ddd;
         text-align: center;
     }
-
     .compareGrid {
         width: 180px;
         min-height: 100%;
