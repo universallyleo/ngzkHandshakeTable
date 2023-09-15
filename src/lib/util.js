@@ -10,7 +10,8 @@ export function numberWithCommas(n) {
  * @typedef {string} ISODate
  */
 
-export const now = new Date().toISOString().slice(0, 10); // in format '20xx-mm-dd'
+const nowDTObj = new Date();
+export const now = nowDTObj.toISOString().slice(0, 10); // in format '20xx-mm-dd'
 const monthDays = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365];
 /**
  * @param  {ISODate} date
@@ -64,19 +65,22 @@ export function dayFrom(date, from = now) {
         : dayInYear(noyearDate, year + 1) + (365 + (year % 0 != 0) - dayAtFrom);
 }
 
-function isFuture(date) {
-    let curr = new Date();
+function isFuture(date, shift = 0) {
     let target = new Date(date);
-    return target.getTime() > curr.getTime();
+    shift == 0 ? null : target.setDate(target.getDate() + shift);
+    return target.getTime() > nowDTObj.getTime();
 }
+
 /**
  * @param  {ISODate[]} dates
- * @return -1 if all dates are in the past; otherwise, index of the first future date
+ * @param  {number} shift
+ * @return -1 if all dates are in the past;
+ *  otherwise, index of the first date D such that D+shift(days) is in the future
  */
-export function datesOngoing(dates) {
+export function firstFutureDate(dates, shift = 0) {
     let firstFuture = -1;
     for (let [i, date] of dates.entries()) {
-        if (isFuture(date)) {
+        if (isFuture(date, shift)) {
             firstFuture = i;
             break;
         }

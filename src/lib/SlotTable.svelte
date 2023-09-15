@@ -8,7 +8,7 @@
         sortList,
         finalSoldoutDraw,
     } from "$lib/processData.js";
-    import { datesOngoing } from "$lib/util.js";
+    import { firstFutureDate } from "$lib/util.js";
     export let data;
     //export let group="gen"; //allow: gen, dobyear, dobmonth, bloodtype, from
     export let filterOpt;
@@ -18,12 +18,14 @@
     export let hideTable = false;
 
     let compare = null;
-    let blur = -1;
+    let blur = -1; //index of first date to unblur = number of blurred dates
+    // let isInfo = [];
 
     $: title = cdAlias(data.cd).display;
     // array of {member, slotsSoldex: Array<Array<String>>, numSold: [int, int]}
     $: expandedData = expandDataList(data);
-    $: blur = datesOngoing(data.meetDates);
+    $: isInfo = new Array(data.meetDates.length).fill(false);
+    $: blur = firstFutureDate(data.meetDates, -7);
     $: finalTb = sortList(
         partitionToGroup(filterList(expandedData, filterOpt), groupOpt),
         sortOpt
@@ -76,6 +78,12 @@
         }
     }
 
+    function toggleDateText(index) {
+        if (index <= blur) {
+            isInfo[index] = !isInfo[index];
+        }
+    }
+
     export function updateCompare(comparedata) {
         compare = comparedata;
         hideTable = comparedata ? hideTable : false; //force table to be shown when not comparing
@@ -107,8 +115,15 @@
                     </div></th
                 >
                 {#if !hideTable}
-                    {#each data.meetDates as date}
-                        <th colspan="5">{date}</th><!--calculate weekday-->
+                    {#each data.meetDates as date, i}
+                        <th
+                            colspan="5"
+                            class:blur={i < blur}
+                            on:click={() => toggleDateText(i)}
+                        >
+                            {i < blur && isInfo[i] ? "受付終了" : date}
+                        </th>
+                        <!--calculate weekday-->
                     {/each}
                 {/if}
                 {#if compare}
@@ -191,5 +206,10 @@
         font-size: small;
         font-weight: normal;
         color: #777;
+    }
+
+    .blur {
+        cursor: pointer;
+        color: rgba(0, 0, 0, 0.5);
     }
 </style>

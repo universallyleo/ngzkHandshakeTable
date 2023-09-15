@@ -14,7 +14,10 @@
 
     const decoratedItem = (c, alpha = false) => {
         if (c == "x")
-            return { content: "x", classes: alpha ? "NASlotOpaq" : "NAslot" };
+            return {
+                content: "x",
+                classes: `NAslotBase NAslot${alpha ? "Opaq" : ""}`,
+            };
         if (c == "?")
             return {
                 content: "?",
@@ -169,33 +172,28 @@
         /* box-sizing: border-box; */
         /* display: inline-block; */
     }
-    .NAslot {
+    .NAslotBase {
         width: 26px;
         height: 1.8ch;
         padding: 0;
         box-sizing: border-box;
         border: 1px solid #ddd;
+        text-align: center;
+    }
+    .NAslot {
         /* All of below shows what I want (a cross spanning the whole cell), but none will work correctly with html2canvas even with allowTaint and useCORS..... */
         background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 100 100'><line x1='0' y1='0' x2='100' y2='100' stroke='black' vector-effect='non-scaling-stroke'/><line x1='0' y1='100' x2='100' y2='0' stroke='black' vector-effect='non-scaling-stroke'/></svg>");
         background-color: hsl(0, 0%, 80%);
         background-repeat: no-repeat;
         background-position: center center;
         background-size: 100% 1.75ch;
-        text-align: center;
     }
     .NAslotOpaq {
-        width: 26px;
-        height: 1.8ch;
-        padding: 0;
-        box-sizing: border-box;
-        border: 1px solid #ddd;
-        /* All of below shows what I want (a cross spanning the whole cell), but none will work correctly with html2canvas even with allowTaint and useCORS..... */
         background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 100 100' opacity='0.5'><line x1='0' y1='0' x2='100' y2='100' stroke='black' vector-effect='non-scaling-stroke'/><line x1='0' y1='100' x2='100' y2='0' stroke='black' vector-effect='non-scaling-stroke'/></svg>");
         background-color: hsla(0, 0%, 80%, 0.5);
         background-repeat: no-repeat;
         background-position: center center;
         background-size: 100% 1.75ch;
-        text-align: center;
     }
 
     .slot {
@@ -225,7 +223,8 @@
         background-color: hsla(0, 0%, 80%, 0.5);
         color: rgba(0, 0, 0, 0.5);
     }
-    /* .blur {
+    /* cannot use this because opacity destroy z-index
+    .blur {
         opacity: 0.6;
         z-index: 0;
     } */

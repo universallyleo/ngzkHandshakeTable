@@ -375,7 +375,6 @@ export function expandMBData(mbdata, groups) {
             ? Math.max(...soldatdraws.map((x) => parseInt(x)))
             : 0;
     // console.log(soldatdraws.map((x) => parseInt(x)));
-    console.log(lastsoldAt);
     res.soldoutAt = res.numSold[0] == res.numSold[1] ? lastsoldAt : -1;
     res.numSoldAtEach = Array(lastsoldAt).fill(0);
     soldatdraws.forEach((n) => res.numSoldAtEach[n - 1]++);
