@@ -68,7 +68,11 @@
 <td class={classesOnMbCell}
     >{mbInfo.kanji}
     {#if row.bdayMeet != 0}
-        <div aria-label={bdayText(row.bdayMeet)} data-balloon-pos="up-left">
+        <div
+            aria-label={bdayText(row.bdayMeet)}
+            data-balloon-pos="up-left"
+            class="bdayMark"
+        >
             [誕]
         </div>
     {/if}
@@ -127,6 +131,18 @@
         --balloon-font-size: 11pt;
     }
 
+    .bdayMark {
+        display: inline-block;
+        position: relative;
+        transform: translate(0, -3px);
+        border-bottom: 1px dotted #666;
+        text-align: left;
+        color: #777;
+        font-size: 11px;
+        line-height: 11px;
+        margin: 0;
+        cursor: pointer;
+    }
     .soldFraction {
         display: inline;
         float: right;
