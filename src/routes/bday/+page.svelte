@@ -19,7 +19,14 @@
     let selectables = getAllMembers();
     let selectedMembers = getCurrentMembers().map((x) => x.member);
     let sorted = [];
+    const listLabel = {
+        kana: "五十音順",
+        nextBday: "次生誕日先",
+        dob: "学年/生月日",
+        height: "身長",
+    };
     const partitConfig = {
+        kana: ["furi", "dobAscend"],
         nextBday: ["nextDOBMonth", "nextBDay"],
         dob: ["gakunen", "dobAscend"],
         height: ["height", "kana"],
@@ -46,8 +53,8 @@
 </script>
 
 <svelte:head>
-    <title>乃木坂46 ー 誕生日・学年データ</title>
-    <meta name="description" content="乃木坂46誕生日・学年データ" />
+    <title>乃木坂46 ー 誕生日・学年・コールデータ</title>
+    <meta name="description" content="乃木坂46誕生日・学年・コールデータ" />
 </svelte:head>
 
 <div class="main">
@@ -87,33 +94,17 @@
             <li>
                 <div class="leftcol">ソート：</div>
                 <div class="rightcol">
-                    <label>
-                        <input
-                            type="radio"
-                            name="list"
-                            bind:group={listType}
-                            value="nextBday"
-                            on:click={(sorted = [])}
-                        />次生誕日先</label
-                    >
-                    <label>
-                        <input
-                            type="radio"
-                            name="list"
-                            bind:group={listType}
-                            value="dob"
-                            on:click={(sorted = [])}
-                        />学年/生月日</label
-                    >
-                    <label>
-                        <input
-                            type="radio"
-                            name="list"
-                            bind:group={listType}
-                            value="height"
-                            on:click={(sorted = [])}
-                        />身長</label
-                    >
+                    {#each Object.entries(listLabel) as [key, label]}
+                        <label>
+                            <input
+                                type="radio"
+                                name="list"
+                                bind:group={listType}
+                                value={key}
+                                on:click={(sorted = [])}
+                            />{label}</label
+                        >
+                    {/each}
                 </div>
             </li>
             <li>
@@ -151,7 +142,17 @@
         ペンライト（ボタンA）色順番： <br />
         <div class="colorList">
             {#each Object.keys(colorCode) as color}
-                <ColorDiv colorName={color} showNumber="true" size="1.8ch" />
+                <!-- <div
+                    style="display:inline-block"
+                    on:click={() => console.log("c")}
+                > -->
+                <ColorDiv
+                    colorName={color}
+                    showNumber="true"
+                    tooltip="false"
+                    size="1.8ch"
+                />
+                <!-- </div> -->
                 {colorJPName[color]} &nbsp;
             {/each}
         </div>

@@ -22,6 +22,7 @@
     },
     "type": "module",
     "dependencies": {
+        "balloon-css": "^1.2.0",
         "chartjs-plugin-datalabels": "^2.2.0",
         "html2canvas": "^1.4.1"
     }

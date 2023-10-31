@@ -61,13 +61,13 @@
         </li>
         <li>
             完売情報: <a
-                href="https://github.com/universallyleo/ngzkHandshakeScrape/"
-                >ngzkHandshakeScrape</a
-            > ([自作]完売情報スクレイピング半自動Pythonスクリプト)
+                href="https://github.com/universallyleo/ngzkHandshakeTable/blob/main/scrape.py"
+                >[自作]完売情報Pythonスクレイパー</a
+            >
         </li>
         <li>
             補完状況: (2022-08-24現在)
-            3期生が握手会参加するから、17枚目シングルまで完了。
+            3期生が握手会参加以来（17枚目シングル）完了。
         </li>
     </ul>
 
@@ -78,6 +78,15 @@
         <li>
             <a href="https://blog.goo.ne.jp/kafka2002"
                 >Billboard JAPAN Hot100 データ, MV再生回数, など</a
+            >
+        </li>
+        <li>
+            <a href="https://archive.sakamichi.co/">Sakamichi Blog Archive</a>
+        </li>
+        <li><a href="https://www.oricon.co.jp/rank/">oriconランキング</a></li>
+        <li>
+            <a href="https://www.billboard-japan.com/charts/"
+                >billboard Japan Charts</a
             >
         </li>
         <li>

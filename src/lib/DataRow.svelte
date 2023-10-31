@@ -1,5 +1,6 @@
 <script>
     import { getMember, compareData } from "$lib/processData.js";
+    import "balloon-css/balloon.min.css";
     import { find } from "lodash-es";
     export let row;
     export let lastDraw;
@@ -34,6 +35,12 @@
         return { content: c, classes: "slot" };
     };
 
+    const bdayText = (bdayMeet) => {
+        return `誕生:${bdayMeet.bday.slice(0, 2)}月${bdayMeet.bday.slice(
+            3
+        )}日 → ${bdayMeet.meetDate}`;
+    };
+
     $: decoratedTbl = row.slotsSoldex.map((dayslots, i) => {
         let res = [];
         for (let s of dayslots) {
@@ -61,13 +68,8 @@
 <td class={classesOnMbCell}
     >{mbInfo.kanji}
     {#if row.bdayMeet != 0}
-        <div class="tooltip">
+        <div aria-label={bdayText(row.bdayMeet)} data-balloon-pos="up-left">
             [誕]
-            <div class="tt-right">
-                誕生:{row.bdayMeet.bday.slice(0, 2)}月{row.bdayMeet.bday.slice(
-                    3
-                )}日 → {row.bdayMeet.meetDate}
-            </div>
         </div>
     {/if}
     <div class="soldFraction">{row.numSold[0]}/{row.numSold[1]}</div>
@@ -120,40 +122,9 @@
 {/if}
 
 <style>
-    .tooltip {
-        display: inline-block;
-        position: relative;
-        transform: translate(0, -3px);
-        border-bottom: 1px dotted #666;
-        text-align: left;
-        color: #777;
-        font-size: 11px;
-        line-height: 11px;
-        margin: 0;
-        cursor: pointer;
-    }
-    .tt-right {
-        min-width: 220px;
-        max-width: 600px;
-        top: 50%;
-        left: 100%;
-        margin-left: 20px;
-        transform: translate(0, -50%);
-        padding: 12px;
-        color: #666666;
-        background-color: #ffffe0;
-        font-weight: normal;
-        font-size: 13px;
-        line-height: 1rem;
-        border-radius: 8px;
-        position: absolute;
-        z-index: 99999999;
-        box-sizing: border-box;
-        box-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
-        display: none;
-    }
-    .tooltip:hover .tt-right {
-        display: block;
+    :root {
+        --balloon-color: #777;
+        --balloon-font-size: 11pt;
     }
 
     .soldFraction {

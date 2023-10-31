@@ -512,6 +512,9 @@ export function partitionToGroup(
     subsort = false,
     subsortOrder = "ISODateAscend"
 ) {
+    /* ! This better to be rewritten with a more functional approach 
+        to allow complex composition of orders
+    */
     if (opt == "none") return mbDataList;
 
     let res = [];
@@ -522,6 +525,9 @@ export function partitionToGroup(
         let val,
             label = "";
         switch (opt) {
+            case "furi":
+                val = mb.furi[0];
+                break;
             case "gakunen":
                 val = bdayToGakunen(mb.dob);
                 break;

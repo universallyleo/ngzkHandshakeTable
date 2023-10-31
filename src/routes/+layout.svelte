@@ -33,6 +33,9 @@
         --heading-color: rgba(0, 0, 0, 0.7);
         --text-color: #444444;
     }
+    nav {
+        width: max-content;
+    }
     ul {
         display: flex;
         list-style: none;
@@ -63,7 +66,7 @@
         display: block;
         justify-content: center;
         align-items: center;
-        padding: 40px;
+        /* padding: 40px; */
         color: hsl(0, 0%, 65%);
     }
 </style>
