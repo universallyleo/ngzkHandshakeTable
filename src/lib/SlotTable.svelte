@@ -96,11 +96,11 @@
 <div class="container">
     <table class="table-bordered">
         <caption class="text-center"
-            >{title} (最後更新：{lastDraw}次受付)
+            >{title} ( {lastDraw}次受付結果 )
             {#if compare}
                 {#if hideTable} <br /> {/if}
                 &nbsp;&nbsp;[ vs {title2}
-                {compare.atdraw}次受付 ]
+                {compare.atdraw}次受付結果 ]
             {/if}
         </caption>
         <thead>
