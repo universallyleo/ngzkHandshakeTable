@@ -12,6 +12,7 @@
             "weekOne": 589338,
             "accumulate": 718787,
             "bi": {
+                "dayOne": 0,
                 "soku": 592366,
                 "weekOne": 678684,
                 "accumulate": 829946
@@ -31,6 +32,7 @@
             "weekOne": 589751,
             "accumulate": 698661,
             "bi": {
+                "dayOne": 0,
                 "soku": 622871,
                 "weekOne": 704346,
                 "accumulate": 824688
@@ -50,6 +52,7 @@
             "weekOne": 535794,
             "accumulate": 624823,
             "bi": {
+                "dayOne": 0,
                 "soku": 577954,
                 "weekOne": 658176,
                 "accumulate": 768935
@@ -69,6 +72,7 @@
             "weekOne": 463439,
             "accumulate": 588211,
             "bi": {
+                "dayOne": 0,
                 "soku": 499423,
                 "weekOne": 561071,
                 "accumulate": 733091
@@ -88,6 +92,7 @@
             "weekOne": 576597,
             "accumulate": 686866,
             "bi": {
+                "dayOne": 542558,
                 "soku": 603150,
                 "weekOne": 720302,
                 "accumulate": 860480
@@ -107,6 +112,7 @@
             "weekOne": 653998,
             "accumulate": 771045,
             "bi": {
+                "dayOne": 643390,
                 "soku": 734293,
                 "weekOne": 830384,
                 "accumulate": 980906
@@ -127,6 +133,7 @@
             "weekOne": 516884,
             "accumulate": 588275,
             "bi": {
+                "dayOne": 554135,
                 "soku": 609458,
                 "weekOne": 663277,
                 "accumulate": 756835
@@ -148,6 +155,7 @@
             "monthly": [566060, 65511],
             "accumulate": 631571,
             "bi": {
+                "dayOne": 553544,
                 "soku": 609421,
                 "weekOne": 713642,
                 "weekly": [
@@ -157,5 +165,27 @@
             }
         },
         "updated": "2023-10-31"
+    },
+    {
+        "cd": {
+            "num": 34,
+            "type": "Single",
+            "title": "Monopoly",
+            "shortTitle": "モノポリー",
+            "release": "2023-12-06"
+        },
+        "sales": {
+            "daily": [401431, 0, 0, 0, 0, 0],
+            "weekOne": 0,
+            "accumulate": 0,
+            "bi": {
+                "dayOne": 529847,
+                "soku": 0,
+                "weekOne": 0,
+                "weekly": [],
+                "accumulate": 529847
+            }
+        },
+        "updated": "2023-12-06"
     }
 ]

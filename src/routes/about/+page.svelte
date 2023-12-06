@@ -112,6 +112,9 @@
                     >
                 </li>
             </ul>
+            <ul>
+                <a href="https://detourgeeks.com/">DetourGeeks</a> 佐藤楓推しが運営する情報・レポサイト
+            </ul>
         </li>
     </ul>
 </div>
