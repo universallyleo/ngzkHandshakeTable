@@ -53,27 +53,35 @@
         let lastNumericIdx = -1;
         for (let i = 0; i < includings.length; i++) {
             let frac;
-            if (atdraw <= includings[i].lastDraw) {
-                frac = getNumSold(
-                    includings[i].table.find((x) => x.member == memberName),
-                    atdraw
-                );
-                if (frac[1] == "N/A") {
-                    soldatcd.push(["-", "-"]);
-                    accum.push("-");
-                } else {
-                    soldatcd.push(frac);
-                    accum.push(
-                        lastNumericIdx > -1
-                            ? accum[lastNumericIdx] + frac[0]
-                            : frac[0]
-                    );
-                    lastNumericIdx = i;
-                }
-            } else {
+            // if (atdraw <= includings[i].lastDraw) {
+            let at =
+                atdraw > -1 ? Math.min(atdraw, includings[i].lastDraw) : -1;
+            frac = getNumSold(
+                includings[i].table.find((x) => x.member == memberName),
+                at
+            );
+            if (frac[1] == "N/A") {
                 soldatcd.push(["-", "-"]);
                 accum.push("-");
+            } else {
+                soldatcd.push(frac);
+                accum.push(
+                    lastNumericIdx > -1
+                        ? accum[lastNumericIdx] + frac[0]
+                        : frac[0]
+                );
+                lastNumericIdx = i;
             }
+            // } else {
+            //     // only here in mode receptionProgression
+            //     // atdraw is beyond last draw, so take num from last draw
+            //     let num = getNumSold(
+            //         includings[i].table.find((x) => x.member == memberName),
+            //         includings[i].lastDraw
+            //     );
+            //     soldatcd.push(num);
+            //     accum.push(num[0]);
+            // }
         }
         return { member: memberName, main: accum, sub: soldatcd };
     }
