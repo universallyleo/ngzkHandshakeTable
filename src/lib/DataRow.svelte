@@ -36,7 +36,7 @@
     };
 
     const bdayText = (bdayMeet) => {
-        return `誕生:${bdayMeet.bday.slice(0, 2)}月${bdayMeet.bday.slice(
+        return `誕生: ${bdayMeet.bday.slice(0, 2)}月${bdayMeet.bday.slice(
             3
         )}日 → ${bdayMeet.meetDate}`;
     };

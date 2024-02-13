@@ -110,7 +110,7 @@
         "sales": {
             "daily": [489327, 77651, 33537, 21508, 18581, 13343],
             "weekOne": 653998,
-            "accumulate": 771045,
+            "accumulate": 771223,
             "bi": {
                 "dayOne": 643390,
                 "soku": 734293,
@@ -118,7 +118,7 @@
                 "accumulate": 985913
             }
         },
-        "update": "2023-09-23"
+        "update": "2024-02-01"
     },
     {
         "cd": {
@@ -131,7 +131,7 @@
         "sales": {
             "daily": [419000, 49243, 23788, 9154, 8425, 7232],
             "weekOne": 516884,
-            "accumulate": 588708,
+            "accumulate": 589268,
             "bi": {
                 "dayOne": 554135,
                 "soku": 609458,
@@ -139,7 +139,7 @@
                 "accumulate": 760663
             }
         },
-        "updated": "2023-09-23"
+        "updated": "2024-02-01"
     },
     {
         "cd": {
@@ -153,7 +153,7 @@
             "daily": [411534, 45501, 21265, 34190, 27788, 25782],
             "weekOne": 566060,
             "monthly": [566060, 65511],
-            "accumulate": 651753,
+            "accumulate": 653575,
             "bi": {
                 "dayOne": 553544,
                 "soku": 609421,
@@ -164,7 +164,7 @@
                 "accumulate": 844050
             }
         },
-        "updated": "2023-10-31"
+        "updated": "2024-02-01"
     },
     {
         "cd": {
@@ -177,15 +177,37 @@
         "sales": {
             "daily": [401431, 50031, 33854, 16768, 23119, 13295],
             "weekOne": 538511,
-            "accumulate": 538511,
+            "accumulate": 603648,
             "bi": {
                 "dayOne": 529847,
                 "soku": 591452,
                 "weekOne": 691515,
                 "weekly": [691515],
-                "accumulate": 691515
+                "accumulate": 785869
             }
         },
-        "updated": "2023-12-14"
+        "updated": "2024-02-01"
+    },
+    {
+        "cd": {
+            "num": 35,
+            "type": "Single",
+            "title": "タイトル未定",
+            "shortTitle": "タイトル未定",
+            "release": "2024-03-27"
+        },
+        "sales": {
+            "daily": [0, 0, 0, 0, 0, 0],
+            "weekOne": 0,
+            "accumulate": 0,
+            "bi": {
+                "dayOne": 0,
+                "soku": 0,
+                "weekOne": 0,
+                "weekly": [0],
+                "accumulate": 0
+            }
+        },
+        "updated": "2024-02-13"
     }
 ]
