@@ -6,6 +6,7 @@
     export let capture;
     export let hideTable = false;
     export let blur = -1;
+    export let upToDraw;
     /*
 group: DataList
 interface DataList {
@@ -30,6 +31,7 @@ interface DataList {
     <DataRow
         row={group.has[0]}
         {lastDraw}
+        {upToDraw}
         addClasses={group.has.length == 1 ? "topRow bottomRow" : "topRow"}
         {compare}
         {capture}
@@ -39,7 +41,15 @@ interface DataList {
 </tr>
 {#each group.has.slice(1, -1) as row (row.member)}
     <tr class="normalRow">
-        <DataRow {row} {lastDraw} {compare} {capture} {hideTable} {blur} />
+        <DataRow
+            {row}
+            {lastDraw}
+            {upToDraw}
+            {compare}
+            {capture}
+            {hideTable}
+            {blur}
+        />
     </tr>
 {/each}
 {#if group.has.length > 1}
@@ -47,6 +57,7 @@ interface DataList {
         <DataRow
             row={group.has[group.has.length - 1]}
             {lastDraw}
+            {upToDraw}
             addClasses="bottomRow"
             {compare}
             {capture}

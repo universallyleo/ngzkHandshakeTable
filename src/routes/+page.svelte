@@ -1,10 +1,11 @@
 <script>
-    import { onMount } from "svelte";
-    import { currentCDData, cdAlias, findCDIndex } from "$lib/processData.js";
+    // import { onMount } from "svelte";
+    import { currentCDData, cdAlias } from "$lib/processData.js";
     import { min } from "lodash-es";
     // import html2canvas from "html2canvas";
     import SlotTable from "$lib/SlotTable.svelte";
-    import SelectOneCD from "$lib/SelectOneCD.svelte";
+    // import SelectOneCD from "$lib/SelectOneCD.svelte";
+    import SelectCDReception from "$lib/SelectCDReception.svelte";
     import { fly, fade } from "svelte/transition";
     import StateButton from "../lib/StateButton.svelte";
 
@@ -32,14 +33,18 @@
         { display: "完売数順", value: "numsold" },
     ];
     let sortOpt = "kana";
-    let atdraw = -1;
     let capture = false;
     let compareToCDData,
         hideTable = false;
+    let compareAtDraw, compareIndex;
     let ST;
     let selectedIndex = 0;
     let selectedCDData = currentCDData;
+    let lastDraw = selectedCDData.lastDraw;
+    let upToDraw = lastDraw;
+    let compareExclusion = 0;
 
+    //#region functions
     // function exportImg(canvas){
     //     var link=document.createElement("a");
     //     document.body.appendChild(link);
@@ -69,9 +74,9 @@
 
     function getCompare() {
         let compare =
-            compareToCDData.cd === selectedCDData.cd || atdraw < 0
+            compareToCDData.cd === selectedCDData.cd || compareAtDraw < 0
                 ? null
-                : { cdData: compareToCDData, atdraw: atdraw };
+                : { cdData: compareToCDData, atdraw: compareAtDraw };
         ST.updateCompare(compare);
         hideTable = !!compare;
     }
@@ -79,22 +84,30 @@
     function compareReset() {
         ST.updateCompare(null);
         hideTable = false;
+        //this does not trigger compareCD selection to update its exclude prop
+        //just no effect... need to use store
+        compareExclusion = selectedIndex;
     }
 
-    onMount(async () => {
-        let cdalias = new URL(window.location).searchParams.get("cd");
-        if (cdalias != null) {
-            selectedIndex = fulldata.length - 1 - findCDIndex(cdalias);
-            //selectedCDData = fulldata[findCDIndex(cdalias)];
-        }
-    });
+    // onMount(async () => {
+    //     let cdalias = new URL(window.location).searchParams.get("cd");
+    //     if (cdalias != null) {
+    //         // need to import fulldata from processData.js
+    //         // this is the only place that need fulldata; think workaround
+    //         selectedIndex = fulldata.length - 1 - findCDIndex(cdalias);
+    //         //selectedCDData = fulldata[findCDIndex(cdalias)];
+    //     }
+    // });
 
-    $: selectableDraw = compareToCDData
+    //#region active udpate
+    $: oldSelectableDraw = compareToCDData
         ? min([compareToCDData.lastDraw, selectedCDData.lastDraw])
         : 0;
-    $: atdraw = selectableDraw ? selectableDraw : 0;
+    $: compareAtDraw = oldSelectableDraw ? oldSelectableDraw : 0;
 </script>
 
+<!-- #region HTML
+-->
 <svelte:head>
     <title>乃木坂46インタラクティブ式完売表</title>
     <meta name="description" content="乃木坂46インタラクティブ式完売表" />
@@ -106,9 +119,11 @@
             <li>
                 <div class="leftcol">CD:</div>
                 <div class="rightcol">
-                    <SelectOneCD
+                    <SelectCDReception
                         bind:selectedCDData
                         bind:selected={selectedIndex}
+                        bind:atDraw={upToDraw}
+                        on:change={compareReset}
                     />
                 </div>
 
@@ -174,31 +189,31 @@
             </li>
         </ul>
     </div>
+    <!-- #region Adv Opt
+    -->
     <div class="advanceOption">
         <div style="display:flex; flex-grow:1">
             <div>
                 過去との差 →
                 <span style="margin-right:3px"
                     >対象:
-                    <SelectOneCD
+                    <!-- exclude doesn't update, need to use store to cross component data sharing... -->
+                    <SelectCDReception
+                        excludeFrom={selectedIndex}
                         bind:selectedCDData={compareToCDData}
-                        exclude={selectedCDData
+                        bind:selectedIndex={compareIndex}
+                        bind:atDraw={compareAtDraw}
+                    />
+
+                    <!-- <SelectCDReception
+                        excludeFrom={selectedCDData
                             ? [cdAlias(selectedCDData.cd)]
                             : [{ value: -1 }]}
-                    />
+                        bind:selectedCDData={compareToCDData}
+                        bind:selectedIndex={compareIndex}
+                        bind:atDraw={compareAtDraw}
+                    /> -->
                 </span>
-                <label>
-                    <select
-                        id="drawSelect"
-                        name="drawSelect"
-                        bind:value={atdraw}
-                        style="margin-left: 2px; margin-right: 2px"
-                    >
-                        {#each [...Array(selectableDraw).keys()].reverse() as i}
-                            <option value={i + 1}>{i + 1}</option>
-                        {/each}
-                    </select>次受付</label
-                >
             </div>
             <!-- <div
                     in:fly={{ x: 300, duration: 800 }}
@@ -227,6 +242,7 @@
         {sortOpt}
         {capture}
         {hideTable}
+        {upToDraw}
     />
 </section>
 

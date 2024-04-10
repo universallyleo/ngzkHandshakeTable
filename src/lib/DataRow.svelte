@@ -9,6 +9,7 @@
     export let capture;
     export let hideTable;
     export let blur = -1;
+    export let upToDraw = lastDraw;
 
     $: mbInfo = getMember(row.member);
     //$: splitTbl = row.slotsSold.map(x=>x.split("|"));
@@ -24,13 +25,21 @@
                 content: "?",
                 classes: `slot unconfirmedSlot${alpha ? "Opaq" : ""}`,
             };
-        if (c != "?" && lastDraw == parseInt(c))
-            return { content: c, classes: "slot lastDrawSlot" };
-        if (c != "?" && parseInt(c) > 0 && parseInt(c) < lastDraw)
+        if (c != "?") {
+            let cls =
+                parseInt(c) == upToDraw
+                    ? ` lastDrawSlot`
+                    : parseInt(c) > 0 && parseInt(c) < upToDraw
+                      ? ` soldSlot${alpha ? "Opaq" : ""}`
+                      : upToDraw < lastDraw && parseInt(c) > upToDraw
+                        ? ` afterOpaq`
+                        : "";
+            cls = "slot" + cls;
             return {
                 content: c,
-                classes: `slot soldSlot${alpha ? "Opaq" : ""}`,
+                classes: cls,
             };
+        }
         //if (lastDraw-1>0 && lastDraw-1==parseInt(c)) return {content: c, classes: "slot lastlastDrawSlot"};
         return { content: c, classes: "slot" };
     };
@@ -76,7 +85,9 @@
             [誕]
         </div>
     {/if}
-    <div class="soldFraction">{row.numSold[0]}/{row.numSold[1]}</div>
+    <div class="soldFraction">
+        {row.accumulative[upToDraw - 1]}/{row.numSold[1]}
+    </div>
 </td>
 
 <!-- TODO: look up member info to determine display method -->
@@ -193,8 +204,16 @@
         text-align: center;
         z-index: 0;
     }
+    .afterOpaq {
+        /* background-color: rgb(208, 208, 208); */
+        color: rgba(0, 0, 0, 0.2);
+    }
     .lastDrawSlot {
         background-color: yellow;
+    }
+    .lastDrawSlotOpaq {
+        background-color: hsla(60, 100%, 50%, 0.5);
+        color: rgba(0, 0, 0, 0.5);
     }
     .soldSlot {
         background-color: hsl(211, 62%, 80%);

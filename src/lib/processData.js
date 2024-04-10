@@ -38,10 +38,11 @@ Object.keys(files).map((path) => {
     fulldata[basicCDData.indexOf(f)] = files[path];
 });
 fulldata[fulldata.length - 1] = currentCDData;
+export const collectionLength = fulldata.length;
 /*****/
 
+//#region GroupedData def
 /**
- * GroupedData
  * @typedef {Object} GroupedData
  * @property {string} label
  * @property {string|number} value
@@ -321,6 +322,7 @@ const expandSoldslots = (mbdata) => {
     return mbdata.slotsSoldex;
 };
 
+// [0,1,2,0,1,0] -> [0,1=0+1,3=1+2,3=3+0,4=3+1,4]
 const accumulativeSum = (arr) => {
     return arr.reduce((result, currentNum) => {
         if (result.length > 0) {
@@ -333,6 +335,13 @@ const accumulativeSum = (arr) => {
     }, []);
 };
 
+export const extendArrayByLastEntry = (arr, len) => {
+    if (len <= arr.length) return arr;
+    if (arr.length == 0) return Array(len).fill(0);
+    return arr.concat(Array(len - arr.length).fill(arr[arr.length - 1]));
+};
+
+//#region ExpanededMemberSlot def
 /**
  * @typedef {Object} ExpandedMemberSlotData
  * @property {string} member
@@ -376,7 +385,7 @@ export function expandMBData(mbdata, groups) {
             : 0;
     // console.log(soldatdraws.map((x) => parseInt(x)));
     res.soldoutAt = res.numSold[0] == res.numSold[1] ? lastsoldAt : -1;
-    res.numSoldAtEach = Array(lastsoldAt).fill(0);
+    res.numSoldAtEach = lastsoldAt > 0 ? Array(lastsoldAt).fill(0) : [];
     soldatdraws.forEach((n) => res.numSoldAtEach[n - 1]++);
     res.accumulative = accumulativeSum(res.numSoldAtEach);
 
@@ -639,7 +648,7 @@ export function cdAlias(cd) {
     return { display: display, value: value };
 }
 
-export function findCDIndex(alias) {
+export function findCDIndexFromAlias(alias) {
     return fulldata.findIndex((x) => cdAlias(x.cd).value == alias);
 }
 
@@ -657,11 +666,8 @@ function determineGroup(mb, groups) {
     return "NoData";
 }
 
-/**
- * ************
- * For chart js
- * ************
- */
+// --------------------------------------------
+//#region chartjs related
 // dashed segment for data gap in series
 // see: https://www.chartjs.org/docs/latest/samples/line/segments.html
 const skipped = (ctx, value) =>

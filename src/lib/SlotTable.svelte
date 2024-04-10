@@ -7,15 +7,18 @@
         partitionToGroup,
         sortList,
         finalSoldoutDraw,
+        extendArrayByLastEntry,
     } from "$lib/processData.js";
     import { firstFutureDate } from "$lib/util.js";
+    import { add, zipWith } from "lodash-es";
     export let data;
-    //export let group="gen"; //allow: gen, dobyear, dobmonth, bloodtype, from
+    //export let group="gen"; allow: gen, dobyear, dobmonth, bloodtype, from
     export let filterOpt;
     export let groupOpt;
     export let sortOpt;
     export let capture;
     export let hideTable = false;
+    export let upToDraw = data.lastDraw;
 
     let compare = null;
     let blur = -1; //index of first date to unblur = number of blurred dates
@@ -23,28 +26,34 @@
 
     $: title = cdAlias(data.cd).display;
     // array of {member, slotsSoldex: Array<Array<String>>, numSold: [int, int]}
+    $: lastDraw = data.lastDraw;
     $: expandedData = expandDataList(data);
+    $: expandedData.forEach(
+        (mb) =>
+            (mb.accumulative = extendArrayByLastEntry(
+                mb.accumulative,
+                data.lastDraw
+            ))
+    );
+    $: [accumSold, totalSlots] = expandedData.reduce(
+        (prev, curr) => {
+            // the zipWith code is to pointwise add the vector prev[0] with accumulative
+            return [
+                zipWith(prev[0], curr.accumulative, add),
+                prev[1] + curr.numSold[1],
+            ];
+        },
+        [Array(data.lastDraw).fill(0), 0]
+    );
     $: isInfo = new Array(data.meetDates.length).fill(false);
-    $: blur = firstFutureDate(data.meetDates, -7);
+    $: blur =
+        upToDraw == data.lastDraw ? firstFutureDate(data.meetDates, -7) : -1;
     $: finalTb = sortList(
         partitionToGroup(filterList(expandedData, filterOpt), groupOpt),
         sortOpt
     );
-    $: lastDraw = data.lastDraw;
-    $: totalSold = expandedData.reduce((prev, curr) => {
-        return {
-            numSold: [
-                prev.numSold[0] + curr.numSold[0],
-                prev.numSold[1] + curr.numSold[1],
-            ],
-        };
-    }).numSold;
     $: capture = capture;
     $: title2 = compare ? cdAlias(compare.cdData.cd).display : "";
-    //$: hideTable = compare ? hideTable : false; //force table to be shown when not comparing
-    // console.log(curr.numSold););
-    //$: console.log(expandData);
-    // $: numSlots = data.meetDates.length*5;
     // $: w= 240+ numSlots*25 + (groupOpt!="none"?25:0);
     // $: info = `Filter option is ${filterOpt}.  Width should be ${w}\n${compare?compare.atdraw:""}`;
 
@@ -87,7 +96,7 @@
     export function updateCompare(comparedata) {
         compare = comparedata;
         hideTable = comparedata ? hideTable : false; //force table to be shown when not comparing
-        console.log("SlotTable.updateCompare ended.  hideTable = ", hideTable);
+        // console.log("SlotTable.updateCompare ended.  hideTable = ", hideTable);
     }
 </script>
 
@@ -96,9 +105,11 @@
 <div class="container">
     <table class="table-bordered">
         <caption class="text-center"
-            >{title} ( {lastDraw}次受付結果 )
+            >{title} ( {upToDraw}次受付結果 )
             {#if compare}
-                {#if hideTable} <br /> {/if}
+                {#if hideTable}
+                    <br />
+                {/if}
                 &nbsp;&nbsp;[ vs {title2}
                 {compare.atdraw}次受付結果 ]
             {/if}
@@ -111,7 +122,8 @@
                 <th />
                 <th
                     ><div class="soldFraction">
-                        {totalSold[0]}/{totalSold[1]}
+                        <!-- {totalSold[0]}/{totalSold[1]} -->
+                        {accumSold[upToDraw - 1]}/{totalSlots}
                     </div></th
                 >
                 {#if !hideTable}
@@ -142,6 +154,7 @@
                     <RowGroups
                         group={rowGp}
                         {lastDraw}
+                        {upToDraw}
                         {compare}
                         {capture}
                         {hideTable}

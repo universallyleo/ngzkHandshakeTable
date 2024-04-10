@@ -1,5 +1,7 @@
 import { range, sortedIndex } from "lodash-es";
 
+//#region Date string related
+
 export function numberWithCommas(n) {
     // alternatively: return n.toLocaleString("en-US");
     return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -168,6 +170,8 @@ export function bdayToGakunen(date) {
         : date.slice(2, 4) + "/" + `${birthyear + 1}`.slice(2, 4);
 }
 
+//#region Sort related
+
 export function sortGakunen(a, b) {
     let [c, d] = [a, b].map((x) => parseInt(x.slice(0, 2)));
     [c, d] = [c, d].map((x) => (x > 80 ? 1900 + x : 2000 + x));
@@ -223,6 +227,8 @@ export const isISODate = (d) =>
 export function nth(n) {
     return ["st", "nd", "rd"][((((n + 90) % 100) - 10) % 10) - 1] || "th";
 }
+
+//#region Colours related
 
 export function nthColor(n) {
     const palette = [
