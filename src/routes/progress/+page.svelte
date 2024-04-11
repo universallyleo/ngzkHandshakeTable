@@ -161,13 +161,13 @@
                         {#if fixOpt == "fixCD"}
                             <div
                                 class="selectFix"
-                                in:fly={{ x: 200, duration: 700 }}
+                                in:fly|global={{ x: 200, duration: 700 }}
                             >
                                 <SelectOneCD bind:selectedCDData={selectedCD} />
                             </div>
                             <div
                                 class="longSelection"
-                                in:fly={{ x: 200, duration: 700 }}
+                                in:fly|global={{ x: 200, duration: 700 }}
                             >
                                 <SelectMembersPanel
                                     bind:selectedMembers
@@ -179,7 +179,7 @@
                         {#if fixOpt == "fixMember"}
                             <div
                                 class="selectFix"
-                                in:fly={{ x: 200, duration: 700 }}
+                                in:fly|global={{ x: 200, duration: 700 }}
                             >
                                 <select
                                     id="mbSelect"
@@ -195,7 +195,7 @@
                             </div>
                             <div
                                 class="cdList"
-                                in:fly={{ x: 200, duration: 700 }}
+                                in:fly|global={{ x: 200, duration: 700 }}
                             >
                                 <SelectCDs bind:selectedCDsData {selectables} />
                             </div>
@@ -204,7 +204,7 @@
                 {/if}
 
                 {#if seriesOpt == "overallProgression"}
-                    <div in:fly={{ x: 200, duration: 700 }}>
+                    <div in:fly|global={{ x: 200, duration: 700 }}>
                         <RemoveCDTypes bind:removeTypes /> <br />
                         <SelectMembersPanel
                             bind:selectedMembers
@@ -214,7 +214,7 @@
                 {/if}
 
                 {#if seriesOpt == "receptionProgression"}
-                    <div in:fly={{ x: 200, duration: 700 }}>
+                    <div in:fly|global={{ x: 200, duration: 700 }}>
                         <div
                             style="margin: 5px; padding-bottom: 5px; border-bottom: solid 1px black;"
                         >

@@ -113,7 +113,7 @@
     <meta name="description" content="乃木坂46インタラクティブ式完売表" />
 </svelte:head>
 
-<div class="optionForm" in:fade={{ duration: 500 }}>
+<div class="optionForm" in:fade|global={{ duration: 500 }}>
     <div class="optionsContainer">
         <ul class="twocols">
             <li>
@@ -216,7 +216,7 @@
                 </span>
             </div>
             <!-- <div
-                    in:fly={{ x: 300, duration: 800 }}
+                    in:fly|global={{ x: 300, duration: 800 }}
                     style="margin-left:auto;margin-right:2px;width:max-content;"
                 > -->
             <div style="margin-left:auto;margin-rigth:2px;width:max-content;">
@@ -233,7 +233,7 @@
     </div>
 </div>
 
-<section id="slotstable" class="main" in:fly={{ y: 200, duration: 500 }}>
+<section id="slotstable" class="main" in:fly|global={{ y: 200, duration: 500 }}>
     <SlotTable
         bind:this={ST}
         data={selectedCDData}
