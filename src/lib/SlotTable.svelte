@@ -7,7 +7,6 @@
         partitionToGroup,
         sortList,
         finalSoldoutDraw,
-        extendArrayByLastEntry,
     } from "$lib/processData.js";
     import { firstFutureDate } from "$lib/util.js";
     import { add, zipWith } from "lodash-es";
@@ -28,23 +27,18 @@
     // array of {member, slotsSoldex: Array<Array<String>>, numSold: [int, int]}
     $: lastDraw = data.lastDraw;
     $: expandedData = expandDataList(data);
-    $: expandedData.forEach(
-        (mb) =>
-            (mb.accumulative = extendArrayByLastEntry(
-                mb.accumulative,
-                data.lastDraw
-            ))
-    );
-    $: [accumSold, totalSlots] = expandedData.reduce(
-        (prev, curr) => {
-            // the zipWith code is to pointwise add the vector prev[0] with accumulative
-            return [
-                zipWith(prev[0], curr.accumulative, add),
-                prev[1] + curr.numSold[1],
-            ];
-        },
-        [Array(data.lastDraw).fill(0), 0]
-    );
+    // $: [accumSold, totalSlots] = expandedData.reduce(
+    //     (prev, curr) => {
+    //         // the zipWith code is to pointwise add the vector prev[0] with accumulative
+    //         return [
+    //             zipWith(prev[0], curr.accumulative, add),
+    //             prev[1] + curr.numSold[1],
+    //         ];
+    //     },
+    //     [Array(data.lastDraw).fill(0), 0]
+    // );
+    $: soldPercentage =
+        (expandedData.accumSold[upToDraw - 1] / expandedData.totalSlots) * 100;
     $: isInfo = new Array(data.meetDates.length).fill(false);
     $: blur =
         upToDraw == data.lastDraw ? firstFutureDate(data.meetDates, -7) : -1;
@@ -53,7 +47,12 @@
         sortOpt
     );
     $: capture = capture;
+    //#region comparison data
     $: title2 = compare ? cdAlias(compare.cdData.cd).display : "";
+    $: cmpExpanded = compare ? expandDataList(compare.cdData) : null;
+    $: [cmpSold, cmpTtl] = compare
+        ? [cmpExpanded.accumSold[compare.atdraw - 1], cmpExpanded.totalSlots]
+        : [0, 0];
     // $: w= 240+ numSlots*25 + (groupOpt!="none"?25:0);
     // $: info = `Filter option is ${filterOpt}.  Width should be ${w}\n${compare?compare.atdraw:""}`;
 
@@ -120,12 +119,19 @@
       <th>{groupOpt=="gen"?`期生`:""}</th>
       {/if} -->
                 <th />
-                <th
-                    ><div class="soldFraction">
-                        <!-- {totalSold[0]}/{totalSold[1]} -->
-                        {accumSold[upToDraw - 1]}/{totalSlots}
-                    </div></th
-                >
+                <th>
+                    {#if compare}
+                        <div>過去との差</div>
+                    {:else}
+                        <div class="soldFraction">
+                            <!-- {totalSold[0]}/{totalSold[1]} -->
+                            <!-- {accumSold[upToDraw - 1]}/{totalSlots} -->
+                            {expandedData.accumSold[
+                                upToDraw - 1
+                            ]}/{expandedData.totalSlots}
+                        </div>
+                    {/if}
+                </th>
                 {#if !hideTable}
                     {#each data.meetDates as date, i}
                         <th
@@ -139,7 +145,31 @@
                     {/each}
                 {/if}
                 {#if compare}
-                    <th>過去との差</th>
+                    <th>
+                        <span class="cmpCellHead">
+                            <div>
+                                <span style="font-size:small">
+                                    {cmpSold}/{cmpTtl}</span
+                                >
+                                <br />
+                                ( {((cmpSold / cmpTtl) * 100).toFixed(
+                                    2
+                                )}&percnt; )
+                            </div>
+                            <div>→</div>
+                            <div>
+                                <span id="font-size:small"
+                                    >{expandedData.accumSold[
+                                        upToDraw - 1
+                                    ]}/{expandedData.totalSlots}</span
+                                >
+                                <br />
+                                ( {soldPercentage.toFixed(2)}&percnt; )
+                            </div>
+
+                            <!-- {expandedData.accumSold[upToDraw - 1]}/{expandedData.totalSlots} -->
+                        </span>
+                    </th>
                 {/if}
             </tr>
         </thead>
@@ -210,6 +240,24 @@
         table caption {
             display: none;
         }
+    } */
+
+    .cmpCellHead {
+        font-size: small;
+        font-weight: normal;
+        padding: 0;
+        display: grid;
+        gap: 0;
+        grid-template-columns: 85px 12px 85px;
+        grid-template-rows: 100%;
+        justify-items: center;
+        align-items: stretch;
+        align-content: stretch;
+    }
+    /* 
+    .compareCell {
+        border: 1px solid #ddd;
+        text-align: center;
     } */
 
     .soldFraction {

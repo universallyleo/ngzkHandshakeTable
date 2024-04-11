@@ -8,36 +8,28 @@
     export let excludeFrom = -1;
 
     let reverseIdx = (i) => fulldata.length - 1 - i;
-    // console.log("revIdx(excludeFrom)", reverseIdx(excludeFrom));
-
     let cdlist = fulldata.map((x) => cdAlias(x.cd)).reverse();
-    // console.log(cdlist);
 
-    // let exclude =
-    //     excludeFrom != -1
-    //         ? [cdAlias(cdlist[reverseIdx(excludeFrom)])]
-    //         : [{ value: -1 }];
-    // when exclude = [{display:..,value:..}, ... ] from sporadic collection,
-    // then can use following line, and remove .slice() in selectables' definition
-    // let temp = differenceWith(cdlist, exclude, isEqual);
-    // let indices = cdlist.map((x) =>
-    //     findIndex(cdlist, (y) => x.value === y.value)
-    // );
-    // let excludeFrom = findIndex(cdlist, (y) => exclude.value === y.value);
-    let indices = Array(fulldata.length - excludeFrom - 1)
-        .fill(0)
-        .map((_, i) => excludeFrom + 1 + i);
-    // excludeFrom > -1
-    //     ? console.log("from component: ", excludeFrom, indices[0])
-    //     : null;
-    let selectables = zip(cdlist.slice(excludeFrom + 1), indices);
-    // console.log(selectables);
+    let previousExclude = -2;
+    let selectables = [];
+    export let selected = cdlist[0];
 
-    export let selected = selectables[0][1];
+    function regenSelectables(e) {
+        if (e == previousExclude && previousExclude != -2) {
+            return;
+        }
+
+        let indices = Array(fulldata.length - e - 1)
+            .fill(0)
+            .map((_, i) => e + 1 + i);
+        previousExclude = e;
+        selectables = zip(cdlist.slice(e + 1), indices);
+        selected = selectables[0][1];
+    }
+    regenSelectables(parseInt(excludeFrom));
 
     let getData = (i) => fulldata[reverseIdx(i)];
-    selectedCDData = getData(selected);
-
+    $: regenSelectables(parseInt(excludeFrom));
     $: selectedCDData = getData(selected);
     $: atDraw = getData(selected).lastDraw;
 </script>

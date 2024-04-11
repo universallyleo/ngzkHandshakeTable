@@ -26,6 +26,9 @@
                 classes: `slot unconfirmedSlot${alpha ? "Opaq" : ""}`,
             };
         if (c != "?") {
+            // first determine whether additional class is lastDrawSlot or soldSlot
+            // if forced (alpha=true), add Opaq
+            // if beyond upToDraw, add afterOpaq
             let cls =
                 parseInt(c) == upToDraw
                     ? ` lastDrawSlot`
@@ -68,6 +71,7 @@
         compare != null
             ? compareData(
                   row,
+                  upToDraw,
                   find(compare.cdData.table, ["member", row.member]),
                   compare.atdraw
               )

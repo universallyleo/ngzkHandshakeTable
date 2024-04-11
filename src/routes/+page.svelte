@@ -84,9 +84,8 @@
     function compareReset() {
         ST.updateCompare(null);
         hideTable = false;
-        //this does not trigger compareCD selection to update its exclude prop
-        //just no effect... need to use store
         compareExclusion = selectedIndex;
+        compareIndex = selectedCDData.lastDraw;
     }
 
     // onMount(async () => {
@@ -101,7 +100,7 @@
 
     //#region active udpate
     $: oldSelectableDraw = compareToCDData
-        ? min([compareToCDData.lastDraw, selectedCDData.lastDraw])
+        ? min([compareToCDData.lastDraw, upToDraw])
         : 0;
     $: compareAtDraw = oldSelectableDraw ? oldSelectableDraw : 0;
 </script>
@@ -113,7 +112,7 @@
     <meta name="description" content="乃木坂46インタラクティブ式完売表" />
 </svelte:head>
 
-<div class="optionForm" in:fade|global={{ duration: 500 }}>
+<div class="optionForm" in:fade={{ duration: 500 }}>
     <div class="optionsContainer">
         <ul class="twocols">
             <li>
@@ -197,22 +196,12 @@
                 過去との差 →
                 <span style="margin-right:3px"
                     >対象:
-                    <!-- exclude doesn't update, need to use store to cross component data sharing... -->
                     <SelectCDReception
-                        excludeFrom={selectedIndex}
+                        excludeFrom={compareExclusion}
                         bind:selectedCDData={compareToCDData}
                         bind:selectedIndex={compareIndex}
                         bind:atDraw={compareAtDraw}
                     />
-
-                    <!-- <SelectCDReception
-                        excludeFrom={selectedCDData
-                            ? [cdAlias(selectedCDData.cd)]
-                            : [{ value: -1 }]}
-                        bind:selectedCDData={compareToCDData}
-                        bind:selectedIndex={compareIndex}
-                        bind:atDraw={compareAtDraw}
-                    /> -->
                 </span>
             </div>
             <!-- <div

@@ -1,4 +1,4 @@
-import { without, concat, pullAll, zip } from "lodash-es";
+import { without, concat, pullAll, zip, zipWith, add } from "lodash-es";
 import {
     now,
     ISODateToNum,
@@ -357,7 +357,7 @@ export const extendArrayByLastEntry = (arr, len) => {
  * @param  {Object} groups possible groups in current CD
  * @return {ExpandedMemberSlotData}
  */
-export function expandMBData(mbdata, groups) {
+export function expandMBData(mbdata, groups, lastdraw) {
     let res = {
         member: mbdata.member,
         slotsSoldex: [],
@@ -387,15 +387,23 @@ export function expandMBData(mbdata, groups) {
     res.soldoutAt = res.numSold[0] == res.numSold[1] ? lastsoldAt : -1;
     res.numSoldAtEach = lastsoldAt > 0 ? Array(lastsoldAt).fill(0) : [];
     soldatdraws.forEach((n) => res.numSoldAtEach[n - 1]++);
-    res.accumulative = accumulativeSum(res.numSoldAtEach);
+    res.accumulative = extendArrayByLastEntry(
+        accumulativeSum(res.numSoldAtEach),
+        lastdraw
+    );
 
     return res;
 }
 
-export function compareData(mbdataNow, mbdataCompare, atdraw = -1) {
+export function compareData(
+    mbdataNow,
+    currentDraw,
+    mbdataCompare,
+    compareAtDraw = -1
+) {
     //TODO: rewrite using ExpandedMemberSlotData, which has "soldoutAt" property
-    let [m, totalThen] = getNumSold(mbdataCompare, atdraw),
-        [n, totalNow] = getNumSold(mbdataNow);
+    let [m, totalThen] = getNumSold(mbdataCompare, compareAtDraw),
+        [n, totalNow] = getNumSold(mbdataNow, currentDraw);
     //let diff = n !== 'N/A' ? `${m - n > 0 ? '+' : ''}${m - n}` : '';
     let lastTimeSoldout = m == totalThen,
         currentSoldout = n == totalNow,
@@ -452,21 +460,27 @@ export function expandDataList(cdData) {
     // if (cdData.cd.num == 31) {
     // 	console.log('31st single ', dateRange);
     // }
-    let res = cdData.table.map((x) => expandMBData(x, groups));
-    res.map((x) => {
-        let info = mbBdayInRange(x.member, dateRange);
-        // if (cdData.cd.num == 31) {
-        // 	console.log('member ', x.member, ' in range? ', info.inRange);
-        // }
-        // info = { inRange: false, meetDate: '', idx: -1 } if mb's bday is not in range
-        x["bdayMeet"] = info.inRange
+    let res = cdData.table.map((x) => expandMBData(x, groups, cdData.lastDraw));
+    let accumSold = Array(cdData.lastdraw).fill(0);
+    let totalSlots = 0;
+    for (const mb of res) {
+        //determine if mb's bday is in range; if so, add info
+        let info = mbBdayInRange(mb.member, dateRange);
+        mb["bdayMeet"] = info.inRange
             ? {
-                  bday: getMember(x.member).dob.slice(5),
+                  bday: getMember(mb.member).dob.slice(5),
                   meetDate: info.meetDate,
                   idx: info.idx,
               }
             : 0;
-    });
+
+        // cal total num of slots sold at each draw
+        // and also toal num of slots available
+        accumSold = zipWith(accumSold, mb.accumulative, add);
+        totalSlots += mb.numSold[1];
+    }
+    res["accumSold"] = accumSold;
+    res["totalSlots"] = totalSlots;
     return res;
 }
 
