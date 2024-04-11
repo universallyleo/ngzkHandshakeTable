@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check-out repo for use
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           # repository: universallyleo/ngzkHandshakeScrape
           ref: main
@@ -22,9 +22,9 @@ jobs:
         # path: ${{ env.DEVOPS_DIR }}
 
       - name: Setup and Build with Nodejs
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: '20.x'
           cache: "npm"
       - run: npm ci ## clean install
       - run: npm run build
