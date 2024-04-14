@@ -197,12 +197,12 @@
             "release": "2024-04-10"
         },
         "sales": {
-            "daily": [413139, 48539, 0, 0, 0, 0],
+            "daily": [413139, 48539, 20553, 10944, 0, 0],
             "weekOne": 0,
             "accumulate": 461678,
             "bi": {
                 "dayOne": 585545,
-                "soku": 0,
+                "soku": 645504,
                 "weekOne": 0,
                 "weekly": [0],
                 "accumulate": 0
