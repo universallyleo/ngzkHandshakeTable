@@ -7,6 +7,7 @@ export function numberWithCommas(n) {
     return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+// ! Consdier using date-fns instead of self-written code
 /**
  * ISO format date (YYYY-MM-DD)
  * @typedef {string} ISODate
@@ -169,6 +170,8 @@ export function bdayToGakunen(date) {
         ? `${birthyear - 1}`.slice(2, 4) + "/" + date.slice(2, 4)
         : date.slice(2, 4) + "/" + `${birthyear + 1}`.slice(2, 4);
 }
+
+//TODO Gakunen (in real time years) -> Gakunen (literally, e.g. 中二, 大一, 社三)
 
 //#region Sort related
 
