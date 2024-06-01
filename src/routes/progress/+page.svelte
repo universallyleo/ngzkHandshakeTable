@@ -27,8 +27,24 @@
         },
     ];
     let fixTypes = [
-        { display: "円盤", value: "fixCD" },
-        { display: "メンバー", value: "fixMember" },
+        {
+            display: "参加全員",
+            value: "fixAllMB",
+            selectables: () => null,
+        },
+        {
+            display: "円盤",
+            value: "fixCD",
+            selectables: () => involvedMembers(selectedCD),
+        },
+        {
+            display: "メンバー",
+            value: "fixMember",
+            selectables: () =>
+                performedInCDs(fixingMember)
+                    .map((x) => cdAlias(x))
+                    .reverse(),
+        },
     ];
     let seriesOpt = "cdProgression";
     let fixOpt = "fixCD";
@@ -51,14 +67,9 @@
 
     $: {
         if (seriesOpt == "cdProgression") {
-            if (fixOpt == "fixCD") {
-                selectables = involvedMembers(selectedCD);
-            }
-            if (fixOpt == "fixMember") {
-                selectables = performedInCDs(fixingMember)
-                    .map((x) => cdAlias(x))
-                    .reverse();
-            }
+            selectables = fixTypes
+                .find((x) => x.value === fixOpt)
+                .selectables();
         }
         if (seriesOpt == "overallProgression") {
             //selectables = union(fulldata.map((x) => involvedMembers(x)).flat());
@@ -78,13 +89,16 @@
             if (fixOpt == "fixCD") {
                 members = selectedMembers;
                 includings = [selectedCD];
-                mode = fixOpt;
             }
             if (fixOpt == "fixMember") {
                 members = [fixingMember];
                 includings = selectedCDsData;
-                mode = fixOpt;
             }
+            if (fixOpt == "fixAllMB") {
+                members = [];
+                includings = selectedCDsData;
+            }
+            mode = fixOpt;
         }
         if (seriesOpt == "overallProgression") {
             //should produce error if all MB not in any recorded cd; but this should not happen
@@ -158,6 +172,17 @@
                                 </label>
                             {/each}
                         </div>
+                        {#if fixOpt == "fixAllMB"}
+                            <div
+                                class="longSelection"
+                                in:fly|global={{ x: 200, duration: 700 }}
+                            >
+                                <SelectCDs
+                                    bind:selectedCDsData
+                                    selectAllButton={true}
+                                />
+                            </div>
+                        {/if}
                         {#if fixOpt == "fixCD"}
                             <div
                                 class="selectFix"
@@ -254,56 +279,12 @@
     </ul>
 </div>
 
-<ProgressTable {mode} {members} {includings} {extra} />
+<div class="main">
+    <ProgressTable {mode} {members} {includings} {extra} />
+</div>
 
 <style>
-    input,
-    button {
-        font-size: inherit;
-        font-family: inherit;
-        line-height: 1.2;
-    }
-
-    button:focus:not(:focus-visible) {
-        outline: none;
-    }
-
-    .optionsContainer {
-        width: max-content;
-        margin: 10px 1ch;
-        padding: 2px 6px;
-        border: 1px solid black;
-        display: flex;
-    }
-
-    ul.twocols {
-        display: inline-block;
-        text-align: left;
-        margin: 0;
-        padding: 0;
-        /*	background-color: hsl(40, 100%, 95%);*/
-    }
-
-    ul.twocols > li {
-        margin: 15px;
-        display: flex;
-        justify-content: left;
-        margin: 0;
-    }
-
-    ul.twocols > li > div.leftcol {
-        margin-top: 0;
-        margin-bottom: 0.5ch;
-        margin-right: 0.2em;
-        width: 75px;
-    }
-
-    ul.twocols > li > div.rightcol {
-        margin-top: 0;
-        margin-bottom: 0.5ch;
-        margin-right: 1em;
-    }
-
+    @import "../../style.css";
     .print {
         display: flex;
         justify-content: center;
@@ -332,7 +313,7 @@
 
     .cdProgressionOption {
         display: grid;
-        grid-template-columns: 255px auto;
+        grid-template-columns: fit-content auto;
         grid-template-rows: auto;
         grid-template-areas:
             "row1L row2R"

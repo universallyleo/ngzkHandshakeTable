@@ -14,6 +14,14 @@
             ? selectables.map((x) => x.value)
             : []);
 
+    function onlySingles(num = 0) {
+        let filtered = selectables
+            .filter(({ value }) => value.match(/Single$/))
+            .map((x) => x.value);
+
+        selectedCDs = num > 0 ? filtered.slice(0, num) : filtered;
+    }
+
     $: selectedCDsData = selectedCDs.map((x) =>
         find(fulldata, (y) => cdAlias(y.cd).value === x)
     );
@@ -24,18 +32,20 @@
         states={["すべて解除", "すべて選択"]}
         on:changeFrom={(ev) => toggleSelectAll(ev.detail.text)}
     />
+    <button on:click={onlySingles}> シングルのみ </button>
+    <button on:click={() => onlySingles(6)}> 最新6枚シングル </button>
 {/if}
 <div class="list">
     {#each selectables as cd}
-        <label
-            ><input
+        <label>
+            <input
                 type="checkbox"
                 name="selectedCDs"
                 bind:group={selectedCDs}
                 value={cd.value}
             />
-            {cd.display}</label
-        >
+            {cd.display}
+        </label>
     {/each}
 </div>
 

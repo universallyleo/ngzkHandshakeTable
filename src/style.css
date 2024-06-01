@@ -1,0 +1,53 @@
+
+input,
+button {
+    font-size: inherit;
+    font-family: inherit;
+    line-height: 1.2;
+}
+
+button:focus:not(:focus-visible) {
+    outline: none;
+}
+
+.optionsContainer {
+    width: max-content;
+    margin: 10px 1ch;
+    padding: 2px 6px;
+    border: 1px solid black;
+    display: flex;
+}
+
+.main {
+    margin: 0 auto;
+    width: max-content;
+    padding: 2em;
+}
+
+ul.twocols {
+    display: inline-block;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    /*	background-color: hsl(40, 100%, 95%);*/
+}
+
+ul.twocols > li {
+    margin: 15px;
+    display: flex;
+    justify-content: left;
+    margin: 0;
+}
+
+ul.twocols > li > div.leftcol {
+    margin-top: 0;
+    margin-bottom: 0.5ch;
+    margin-right: 0.2em;
+    width: 75px;
+}
+
+ul.twocols > li > div.rightcol {
+    margin-top: 0;
+    margin-bottom: 0.5ch;
+    margin-right: 1em;
+}

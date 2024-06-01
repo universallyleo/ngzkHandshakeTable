@@ -134,11 +134,7 @@
 </div>
 
 <style>
-    .main {
-        margin: 0 auto;
-        width: max-content;
-        padding: 2em;
-    }
+    @import "../../style.css";
     .table-bordered {
         margin: 2ch 2em;
         table-layout: fixed;
