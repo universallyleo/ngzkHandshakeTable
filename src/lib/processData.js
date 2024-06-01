@@ -446,6 +446,7 @@ export function compareData(
     }
 }
 
+// return: {1: expandedMBData, ... , n: expandedMBData , accumSold:[number], totalSold: number}
 export function expandDataList(cdData) {
     let groups = concat(
         [
@@ -462,6 +463,7 @@ export function expandDataList(cdData) {
     // }
     let res = cdData.table.map((x) => expandMBData(x, groups, cdData.lastDraw));
     let accumSold = Array(cdData.lastdraw).fill(0);
+    let numSoldAtEach = Array(cdData.lastdraw).fill(0);
     let totalSlots = 0;
     for (const mb of res) {
         //determine if mb's bday is in range; if so, add info
@@ -477,8 +479,15 @@ export function expandDataList(cdData) {
         // cal total num of slots sold at each draw
         // and also toal num of slots available
         accumSold = zipWith(accumSold, mb.accumulative, add);
+        numSoldAtEach = zipWith(numSoldAtEach, mb.numSoldAtEach, add);
         totalSlots += mb.numSold[1];
     }
+    res["numSoldAtEach"] =
+        numSoldAtEach.length < accumSold.length
+            ? numSoldAtEach.concat(
+                  Array(accumSold.length - numSoldAtEach.length).fill(0)
+              )
+            : numSoldAtEach;
     res["accumSold"] = accumSold;
     res["totalSlots"] = totalSlots;
     return res;
@@ -687,21 +696,24 @@ function determineGroup(mb, groups) {
 const skipped = (ctx, value) =>
     ctx.p0.skip || ctx.p1.skip ? value : undefined;
 
-export function simpleSeries(label, data, colorIndex = 0) {
-    return {
-        label: label,
-        data: data,
-        borderColor: `${nthColor(colorIndex)}`,
-        backgroundColor: `${nthColor(colorIndex)}`,
-        pointHitRadius: 20, // larger area for intersect detection
-        segment: {
-            borderColor: (ctx) => skipped(ctx, "rgb(0,0,0,0.5)"),
-            borderDash: (ctx) => skipped(ctx, [6, 6]),
-        },
-        spanGaps: true,
-        datalabels: {
-            color: "white",
+export function simpleSeries(label, data, colorIndex = 0, extraOpts = {}) {
+    return Object.assign(
+        {
+            label: label,
+            data: data,
+            borderColor: `${nthColor(colorIndex)}`,
             backgroundColor: `${nthColor(colorIndex)}`,
+            pointHitRadius: 20, // larger area for intersect detection
+            segment: {
+                borderColor: (ctx) => skipped(ctx, "rgb(0,0,0,0.5)"),
+                borderDash: (ctx) => skipped(ctx, [6, 6]),
+            },
+            spanGaps: true,
+            datalabels: {
+                color: "white",
+                backgroundColor: `${nthColor(colorIndex)}`,
+            },
         },
-    };
+        extraOpts
+    );
 }

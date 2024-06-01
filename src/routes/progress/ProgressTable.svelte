@@ -4,9 +4,10 @@
         cdAlias,
         getNumSold,
         simpleSeries,
+        expandDataList,
     } from "$lib/processData.js";
     // import { nthColor } from "$lib/util.js";
-    import { range, find } from "lodash-es";
+    import { range, find, zip } from "lodash-es";
     import ProgressGraph from "$lib/ProgressGraph.svelte";
 
     export let mode;
@@ -35,6 +36,16 @@
             );
             let sum = 0;
             res.main = res.sub.map((x) => (sum += x));
+        } else if (memberName == "all") {
+            let raw = expandDataList(cd);
+            res.total = raw["totalSlots"];
+            res.sub = zip(
+                raw["numSoldAtEach"],
+                raw["accumSold"],
+                Array(raw["numSoldAtEach"].length).fill(res.total)
+            );
+            res.main = raw.accumSold.map((s) => (s / res.total) * 100);
+            // console.log(res.main);
         }
         return res;
     }
@@ -44,6 +55,9 @@
         for (let i = len; i < toLength; i++) {
             data.main.push("-");
             data.sub.push("-");
+            if (data.displayChange) {
+                data.displayTableMain.push("-");
+            }
         }
     }
 
@@ -87,7 +101,13 @@
     }
 
     function subdataDisplayInTable(x) {
-        if (mode.slice(0, 3) == "fix") return `(+${x})`;
+        if (x === "-") return "";
+        if (mode.slice(0, 3) == "fix") {
+            return mode == "fixAllMB"
+                ? `(+${x[0]})<br> =&gt; ${x[1]} / ${x[2]}`
+                : `(+${x})`;
+            // return `(+${x})`;
+        }
         if (mode == "overallProgression") return `(+${x[0]}/${x[1]})`;
         if (mode == "receptionProgression") return `/${x}`;
     }
@@ -103,7 +123,7 @@
     let headings = [];
 
     $: {
-        //prepare data series
+        //#region prepare data series
         (seriesLabels = []), (datum = []), (xAxisLabels = []);
         if (mode.slice(0, 3) == "fix") {
             if (mode == "fixCD") {
@@ -122,6 +142,32 @@
                 title = `対象メンバー： ${getMember(datum[0].member).kanji}`;
                 numSlots = Math.max(...includings.map((x) => x.lastDraw));
             }
+
+            if (mode == "fixAllMB") {
+                includings.map((x) => {
+                    let y = cdprogression("all", x);
+                    datum.push({
+                        // add custom label to data
+                        // the `label' value will be shown as datalabel
+                        // xkey and value are needed for chartjs to understand the data series of interest
+                        main: y.main.map((d, i) => {
+                            return {
+                                // label: `${d.toFixed(2)}\n[ ${y.sub[i]} / ${y.total} ]`,
+                                label: `${d.toFixed(2)}`,
+                                xkey: i + 1,
+                                value: d,
+                            };
+                        }),
+                        sub: y.sub,
+                        displayChange: true,
+                        displayTableMain: y.main.map((d) => `${d.toFixed(2)}%`),
+                    });
+                    seriesLabels.push(cdAlias(x.cd).display);
+                });
+                title = `円盤完売部数`;
+                numSlots = Math.max(...includings.map((x) => x.lastDraw));
+            }
+
             datum.map((t) => extendCDProgressData(t, numSlots));
             caption = "累計完売数の推移";
             subcaption = "(N次受付の完売数)";
@@ -149,7 +195,7 @@
             let temp = members.map((x) =>
                 soldProgressionPerCD(x, extra.atdraw)
             );
-            console.log(temp);
+            // console.log(temp);
             //we do not want accumulated data, so swap out sub data (= individual CD sold data)
             datum = temp.map((x) => {
                 return {
@@ -158,7 +204,7 @@
                     sub: x.sub.map((y) => y[1]),
                 };
             });
-            console.log(datum);
+            // console.log(datum);
             seriesLabels = members.map((x) => getMember(x).kanji);
             title = `${extra.atdraw}次受付までの完売数推移`;
             caption = `${extra.atdraw}次受付までの完売数`;
@@ -171,9 +217,20 @@
         //organise data series into datasets for chart.js
         let graph = { labels: xAxisLabels, datasets: [] };
         for (let i = 0; i < datum.length; i++) {
+            let extraOpts =
+                mode == "fixAllMB"
+                    ? {
+                          parsing: {
+                              xAxisKey: "xkey",
+                              yAxisKey: "value",
+                          },
+                      }
+                    : {};
+            // console.log(q);
             graph["datasets"].push(
-                simpleSeries(seriesLabels[i], datum[i].main, i)
+                simpleSeries(seriesLabels[i], datum[i].main, i, extraOpts)
             );
+
             // let res = {
             //     label: seriesLabels[i],
             //     data: datum[i].main,
@@ -213,14 +270,15 @@
                         {seriesLabels[j]}
                     </td>
                     {#each range(numSlots) as i}
-                        <td
-                            >{series.main[i]}
-                            {#if !isNaN(series.main[i])}
-                                <span class="weaker"
-                                    >{subdataDisplayInTable(
-                                        series.sub[i]
-                                    )}</span
-                                >{/if}
+                        <td>
+                            {series.displayChange
+                                ? series.displayTableMain[i]
+                                : series.main[i]}
+                            <!-- {#if !isNaN(series.main[i])} -->
+                            <span class="weaker">
+                                {@html subdataDisplayInTable(series.sub[i])}
+                            </span>
+                            <!-- {/if} -->
                         </td>
                     {/each}
                 </tr>

@@ -212,7 +212,7 @@
         border: 1px solid #999;
         display: grid;
         grid-auto-flow: column;
-        grid-template-columns: 60px auto;
+        grid-template-columns: 6rem auto;
         grid-gap: 5px;
         height: fit-content;
         padding: 5px;

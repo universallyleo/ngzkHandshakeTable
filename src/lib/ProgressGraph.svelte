@@ -38,7 +38,12 @@
         data: [],
         options: {
             layout: {
-                padding: 10,
+                padding: {
+                    left: 20,
+                    right: 50,
+                    top: 10,
+                    bottom: 30,
+                },
             },
             responsive: true,
             hover: {
@@ -69,6 +74,7 @@
                 datalabels: {
                     borderRadius: 6,
                     align: "center",
+                    textAlign: "center",
                     anchor: "center",
                     padding: {
                         top: 2,
@@ -83,6 +89,8 @@
     let thechart;
     $: maxlength = progressData ? progressData.datasets[0].data.length : 0;
     $: canvasWidth = Math.max(maxlength * 80, 1000);
+    $: canvasHeight = Math.min(600 + progressData.datasets.length * 20, 900);
+    // $: console.log(canvasHeight);
     $: config.options.plugins.title.text = title;
     // $: maxValue = Math.max( ...(progressData.datasets.map( x=>
     //         Math.max( ...(x.data.map(y=> Number.isInteger(y)?y:0 )) )
@@ -105,6 +113,9 @@
     });
 </script>
 
-<div bind:this={canvasContainer} style="width:{canvasWidth}px">
+<div
+    bind:this={canvasContainer}
+    style="width:{canvasWidth}px;height:{canvasHeight}px;"
+>
     <canvas bind:this={thechart} />
 </div>

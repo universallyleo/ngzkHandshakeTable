@@ -236,16 +236,7 @@
 </section>
 
 <style>
-    input,
-    button {
-        font-size: inherit;
-        font-family: inherit;
-        line-height: 1.2;
-    }
-
-    button:focus:not(:focus-visible) {
-        outline: none;
-    }
+    @import "../style.css";
 
     .optionForm {
         width: max-content;
@@ -254,44 +245,9 @@
         line-height: 3.5ch;
     }
 
-    .optionsContainer {
-        padding: 2px 6px;
-        border: 1px solid black;
-    }
-
-    ul.twocols {
-        display: inline-block;
-        text-align: left;
-        margin: 0;
-        padding: 0;
-        /*	background-color: hsl(40, 100%, 95%);*/
-    }
-
-    ul.twocols > li {
-        display: flex;
-        justify-content: left;
-        margin: 0;
-    }
-
-    ul.twocols > li > div.leftcol {
-        flex: none;
-        margin: 0;
-        width: 55px;
-    }
-
     .advanceOption {
         padding: 2px 6px;
         border: 1px solid black;
         display: flex;
     }
-
-    .main {
-        margin: 0 auto;
-        width: max-content;
-        padding: 2em;
-    }
-
-    /* .print {
-        margin-left: auto;
-    } */
 </style>

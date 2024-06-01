@@ -248,9 +248,9 @@ export function nthColor(n) {
         "#fabed4", //pink
         "#dcbeff", //lavender
         "#9a6324", //brown
-        "#fffac8", //beige
+        //"#fffac8", //beige
         "#800000", //maroon
-        "#aaffc3", //mint
+        //"#aaffc3", //mint
         "#000075", //navy
         "#ffe119", //yellow
         "#bfef45", //lime
