@@ -6,6 +6,7 @@
         fulldata,
         involvedMembers,
         findStartingCD,
+        hasMeetInCD,
         performedInCDs,
         ordering,
         getAllMembers,
@@ -17,6 +18,7 @@
     import SelectCDs from "$lib/SelectCDs.svelte";
     import RemoveCDTypes from "$lib/RemoveCDTypes.svelte";
     import SelectMembersPanel from "$lib/SelectMembersPanel.svelte";
+    import AccordionItem from "../../lib/AccordionItem.svelte";
 
     let seriesTypes = [
         { display: "個別円盤の各受付完売数推移", value: "cdProgression" },
@@ -46,6 +48,7 @@
                     .reverse(),
         },
     ];
+    let optionMenuOpened = true;
     let seriesOpt = "cdProgression";
     let fixOpt = "fixCD";
     let mode = "fixCD";
@@ -85,18 +88,24 @@
     }
 
     function processData() {
+        optionMenuOpened = false;
         if (seriesOpt == "cdProgression") {
             if (fixOpt == "fixCD") {
-                members = selectedMembers;
                 includings = [selectedCD];
+                members = selectedMembers.filter((mb) =>
+                    includings.reduce(
+                        (prev, curr) => prev && hasMeetInCD(mb, curr),
+                        true
+                    )
+                );
             }
             if (fixOpt == "fixMember") {
                 members = [fixingMember];
                 includings = selectedCDsData;
             }
             if (fixOpt == "fixAllMB") {
-                members = [];
                 includings = selectedCDsData;
+                members = [];
             }
             mode = fixOpt;
         }
@@ -133,155 +142,163 @@
     <meta name="description" content="乃木坂46完売数推移" />
 </svelte:head>
 
-<div class="optionsContainer">
-    <ul class="twocols">
-        <li>
-            <div class="leftcol">系列構成:</div>
-            <div class="rightcol">
-                {#each seriesTypes as ser}
-                    <label>
-                        <input
-                            type="radio"
-                            name="seriesOpt"
-                            bind:group={seriesOpt}
-                            id={ser.value}
-                            value={ser.value}
-                        />
-                        {ser.display}
-                    </label>
-                {/each}
-            </div>
-        </li>
-        <li>
-            <div class="leftcol">データ:</div>
-            <div class="rightcol">
-                {#if seriesOpt == "cdProgression"}
-                    <div class="cdProgressionOption">
-                        <div class="fixOption">
-                            固定対象:
-                            {#each fixTypes as ft}
-                                <label>
-                                    <input
-                                        type="radio"
-                                        name="fixOpt"
-                                        bind:group={fixOpt}
-                                        id={ft.value}
-                                        value={ft.value}
+<AccordionItem bind:isOpen={optionMenuOpened} title="推移データ設定">
+    <div class="optionsContainer">
+        <ul class="twocols">
+            <li>
+                <div class="leftcol">系列構成:</div>
+                <div class="rightcol">
+                    {#each seriesTypes as ser}
+                        <label>
+                            <input
+                                type="radio"
+                                name="seriesOpt"
+                                bind:group={seriesOpt}
+                                id={ser.value}
+                                value={ser.value}
+                            />
+                            {ser.display}
+                        </label>
+                    {/each}
+                </div>
+            </li>
+            <li>
+                <div class="leftcol">データ:</div>
+                <div class="rightcol">
+                    {#if seriesOpt == "cdProgression"}
+                        <div class="cdProgressionOption">
+                            <div class="fixOption">
+                                固定対象:
+                                {#each fixTypes as ft}
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            name="fixOpt"
+                                            bind:group={fixOpt}
+                                            id={ft.value}
+                                            value={ft.value}
+                                        />
+                                        {ft.display}
+                                    </label>
+                                {/each}
+                            </div>
+                            {#if fixOpt == "fixAllMB"}
+                                <div
+                                    class="longSelection"
+                                    in:fly|global={{ y: 200, duration: 700 }}
+                                >
+                                    <SelectCDs
+                                        bind:selectedCDsData
+                                        selectAllButton={true}
                                     />
-                                    {ft.display}
-                                </label>
-                            {/each}
+                                </div>
+                            {/if}
+                            {#if fixOpt == "fixCD"}
+                                <div
+                                    class="selectFix"
+                                    in:fly|global={{ y: 200, duration: 700 }}
+                                >
+                                    <SelectOneCD
+                                        bind:selectedCDData={selectedCD}
+                                    />
+                                </div>
+                                <div
+                                    class="longSelection"
+                                    in:fly|global={{ y: 200, duration: 700 }}
+                                >
+                                    <SelectMembersPanel
+                                        bind:selectedMembers
+                                        {selectables}
+                                    />
+                                </div>
+                            {/if}
+
+                            {#if fixOpt == "fixMember"}
+                                <div
+                                    class="selectFix"
+                                    in:fly|global={{ y: 200, duration: 700 }}
+                                >
+                                    <select
+                                        id="mbSelect"
+                                        name="mbSelect"
+                                        bind:value={fixingMember}
+                                    >
+                                        {#each membersdata as mb}
+                                            <option value={mb.member}
+                                                >{mb.kanji}</option
+                                            >
+                                        {/each}
+                                    </select>
+                                </div>
+                                <div
+                                    class="cdList"
+                                    in:fly|global={{ y: 200, duration: 700 }}
+                                >
+                                    <SelectCDs
+                                        bind:selectedCDsData
+                                        {selectables}
+                                    />
+                                </div>
+                            {/if}
                         </div>
-                        {#if fixOpt == "fixAllMB"}
+                    {/if}
+
+                    {#if seriesOpt == "overallProgression"}
+                        <div in:fly|global={{ y: 200, duration: 700 }}>
+                            <RemoveCDTypes bind:removeTypes /> <br />
+                            <SelectMembersPanel
+                                bind:selectedMembers
+                                {selectables}
+                            />
+                        </div>
+                    {/if}
+
+                    {#if seriesOpt == "receptionProgression"}
+                        <div in:fly|global={{ y: 200, duration: 700 }}>
                             <div
-                                class="longSelection"
-                                in:fly|global={{ x: 200, duration: 700 }}
+                                style="margin: 5px; padding-bottom: 5px; border-bottom: solid 1px black;"
                             >
                                 <SelectCDs
                                     bind:selectedCDsData
                                     selectAllButton={true}
                                 />
                             </div>
-                        {/if}
-                        {#if fixOpt == "fixCD"}
                             <div
-                                class="selectFix"
-                                in:fly|global={{ x: 200, duration: 700 }}
+                                style="margin-top: 1ch; padding-bottom: 5px; border-bottom: solid 1px black;"
                             >
-                                <SelectOneCD bind:selectedCDData={selectedCD} />
+                                (N=
+                                <select name="draw" bind:value={selectedDraw}>
+                                    {#each range(lastDraw) as i}
+                                        <option value={i + 1}>{i + 1}</option>
+                                    {/each}
+                                </select>
+                                )次受付
                             </div>
-                            <div
-                                class="longSelection"
-                                in:fly|global={{ x: 200, duration: 700 }}
-                            >
+                            <div style="margin-top: 1ch">
                                 <SelectMembersPanel
                                     bind:selectedMembers
                                     {selectables}
                                 />
                             </div>
-                        {/if}
-
-                        {#if fixOpt == "fixMember"}
-                            <div
-                                class="selectFix"
-                                in:fly|global={{ x: 200, duration: 700 }}
-                            >
-                                <select
-                                    id="mbSelect"
-                                    name="mbSelect"
-                                    bind:value={fixingMember}
-                                >
-                                    {#each membersdata as mb}
-                                        <option value={mb.member}
-                                            >{mb.kanji}</option
-                                        >
-                                    {/each}
-                                </select>
-                            </div>
-                            <div
-                                class="cdList"
-                                in:fly|global={{ x: 200, duration: 700 }}
-                            >
-                                <SelectCDs bind:selectedCDsData {selectables} />
-                            </div>
-                        {/if}
-                    </div>
-                {/if}
-
-                {#if seriesOpt == "overallProgression"}
-                    <div in:fly|global={{ x: 200, duration: 700 }}>
-                        <RemoveCDTypes bind:removeTypes /> <br />
-                        <SelectMembersPanel
-                            bind:selectedMembers
-                            {selectables}
-                        />
-                    </div>
-                {/if}
-
-                {#if seriesOpt == "receptionProgression"}
-                    <div in:fly|global={{ x: 200, duration: 700 }}>
-                        <div
-                            style="margin: 5px; padding-bottom: 5px; border-bottom: solid 1px black;"
-                        >
-                            <SelectCDs
-                                bind:selectedCDsData
-                                selectAllButton={true}
-                            />
                         </div>
-                        <div
-                            style="margin-top: 1ch; padding-bottom: 5px; border-bottom: solid 1px black;"
-                        >
-                            (N=
-                            <select name="draw" bind:value={selectedDraw}>
-                                {#each range(lastDraw) as i}
-                                    <option value={i + 1}>{i + 1}</option>
-                                {/each}
-                            </select>
-                            )次受付
-                        </div>
-                        <div style="margin-top: 1ch">
-                            <SelectMembersPanel
-                                bind:selectedMembers
-                                {selectables}
-                            />
-                        </div>
-                    </div>
-                {/if}
-            </div>
-        </li>
-        <li>
-            <div style="width: 50%; margin: 1ch auto 5px auto;">
-                <button on:click={processData} class="print"
-                    >グラフ作成する</button
-                >
-            </div>
-        </li>
-    </ul>
-</div>
+                    {/if}
+                </div>
+            </li>
+            <li>
+                <div style="width: 50%; margin: 1ch auto 5px auto;">
+                    <button on:click={processData} class="print"
+                        >グラフ作成する</button
+                    >
+                </div>
+            </li>
+        </ul>
+    </div>
+</AccordionItem>
 
-<div class="main">
-    <ProgressTable {mode} {members} {includings} {extra} />
-</div>
+<!-- <div class="main"> -->
+<ProgressTable {mode} {members} {includings} {extra} />
+
+<!-- </div> -->
 
 <style>
     @import "../../style.css";
