@@ -191,9 +191,13 @@ export function findStartingCD(memberNameList) {
     return fulldata.length; //everyone in list not in any CD, something is strange
 }
 
+export function hasMeetInCD(memberName, cdData) {
+    return !!cdData.table.find((y) => y.member == memberName);
+}
+
 export function performedInCDs(memberName) {
     return fulldata
-        .filter((x) => !!x.table.find((y) => y.member == memberName))
+        .filter((cdData) => hasMeetInCD(memberName, cdData))
         .map(({ cd }) => cd);
 }
 
@@ -335,12 +339,6 @@ const accumulativeSum = (arr) => {
     }, []);
 };
 
-export const extendArrayByLastEntry = (arr, len) => {
-    if (len <= arr.length) return arr;
-    if (arr.length == 0) return Array(len).fill(0);
-    return arr.concat(Array(len - arr.length).fill(arr[arr.length - 1]));
-};
-
 //#region ExpanededMemberSlot def
 /**
  * @typedef {Object} ExpandedMemberSlotData
@@ -387,9 +385,9 @@ export function expandMBData(mbdata, groups, lastdraw) {
     res.soldoutAt = res.numSold[0] == res.numSold[1] ? lastsoldAt : -1;
     res.numSoldAtEach = lastsoldAt > 0 ? Array(lastsoldAt).fill(0) : [];
     soldatdraws.forEach((n) => res.numSoldAtEach[n - 1]++);
-    res.accumulative = extendArrayByLastEntry(
+    res.accumulative = fillArrayByLastEntry(
         accumulativeSum(res.numSoldAtEach),
-        lastdraw
+        lastdraw ? lastdraw : lastsoldAt
     );
 
     return res;
@@ -625,6 +623,7 @@ export function sortList(datalist, opt = "none") {
 function sortPlainList(mbdatalist, opt = "kana") {
     switch (opt) {
         case "numsold": {
+            //sort by sold speed
             let t = isExpandedDatalist(mbdatalist)
                 ? mbdatalist
                 : mbdatalist.map((x) => expandMBData(x, ""));

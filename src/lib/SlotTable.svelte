@@ -9,7 +9,7 @@
         finalSoldoutDraw,
     } from "$lib/processData.js";
     import { firstFutureDate } from "$lib/util.js";
-    import { add, zipWith } from "lodash-es";
+    // import { add, zipWith } from "lodash-es";
     export let data;
     //export let group="gen"; allow: gen, dobyear, dobmonth, bloodtype, from
     export let filterOpt;
@@ -18,6 +18,7 @@
     export let capture;
     export let hideTable = false;
     export let upToDraw = data.lastDraw;
+    export let domElt;
 
     let compare = null;
     let blur = -1; //index of first date to unblur = number of blurred dates
@@ -101,7 +102,7 @@
 
 <!-- not clear why width is not working.... -->
 <!-- <table class="table-bordered" style:width={w}> -->
-<div class="container">
+<div class="container" bind:this={domElt}>
     <table class="table-bordered">
         <caption class="text-center"
             >{title} ( {upToDraw}次受付結果 )

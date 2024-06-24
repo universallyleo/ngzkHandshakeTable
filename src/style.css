@@ -21,7 +21,7 @@ button:focus:not(:focus-visible) {
 .main {
     margin: 0 auto;
     width: max-content;
-    padding: 2em;
+    padding-top: 2em;
 }
 
 ul.twocols {

@@ -1,8 +1,7 @@
 <script>
-    // import { onMount } from "svelte";
     import { currentCDData, cdAlias } from "$lib/processData.js";
     import { min } from "lodash-es";
-    // import html2canvas from "html2canvas";
+    import { toJpeg } from "html-to-image";
     import SlotTable from "$lib/SlotTable.svelte";
     // import SelectOneCD from "$lib/SelectOneCD.svelte";
     import SelectCDReception from "$lib/SelectCDReception.svelte";
@@ -37,7 +36,7 @@
     let compareToCDData,
         hideTable = false;
     let compareAtDraw, compareIndex;
-    let ST;
+    let ST, STdom;
     let selectedIndex = 0;
     let selectedCDData = currentCDData;
     let lastDraw = selectedCDData.lastDraw;
@@ -45,32 +44,24 @@
     let compareExclusion = 0;
 
     //#region functions
-    // function exportImg(canvas){
-    //     var link=document.createElement("a");
-    //     document.body.appendChild(link);
-    //     link.download = `${fulldata[selected].cd.num}${fulldata[selected].cd.type}-${fulldata[selected].lastDraw}.jpg`;
-    //     link.href = canvas.toDataURL();
-    //     link.target = '_blank';
-    //     link.click();
-    //     capture=false;
-    // }
+    function exportImg(dataurl) {
+        let link = document.createElement("a");
+        let name = `${cdAlias(selectedCDData.cd).value}-Draw${selectedCDData.lastDraw}`;
+        name += hideTable
+            ? `vs${cdAlias(compareToCDData.cd).value}-Draw${compareAtDraw}.jpg`
+            : `.jpg`;
+        link.download = name;
+        link.href = dataurl;
+        link.target = "_blank";
+        link.click();
+    }
 
-    // function copyImg(canvas){
-    //     canvas.toBlob(blob=> {
-    //         navigator.clipboard.write([new ClipboardItem( {'image/png': blob} )])
-    //     });
-    //     alert("Table copied as image to clipboard");
-    //     capture=false;
-    // }
-
-    // function imgOut(method){
-    //     html2canvas(document.getElementById("slotstable"),{
-    //         background:'#ffffff',
-    //         scale:2,  //needed to allow rendering 1px border of table
-    //         //allowTaint: true, //needed in order to render css background (NAslots)
-    //         //useCORS: true //needed in order to render css background (NAslots)
-    //     }).then( method );
-    // }
+    function imgOut(method) {
+        toJpeg(STdom, {
+            backgroundColor: "#ffffff",
+        }).then(method);
+        // method can be function for handling "saving" or just "copy to clipboard" (to be implement)
+    }
 
     function getCompare() {
         let compare =
@@ -126,14 +117,16 @@
                     />
                 </div>
 
-                <!-- <div class="print">
-                    <button on:click={() => imgOut(exportImg)}>画像輸出</button>
-                    <button
+                <div style="margin-left:auto;">
+                    <button on:click={() => imgOut(exportImg)}
+                        >結果画像ダウンロード</button
+                    >
+                    <!-- <button
                         on:click={() => imgOut(copyImg)}
                         title="Does not work on Firefox unless ClipboardItem is enabled"
                         >画像コピー</button
-                    >
-                </div> -->
+                    > -->
+                </div>
             </li>
             <li>
                 <div class="leftcol">Group:</div>
@@ -225,6 +218,7 @@
 <section id="slotstable" class="main" in:fly|global={{ y: 200, duration: 500 }}>
     <SlotTable
         bind:this={ST}
+        bind:domElt={STdom}
         data={selectedCDData}
         {filterOpt}
         {groupOpt}
