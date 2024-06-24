@@ -150,8 +150,8 @@ export function prepareFixCD(members, CDData) {
         datum,
         seriesLabels,
         xAxisLabels,
-        caption: "累計完売数の推移",
-        subcaption: "(N次受付の完売数)",
+        caption: "累計完売部数の推移",
+        subcaption: "(N次受付の完売部数)",
     };
 }
 
@@ -173,8 +173,8 @@ export function prepareFixMB(member, CDDatas) {
         datum,
         seriesLabels,
         xAxisLabels,
-        caption: "累計完売数の推移",
-        subcaption: "(N次受付の完売数)",
+        caption: "累計完売部数の推移",
+        subcaption: "(N次受付の完売部数)",
     };
 }
 
@@ -212,11 +212,11 @@ export function prepareFixAllMB(CDDatas) {
     };
     let xAxisLabels = range(1, numSlots + 1);
     return {
-        title: `円盤完売部数`,
+        title: `円盤ごと完売部数`,
         numSlots,
         datum,
         seriesLabels,
-        caption: "円盤完売数比率の推移",
+        caption: "完売部数比率推移",
         subcaption: "",
         xAxisLabels,
         plotExtraOpts,
@@ -229,9 +229,9 @@ export function preapreOverallProgress(members, CDDatas) {
     let seriesLabels = members.map((x) => getMember(x).kanji);
     let xAxisLabels = CDDatas.map((x) => cdAlias(x.cd).display);
     return {
-        title: "総完売数推移",
-        caption: "累計総完売数",
-        subcaption: "(円盤の総完売部数 / 最大可能完売数)",
+        title: "総完売部数推移",
+        caption: "累計総完売部数",
+        subcaption: "(円盤の総完売部数 / 最大可能完売部数)",
         numSlots: CDDatas.length,
         datum,
         seriesLabels,
@@ -254,9 +254,9 @@ export function prepareReceptionProg(members, CDDatas, atdraw) {
     });
     // console.log(datum);
     let seriesLabels = members.map((x) => getMember(x).kanji);
-    let title = `${atdraw}次受付までの完売数推移`;
-    let caption = `${atdraw}次受付までの完売数`;
-    let subcaption = " / 円盤の最大可能完売数";
+    let title = `${atdraw}次受付までの完売部数推移`;
+    let caption = `${atdraw}次受付までの完売部数`;
+    let subcaption = " / 円盤の最大可能完売部数";
     let xAxisLabels = CDDatas.map((x) => cdAlias(x.cd).display);
     return {
         title,

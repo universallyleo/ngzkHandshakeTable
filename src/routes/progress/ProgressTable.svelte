@@ -2,6 +2,7 @@
     import { simpleSeries } from "$lib/processData.js";
     // import { nthColor } from "$lib/util.js";
     import { range } from "lodash-es";
+    import { toJpeg } from "html-to-image";
     import {
         subdataDisplayInTable,
         prepareFixCD,
@@ -21,6 +22,19 @@
     let seriesCollection = {};
     let progressData = {};
     let headings = [];
+    let tblDom;
+
+    function imgOut(elt) {
+        toJpeg(elt, {
+            backgroundColor: "#ffffff",
+        }).then(function (dataurl) {
+            let link = document.createElement("a");
+            link.download = `${seriesCollection.caption}.jpg`;
+            link.href = dataurl;
+            link.target = "_blank";
+            link.click();
+        });
+    }
 
     $: {
         //#region prepare data series
@@ -90,47 +104,53 @@
     }
 </script>
 
-//#region HTML
-<!-- 
-<div class="container"> -->
+<!-- #region HTML
+-->
 <AccordionItem isOpen={false} title="詳細データ">
-    <table class="table-bordered">
-        <caption>
-            {seriesCollection.caption}
-            <span class="weaker">{seriesCollection.subcaption}</span></caption
-        >
-        <thead>
-            <th />
-            {#each headings as lb}
-                <th class="headingRow">{@html lb}</th>
-            {/each}
-        </thead>
+    <div style="width: fit-content; margin:.2em auto;">
+        <button on:click={() => imgOut(tblDom)}>
+            詳細データ画像ダウンロード
+        </button>
+    </div>
+    <div style="width: fit-content; margin: 0 auto;">
+        <table class="table-bordered" bind:this={tblDom}>
+            <caption>
+                {seriesCollection.caption}
+                <span class="weaker">{seriesCollection.subcaption}</span>
+            </caption>
+            <thead>
+                <th />
+                {#each headings as lb}
+                    <th class="headingRow">{@html lb}</th>
+                {/each}
+            </thead>
 
-        <tbody>
-            {#each seriesCollection.datum as series, j}
-                <tr>
-                    <td class="headingCell cdInfo">
-                        {seriesCollection.seriesLabels[j]}
-                    </td>
-                    {#each range(seriesCollection.numSlots) as i}
-                        <td>
-                            {series.displayChange
-                                ? series.displayTableMain[i]
-                                : series.main[i]}
-                            <!-- {#if !isNaN(series.main[i])} -->
-                            <span class="weaker">
-                                {@html subdataDisplayInTable(
-                                    series.sub[i],
-                                    mode
-                                )}
-                            </span>
-                            <!-- {/if} -->
+            <tbody>
+                {#each seriesCollection.datum as series, j}
+                    <tr>
+                        <td class="headingCell cdInfo">
+                            {seriesCollection.seriesLabels[j]}
                         </td>
-                    {/each}
-                </tr>
-            {/each}
-        </tbody>
-    </table>
+                        {#each range(seriesCollection.numSlots) as i}
+                            <td>
+                                {series.displayChange
+                                    ? series.displayTableMain[i]
+                                    : series.main[i]}
+                                <!-- {#if !isNaN(series.main[i])} -->
+                                <span class="weaker">
+                                    {@html subdataDisplayInTable(
+                                        series.sub[i],
+                                        mode
+                                    )}
+                                </span>
+                                <!-- {/if} -->
+                            </td>
+                        {/each}
+                    </tr>
+                {/each}
+            </tbody>
+        </table>
+    </div>
 </AccordionItem>
 <div>
     <div class="graphContainer">
@@ -142,9 +162,8 @@
     </div>
 </div>
 
-<!-- </div> -->
-
-//#region style
+<!-- #region style 
+-->
 
 <style>
     .graphContainer {
@@ -185,7 +204,7 @@
         border-collapse: collapse;
         display: block;
         overflow-x: auto;
-        margin: 0 auto;
+        /* margin: 0 auto; */
         padding: 0.4em;
         font-family: Arial, Helvetica, sans-serif;
     }

@@ -63,6 +63,7 @@
                 legend: {
                     position: "top",
                     labels: { padding: 15 },
+                    title: { padding: 15 },
                 },
                 title: {
                     display: true,
@@ -70,6 +71,7 @@
                         size: 20,
                     },
                     text: "",
+                    padding: 5,
                 },
                 datalabels: {
                     borderRadius: 6,
