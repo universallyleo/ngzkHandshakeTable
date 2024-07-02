@@ -227,6 +227,28 @@ export function offsetISOdays(date, days) {
 export const isISODate = (d) =>
     d.match(/^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/);
 
+/**
+ * @param  {ISODate} a format: YYYY-MM-DD
+ * @param  {ISODate} b format: YYYY-MM-DD
+ * @return {integer} -1 if a is later, +1 if a is earlier, 0 if the same
+ */
+export function compareISODateDescend(a, b) {
+    let da = a.split("-").map((x) => parseInt(x)),
+        db = b.split("-").map((x) => parseInt(x));
+    return composeCompares(
+        [0, 0, 0].map(() => {
+            return (a, b) => b - a;
+        }),
+        da,
+        db
+    );
+}
+
+export function composeCompares(compfuncs, a, b) {
+    let c = range(compfuncs.length).map((i) => compfuncs[i](a[i], b[i]));
+    return c.reduce((accum, curr) => (accum ? accum : curr));
+}
+
 export function nth(n) {
     return ["st", "nd", "rd"][((((n + 90) % 100) - 10) % 10) - 1] || "th";
 }
@@ -260,27 +282,6 @@ export function nthColor(n) {
     ];
     return n < palette.length ? palette[n] : palette[n % palette.length];
 }
-/**
- * @param  {ISODate} a format: YYYY-MM-DD
- * @param  {ISODate} b format: YYYY-MM-DD
- * @return {integer} -1 if a is later, +1 if a is earlier, 0 if the same
- */
-export function compareISODateDescend(a, b) {
-    let da = a.split("-").map((x) => parseInt(x)),
-        db = b.split("-").map((x) => parseInt(x));
-    return composeCompares(
-        [0, 0, 0].map(() => {
-            return (a, b) => b - a;
-        }),
-        da,
-        db
-    );
-}
-
-export function composeCompares(compfuncs, a, b) {
-    let c = range(compfuncs.length).map((i) => compfuncs[i](a[i], b[i]));
-    return c.reduce((accum, curr) => (accum ? accum : curr));
-}
 
 export const colorCode = {
     white: "#FFF",
@@ -295,6 +296,35 @@ export const colorCode = {
     yellowgreen: "#9aff98",
     turquoise: "#66cccc",
 };
+
+export const colorNameList = [
+    "white",
+    "orange",
+    "blue",
+    "yellow",
+    "purple",
+    "green",
+    "pink",
+    "red",
+    "water",
+    "yellowgreen",
+    "turquoise",
+];
+
+export function fromColorToColor(c1, c2) {
+    let i1 = colorNameList.indexOf(c1),
+        i2 = colorNameList.indexOf(c2);
+    if (i1 == i2) return 0;
+
+    // d1 = # A button press needed to reach c2 from c1
+    let d1 = i1 < i2 ? i2 - i1 : i2 + colorNameList.length - i1;
+    let d2 = colorNameList.length - d1;
+    // let d2 = i1>i2?i1-i2:i1+colorNameList.length-i2;
+    // both d1 and d2 are positive integers
+    // return number is k>0 => A button k times
+    // return number is k<0 => B button k times
+    return d1 < d2 ? d1 : -d2;
+}
 
 export const colorJPName = {
     white: "白",

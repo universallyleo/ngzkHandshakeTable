@@ -1,10 +1,16 @@
+<script>
+    import { base } from "$app/paths";
+    // needing to prepend base path is adapter-static problem
+    // c.f. https://github.com/sveltejs/kit/issues/4528
+</script>
+
 <nav>
     <ul>
-        <li><a href="/">🤝完売表</a></li>
-        <li><a href="/progress">📈完売推移</a></li>
-        <li><a href="/miscData">💿売上データ</a></li>
-        <li><a href="/bday">🎉学年・身長・コール</a></li>
-        <li><a href="/about">ℹ️About</a></li>
+        <li><a href="{base}/">🤝完売表</a></li>
+        <li><a href="{base}/progress">📈完売推移</a></li>
+        <li><a href="{base}/miscData">💿売上データ</a></li>
+        <li><a href="{base}/bday">🎉学年・身長・コール</a></li>
+        <li><a href="{base}/about">ℹ️About</a></li>
     </ul>
 </nav>
 <slot />
