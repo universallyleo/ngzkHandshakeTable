@@ -90,7 +90,7 @@
         </div>
     {/if}
     <div class="soldFraction">
-        {row.accumulative[upToDraw - 1]}/{row.numSold[1]}
+        {upToDraw > 0 ? row.accumulative[upToDraw - 1] : 0}/{row.numSold[1]}
     </div>
 </td>
 
