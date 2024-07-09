@@ -40,15 +40,29 @@
         },
         {
             "member": "Nakamura Reno",
-            "slotsSold": ["||||", "||||", "||||", "||||", "||||", "||||"]
+            "slotsSold": ["||||", "||||", "||||", "||||", "x|x|x|x|x", "||||"]
         },
         {
             "member": "Mukai Hazuki",
-            "slotsSold": ["||||", "||||", "||||", "||||", "||||", "||||"]
+            "slotsSold": [
+                "x|x|x|x|x",
+                "x|x|x|x|x",
+                "x|x|x|x|x",
+                "||||",
+                "x|x|x|x|x",
+                "||||"
+            ]
         },
         {
             "member": "Yoshida Ayano Cristi",
-            "slotsSold": ["||||", "||||", "||||", "||||", "||||", "||||"]
+            "slotsSold": [
+                "||||",
+                "||||",
+                "x|x|x|x|x",
+                "x|x|x|x|x",
+                "||||",
+                "||||"
+            ]
         },
         {
             "member": "Kanagawa Saya",
