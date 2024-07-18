@@ -61,14 +61,18 @@
             case "receptionProgression":
                 if (!("atdraw" in extra))
                     console.log("Need to specify 'atdraw' for this option.");
-                seriesCollection = prepareReceptionProg(members, includings);
+                seriesCollection = prepareReceptionProg(
+                    members,
+                    includings,
+                    extra.atdraw
+                );
                 headings = seriesCollection.xAxisLabels.map((x) =>
                     x.replace(/\s/, "<br>")
                 );
                 break;
         }
         seriesCollection = seriesCollection;
-        console.log(seriesCollection);
+        // console.log(seriesCollection);
 
         //organise data series into datasets for chart.js
         let graph = { labels: seriesCollection.xAxisLabels, datasets: [] };
