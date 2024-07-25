@@ -1,13 +1,10 @@
 <script>
     // import membersdata from "$lib/data/members.json";
     import {
-        cdAlias,
-        membersdata,
         fulldata,
         involvedMembers,
         findStartingCD,
         hasMeetInCD,
-        performedInCDs,
         ordering,
         getAllMembers,
     } from "$lib/processData.js";
@@ -44,7 +41,6 @@
     let selectables = involvedMembers(selectedCD);
     let removeTypes = [];
 
-    let fixingMember = "Yumiki Nao";
     let selectedCDsData = [];
     let selectedDraw = 1;
 
@@ -199,9 +195,9 @@
             </li>
             <li>
                 <div style="width: 50%; margin: 1ch auto 5px auto;">
-                    <button on:click={processData} class="print"
-                        >グラフ作成する</button
-                    >
+                    <button on:click={processData} class="print">
+                        グラフ作成する
+                    </button>
                 </div>
             </li>
         </ul>

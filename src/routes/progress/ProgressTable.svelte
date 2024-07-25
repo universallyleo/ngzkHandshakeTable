@@ -72,7 +72,6 @@
                 break;
         }
         seriesCollection = seriesCollection;
-        // console.log(seriesCollection);
 
         //organise data series into datasets for chart.js
         let graph = { labels: seriesCollection.xAxisLabels, datasets: [] };

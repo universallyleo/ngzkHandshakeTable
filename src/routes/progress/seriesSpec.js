@@ -243,13 +243,13 @@ export function preapreOverallProgress(members, CDDatas) {
 // series with data = total number of sold slots up to the N-th draw
 export function prepareReceptionProg(members, CDDatas, atdraw) {
     let temp = members.map((x) => soldProgressionOverCDs(x, CDDatas, atdraw));
-    // console.log(temp);
+    console.log(temp);
     //we do not want accumulated data, so swap out sub data (= individual CD sold data)
     let datum = temp.map((x) => {
         return {
             member: x.member,
-            main: x.sub.map((y) => y[0]),
-            sub: x.sub.map((y) => y[1]),
+            main: x.sub.map((y) => (y ? y[0] : null)),
+            sub: x.sub.map((y) => (y ? y[1] : null)),
         };
     });
     // console.log(datum);
