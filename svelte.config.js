@@ -6,8 +6,8 @@ const dev = process.argv.includes("dev");
 const config = {
     kit: {
         adapter: adapter({
-            pages: "docs",
-            assets: "docs",
+            pages: "build",
+            assets: "build",
         }),
         paths: {
             // change below to your repo name
