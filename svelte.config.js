@@ -10,6 +10,7 @@ const config = {
             assets: "build",
         }),
         paths: {
+            relative: false,
             // change below to your repo name
             base: dev ? "" : "/ngzkHandshakeTable",
         },
