@@ -310,6 +310,8 @@ if __name__ == "__main__":
     if newtb == 0:
         log += "Table empty.❌\nAbort process."
         print(log)
+        # pass result to GITHUB_OUTPUT
+        print("changes=none >> $GITHUB_OUTPUT")
         sys.exit()
 
     #############################
@@ -326,6 +328,8 @@ if __name__ == "__main__":
     if newlastdraw > thisDraw:
         log += f"Already scraped draw {thisDraw}\nAbort process"
         print(log)
+        # pass result to GITHUB_OUTPUT
+        print("changes=none >> $GITHUB_OUTPUT")
         sys.exit()
 
     cd["lastDraw"] = newlastdraw
@@ -367,3 +371,5 @@ if __name__ == "__main__":
     # log += updateToFirebase(newlastdraw, tabledata)
 
     print(log)
+    # pass result to GITHUB_OUTPUT
+    print("changes=new >> $GITHUB_OUTPUT")
