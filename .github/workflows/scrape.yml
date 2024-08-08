@@ -42,16 +42,23 @@ jobs:
           FIREBASE_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
         run: python scrape.py old/backup_at_${{ env.today }}.json
 
-      - name: Setup and Build with Nodejs
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
-          cache: "npm"
-      - run: npm ci ## clean install
-      - run: npm run build
-
+  commit-if-change:
+    name: Check change and commit
+    needs: modify-db
+    runs-on: ubuntu-latest
+    if: needs.modify-db.output.changes == 'new'
+    steps:
+      # - name: Setup and Build with Nodejs
+      #   uses: actions/setup-node@v4
+      #   with:
+      #     node-version: '20.x'
+      #     cache: "npm"
+      # - run: npm ci ## clean install
+      # - run: npm run build
       - name: Auto commit
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           branch: main
           commit_message: Auto DB update ${{ env.today }}
+      - name: GH Page deploy
+        uses: ./.github/workflows/build.yml
