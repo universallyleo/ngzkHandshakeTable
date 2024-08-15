@@ -317,6 +317,7 @@ if __name__ == "__main__":
     #############################
     # read existed record and merge with new
     #############################
+    output_file = os.getenv('GITHUB_OUTPUT')
     datafile = str(f"{datafolder}{sys.argv[1]}")
     # fulldata = json.load(iopen(datafile, encoding="utf-8"))
     # cd = fulldata[len(fulldata) - 1]
@@ -329,7 +330,9 @@ if __name__ == "__main__":
         log += f"Already scraped draw {thisDraw}\nAbort process"
         print(log)
         # pass result to GITHUB_OUTPUT
-        print("changes=none >> $GITHUB_OUTPUT")
+        #print("changes=none >> $GITHUB_OUTPUT")
+        with open(output_file, "a") as myfile:
+            myfile.write(f"changes=none")
         sys.exit()
 
     cd["lastDraw"] = newlastdraw
@@ -372,4 +375,6 @@ if __name__ == "__main__":
 
     print(log)
     # pass result to GITHUB_OUTPUT
-    print("changes=new >> $GITHUB_OUTPUT")
+    #print("changes=new >> $GITHUB_OUTPUT")
+    with open(output_file, "a") as myfile:
+        myfile.write(f"changes=new")
