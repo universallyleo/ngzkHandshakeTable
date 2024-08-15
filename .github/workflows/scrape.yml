@@ -12,6 +12,9 @@ jobs:
   modify-db:
     name: Update json file via Python
     runs-on: ubuntu-latest
+    # Expose step outputs as job outputs
+    outputs:
+      changes: ${{ steps.scrapestep.outputs.changes }}
     steps:
       - name: Check-out repo for use
         uses: actions/checkout@v4
@@ -37,6 +40,7 @@ jobs:
         run: cp ./src/lib/data/current.json ./src/lib/data/old/backup_at_${{ env.today }}.json
 
       - name: Scrape with Python # run scrape.py
+        id: scrapestep
         env:
           COOKIES: ${{ secrets.FORTUNE_COOKIES }}
           FIREBASE_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
