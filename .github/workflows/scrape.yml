@@ -54,4 +54,5 @@ jobs:
           commit_message: Auto DB update ${{ env.today }}
 
   commit-if-change:
+    if: jobs.modify-db.scrapestep.outputs.changes == 'new'
     uses: ./.github/workflows/build.yml
