@@ -46,7 +46,7 @@ jobs:
     name: Check change and commit
     needs: modify-db
     runs-on: ubuntu-latest
-    if: needs.modify-db.output.changes == 'new'
+    if: needs.modify-db.outputs.changes == 'new'
     steps:
       # - name: Setup and Build with Nodejs
       #   uses: actions/setup-node@v4
