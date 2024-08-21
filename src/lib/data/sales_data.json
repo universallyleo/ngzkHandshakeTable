@@ -72,7 +72,7 @@
             "weekOne": 463439,
             "accumulate": 588334,
             "bi": {
-                "dayOne": 0,
+                "dayOne": 433480,
                 "soku": 499423,
                 "weekOne": 561071,
                 "accumulate": 733091
@@ -131,15 +131,15 @@
         "sales": {
             "daily": [419000, 49243, 23788, 9154, 8425, 7232],
             "weekOne": 516884,
-            "accumulate": 589268,
+            "accumulate": 589345,
             "bi": {
                 "dayOne": 554135,
                 "soku": 609458,
                 "weekOne": 663277,
-                "accumulate": 760663
+                "accumulate": 761479
             }
         },
-        "updated": "2024-02-01"
+        "updated": "2024-08-21"
     },
     {
         "cd": {
@@ -153,7 +153,7 @@
             "daily": [411534, 45501, 21265, 34190, 27788, 25782],
             "weekOne": 566060,
             "monthly": [566060, 65511],
-            "accumulate": 653575,
+            "accumulate": 654312,
             "bi": {
                 "dayOne": 553544,
                 "soku": 609421,
@@ -164,7 +164,7 @@
                 "accumulate": 844050
             }
         },
-        "updated": "2024-02-01"
+        "updated": "2024-08-21"
     },
     {
         "cd": {
@@ -177,16 +177,16 @@
         "sales": {
             "daily": [401431, 50031, 33854, 16768, 23119, 13295],
             "weekOne": 538511,
-            "accumulate": 603648,
+            "accumulate": 618503,
             "bi": {
                 "dayOne": 529847,
                 "soku": 591452,
                 "weekOne": 691515,
                 "weekly": [691515],
-                "accumulate": 785869
+                "accumulate": 808864
             }
         },
-        "updated": "2024-02-01"
+        "updated": "2024-08-21"
     },
     {
         "cd": {
@@ -199,15 +199,37 @@
         "sales": {
             "daily": [413139, 48539, 20553, 10944, 11208, 13489],
             "weekOne": 517872,
-            "accumulate": 517872,
+            "accumulate": 586783,
             "bi": {
                 "dayOne": 585545,
                 "soku": 645504,
                 "weekOne": 713872,
                 "weekly": [713872],
-                "accumulate": 713872
+                "accumulate": 813686
             }
         },
-        "updated": "2024-04-15"
+        "updated": "2024-08-21"
+    },
+    {
+        "cd": {
+            "num": 36,
+            "type": "Single",
+            "title": "チートディ",
+            "shortTitle": "チートディ",
+            "release": "2024-08-21"
+        },
+        "sales": {
+            "daily": [375214],
+            "weekOne": 375214,
+            "accumulate": 375214,
+            "bi": {
+                "dayOne": 0,
+                "soku": 0,
+                "weekOne": 0,
+                "weekly": [0],
+                "accumulate": 0
+            }
+        },
+        "updated": "2024-08-21"
     }
 ]
