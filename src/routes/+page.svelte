@@ -9,7 +9,7 @@
     import StateButton from "../lib/StateButton.svelte";
 
     let filterMethod = [
-        { display: "全メンバー", value: "showall" },
+        { display: "参加者全員", value: "showall" },
         { display: "未完売あり", value: "hasunsold" },
         { display: "未完売あり、又は直近更新あり", value: "hasunsold+latest" },
         { display: "一部以上完売", value: "hassoldout" },
@@ -29,7 +29,7 @@
 
     let sortMethod = [
         { display: "五十音順", value: "kana" },
-        { display: "完売数順", value: "numsold" },
+        { display: "完売速度順", value: "numsold" },
     ];
     let sortOpt = "kana";
     let capture = false;

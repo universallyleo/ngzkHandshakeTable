@@ -1,18 +1,24 @@
 <script>
-    import { remove, uniq } from "lodash-es";
+    import { remove, uniq, intersectionBy } from "lodash-es";
+    import { getCurrentMembers } from "$lib/processData.js";
     import StateButton from "$lib/StateButton.svelte";
 
     export let selectables;
     export let selectedMembers;
     export let nolimit = false;
+    export let includeOG = false;
+    let _selectables;
 
-    $: selectGrouping = uniq(selectables.map((x) => x.gen))
+    $: _selectables = includeOG
+        ? selectables
+        : intersectionBy(selectables, getCurrentMembers(), "member");
+    $: selectGrouping = uniq(_selectables.map((x) => x.gen))
         .sort((a, b) => parseInt(a) - parseInt(b))
         .map((n) => {
             return {
                 gen: n,
                 labels: [`全${n}期生選ぶ`, `全${n}期生外す`],
-                consistsOf: selectables.filter((x) => x.gen == n),
+                consistsOf: _selectables.filter((x) => x.gen == n),
             };
         });
     $: gpBtn = Array(selectGrouping.length);
@@ -47,6 +53,9 @@
 
 {#if selectables.length > 1}
     <div class="memberGrouping">
+        <label>
+            <input type="checkbox" bind:checked={includeOG} /> OGを含む
+        </label>
         <StateButton
             states={["全員選ぶ", "全員外す"]}
             on:changeFrom={(ev) => toggleSelectAll(ev.detail.text)}
@@ -74,8 +83,8 @@
                         bind:group={selectedMembers}
                         value={itm.member}
                     />
-                    {itm.kanji}</label
-                >
+                    {itm.kanji}
+                </label>
             {/each}
         </div>
     {/each}

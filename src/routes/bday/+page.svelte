@@ -61,33 +61,35 @@
     <div class="optionItem">
         <ul class="twocols">
             <li>
-                <div class="leftcol">構成メンバー：</div>
+                <div class="leftcol">構成員：</div>
                 <div class="rightcol">
-                    <label
-                        ><input
+                    <label>
+                        <input
                             type="radio"
                             name="selection"
                             bind:group={selectFrom}
                             value="current"
                             on:click={customSort}
-                        />現役全員</label
-                    >
-                    <label
-                        ><input
+                        /> 現役全員
+                    </label>
+                    <label>
+                        <input
                             type="radio"
                             name="selection"
                             bind:group={selectFrom}
                             value="all"
                             on:click={(sorted = [])}
-                        />カスタマイズ</label
-                    >
+                        /> カスタマイズ
+                    </label>
                     {#if selectFrom == "all"}
-                        <SelectMembersPanel
-                            bind:selectedMembers
-                            {selectables}
-                            nolimit={true}
-                            bind:this={mbpanel}
-                        />
+                        <div style="border:1px black solid;">
+                            <SelectMembersPanel
+                                bind:selectedMembers
+                                {selectables}
+                                nolimit={true}
+                                bind:this={mbpanel}
+                            />
+                        </div>
                     {/if}
                 </div>
             </li>
@@ -108,7 +110,7 @@
                 </div>
             </li>
             <li>
-                <div class="leftcol">グループ分け：</div>
+                <div class="leftcol">組分け：</div>
                 <div class="rightcol">
                     <label>
                         <input
@@ -188,12 +190,12 @@
 </div>
 
 <style>
-    ul.twocols {
+    @import "../../style.css";
+    /* ul.twocols {
         display: inline-block;
         text-align: left;
         margin: 0;
         padding: 0;
-        /*	background-color: hsl(40, 100%, 95%);*/
     }
 
     ul.twocols > li {
@@ -206,7 +208,7 @@
         flex: none;
         margin: 0;
         width: 8rem;
-    }
+    } */
 
     .yrgroup {
         border: 1px solid #999;

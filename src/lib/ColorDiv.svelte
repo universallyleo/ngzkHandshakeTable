@@ -9,7 +9,7 @@
 </script>
 
 <div
-    class="main"
+    class="box"
     style="background: {rgb}; width: {size}; height: {size};"
     aria-label={tooltip == "true" ? colorJPName[colorName] : null}
     data-balloon-pos={tooltip == "true" ? "up" : null}
@@ -22,7 +22,7 @@
 </div>
 
 <style>
-    .main {
+    .box {
         display: inline-block;
         position: relative;
         /* height: 1.2ch;

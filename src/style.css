@@ -43,7 +43,8 @@ ul.twocols > li > div.leftcol {
     margin-top: 0;
     margin-bottom: 0.5ch;
     margin-right: 0.2em;
-    width: 75px;
+    min-width: 75px;
+    /* width: minmax(75px, 8rem); */
 }
 
 ul.twocols > li > div.rightcol {
