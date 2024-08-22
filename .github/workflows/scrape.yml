@@ -53,6 +53,15 @@ jobs:
           branch: main
           commit_message: Auto DB update ${{ env.today }}
 
+  check-output:
+    runs-on: ubuntu-latest
+    needs: modify-db
+    steps:
+      - env:
+          CHANGES: ${{needs.modify-db.outputs.changes}}
+        run: echo "$CHANGES"
+        
   commit-if-change:
+    needs: modify-db
     if: needs.modify-db.scrapestep.outputs.changes == 'new'
     uses: ./.github/workflows/build.yml
