@@ -39,6 +39,7 @@ Object.keys(files).map((path) => {
 });
 fulldata[fulldata.length - 1] = currentCDData;
 export const collectionLength = fulldata.length;
+const latestGen = 5; //! need to be updated when new gen join
 /*****/
 
 //#region GroupedData def
@@ -125,6 +126,14 @@ export function mbBdayInRange(memberName, dateRange) {
 
 export const isExpandedDatalist = (l) => "slotsSoldex" in l[0];
 
+export function getNumSlotsPerDate(cdData) {
+    //! may change to more safe version that checks slot from all involved memebrs
+    // count the number of "|" in each entry of slotsSold, then plus 1.
+    return cdData.table[0].slotsSold.map(
+        (str) => (str.match(/\|/g) || []).length + 1
+    );
+}
+
 export function getMember(name) {
     let res = members.filter(({ member }) => member == name);
     if (res.length != 0) {
@@ -209,18 +218,29 @@ const graduation2label = (s) => {
     }
 };
 
+const groupLabel = {
+    sbt: "選抜",
+    und: "ア ン ダ ー",
+    grad: "卒業予定",
+    gen: (x) => `${x}期生`,
+};
 const groupID2label = (id) => {
-    switch (id) {
-        case "sbt":
-            return "選抜";
-        case "und":
-            return "アンダー";
-        case "grad":
-            return "卒業予定";
-        default:
-            if (id.match(/^(gen)\d+$/)) return `${id.slice(3)}期生`;
-            return `?`;
-    }
+    return id.match(/^(gen)\d+$/)
+        ? groupLabel["gen"](id.slice(3))
+        : id in groupLabel
+        ? groupLabel[id]
+        : "?";
+    // switch (id) {
+    //     case "sbt":
+    //         return "選抜";
+    //     case "und":
+    //         return "ア ン ダ ー";
+    //     case "grad":
+    //         return "卒業予定";
+    //     default:
+    //         if (id.match(/^(gen)\d+$/)) return `${id.slice(3)}期生`;
+    //         return `?`;
+    // }
 };
 
 /** Compare functions for various orderings;
@@ -236,7 +256,7 @@ export const ordering = {
             "grad",
             "sbt",
             "und",
-            ...[...Array(5).keys()].map((x) => `gen${x + 1}`),
+            ...[...Array(latestGen).keys()].map((x) => `gen${x + 1}`),
         ];
         return o.indexOf(a) - o.indexOf(b);
     },
@@ -295,29 +315,43 @@ export function compSoldoutDetailed(a, b) {
         : firstComp;
 }
 
+const optionLabels = {
+    gen: (x) => `${x}期生`,
+    group: (x) => groupID2label(x),
+    height: (x) => `${x}cm`,
+    graduation: (x) => graduation2label(x),
+    bloodtype: (x) => (x != "不明" ? `${x}型` : "不明"),
+    dobyear: (x) => (isISODate(x) ? `${x.slice(0, 4)}年` : `${x}年`),
+    dobmonth: (x) => (isISODate(x) ? `${x.slice(5, 7)}月` : `${x}月`),
+    soldstatus: (x) => (x ? "完売" : "未完売"),
+    from: (x) => x,
+    gakunen: (x) => x,
+};
+
 export const opt2label = (opt, val) => {
-    switch (opt) {
-        case "gen":
-            return `${val}期生`;
-        case "group":
-            return groupID2label(val);
-        case "height":
-            return `${val}cm`;
-        case "graduation":
-            return graduation2label(val);
-        case "bloodtype":
-            return val != "不明" ? `${val}型` : "不明";
-        case "dobyear":
-            return isISODate(val) ? `${val.slice(0, 4)}年` : `${val}年`;
-        case "dobmonth":
-            return isISODate(val) ? `${val.slice(5, 7)}月` : `${val}月`;
-        case "soldstatus":
-            return val ? "完売" : "未完売";
-        case "from":
-        case "gakunen":
-        default:
-            return val;
-    }
+    return optionLabels[opt](val);
+    // switch (opt) {
+    //     case "gen":
+    //         return `${val}期生`;
+    //     case "group":
+    //         return groupID2label(val);
+    //     case "height":
+    //         return `${val}cm`;
+    //     case "graduation":
+    //         return graduation2label(val);
+    //     case "bloodtype":
+    //         return val != "不明" ? `${val}型` : "不明";
+    //     case "dobyear":
+    //         return isISODate(val) ? `${val.slice(0, 4)}年` : `${val}年`;
+    //     case "dobmonth":
+    //         return isISODate(val) ? `${val.slice(5, 7)}月` : `${val}月`;
+    //     case "soldstatus":
+    //         return val ? "完売" : "未完売";
+    //     case "from":
+    //     case "gakunen":
+    //     default:
+    //         return val;
+    // }
 };
 
 const expandSoldslots = (mbdata) => {
@@ -349,6 +383,9 @@ const accumulativeSum = (arr) => {
  * @property {number[]} numSoldAtEach numeSoldAt[i] = number of slots sold at the (i+1)st draw
  * @property {number[]} accumulative accumulative[i] = sum of numSoldAtEach[i] for i=0,...,i
  * @property {string} group sbt (Senbatsu) or und (Under), could be other group
+ * @property {bdayInfo} bdayMeet object containing birthday near to which meet day
+ * @property {string[][]} pair piar[i] = pairing (group) members in the i-th meet
+ * @property {string[]} pairText text output of pairing info (computed in expandDataList)
  */
 /**
  * @param  {Object} mbdata raw data
@@ -389,6 +426,9 @@ export function expandMBData(mbdata, groups, lastdraw) {
         accumulativeSum(res.numSoldAtEach),
         lastdraw ? lastdraw : lastsoldAt
     );
+    if ("pair" in mbdata) {
+        res.pair = mbdata.pair;
+    }
 
     return res;
 }
@@ -473,6 +513,21 @@ export function expandDataList(cdData) {
                   idx: info.idx,
               }
             : 0;
+
+        // add pairing info in text form if needed
+        if ("pair" in mb) {
+            mb["pairText"] = mb["pair"]
+                .map((x, i) =>
+                    x.length > 0
+                        ? `${cdData.meetDates[i]}: ${x
+                              .map((y) => getMember(x).stripped_kanji)
+                              .join(", ")}`
+                        : null
+                )
+                .filter(Boolean)
+                .join(" &#10; ");
+            // console.log(`${mb.member}: ${mb.pairText}`);
+        }
 
         // cal total num of slots sold at each draw
         // and also toal num of slots available

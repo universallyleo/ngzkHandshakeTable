@@ -78,8 +78,18 @@
             : null;
 </script>
 
-<td class={classesOnMbCell}
-    >{mbInfo.kanji}
+<td class={classesOnMbCell}>
+    {mbInfo.kanji}
+    {#if "pairText" in row}
+        <div
+            aria-label={row.pairText}
+            data-balloon-pos="up-left"
+            data-ballon-break
+            class="bdayMark"
+        >
+            [ペア]
+        </div>
+    {/if}
     {#if row.bdayMeet != 0}
         <div
             aria-label={bdayText(row.bdayMeet)}
@@ -245,6 +255,7 @@
     border-left: 1px solid black !important;
 } */
     .topRow {
+        padding-top: 0.15em;
         border-top: 1px solid black !important;
     }
     .bottomRow {

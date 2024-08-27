@@ -3,6 +3,7 @@
     import DataRow from "./DataRow.svelte";
     import {
         cdAlias,
+        getNumSlotsPerDate,
         expandDataList,
         partitionToGroup,
         sortList,
@@ -23,6 +24,7 @@
     let compare = null;
     let blur = -1; //index of first date to unblur = number of blurred dates
     // let isInfo = [];
+    let colSpans = getNumSlotsPerDate(data);
 
     $: title = cdAlias(data.cd).display;
     // array of {member, slotsSoldex: Array<Array<String>>, numSold: [int, int]}
@@ -117,10 +119,10 @@
         <thead>
             <tr>
                 <!-- {#if groupOpt!="none"}
-      <th>{groupOpt=="gen"?`期生`:""}</th>
-      {/if} -->
-                <th />
-                <th>
+                <th>{groupOpt=="gen"?`期生`:""}</th>
+                {/if} -->
+                <th class:thickbottom={!("locations" in data)}></th>
+                <th class:thickbottom={!("locations" in data)}>
                     {#if compare}
                         <div>過去との差</div>
                     {:else}
@@ -136,13 +138,14 @@
                 {#if !hideTable}
                     {#each data.meetDates as date, i}
                         <th
-                            colspan="5"
+                            colspan={colSpans[i]}
                             class:blur={i < blur}
+                            class:thickbottom={!("locations" in data)}
                             on:click={() => toggleDateText(i)}
                         >
                             {i < blur && isInfo[i] ? "受付終了" : date}
                         </th>
-                        <!--calculate weekday-->
+                        <!--TODO: calculate weekday-->
                     {/each}
                 {/if}
                 {#if compare}
@@ -150,8 +153,8 @@
                         <span class="cmpCellHead">
                             <div>
                                 <span style="font-size:small">
-                                    {cmpSold}/{cmpTtl}</span
-                                >
+                                    {cmpSold}/{cmpTtl}
+                                </span>
                                 <br />
                                 ( {((cmpSold / cmpTtl) * 100).toFixed(
                                     2
@@ -159,11 +162,11 @@
                             </div>
                             <div>→</div>
                             <div>
-                                <span id="font-size:small"
-                                    >{expandedData.accumSold[
+                                <span id="font-size:small">
+                                    {expandedData.accumSold[
                                         upToDraw - 1
-                                    ]}/{expandedData.totalSlots}</span
-                                >
+                                    ]}/{expandedData.totalSlots}
+                                </span>
                                 <br />
                                 ( {soldPercentage.toFixed(2)}&percnt; )
                             </div>
@@ -175,6 +178,26 @@
             </tr>
         </thead>
         <tbody>
+            {#if "locations" in data}
+                <tr>
+                    <td class="subhead"></td>
+                    <td
+                        class="subhead"
+                        style="text-align: right;font-weight:bold;"
+                    >
+                        会場&nbsp;
+                    </td>
+                    {#each data.locations as loc, i}
+                        <td
+                            colspan={colSpans[i]}
+                            class="subhead"
+                            style="text-align: center;"
+                        >
+                            {loc}
+                        </td>
+                    {/each}
+                </tr>
+            {/if}
             {#if groupOpt == "none"}
                 <!-- TODO: Something is strange, fix it -->
                 {#each expandedData.table as row}
@@ -232,6 +255,16 @@
     th {
         font-size: large;
         font-weight: bold;
+        border: 1px solid black;
+        padding: 0 0.2em;
+    }
+
+    .thickbottom {
+        border-bottom: 2px solid black;
+    }
+
+    .subhead {
+        font-size: small;
         border: 1px solid black;
         border-bottom: 2px solid black;
         padding: 0;
