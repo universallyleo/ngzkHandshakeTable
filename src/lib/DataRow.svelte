@@ -9,6 +9,7 @@
     export let capture;
     export let hideTable;
     export let blur = -1;
+    export let pair = [];
     export let upToDraw = lastDraw;
 
     $: mbInfo = getMember(row.member);
@@ -62,9 +63,24 @@
             itm.classes += ` ${addClasses}`;
             res.push(itm);
         }
-        return res;
+        // let pt = pair[i]
+        //     ? row["pair"].length > 0
+        //         ? row["pair"][i].map((y) => getMember(y).kanji).join(", ")
+        //         : "-"
+        //     : null;
+        let pt = null;
+        if (pair[i]) {
+            pt =
+                "pair" in row
+                    ? row["pair"][i].length > 0
+                        ? row["pair"][i]
+                              .map((y) => getMember(y).kanji)
+                              .join(", ")
+                        : "-"
+                    : "-";
+        }
+        return { items: res, pairText: pt };
     });
-
     $: classesOnMbCell = `memberName ${addClasses}`;
     $: compareCellClasses = `compareCell lastcell ${addClasses}`;
     $: compareOutput =
@@ -80,7 +96,7 @@
 
 <td class={classesOnMbCell}>
     {mbInfo.kanji}
-    {#if "pairText" in row}
+    <!-- {#if "pairText" in row}
         <div
             aria-label={row.pairText}
             data-balloon-pos="up-left"
@@ -89,7 +105,7 @@
         >
             [ペア]
         </div>
-    {/if}
+    {/if} -->
     {#if row.bdayMeet != 0}
         <div
             aria-label={bdayText(row.bdayMeet)}
@@ -107,13 +123,22 @@
 <!-- TODO: look up member info to determine display method -->
 {#if !hideTable}
     {#each decoratedTbl as daySlots}
-        {#each daySlots as slot, i (i)}
+        {#if daySlots.pairText}
+            <td class={`pairSlot ${addClasses}`}>
+                {daySlots.pairText}
+            </td>
+        {/if}
+        {#each daySlots["items"] as slot, i (i)}
             <!-- border-left with 1px is not renderable...... so just handle last cell is enough -->
-            <td class={slot.classes} class:lastcell={i == daySlots.length - 1}>
+            <td
+                class={slot.classes}
+                class:lastcell={i == daySlots["items"].length - 1}
+            >
                 {#if slot.content != "x"}
                     {slot.content}
                 {:else if capture}x{/if}
             </td>
+            <!-- <td>a</td> -->
         {/each}
     {/each}
 {/if}
@@ -218,6 +243,15 @@
         text-align: center;
         z-index: 0;
     }
+    .pairSlot {
+        height: 1.8ch;
+        padding: 0;
+        box-sizing: border-box;
+        border: 1px solid #ddd;
+        text-align: center;
+        z-index: 0;
+        border-right: 1px solid black;
+    }
     .afterOpaq {
         /* background-color: rgb(208, 208, 208); */
         color: rgba(0, 0, 0, 0.2);
@@ -284,5 +318,9 @@
     }
     .minusCell {
         color: red;
+    }
+
+    .pairCell {
+        width: 2ch;
     }
 </style>

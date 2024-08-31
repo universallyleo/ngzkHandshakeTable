@@ -6,7 +6,8 @@
 
 <nav>
     <ul>
-        <li><a href="{base}/">🤝完売表</a></li>
+        <li><a href="{base}/">🤝完売表（個別）</a></li>
+        <li><a href="{base}/zenaku">🗾完売表（全国）</a></li>
         <li><a href="{base}/progress">📈完売推移</a></li>
         <li><a href="{base}/miscData">💿売上データ</a></li>
         <li><a href="{base}/bday">🎉学年・身長・コール</a></li>

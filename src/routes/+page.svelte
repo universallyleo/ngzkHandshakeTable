@@ -1,37 +1,17 @@
 <script>
-    import { currentCDData, cdAlias } from "$lib/processData.js";
+    import { currentCDData, fulldata, cdAlias } from "$lib/processData.js";
     import { min } from "lodash-es";
     import { toJpeg } from "html-to-image";
     import SlotTable from "$lib/SlotTable.svelte";
-    // import SelectOneCD from "$lib/SelectOneCD.svelte";
+    import SlotTableOptions from "$lib/SlotTableOptions.svelte";
     import SelectCDReception from "$lib/SelectCDReception.svelte";
     import { fly, fade } from "svelte/transition";
     import StateButton from "../lib/StateButton.svelte";
 
-    let filterMethod = [
-        { display: "参加者全員", value: "showall" },
-        { display: "未完売あり", value: "hasunsold" },
-        { display: "未完売あり、又は直近更新あり", value: "hasunsold+latest" },
-        { display: "一部以上完売", value: "hassoldout" },
-        { display: "一部以上完売、全完売なし", value: "hassoldoutnonfull" },
-        // {"display": "Custom", "value": "selectmb"}
-    ];
     let filterOpt = "showall";
-
-    let groupMethod = [
-        { display: "期別分け", value: "gen" },
-        { display: "選抜・アンダー・他", value: "group" },
-        { display: "誕生年別", value: "dobyear" },
-        { display: "完売・未完売", value: "soldstatus" },
-        // {"display": "なし", "value": "none"},
-    ];
     let groupOpt = "gen";
-
-    let sortMethod = [
-        { display: "五十音順", value: "kana" },
-        { display: "完売速度順", value: "numsold" },
-    ];
     let sortOpt = "kana";
+
     let capture = false;
     let compareToCDData,
         hideTable = false;
@@ -103,93 +83,26 @@
     <meta name="description" content="乃木坂46インタラクティブ式完売表" />
 </svelte:head>
 
-<div class="optionForm" in:fade={{ duration: 500 }}>
-    <div class="optionsContainer">
-        <ul class="twocols">
-            <li>
-                <div class="leftcol">CD:</div>
-                <div class="rightcol">
-                    <SelectCDReception
-                        bind:selectedCDData
-                        bind:selected={selectedIndex}
-                        bind:atDraw={upToDraw}
-                        on:change={compareReset}
-                    />
-                </div>
-
-                <div style="margin-left:auto;">
-                    <button on:click={() => imgOut(exportImg)}
-                        >結果画像ダウンロード</button
-                    >
-                    <!-- <button
-                        on:click={() => imgOut(copyImg)}
-                        title="Does not work on Firefox unless ClipboardItem is enabled"
-                        >画像コピー</button
-                    > -->
-                </div>
-            </li>
-            <li>
-                <div class="leftcol">Group:</div>
-                <div class="rightcol">
-                    {#each groupMethod as grp}
-                        <label>
-                            <input
-                                type="radio"
-                                name="groupOpt"
-                                bind:group={groupOpt}
-                                id={grp.value}
-                                value={grp.value}
-                            />
-                            {grp.display}
-                        </label>
-                    {/each}
-                </div>
-            </li>
-            <li>
-                <div class="leftcol">Filter:</div>
-                <div class="rightcol">
-                    {#each filterMethod as filt}
-                        <label>
-                            <input
-                                type="radio"
-                                name="filterOpt"
-                                bind:group={filterOpt}
-                                id={filt.value}
-                                value={filt.value}
-                            />
-                            {filt.display}
-                        </label>
-                    {/each}
-                </div>
-            </li>
-            <li>
-                <div class="leftcol">Sort:</div>
-                <div class="rightcol">
-                    {#each sortMethod as sort}
-                        <label>
-                            <input
-                                type="radio"
-                                name="sortOpt"
-                                bind:group={sortOpt}
-                                id={sort.value}
-                                value={sort.value}
-                            />
-                            {sort.display}
-                        </label>
-                    {/each}
-                </div>
-            </li>
-        </ul>
-    </div>
+<div class="optionForm">
+    <SlotTableOptions
+        bind:filterOpt
+        bind:sortOpt
+        bind:groupOpt
+        bind:selectedCDData
+        bind:upToDraw
+        {fulldata}
+        on:changeSelectedCD={compareReset}
+    />
     <!-- #region Adv Opt
     -->
-    <div class="advanceOption">
+    <div class="advanceOption" in:fade={{ duration: 500 }}>
         <div style="display:flex; flex-grow:1">
             <div>
                 過去との差 →
                 <span style="margin-right:3px"
                     >対象:
                     <SelectCDReception
+                        {fulldata}
                         excludeFrom={compareExclusion}
                         bind:selectedCDData={compareToCDData}
                         bind:selectedIndex={compareIndex}

@@ -392,7 +392,7 @@ const accumulativeSum = (arr) => {
  * @param  {Object} groups possible groups in current CD
  * @return {ExpandedMemberSlotData}
  */
-export function expandMBData(mbdata, groups, lastdraw) {
+function expandMBData(mbdata, groups, lastdraw) {
     let res = {
         member: mbdata.member,
         slotsSoldex: [],
@@ -484,7 +484,18 @@ export function compareData(
     }
 }
 
-// return: {1: expandedMBData, ... , n: expandedMBData , accumSold:[number], totalSold: number}
+//#region ExpandedDataList def
+/**
+ * @typedef {Object} ExpandedDataList
+ * @property {ExpandedMemberSlotData[]} list
+ * @property {Boolean[]} hasPairs hasPairs[i] = true if meetDates[i] has paired(/team)-meet
+ * @property {Number[]} accumSold accumSold[i] = number of all sold out slots after (i+1)st draw
+ * @property {Number} totalSold
+ */
+/**
+ * @param  {Object} cdData crude data on cd soldout status
+ * @returns {ExpandedDataList} processed data
+ */
 export function expandDataList(cdData) {
     let groups = concat(
         [
@@ -499,11 +510,12 @@ export function expandDataList(cdData) {
     // if (cdData.cd.num == 31) {
     // 	console.log('31st single ', dateRange);
     // }
-    let res = cdData.table.map((x) => expandMBData(x, groups, cdData.lastDraw));
+    let lst = cdData.table.map((x) => expandMBData(x, groups, cdData.lastDraw));
     let accumSold = Array(cdData.lastdraw).fill(0);
     let numSoldAtEach = Array(cdData.lastdraw).fill(0);
     let totalSlots = 0;
-    for (const mb of res) {
+    let hasPair = Array(cdData.meetDates.length).fill(false);
+    for (const mb of lst) {
         //determine if mb's bday is in range; if so, add info
         let info = mbBdayInRange(mb.member, dateRange);
         mb["bdayMeet"] = info.inRange
@@ -517,24 +529,30 @@ export function expandDataList(cdData) {
         // add pairing info in text form if needed
         if ("pair" in mb) {
             mb["pairText"] = mb["pair"]
-                .map((x, i) =>
-                    x.length > 0
-                        ? `${cdData.meetDates[i]}: ${x
-                              .map((y) => getMember(x).stripped_kanji)
-                              .join(", ")}`
-                        : null
-                )
+                .map((x, i) => {
+                    if (x.length > 0) {
+                        // remember pair info
+                        hasPair[i] = true;
+                        // gen pairText
+                        return `${cdData.meetDates[i]}: ${x
+                            .map((y) => getMember(y).stripped_kanji)
+                            .join(", ")}`;
+                    } else {
+                        return null;
+                    }
+                })
                 .filter(Boolean)
                 .join(" &#10; ");
             // console.log(`${mb.member}: ${mb.pairText}`);
         }
-
         // cal total num of slots sold at each draw
         // and also toal num of slots available
         accumSold = zipWith(accumSold, mb.accumulative, add);
         numSoldAtEach = zipWith(numSoldAtEach, mb.numSoldAtEach, add);
         totalSlots += mb.numSold[1];
     }
+    let res = { list: lst };
+    res["hasPair"] = hasPair;
     res["numSoldAtEach"] =
         numSoldAtEach.length < accumSold.length
             ? numSoldAtEach.concat(

@@ -1,9 +1,10 @@
 <script>
-    import { fulldata, cdAlias } from "$lib/processData.js";
-    import { findIndex, zip } from "lodash-es";
+    import { cdAlias } from "$lib/processData.js";
+    import { zip } from "lodash-es";
 
+    export let fulldata;
     export let selectedCDData = fulldata[fulldata.length - 1];
-    export let atDraw = selectedCDData.lastDraw;
+    export let atDraw = selectedCDData ? selectedCDData.lastDraw : 0;
     // export let exclude = { value: -1 };
     export let excludeFrom = -1;
 
@@ -12,10 +13,13 @@
 
     let previousExclude = -2;
     let selectables = [];
-    export let selected = cdlist[0];
+    let selected = cdlist[0];
 
     function regenSelectables(e) {
-        if (e == previousExclude && previousExclude != -2) {
+        if (
+            (e == previousExclude && previousExclude != -2) ||
+            fulldata.length == 0
+        ) {
             return;
         }
 

@@ -26,39 +26,6 @@
     // let isInfo = [];
     let colSpans = getNumSlotsPerDate(data);
 
-    $: title = cdAlias(data.cd).display;
-    // array of {member, slotsSoldex: Array<Array<String>>, numSold: [int, int]}
-    $: lastDraw = data.lastDraw;
-    $: expandedData = expandDataList(data);
-    // $: [accumSold, totalSlots] = expandedData.reduce(
-    //     (prev, curr) => {
-    //         // the zipWith code is to pointwise add the vector prev[0] with accumulative
-    //         return [
-    //             zipWith(prev[0], curr.accumulative, add),
-    //             prev[1] + curr.numSold[1],
-    //         ];
-    //     },
-    //     [Array(data.lastDraw).fill(0), 0]
-    // );
-    $: soldPercentage =
-        (expandedData.accumSold[upToDraw - 1] / expandedData.totalSlots) * 100;
-    $: isInfo = new Array(data.meetDates.length).fill(false);
-    $: blur =
-        upToDraw == data.lastDraw ? firstFutureDate(data.meetDates, -7) : -1;
-    $: finalTb = sortList(
-        partitionToGroup(filterList(expandedData, filterOpt), groupOpt),
-        sortOpt
-    );
-    $: capture = capture;
-    //#region comparison data
-    $: title2 = compare ? cdAlias(compare.cdData.cd).display : "";
-    $: cmpExpanded = compare ? expandDataList(compare.cdData) : null;
-    $: [cmpSold, cmpTtl] = compare
-        ? [cmpExpanded.accumSold[compare.atdraw - 1], cmpExpanded.totalSlots]
-        : [0, 0];
-    // $: w= 240+ numSlots*25 + (groupOpt!="none"?25:0);
-    // $: info = `Filter option is ${filterOpt}.  Width should be ${w}\n${compare?compare.atdraw:""}`;
-
     /**
      * @param  {Array<Object>} list
      * @param  {string} option
@@ -100,6 +67,30 @@
         hideTable = comparedata ? hideTable : false; //force table to be shown when not comparing
         // console.log("SlotTable.updateCompare ended.  hideTable = ", hideTable);
     }
+
+    //#region reactive update
+    $: title = cdAlias(data.cd).display;
+    $: lastDraw = data.lastDraw;
+    $: expandedData = expandDataList(data);
+    $: pair = expandedData.hasPair;
+    $: soldPercentage =
+        (expandedData.accumSold[upToDraw - 1] / expandedData.totalSlots) * 100;
+    $: isInfo = new Array(data.meetDates.length).fill(false);
+    $: blur =
+        upToDraw == data.lastDraw ? firstFutureDate(data.meetDates, -7) : -1;
+    $: finalTb = sortList(
+        partitionToGroup(filterList(expandedData.list, filterOpt), groupOpt),
+        sortOpt
+    );
+    $: capture = capture;
+    //#region comparison data
+    $: title2 = compare ? cdAlias(compare.cdData.cd).display : "";
+    $: cmpExpanded = compare ? expandDataList(compare.cdData) : null;
+    $: [cmpSold, cmpTtl] = compare
+        ? [cmpExpanded.accumSold[compare.atdraw - 1], cmpExpanded.totalSlots]
+        : [0, 0];
+    // $: w= 240+ numSlots*25 + (groupOpt!="none"?25:0);
+    // $: info = `Filter option is ${filterOpt}.  Width should be ${w}\n${compare?compare.atdraw:""}`;
 </script>
 
 <!-- not clear why width is not working.... -->
@@ -137,6 +128,13 @@
                 </th>
                 {#if !hideTable}
                     {#each data.meetDates as date, i}
+                        {#if expandedData["hasPair"][i]}
+                            <th
+                                class:blur={i < blur}
+                                class:thickbottom={!("locations" in data)}
+                            >
+                            </th>
+                        {/if}
                         <th
                             colspan={colSpans[i]}
                             class:blur={i < blur}
@@ -181,18 +179,18 @@
             {#if "locations" in data}
                 <tr>
                     <td class="subhead"></td>
-                    <td
-                        class="subhead"
-                        style="text-align: right;font-weight:bold;"
-                    >
-                        会場&nbsp;
-                    </td>
+                    <td class="subhead-title"> 会場&nbsp; </td>
                     {#each data.locations as loc, i}
-                        <td
-                            colspan={colSpans[i]}
-                            class="subhead"
-                            style="text-align: center;"
-                        >
+                        {#if expandedData["hasPair"][i]}
+                            <th
+                                class="subhead"
+                                class:blur={i < blur}
+                                class:thickbottom={!("locations" in data)}
+                            >
+                                ぺアメンバー
+                            </th>
+                        {/if}
+                        <td colspan={colSpans[i]} class="subhead">
                             {loc}
                         </td>
                     {/each}
@@ -213,6 +211,7 @@
                         {capture}
                         {hideTable}
                         {blur}
+                        {pair}
                     />
                 {/each}
             {/if}
@@ -267,6 +266,16 @@
         font-size: small;
         border: 1px solid black;
         border-bottom: 2px solid black;
+        text-align: center;
+        padding: 0;
+    }
+
+    .subhead-title {
+        font-size: small;
+        border: 1px solid black;
+        border-bottom: 2px solid black;
+        text-align: right;
+        font-weight: bold;
         padding: 0;
     }
 
