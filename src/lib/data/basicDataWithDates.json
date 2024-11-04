@@ -22,5 +22,6 @@
     { "alias": "33Single", "release": "2023-08-23" },
     { "alias": "34Single", "release": "2023-12-06" },
     { "alias": "35Single", "release": "2024-03-27" },
-    { "alias": "36Single", "release": "2024-08-21" }
+    { "alias": "36Single", "release": "2024-08-21" },
+    { "alias": "37Single", "release": "2024-12-11" }
 ]
