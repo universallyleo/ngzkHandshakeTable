@@ -177,13 +177,13 @@
         "sales": {
             "daily": [401431, 50031, 33854, 16768, 23119, 13295],
             "weekOne": 538511,
-            "accumulate": 618503,
+            "accumulate": 618600,
             "bi": {
                 "dayOne": 529847,
                 "soku": 591452,
                 "weekOne": 691515,
                 "weekly": [691515],
-                "accumulate": 808864
+                "accumulate": 810211
             }
         },
         "updated": "2024-08-21"
@@ -199,13 +199,13 @@
         "sales": {
             "daily": [413139, 48539, 20553, 10944, 11208, 13489],
             "weekOne": 517872,
-            "accumulate": 586783,
+            "accumulate": 587248,
             "bi": {
                 "dayOne": 585545,
                 "soku": 645504,
                 "weekOne": 713872,
                 "weekly": [713872],
-                "accumulate": 813686
+                "accumulate": 816102
             }
         },
         "updated": "2024-08-21"
@@ -221,15 +221,37 @@
         "sales": {
             "daily": [375214, 41981, 20723, 25332, 26559, 20010],
             "weekOne": 509819,
-            "accumulate": 509819,
+            "accumulate": 563122,
             "bi": {
                 "dayOne": 500821,
                 "soku": 551714,
                 "weekOne": 651536,
                 "weekly": [651536],
-                "accumulate": 551714
+                "accumulate": 727821
             }
         },
-        "updated": "2024-08-26"
+        "updated": "2024-12-10"
+    },
+    {
+        "cd": {
+            "num": 37,
+            "type": "Single",
+            "title": "歩道橋",
+            "shortTitle": "歩道橋",
+            "release": "2024-12-11"
+        },
+        "sales": {
+            "daily": [360296],
+            "weekOne": 360296,
+            "accumulate": 360296,
+            "bi": {
+                "dayOne": 0,
+                "soku": 0,
+                "weekOne": 0,
+                "weekly": [0],
+                "accumulate": 0
+            }
+        },
+        "updated": "2024-12-10"
     }
 ]
