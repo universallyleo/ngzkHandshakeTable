@@ -5,7 +5,19 @@
     import { zip } from "lodash-es";
     import ProgressGraph from "$lib/ProgressGraph.svelte";
 
-    let mx = salesData.map((x) => [
+    let data = salesData;
+    let transposed =[];
+    let types =[];
+    let aliases =[];
+    let dates =[];
+    let sales =[];
+    let title =[];
+    let progressData ={};
+    let seriesOpt =1;
+    let seriesData =[];
+
+    function initMatrix(){
+        let mx = data.map((x) => [
         cdAlias(x.cd).display,
         x.cd.shortTitle,
         x.cd.release,
@@ -16,57 +28,60 @@
         x.sales.bi.weekOne,
         x.sales.accumulate,
         x.sales.bi.accumulate,
-    ]);
-    mx = [
-        [
-            "",
-            "",
-            "発売日",
-            "初日",
-            "二日目",
-            "三日目",
-            "四日目",
-            "五日目",
-            "六日目",
-            "合計",
-            "BiB速報",
-            "オリ初週",
-            "BiB初週",
-            "オリ累計",
-            "BiB累計",
-        ],
-        ...mx,
-    ];
-    let transposed = zip(...mx);
-    let types = transposed[0];
-    let aliases = transposed[1];
-    let dates = transposed[2];
-    let sales = transposed.slice(3);
-    let title = "";
-    let progressData = {};
-    let seriesOpt = 1;
-
-    let seriesData = [
-        {
-            label: "初日",
-            datum: [{ label: "初日", data: sales[0].slice(1) }],
-        },
-        {
-            label: "初週",
-            datum: [
-                { label: "オリコン初週", data: sales[8].slice(1) },
-                { label: "Billboard初週", data: sales[9].slice(1) },
+        ]);
+        mx = [
+            [
+                "",
+                "",
+                "発売日",
+                "初日",
+                "二日目",
+                "三日目",
+                "四日目",
+                "五日目",
+                "六日目",
+                "合計",
+                "BiB速報",
+                "オリ初週",
+                "BiB初週",
+                "オリ累計",
+                "BiB累計",
             ],
-        },
-        {
-            label: "累計",
-            datum: [
-                { label: "オリコン累計", data: sales[10].slice(1) },
-                { label: "Billboard累計", data: sales[11].slice(1) },
-            ],
-        },
-    ];
+            ...mx,
+        ];
+        transposed = zip(...mx); //transpose the matrix
+        types = transposed[0];
+        aliases = transposed[1];
+        dates = transposed[2];
+        sales = transposed.slice(3);
+        title = "";
+        progressData = {};
+        seriesOpt = 1;
+        seriesData = [
+            {
+                label: "初日",
+                datum: [{ label: "初日", data: sales[0].slice(1) }],
+            },
+            {
+                label: "初週",
+                datum: [
+                    { label: "オリコン初週", data: sales[8].slice(1) },
+                    { label: "Billboard初週", data: sales[9].slice(1) },
+                ],
+            },
+            {
+                label: "累計",
+                datum: [
+                    { label: "オリコン累計", data: sales[10].slice(1) },
+                    { label: "Billboard累計", data: sales[11].slice(1) },
+                ],
+            },
+        ];
+    }
+    
 
+    initMatrix();
+    
     $: {
         progressData = {
             labels: salesData.map((x) => x.cd.shortTitle),
@@ -83,8 +98,12 @@
     <table class="table-bordered">
         <thead>
             <tr>
-                {#each types as cdtype}
-                    <th>{cdtype}</th>
+                {#each types as cdtype,i}
+                    <th>{cdtype}
+                        {#if i==0}
+                        <button on:click={()=>{data.reverse();initMatrix();}}>🔁</button>
+                        {/if}
+                    </th>
                 {/each}
             </tr>
             <tr>
@@ -158,6 +177,12 @@
     tr:hover {
         background-color: #eee;
     }
+
+    thead > tr > td:nth-last-child(-n+3)
+    tbody > tr > td:nth-last-child(-n+3){
+        position:sticky;
+    }
+
 
     tbody > tr > td {
         padding: 4px;
