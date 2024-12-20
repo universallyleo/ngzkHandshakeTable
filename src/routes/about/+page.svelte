@@ -115,6 +115,7 @@
             <ul>
                 <a href="https://detourgeeks.com/">DetourGeeks</a> 佐藤楓推しが運営する情報・レポサイト
             </ul>
+            <ul><a href="http://blog.livedoor.jp/fumichen2/">ロケ地情報</a></ul>
         </li>
     </ul>
 </div>
