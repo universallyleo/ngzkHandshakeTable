@@ -5,30 +5,30 @@
         "title": "\u6b69\u9053\u6a4b",
         "release": "2024-12-11"
     },
-    "lastDraw": 1,
+    "lastDraw": 2,
     "meetDates": ["2025-01-26", "2025-02-02", "2025-02-16"],
     "locations": ["幕張メッセ", "京都パルスプラザ", "オンライン"],
     "sbt": [
-      "Iwamoto Renka",
-      "Umezawa Minami",
-      "Kubo Shiori",
-      "Yoda Yuuki",
-      "Endo Sakura",
-      "Kaki Haruka",
-      "Kanagawa Saya",
-      "Tamura Mayu",
-      "Tsutsui Ayame",
-      "Hayashi Runa",
-      "Yumiki Nao",
-      "Ioki Mao",
-      "Ikeda Teresa",
-      "Ichinose Miku",
-      "Inoue Nagi",
-      "Ogawa Aya",
-      "Okuda Iroha",
-      "Kawasaki Sakura",
-      "Nakanishi Aruno"
-   ],
+        "Iwamoto Renka",
+        "Umezawa Minami",
+        "Kubo Shiori",
+        "Yoda Yuuki",
+        "Endo Sakura",
+        "Kaki Haruka",
+        "Kanagawa Saya",
+        "Tamura Mayu",
+        "Tsutsui Ayame",
+        "Hayashi Runa",
+        "Yumiki Nao",
+        "Ioki Mao",
+        "Ikeda Teresa",
+        "Ichinose Miku",
+        "Inoue Nagi",
+        "Ogawa Aya",
+        "Okuda Iroha",
+        "Kawasaki Sakura",
+        "Nakanishi Aruno"
+    ],
     "table": [
         {
             "member": "Itou Riria",
@@ -37,7 +37,7 @@
         },
         {
             "member": "Iwamoto Renka",
-            "slotsSold": ["1|1|1|1", "1|1|1|1", "1|1|1|1"]
+            "slotsSold": ["2|2|2|2", "2|2|2|2", "2|2|2|"]
         },
         {
             "member": "Umezawa Minami",
