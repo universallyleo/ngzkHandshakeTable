@@ -5,7 +5,7 @@
         "title": "\u6b69\u9053\u6a4b",
         "release": "2024-12-11"
     },
-    "lastDraw": 2,
+    "lastDraw": 3,
     "meetDates": ["2025-01-26", "2025-02-02", "2025-02-16"],
     "locations": ["幕張メッセ", "京都パルスプラザ", "オンライン"],
     "sbt": [
@@ -33,7 +33,7 @@
         {
             "member": "Itou Riria",
             "pair": [[], [], ["Sato Rika"]],
-            "slotsSold": ["2|2|2|2", "2|2|2|2", "2|2|2|"]
+            "slotsSold": ["2|2|2|2", "2|2|2|2", "2|2|2|3"]
         },
         {
             "member": "Iwamoto Renka",
@@ -60,7 +60,7 @@
         {
             "member": "Yoshida Ayano Cristi",
             "pair": [[], [], ["Okuda Iroha"]],
-            "slotsSold": ["2|2|2|2", "|||", "2|2||"]
+            "slotsSold": ["2|2|2|2", "||3|", "2|2|3|3"]
         },
         {
             "member": "Yoda Yuuki",
@@ -87,7 +87,7 @@
         {
             "member": "Sato Rika",
             "pair": [[], [], ["Itou Riria"]],
-            "slotsSold": ["2|1|1|2", "2|2|2|2", "2|2|2|"]
+            "slotsSold": ["2|1|1|2", "2|2|2|2", "2|2|2|3"]
         },
         {
             "member": "Shibata Yuna",
@@ -151,7 +151,7 @@
         {
             "member": "Okuda Iroha",
             "pair": [[], [], ["Yoshida Ayano Cristi"]],
-            "slotsSold": ["1|1|1|1", "1|1|1|2", "2|2||"]
+            "slotsSold": ["1|1|1|1", "1|1|1|2", "2|2|3|3"]
         },
         {
             "member": "Kawasaki Sakura",
