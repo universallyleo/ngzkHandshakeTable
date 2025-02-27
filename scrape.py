@@ -19,8 +19,8 @@ headers = forTUNE_data["headers"]
 datafolder = "./src/lib/data/"
 
 SITEURL = "https://fortunemusic.jp"
-BASEURL = "https://fortunemusic.jp/nogizaka_202412/"
-CDNUM = 37
+BASEURL = "https://fortunemusic.jp/nogizaka_202503/"
+CDNUM = 38
 CDTYPE = "Single"
 
 NAMESDICT = {
