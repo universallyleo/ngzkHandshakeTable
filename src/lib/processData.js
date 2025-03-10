@@ -39,7 +39,7 @@ Object.keys(files).map((path) => {
 });
 fulldata[fulldata.length - 1] = currentCDData;
 export const collectionLength = fulldata.length;
-const latestGen = 5; //! need to be updated when new gen join
+const latestGen = 6; //! need to be updated when new gen join
 /*****/
 
 //#region GroupedData def
