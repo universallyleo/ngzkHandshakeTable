@@ -98,6 +98,17 @@ NAMESDICT = {
     "菅原咲月": "Sugawara Satsuki",
     "冨里奈央": "Tomisato Nao",
     "中西アルノ": "Nakanishi Aruno",
+    "愛宕 心響": "Atago Kokone",
+    "大越 ひなの": "Okoshi Hinano",
+    "小津 玲奈": "Ozu Reina",
+    "海邉 朱莉": "Kaibe Akari",
+    "川端 晃菜": "Kawabata Hina",
+    "鈴木 佑捺": "Suzuki Yuuna",
+    "瀬戸口 心月": "Setoguchi Mitsuki",
+    "長嶋 凛桜": "Nagashima Rio",
+    "増田 三莉音": "Masuda Mirine",
+    "森平 麗心": "Morihira Urumi",
+    "矢田 萌華": "Yada Moeka"
 }
 
 # if login required:
