@@ -138,7 +138,7 @@ def findDate(text):
 def mbListCrawler(start, threshold=12):
     marker = start.next_sibling.next_sibling
     while len(marker) < threshold and len(marker) > 0:
-        yield marker.replace("\n", "")
+        yield re.sub('[\s+]', '',marker.replace("\n", ""))
         marker = marker.next_sibling.next_sibling
 
 
