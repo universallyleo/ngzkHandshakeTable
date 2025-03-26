@@ -6,28 +6,35 @@
     import ProgressGraph from "$lib/ProgressGraph.svelte";
 
     let data = salesData;
-    let transposed =[];
-    let types =[];
-    let aliases =[];
-    let dates =[];
-    let sales =[];
-    let title =[];
-    let progressData ={};
-    let seriesOpt =1;
-    let seriesData =[];
+    let transposed = [];
+    let types = [];
+    let aliases = [];
+    let dates = [];
+    let sales = [];
+    let title = [];
+    let progressData = {};
+    let seriesOpt = 1;
+    let seriesData = [];
+    let latestFirst = false;
 
-    function initMatrix(){
+    function toggleSequence() {
+        latestFirst = !latestFirst;
+        data.reverse();
+        initMatrix();
+    }
+
+    function initMatrix() {
         let mx = data.map((x) => [
-        cdAlias(x.cd).display,
-        x.cd.shortTitle,
-        x.cd.release,
-        ...x.sales.daily,
-        x.sales.daily.reduce((prev, curr) => prev + curr),
-        x.sales.bi.soku,
-        x.sales.weekOne,
-        x.sales.bi.weekOne,
-        x.sales.accumulate,
-        x.sales.bi.accumulate,
+            cdAlias(x.cd).display,
+            x.cd.shortTitle,
+            x.cd.release,
+            ...x.sales.daily,
+            x.sales.daily.reduce((prev, curr) => prev + curr),
+            x.sales.bi.soku,
+            x.sales.weekOne,
+            x.sales.bi.weekOne,
+            x.sales.accumulate,
+            x.sales.bi.accumulate,
         ]);
         mx = [
             [
@@ -77,11 +84,15 @@
                 ],
             },
         ];
+        if (latestFirst) {
+            for (const { datum } of seriesData) {
+                for (const d of datum) d.data.reverse();
+            }
+        }
     }
-    
 
     initMatrix();
-    
+
     $: {
         progressData = {
             labels: salesData.map((x) => x.cd.shortTitle),
@@ -98,10 +109,11 @@
     <table class="table-bordered">
         <thead>
             <tr>
-                {#each types as cdtype,i}
-                    <th>{cdtype}
-                        {#if i==0}
-                        <button on:click={()=>{data.reverse();initMatrix();}}>🔁</button>
+                {#each types as cdtype, i}
+                    <th>
+                        {cdtype}
+                        {#if i == 0}
+                            <button on:click={toggleSequence}>🔁</button>
                         {/if}
                     </th>
                 {/each}
@@ -178,11 +190,14 @@
         background-color: #eee;
     }
 
-    thead > tr > td:nth-last-child(-n+3)
-    tbody > tr > td:nth-last-child(-n+3){
-        position:sticky;
+    thead
+        > tr
+        > td:nth-last-child(-n + 3)
+        tbody
+        > tr
+        > td:nth-last-child(-n + 3) {
+        position: sticky;
     }
-
 
     tbody > tr > td {
         padding: 4px;

@@ -256,13 +256,14 @@
     },
     {
         "cd": {
-          "num": 38,
-          "type": "Single",
-          "title": "\u30cd\u30fc\u30d6\u30eb\u30aa\u30ec\u30f3\u30b8",
-          "release": "2025-03-26"
-         },
+            "num": 38,
+            "type": "Single",
+            "title": "\u30cd\u30fc\u30d6\u30eb\u30aa\u30ec\u30f3\u30b8",
+            "shortTitle": "\u30aa\u30ec\u30f3\u30b8",
+            "release": "2025-03-26"
+        },
         "sales": {
-            "daily": [376756,0,0,0,0,0],
+            "daily": [376756, 0, 0, 0, 0, 0],
             "weekOne": 0,
             "accumulate": 0,
             "bi": {

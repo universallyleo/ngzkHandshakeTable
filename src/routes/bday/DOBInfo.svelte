@@ -4,7 +4,14 @@
 
     export let memberData;
 
-    let genColor = ["#643486", "#cc0000", "#0099D4", "#eb7f3bf7", "#F680B0"];
+    let genColor = [
+        "#643486",
+        "#cc0000",
+        "#0099D4",
+        "#eb7f3bf7",
+        "#F680B0",
+        "#000000",
+    ];
 </script>
 
 <div class="card">
@@ -12,16 +19,18 @@
         <div class="cell">{memberData.kanji}</div>
         <div class="cell">
             <!-- <span style="color:#888; font-size:small">コール:</span> -->
-            {memberData.call}
+            {memberData.call === "" ? "-" : memberData.call}
         </div>
         <div class="cell">
             {getAge(memberData.dob)}歳 ／
             <span style="color: {genColor[memberData.gen - 1]}"
                 >{memberData.gen}期生
             </span>
-            ／
-            <ColorDiv colorName={memberData.penlight[0]} />
-            <ColorDiv colorName={memberData.penlight[1]} />
+            {#if memberData.penlight[0] !== ""}
+                ／
+                <ColorDiv colorName={memberData.penlight[0]} />
+                <ColorDiv colorName={memberData.penlight[1]} />
+            {/if}
         </div>
         <div class="cell">{JPDateDisplay(memberData.dob)}</div>
     </div>
