@@ -253,5 +253,27 @@
             }
         },
         "updated": "2024-12-16"
+    },
+    {
+        "cd": {
+          "num": 38,
+          "type": "Single",
+          "title": "\u30cd\u30fc\u30d6\u30eb\u30aa\u30ec\u30f3\u30b8",
+          "release": "2025-03-26"
+         },
+        "sales": {
+            "daily": [376756,0,0,0,0,0],
+            "weekOne": 0,
+            "accumulate": 0,
+            "bi": {
+                "dayOne": 0,
+                "soku": 0,
+                "weekOne": 0,
+                "weekly": [0],
+                "accumulate": 0
+            }
+        },
+        "updated": "2025-03-26"
+    }
     }
 ]
