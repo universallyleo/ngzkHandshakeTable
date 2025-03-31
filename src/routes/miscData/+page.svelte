@@ -17,10 +17,21 @@
     let seriesData = [];
     let latestFirst = false;
 
-    function toggleSequence() {
-        latestFirst = !latestFirst;
-        data.reverse();
-        initMatrix();
+    // function toggleSequence() {
+    //     latestFirst = !latestFirst;
+    //     data.reverse();
+    //     initMatrix();
+    // }
+
+    function reverseTable() {
+        let tblData = [types, aliases, dates, ...sales];
+        for (let [i, d] of tblData.entries()) {
+            tblData[i] = [d[0], ...d.slice(1).toReversed()];
+        }
+        types = tblData[0];
+        aliases = tblData[1];
+        dates = tblData[2];
+        sales = tblData.slice(3);
     }
 
     function initMatrix() {
@@ -61,6 +72,7 @@
         aliases = transposed[1];
         dates = transposed[2];
         sales = transposed.slice(3);
+
         title = "";
         progressData = {};
         seriesOpt = 1;
@@ -84,11 +96,6 @@
                 ],
             },
         ];
-        if (latestFirst) {
-            for (const { datum } of seriesData) {
-                for (const d of datum) d.data.reverse();
-            }
-        }
     }
 
     initMatrix();
@@ -113,7 +120,7 @@
                     <th>
                         {cdtype}
                         {#if i == 0}
-                            <button on:click={toggleSequence}>🔁</button>
+                            <button on:click={reverseTable}>🔁</button>
                         {/if}
                     </th>
                 {/each}

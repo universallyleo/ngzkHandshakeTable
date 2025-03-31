@@ -268,10 +268,10 @@
             "accumulate": 483817,
             "bi": {
                 "dayOne": 0,
-                "soku": 0,
-                "weekOne": 0,
+                "soku": 546752,
+                "weekOne": 611511,
                 "weekly": [0],
-                "accumulate": 0
+                "accumulate": 611511
             }
         },
         "updated": "2025-03-31"
