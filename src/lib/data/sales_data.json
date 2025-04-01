@@ -199,7 +199,7 @@
         "sales": {
             "daily": [413139, 48539, 20553, 10944, 11208, 13489],
             "weekOne": 517872,
-            "accumulate": 587248,
+            "accumulate": 587460,
             "bi": {
                 "dayOne": 585545,
                 "soku": 645504,
@@ -221,7 +221,7 @@
         "sales": {
             "daily": [375214, 41981, 20723, 25332, 26559, 20010],
             "weekOne": 509819,
-            "accumulate": 563122,
+            "accumulate": 564074,
             "bi": {
                 "dayOne": 500821,
                 "soku": 551714,
@@ -243,16 +243,16 @@
         "sales": {
             "daily": [360296, 49493, 21245, 18001, 20728, 14431],
             "weekOne": 484194,
-            "accumulate": 484194,
+            "accumulate": 521763,
             "bi": {
                 "dayOne": 0,
                 "soku": 527971,
                 "weekOne": 609776,
                 "weekly": [609776],
-                "accumulate": 609776
+                "accumulate": 664266
             }
         },
-        "updated": "2024-12-16"
+        "updated": "2025-04-02"
     },
     {
         "cd": {
