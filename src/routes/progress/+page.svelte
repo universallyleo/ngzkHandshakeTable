@@ -32,6 +32,7 @@
     let seriesOpt = "cdProgression";
     let fixOpt = "fixCD";
     let mode = "fixCD";
+    let moreOpt = { perDraw: true, excludeFirst: false };
 
     let members = ["Yumiki Nao", "Kanagawa Saya"];
     let includings = [fulldata[fulldata.length - 1]];
@@ -85,6 +86,7 @@
             if (fixOpt == "fixAllMB") {
                 includings = selectedCDsData;
                 members = [];
+                extra = moreOpt;
             }
             mode = fixOpt;
         }
@@ -149,6 +151,7 @@
                             bind:fixOpt
                             bind:selectedCDsData
                             bind:selectedMembers
+                            bind:moreOpt
                         />
                     {/if}
 

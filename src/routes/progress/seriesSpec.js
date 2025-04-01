@@ -35,17 +35,18 @@ function cdprogression(memberName, cd) {
         );
         let sum = 0;
         res.main = res.sub.map((x) => (sum += x));
-    } else if (memberName == "all") {
-        let raw = expandDataList(cd);
-        res.total = raw["totalSlots"];
-        res.sub = zip(
-            raw["numSoldAtEach"],
-            raw["accumSold"],
-            Array(raw["numSoldAtEach"].length).fill(res.total)
-        );
-        res.main = raw.accumSold.map((s) => (s / res.total) * 100);
-        // console.log(res.main);
     }
+    // else if (memberName == "all") {
+    //     let raw = expandDataList(cd);
+    //     res.total = raw["totalSlots"];
+    //     res.sub = zip(
+    //         raw["numSoldAtEach"],
+    //         raw["accumSold"],
+    //         Array(raw["numSoldAtEach"].length).fill(res.total)
+    //     );
+    //     res.main = raw.accumSold.map((s) => (s / res.total) * 100);
+    //     // console.log(res.main);
+    // }
     return res;
 }
 
@@ -111,7 +112,7 @@ export function subdataDisplayInTable(x, mode) {
     if (x === "-") return "";
     if (mode.slice(0, 3) == "fix") {
         return mode == "fixAllMB"
-            ? `(+${x[0]})<br> =&gt; ${x[1]} / ${x[2]}`
+            ? `(${x[0] > 0 ? "+" : ""}${x[0]})<br> =&gt; ${x[1]} / ${x[2]}`
             : `(+${x})`;
         // return `(+${x})`;
     }
@@ -179,48 +180,122 @@ export function prepareFixMB(member, CDDatas) {
 }
 
 //#region Fix All-Member
-export function prepareFixAllMB(CDDatas) {
+// extra = { perDraw: boolean, excludeFirst: boolean }
+export function prepareFixAllMB(CDDatas, extra) {
     let datum = [],
         seriesLabels = [];
-    CDDatas.map((x) => {
-        let y = cdprogression("all", x);
-        datum.push({
-            // add custom label to data
-            // the `label' value will be shown as datalabel
-            // xkey and value are needed for chartjs to understand the data series of interest
-            main: y.main.map((d, i) => {
-                return {
-                    // label: `${d.toFixed(2)}\n[ ${y.sub[i]} / ${y.total} ]`,
-                    label: `${d.toFixed(2)}`,
-                    xkey: i + 1,
-                    value: d,
-                };
-            }),
-            sub: y.sub,
-            displayChange: true,
-            displayTableMain: y.main.map((d) => `${d.toFixed(2)}%`),
-        });
-        seriesLabels.push(cdAlias(x.cd).display);
-    });
     let numSlots = Math.max(...CDDatas.map((x) => x.lastDraw));
-    datum.map((d) => extendCDProgressData(d, numSlots));
     let plotExtraOpts = {
         parsing: {
             xAxisKey: "xkey",
             yAxisKey: "value",
         },
     };
-    let xAxisLabels = range(1, numSlots + 1);
-    return {
-        title: `円盤ごと完売部数`,
-        numSlots,
-        datum,
-        seriesLabels,
-        caption: "完売部数比率推移",
-        subcaption: "",
-        xAxisLabels,
-        plotExtraOpts,
-    };
+
+    CDDatas.map((x) => {
+        // let y = cdprogression("all", x);
+        let raw = expandDataList(x);
+        let y = {};
+        y.total = raw["totalSlots"];
+        y.sub = zip(
+            raw["numSoldAtEach"],
+            raw["accumSold"],
+            Array(raw["numSoldAtEach"].length).fill(y.total)
+        );
+        y.main = raw.accumSold.map((s) => (s / y.total) * 100);
+
+        let maindata = [];
+        if (extra.perDraw) {
+            maindata = y.main.map((d, i) => {
+                return {
+                    // label: `${d.toFixed(2)}\n[ ${y.sub[i]} / ${y.total} ]`,
+                    label: `${d.toFixed(2)}`,
+                    xkey: i + 1,
+                    value: d,
+                };
+            });
+            if (extra.excludeFirst && maindata.length > 1) {
+                maindata[1].value += maindata[0].value;
+                maindata[1].label = `${maindata[1].value.toFixed(2)}`;
+                maindata = maindata.slice(1);
+                y.sub[1][0] += y.sub[0][0];
+                y.sub = y.sub.slice(1);
+            }
+        } else {
+            maindata = {
+                xkey: cdAlias(x.cd).display,
+                value: y.main[y.main.length - 1],
+                label: `${y.main[y.main.length - 1].toFixed(2)}`,
+            };
+        }
+
+        let entry = {
+            // add custom label to data
+            // the `label' value will be shown as datalabel
+            // xkey and value are needed for chartjs to understand the data series of interest
+            main: maindata,
+            sub: extra.perDraw ? y.sub : [y.sub[y.sub.length - 1][1], y.total],
+            displayChange: true,
+            displayTableMain: extra.perDraw
+                ? maindata.map(({ label }) => `${label}%`)
+                : `${maindata.label}%`,
+        };
+        extra.perDraw ? extendCDProgressData(entry, numSlots) : null;
+        datum.push(entry);
+        seriesLabels.push(cdAlias(x.cd).display);
+    });
+
+    let xAxisLabels = extra.perDraw
+        ? range(extra.excludeFirst ? 2 : 1, numSlots + 1)
+        : seriesLabels.toReversed();
+    if (extra.perDraw) {
+        return {
+            title: `完売部数比率推移`,
+            numSlots,
+            datum,
+            seriesLabels,
+            caption: "円盤ごと完売部数比率推移",
+            subcaption: "",
+            xAxisLabels,
+            plotExtraOpts,
+        };
+    } else {
+        // reshape series, make only one series with entries being each CD sales
+        datum.reverse();
+        let mainSeries = datum.map(({ main }) => main);
+        let diff = mainSeries
+            .map((x) => x.value)
+            .slice(1)
+            .map((x, i) => x - mainSeries[i].value);
+        // console.table(mainSeries);
+        // unshift to insert entry 0 at the beginning
+        diff.unshift(0);
+        // the 3 numbers are [ percentage change from last CD, slots sold this CD, total slots this CD ]
+        let subSeries = datum.map(({ sub }, i) => [
+            diff[i].toFixed(2),
+            sub[0],
+            sub[1],
+        ]);
+        datum = [
+            {
+                main: mainSeries,
+                sub: subSeries,
+                displayChange: true,
+                displayTableMain: mainSeries.map(({ label }) => `${label}%`),
+            },
+        ];
+
+        return {
+            title: `完売部数比率推移`,
+            numSlots: seriesLabels.length,
+            datum,
+            seriesLabels: [`最終完売部数比率`],
+            caption: "円盤ごと完売部数比率推移",
+            subcaption: "",
+            xAxisLabels,
+            plotExtraOpts,
+        };
+    }
 }
 
 //#region Overall progress

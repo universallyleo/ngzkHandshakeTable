@@ -38,6 +38,7 @@
     export let fixOpt = "fixCD";
     export let selectedCDsData = [currentCDData];
     export let selectedMembers = members;
+    export let moreOpt = { perDraw: true, excludeFirst: false };
     let selectables = involvedMembers(currentCDData);
 
     let members = ["Yumiki Nao", "Kanagawa Saya"];
@@ -73,6 +74,23 @@
 
     {#if fixOpt == "fixAllMB"}
         <div class="longSelection" in:fly|global={{ y: 200, duration: 700 }}>
+            <label>
+                <input
+                    type="checkbox"
+                    id="fixAllMB_perDraw"
+                    bind:checked={moreOpt.perDraw}
+                />
+                受付ごと推移
+            </label>
+            <label>
+                <input
+                    type="checkbox"
+                    id="fixAllMB_excludeFirst"
+                    bind:checked={moreOpt.excludeFirst}
+                />
+                1次2次受付結果を合計に
+            </label>
+            <br />
             <SelectCDs bind:selectedCDsData selectAllButton={true} />
         </div>
     {/if}

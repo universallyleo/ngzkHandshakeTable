@@ -41,7 +41,7 @@
 
         switch (mode) {
             case "fixAllMB":
-                seriesCollection = prepareFixAllMB(includings);
+                seriesCollection = prepareFixAllMB(includings, extra);
                 headings = seriesCollection.xAxisLabels;
                 break;
             case "fixCD":
