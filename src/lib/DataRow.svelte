@@ -321,6 +321,6 @@
     }
 
     .pairCell {
-        width: 2ch;
+        min-width: 3ch;
     }
 </style>
