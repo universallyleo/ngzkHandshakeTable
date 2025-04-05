@@ -3,7 +3,7 @@ name: Update DB weekly
 on: #push
     workflow_dispatch:
     schedule:
-        - cron: "2 4 * * THU"
+        - cron: "46 4 * * THU"
 
 # env:
 #     NAME: value
