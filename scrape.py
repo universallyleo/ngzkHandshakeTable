@@ -1,13 +1,27 @@
 import os
 import sys
 import re
-
+import datetime
+import time
+import pytz
 import requests
 from io import open as iopen  # to make sure we are not using File.open
 import json
 from bs4 import BeautifulSoup
 import firebase_admin
 from firebase_admin import credentials, firestore
+
+
+# wait until 1400 JST
+while True:
+    time.sleep(1)
+    tokyo_tz = pytz.timezone("Asia/Tokyo")
+    current_hour = datetime.datetime.now(tokyo_tz).hour
+    current_min = datetime.datetime.now(tokyo_tz).minute
+    current_second = datetime.datetime.now(tokyo_tz).second
+    print(current_hour, current_min, current_second)
+    if current_hour >= 14 and current_second >= 5:
+        break
 
 # get environment variable (stored under vercel project setting)
 forTUNE_data = json.loads(os.environ["COOKIES"])
