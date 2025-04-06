@@ -20,6 +20,7 @@
     export let hideTable = false;
     export let upToDraw = data.lastDraw;
     export let domElt;
+    export let displayMethod = (t) => t;
 
     let compare = null;
     let blur = -1; //index of first date to unblur = number of blurred dates
@@ -212,6 +213,7 @@
                         {hideTable}
                         {blur}
                         {pair}
+                        {displayMethod}
                     />
                 {/each}
             {/if}

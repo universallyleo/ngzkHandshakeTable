@@ -8,6 +8,7 @@
     export let blur = -1;
     export let upToDraw;
     export let pair = [];
+    export let displayMethod = (t) => t;
     /*
 group: DataList
 interface DataList {
@@ -39,6 +40,7 @@ interface DataList {
         {hideTable}
         {blur}
         {pair}
+        {displayMethod}
     />
 </tr>
 {#each group.has.slice(1, -1) as row (row.member)}
@@ -52,6 +54,7 @@ interface DataList {
             {hideTable}
             {blur}
             {pair}
+            {displayMethod}
         />
     </tr>
 {/each}
@@ -67,6 +70,7 @@ interface DataList {
             {hideTable}
             {blur}
             {pair}
+            {displayMethod}
         />
     </tr>
 {/if}

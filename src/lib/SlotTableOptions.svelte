@@ -9,6 +9,7 @@
     export let fulldata = [];
     export let selectedCDData = [];
     export let upToDraw = selectedCDData.length;
+    export let displayMethod = (n) => `${n}次受付結果`;
 
     const dispatch = createEventDispatcher();
 
@@ -52,6 +53,7 @@
                         bind:selected={selectedIndex}
                         bind:atDraw={upToDraw}
                         on:change={chagneSelected}
+                        {displayMethod}
                     />
                 </div>
             </li>

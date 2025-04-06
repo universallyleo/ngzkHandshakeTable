@@ -11,6 +11,7 @@
     export let blur = -1;
     export let pair = [];
     export let upToDraw = lastDraw;
+    export let displayMethod = (t) => t;
 
     $: mbInfo = getMember(row.member);
     //$: splitTbl = row.slotsSold.map(x=>x.split("|"));
@@ -135,7 +136,7 @@
                 class:lastcell={i == daySlots["items"].length - 1}
             >
                 {#if slot.content != "x"}
-                    {slot.content}
+                    {displayMethod(slot.content)}
                 {:else if capture}x{/if}
             </td>
             <!-- <td>a</td> -->

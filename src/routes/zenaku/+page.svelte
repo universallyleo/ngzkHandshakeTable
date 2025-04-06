@@ -16,6 +16,17 @@
     let selectedCDData = currentCDData;
     let lastDraw = selectedCDData.lastDraw;
     let upToDraw = lastDraw;
+    // let displayMethod = (t) => t;
+    let displayMethod = (t) => {
+        let x = parseInt(t);
+        // return isNaN(x) ? t : x % 2 == 0 ? x / 2 + 0.5 : (x + 1) / 2;
+        return isNaN(x) ? t : x % 2 == 0 ? x / 2 + 0.5 : (x + 1) / 2;
+    };
+    let receptionDisplay = (n) => {
+        return n % 2 == 0
+            ? `${n / 2}次応募（保障）結果`
+            : `${(n + 1) / 2}次応募結果`;
+    };
     //#region functions
 
     //#region active udpate
@@ -31,10 +42,10 @@
 <div class="infoImportant">
     35枚目シングル以前の全国握手会データの提供をお願いします。🙏
 </div>
-<div class="info">
+<!-- <div class="info">
     「2n次受付結果」の本当の意味は「n次受付の保障抽選結果」です。<br />
-    「(2n+1)次受付結果」の本当の意味は「(n+1)次受付の初抽選結果」です。
-</div>
+    「(2n+1)次受付結果」の本当の意味は「(n+1)次受付の初抽選結果」です。 -->
+<!-- </div> -->
 
 <SlotTableOptions
     bind:filterOpt
@@ -43,6 +54,7 @@
     bind:selectedCDData
     bind:upToDraw
     fulldata={zenakuData}
+    displayMethod={receptionDisplay}
 />
 
 <section id="slotstable" class="main" in:fly|global={{ y: 200, duration: 500 }}>
@@ -56,6 +68,7 @@
         {capture}
         {hideTable}
         {upToDraw}
+        {displayMethod}
     />
 </section>
 

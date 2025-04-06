@@ -7,6 +7,7 @@
     export let atDraw = selectedCDData ? selectedCDData.lastDraw : 0;
     // export let exclude = { value: -1 };
     export let excludeFrom = -1;
+    export let displayMethod = (n) => `${n}次受付結果`;
 
     let reverseIdx = (i) => fulldata.length - 1 - i;
     let cdlist = fulldata.map((x) => cdAlias(x.cd)).reverse();
@@ -53,9 +54,9 @@
         on:change
     >
         {#each [...Array(selectedCDData.lastDraw).keys()].reverse() as i}
-            <option value={i + 1}>{i + 1}</option>
+            <!-- <option value={i + 1}>{i + 1}</option> -->
+            <option value={i + 1}>{displayMethod(i + 1)}</option>
         {/each}
     </select>
-    次受付
     <!-- <button on:click={() => tableReset()}>再生成</button> -->
 </label>
