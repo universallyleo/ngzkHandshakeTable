@@ -20,7 +20,11 @@
     let displayMethod = (t) => {
         let x = parseInt(t);
         // return isNaN(x) ? t : x % 2 == 0 ? x / 2 + 0.5 : (x + 1) / 2;
-        return isNaN(x) ? t : x % 2 == 0 ? x / 2 + 0.5 : (x + 1) / 2;
+        return isNaN(x)
+            ? t
+            : x % 2 == 0
+              ? `${x / 2}<span style="font-size:x-small;color:#777">保</span>`
+              : (x + 1) / 2;
     };
     let receptionDisplay = (n) => {
         return n % 2 == 0
