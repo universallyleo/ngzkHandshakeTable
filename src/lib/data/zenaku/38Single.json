@@ -51,11 +51,11 @@
         {
             "member": "Itou Riria",
             "pair": [[], [], ["Okamoto Hina"]],
-            "slotsSold": ["x|x|x|x", "|||", "|||"]
+            "slotsSold": ["x|x|x|x", "2|2|2|2", "2|2|2|2"]
         },
         {
             "member": "Iwamoto Renka",
-            "slotsSold": ["1|1|1|1", "1|1|1|1", "|||"]
+            "slotsSold": ["1|1|1|1", "1|1|1|1", "2|2|2|2"]
         },
         {
             "member": "Umezawa Minami",
@@ -72,7 +72,7 @@
         {
             "member": "Yoshida Ayano Cristi",
             "pair": [[], [], ["Kanagawa Saya"]],
-            "slotsSold": ["|||", "|||", "|||"]
+            "slotsSold": ["2|2|2|2", "|||", "|||"]
         },
         {
             "member": "Endo Sakura",
@@ -85,22 +85,22 @@
         {
             "member": "Kanagawa Saya",
             "pair": [[], [], ["Yoshida Ayano Cristi"]],
-            "slotsSold": ["1|1|1|1", "|||", "|||"]
+            "slotsSold": ["1|1|1|1", "2|2|2|2", "|||"]
         },
         {
             "member": "Kuromi Haruka",
             "pair": [[], [], ["Shibata Yuna"]],
-            "slotsSold": ["|||", "|||", "|||"]
+            "slotsSold": ["2|2|2|2", "|2|2|", "2|2||2"]
         },
         {
             "member": "Sato Rika",
             "pair": [[], [], ["Hayashi Runa"]],
-            "slotsSold": ["|||", "|||", "|||"]
+            "slotsSold": ["2|2|2|2", "2|2|2|2", "2||2|"]
         },
         {
             "member": "Shibata Yuna",
             "pair": [[], [], ["Kuromi Haruka"]],
-            "slotsSold": ["1|1|1|1", "|||", "|||"]
+            "slotsSold": ["1|1|1|1", "2|2|2|2", "2|2||2"]
         },
         {
             "member": "Tamura Mayu",
@@ -114,26 +114,26 @@
         {
             "member": "Hayashi Runa",
             "pair": [[], [], ["Sato Rika"]],
-            "slotsSold": ["1|1|1|1", "|||", "|||"]
+            "slotsSold": ["1|1|1|1", "2|2|2|2", "2||2|"]
         },
         {
             "member": "Matsuo Miyu",
             "pair": [[], [], ["Okuda Iroha"]],
-            "slotsSold": ["|||", "|||", "|||"]
+            "slotsSold": ["2|2|2|2", "2|2|2|", "2||2|2"]
         },
         {
             "member": "Yakubo Mio",
             "pair": [[], [], ["Yumiki Nao"]],
-            "slotsSold": ["|||", "|||", "|||"]
+            "slotsSold": ["2|2|2|2", "|2||", "2|2|2|2"]
         },
         {
             "member": "Yumiki Nao",
             "pair": [[], [], ["Yakubo Mio"]],
-            "slotsSold": ["1|1|1|1", "1|1|1|1", "|||"]
+            "slotsSold": ["1|1|1|1", "1|1|1|1", "2|2|2|2"]
         },
         {
             "member": "Ioki Mao",
-            "slotsSold": ["1|1|1|1", "1|1|1|1", "|||"]
+            "slotsSold": ["1|1|1|1", "1|1|1|1", "2|2|2|2"]
         },
         {
             "member": "Ikeda Teresa",
@@ -150,16 +150,16 @@
         {
             "member": "Okamoto Hina",
             "pair": [[], [], ["Itou Riria"]],
-            "slotsSold": ["1|1|1|1", "|1|1|1", "|||"]
+            "slotsSold": ["1|1|1|1", "2|1|1|1", "2|2|2|2"]
         },
         {
             "member": "Ogawa Aya",
-            "slotsSold": ["1|1|1|1", "1|1|1|1", "1|||1"]
+            "slotsSold": ["1|1|1|1", "1|1|1|1", "1|2|2|1"]
         },
         {
             "member": "Okuda Iroha",
             "pair": [[], [], ["Matsuo Miyu"]],
-            "slotsSold": ["1|1|1|1", "|||", "|||"]
+            "slotsSold": ["1|1|1|1", "2|2|2|2", "2||2|2"]
         },
         {
             "member": "Kawasaki Sakura",
@@ -167,11 +167,11 @@
         },
         {
             "member": "Sugawara Satsuki",
-            "slotsSold": ["1|1|1|1", "1|1|1|1", "|||"]
+            "slotsSold": ["1|1|1|1", "1|1|1|1", "2|2|2|2"]
         },
         {
             "member": "Tomisato Nao",
-            "slotsSold": ["1|1|1|1", "1|1|1|1", "|||"]
+            "slotsSold": ["1|1|1|1", "1|1|1|1", "2|2|2|2"]
         },
         {
             "member": "Nakanishi Aruno",
@@ -181,57 +181,57 @@
         {
             "member": "Atago Kokone",
             "pair": [[], [], ["Morihira Urumi"]],
-            "slotsSold": ["x|x|1|1", "x|x|1|", "||x|x"]
+            "slotsSold": ["x|x|1|1", "x|x|1|2", "2|2|x|x"]
         },
         {
             "member": "Okoshi Hinano",
             "pair": [[], [], ["Suzuki Yuuna", "Nagashima Rio"]],
-            "slotsSold": ["x|x||", "x|x||", "||x|x"]
+            "slotsSold": ["x|x|2|2", "x|x|2|2", "2|2|x|x"]
         },
         {
             "member": "Ozu Reina",
             "pair": [[], [], ["Yada Moeka"]],
-            "slotsSold": ["x|x||", "x|x||", "||x|x"]
+            "slotsSold": ["x|x|2|2", "x|x||", "2|2|x|x"]
         },
         {
             "member": "Kaibe Akari",
             "pair": [[], [], ["Masuda Mirine"]],
-            "slotsSold": ["|1|x|x", "||x|x", "x|x||"]
+            "slotsSold": ["2|1|x|x", "2|2|x|x", "x|x|2|2"]
         },
         {
             "member": "Kawabata Hina",
             "pair": [[], [], ["Setoguchi Mitsuki"]],
-            "slotsSold": ["||x|x", "||x|x", "x|x||"]
+            "slotsSold": ["2|2|x|x", "||x|x", "x|x|2|2"]
         },
         {
             "member": "Suzuki Yuuna",
             "pair": [[], [], ["Okoshi Hinano", "Nagashima Rio"]],
-            "slotsSold": ["x|x||", "x|x||", "||x|x"]
+            "slotsSold": ["x|x|2|2", "x|x|2|2", "2|2|x|x"]
         },
         {
             "member": "Setoguchi Mitsuki",
             "pair": [[], [], ["Kawabata Hina"]],
-            "slotsSold": ["1|1|x|x", "1|1|x|x", "x|x||"]
+            "slotsSold": ["1|1|x|x", "1|1|x|x", "x|x|2|2"]
         },
         {
             "member": "Nagashima Rio",
             "pair": [[], [], ["Suzuki Yuuna", "Okoshi Hinano"]],
-            "slotsSold": ["||x|x", "||x|x", "||x|x"]
+            "slotsSold": ["2|2|x|x", "|2|x|x", "2|2|x|x"]
         },
         {
             "member": "Masuda Mirine",
             "pair": [[], [], ["Kaibe Akari"]],
-            "slotsSold": ["x|x|1|", "x|x||", "x|x||"]
+            "slotsSold": ["x|x|1|2", "x|x|2|2", "x|x|2|2"]
         },
         {
             "member": "Morihira Urumi",
             "pair": [[], [], ["Atago Kokone"]],
-            "slotsSold": ["x|x|1|", "x|x||", "||x|x"]
+            "slotsSold": ["x|x|1|2", "x|x|2|2", "2|2|x|x"]
         },
         {
             "member": "Yada Moeka",
             "pair": [[], [], ["Ozu Reina"]],
-            "slotsSold": ["1|1|x|x", "1|1|x|x", "||x|x"]
+            "slotsSold": ["1|1|x|x", "1|1|x|x", "2|2|x|x"]
         }
     ]
 }
