@@ -21,6 +21,7 @@
     export let upToDraw = data.lastDraw;
     export let domElt;
     export let displayMethod = (t) => t;
+    export let tableTitle = (t) => `${t}次受付結果`;
 
     let compare = null;
     let blur = -1; //index of first date to unblur = number of blurred dates
@@ -99,7 +100,7 @@
 <div class="container" bind:this={domElt}>
     <table class="table-bordered">
         <caption class="text-center"
-            >{title} ( {upToDraw}次受付結果 )
+            >{title} ( {tableTitle(upToDraw)} )
             {#if compare}
                 {#if hideTable}
                     <br />

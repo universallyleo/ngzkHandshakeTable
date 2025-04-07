@@ -73,6 +73,7 @@
         {hideTable}
         {upToDraw}
         {displayMethod}
+        tableTitle={receptionDisplay}
     />
 </section>
 
