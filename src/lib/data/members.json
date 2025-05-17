@@ -978,143 +978,143 @@
         "member": "Atago Kokone",
         "kanji": "愛宕 心響",
         "furi": "あたご ここね",
-        "call": "",
+        "call": "ここねん",
         "gen": 6,
         "dob": "2005-09-17",
         "from": "兵庫",
         "bloodtype": "不明",
         "height": 160,
         "graduation": "",
-        "penlight": ["", ""]
+        "penlight": ["pink", "blue"]
     },
     {
         "member": "Okoshi Hinano",
         "kanji": "大越 ひなの",
         "furi": "おおこし ひなの",
-        "call": "",
+        "call": "ひなの",
         "gen": 6,
         "dob": "2004-12-01",
         "from": "静岡",
         "bloodtype": "B",
         "height": 164,
         "graduation": "",
-        "penlight": ["", ""]
+        "penlight": ["white", "yellow"]
     },
     {
         "member": "Ozu Reina",
         "kanji": "小津 玲奈",
         "furi": "おづ れいな",
-        "call": "",
+        "call": "小津ちゃん",
         "gen": 6,
         "dob": "2007-04-17",
         "from": "",
         "bloodtype": "AB",
         "height": 155,
         "graduation": "",
-        "penlight": ["", ""]
+        "penlight": ["purple", "turquoise"]
     },
     {
         "member": "Kaibe Akari",
         "kanji": "海邉 朱莉",
         "furi": "かいべ あかり",
-        "call": "",
+        "call": "あかり",
         "gen": 6,
         "dob": "2007-02-14",
         "from": "兵庫",
         "bloodtype": "O",
         "height": 166,
         "graduation": "",
-        "penlight": ["", ""]
+        "penlight": ["red", "blue"]
     },
     {
         "member": "Kawabata Hina",
         "kanji": "川端 晃菜",
         "furi": "かわばた ひな",
-        "call": "",
+        "call": "ひーつん",
         "gen": 6,
         "dob": "2011-01-14",
         "from": "東京",
         "bloodtype": "B",
         "height": 156,
         "graduation": "",
-        "penlight": ["", ""]
+        "penlight": ["water", "green"]
     },
     {
         "member": "Suzuki Yuuna",
         "kanji": "鈴木 佑捺",
         "furi": "すずき ゆうな",
-        "call": "",
+        "call": "ゆうな",
         "gen": 6,
         "dob": "2006-05-18",
         "from": "山梨",
         "bloodtype": "AB",
         "height": 157,
         "graduation": "",
-        "penlight": ["", ""]
+        "penlight": ["water", "white"]
     },
     {
         "member": "Setoguchi Mitsuki",
         "kanji": "瀬戸口 心月",
         "furi": "せとぐち みつき",
-        "call": "",
+        "call": "みつき",
         "gen": 6,
         "dob": "2005-07-16",
         "from": "鹿児島",
         "bloodtype": "A",
         "height": 153,
         "graduation": "",
-        "penlight": ["", ""]
+        "penlight": ["blue", "yellow"]
     },
     {
         "member": "Nagashima Rio",
         "kanji": "長嶋 凛桜",
         "furi": "ながしま りお",
-        "call": "",
+        "call": "りおたん",
         "gen": 6,
         "dob": "2007-05-25",
         "from": "北海道",
         "bloodtype": "A",
         "height": 157,
         "graduation": "",
-        "penlight": ["", ""]
+        "penlight": ["pink", "orange"]
     },
     {
         "member": "Masuda Mirine",
         "kanji": "増田 三莉音",
         "furi": "ますだ みりね",
-        "call": "",
+        "call": "みりね",
         "gen": 6,
         "dob": "2009-11-01",
         "from": "大阪",
         "bloodtype": "O",
         "height": 156,
         "graduation": "",
-        "penlight": ["", ""]
+        "penlight": ["blue", "blue"]
     },
     {
         "member": "Morihira Urumi",
         "kanji": "森平 麗心",
         "furi": "もりひら うるみ",
-        "call": "",
+        "call": "うるみん",
         "gen": 6,
         "dob": "2008-10-05",
         "from": "東京",
         "bloodtype": "A",
         "height": 156,
         "graduation": "",
-        "penlight": ["", ""]
+        "penlight": ["yellow", "yellow"]
     },
     {
         "member": "Yada Moeka",
         "kanji": "矢田 萌華",
         "furi": "やだ もえか",
-        "call": "",
+        "call": "矢田ちゃん",
         "gen": 6,
         "dob": "2008-01-27",
         "from": "秋田",
         "bloodtype": "B",
         "height": 161,
         "graduation": "",
-        "penlight": ["", ""]
+        "penlight": ["white", "purple"]
     }
 ]
