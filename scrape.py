@@ -33,8 +33,8 @@ headers = forTUNE_data["headers"]
 datafolder = "./src/lib/data/"
 
 SITEURL = "https://fortunemusic.jp"
-BASEURL = "https://fortunemusic.jp/nogizaka_202503/"
-CDNUM = 38
+BASEURL = "https://fortunemusic.jp/nogizaka_202507/"
+CDNUM = 39
 CDTYPE = "Single"
 
 NAMESDICT = {
@@ -122,7 +122,7 @@ NAMESDICT = {
     "長嶋凛桜": "Nagashima Rio",
     "増田三莉音": "Masuda Mirine",
     "森平麗心": "Morihira Urumi",
-    "矢田萌華": "Yada Moeka"
+    "矢田萌華": "Yada Moeka",
 }
 
 # if login required:
@@ -152,7 +152,7 @@ def findDate(text):
 def mbListCrawler(start, threshold=12):
     marker = start.next_sibling.next_sibling
     while len(marker) < threshold and len(marker) > 0:
-        yield re.sub('[\s+]', '',marker.replace("\n", ""))
+        yield re.sub("[\s+]", "", marker.replace("\n", ""))
         marker = marker.next_sibling.next_sibling
 
 
@@ -342,7 +342,7 @@ if __name__ == "__main__":
     #############################
     # read existed record and merge with new
     #############################
-    output_file = os.getenv('GITHUB_OUTPUT')
+    output_file = os.getenv("GITHUB_OUTPUT")
     datafile = str(f"{datafolder}{sys.argv[1]}")
     # fulldata = json.load(iopen(datafile, encoding="utf-8"))
     # cd = fulldata[len(fulldata) - 1]
@@ -355,7 +355,7 @@ if __name__ == "__main__":
         log += f"Already scraped draw {thisDraw}\nAbort process"
         print(log)
         # pass result to GITHUB_OUTPUT
-        #print("changes=none >> $GITHUB_OUTPUT")
+        # print("changes=none >> $GITHUB_OUTPUT")
         with open(output_file, "a") as myfile:
             myfile.write(f"changes=none")
         sys.exit()
@@ -400,6 +400,6 @@ if __name__ == "__main__":
 
     print(log)
     # pass result to GITHUB_OUTPUT
-    #print("changes=new >> $GITHUB_OUTPUT")
+    # print("changes=new >> $GITHUB_OUTPUT")
     with open(output_file, "a") as myfile:
         myfile.write(f"changes=new")
