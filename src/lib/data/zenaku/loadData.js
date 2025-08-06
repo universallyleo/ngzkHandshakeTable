@@ -1,4 +1,4 @@
-const recordedData = ["38Single", "37Single", "36Single"];
+const recordedData = ["39Single", "38Single", "37Single", "36Single"];
 
 const files = import.meta.glob("./*.json", {
     eager: true,
