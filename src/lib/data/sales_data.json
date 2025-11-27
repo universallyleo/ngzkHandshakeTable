@@ -243,16 +243,16 @@
         "sales": {
             "daily": [360296, 49493, 21245, 18001, 20728, 14431],
             "weekOne": 484194,
-            "accumulate": 521763,
+            "accumulate": 522690,
             "bi": {
                 "dayOne": 0,
                 "soku": 527971,
                 "weekOne": 609776,
                 "weekly": [609776],
-                "accumulate": 664266
+                "accumulate": 666256
             }
         },
-        "updated": "2025-04-02"
+        "updated": "2025-11-27"
     },
     {
         "cd": {
@@ -265,15 +265,59 @@
         "sales": {
             "daily": [376756, 48775, 20068, 16949, 11429, 9840],
             "weekOne": 483817,
-            "accumulate": 483817,
+            "accumulate": 541209,
             "bi": {
-                "dayOne": 0,
+                "dayOne": 591354,
                 "soku": 546752,
                 "weekOne": 611511,
                 "weekly": [0],
-                "accumulate": 611511
+                "accumulate": 691470
             }
         },
-        "updated": "2025-03-31"
+        "updated": "2025-11-27"
+    },
+    {
+        "cd": {
+        "num": 39,
+        "type": "Single",
+        "title": "Same Numbers",
+        "shortTitle": "セイナン",
+        "release": "2025-07-30"
+        },
+        "sales": {
+            "daily": [435230, 45527, 42194, 32329, 21538, 18484],
+            "weekOne": 595302,
+            "accumulate": 641040,
+            "bi": {
+                "dayOne": 0,
+                "soku": 645214,
+                "weekOne": 775982,
+                "weekly": [0],
+                "accumulate": 839542
+            }
+        },
+        "updated": "2025-11-27"
+    },
+    {
+        "cd": {
+        "num": 40,
+        "type": "Single",
+        "title": "ビリヤニ",
+        "shortTitle": "ビリヤニ",
+        "release": "2025-11-26"
+        },
+        "sales": {
+            "daily": [426808,0,0,0,0,0],
+            "weekOne": 426808,
+            "accumulate": 426808,
+            "bi": {
+                "dayOne": 0,
+                "soku": 0,
+                "weekOne": 0,
+                "weekly": [0],
+                "accumulate": 0
+            }
+        },
+        "updated": "2025-11-27"
     }
 ]
