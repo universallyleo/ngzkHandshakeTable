@@ -307,17 +307,16 @@
         "release": "2025-11-26"
         },
         "sales": {
-            "daily": [426808,0,0,0,0,0],
-            "weekOne": 426808,
-            "accumulate": 426808,
+            "daily": [426808,45035,31570,20033,16388,14346],
+            "weekOne": 554180,
+            "accumulate": 554180,
             "bi": {
-                "dayOne": 0,
-                "soku": 0,
-                "weekOne": 0,
+                "soku": 640360,
+                "weekOne": 736722,
                 "weekly": [0],
-                "accumulate": 0
+                "accumulate": 736722
             }
         },
-        "updated": "2025-11-27"
+        "updated": "2025-12-01"
     }
 ]
