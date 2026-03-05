@@ -21,20 +21,19 @@ jobs:
             contents: write
         steps:
             - name: Check-out repo for use
-              uses: actions/checkout@v4
+              uses: actions/checkout@v6
               with:
                   # repository: universallyleo/ngzkHandshakeScrape
                   ref: main
               # token: ${{ secrets.GITHUB_TOKEN }}
               # path: ${{ env.DEVOPS_DIR }}
 
-            - name: Setup python
-              uses: actions/setup-python@v5
+            - name: Setup python and install packages
+              uses: actions/setup-python@v6
               with:
-                  python-version: "3.9" # install the python version needed
-
-            - name: Install python packages
-              run: pip install -r requirements.txt
+                  python-version: "3.13" # install the python version needed
+                  cache: "pip"
+            - run: pip install -r requirements.txt
 
             - name: Get current date
               id: date
