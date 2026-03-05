@@ -3,25 +3,25 @@ import sys
 import re
 import datetime
 import time
-import pytz
 import requests
 from io import open as iopen  # to make sure we are not using File.open
 import json
 from bs4 import BeautifulSoup
-import firebase_admin
-from firebase_admin import credentials, firestore
+import pytz
+# import firebase_admin
+# from firebase_admin import credentials, firestore
 
 
 # wait until 1400 JST
-while True:
-    time.sleep(1)
-    tokyo_tz = pytz.timezone("Asia/Tokyo")
-    current_hour = datetime.datetime.now(tokyo_tz).hour
-    current_min = datetime.datetime.now(tokyo_tz).minute
-    current_second = datetime.datetime.now(tokyo_tz).second
-    print(current_hour, current_min, current_second)
-    if current_hour >= 14 and current_second >= 5:
-        break
+# while True:
+#     time.sleep(1)
+#     tokyo_tz = pytz.timezone("Asia/Tokyo")
+#     current_hour = datetime.datetime.now(tokyo_tz).hour
+#     current_min = datetime.datetime.now(tokyo_tz).minute
+#     current_second = datetime.datetime.now(tokyo_tz).second
+#     print(current_hour, current_min, current_second)
+#     if current_hour >= 14 and current_second >= 5:
+#         break
 
 # get environment variable (stored under vercel project setting)
 forTUNE_data = json.loads(os.environ["COOKIES"])
@@ -248,36 +248,36 @@ def updateMBTable(old, new, newentry):
     return old
 
 
-def updateToFirebase(newlastdraw, tabledata):
-    firebase_cred = json.loads(os.environ["FIREBASE_KEY"])
-    #############################
-    # initialise firebase
-    #############################
-    log = "Initialising Firebase\n"
-    if not firebase_admin._apps:
-        cred = credentials.Certificate(firebase_cred)
-        firebase_admin.initialize_app(cred)
-    db = firestore.client()
-    log += "Requesting table from Firebase\n"
-    tables_ref = db.collection("tables")
-    queryres = (
-        tables_ref.where("cd.num", "==", CDNUM)
-        .where("cd.type", "==", CDTYPE)
-        .limit(1)
-        .get()[0]
-    )
-    cd_ref = queryres.reference
-    cd_fromFB = queryres.to_dict()
-    #############################
-    # Update firebase record
-    #############################
-    if cd_fromFB["lastDraw"] >= newlastdraw:
-        log += f"Already scraped draw {thisDraw}\nAbort update of Firebase\n"
-    else:
-        log += "Update data to Firebase\n"
-        cd_ref.update({"lastDraw": newlastdraw, "table": tabledata})
-        log += "Firebase update finished\n"
-    return log
+# def updateToFirebase(newlastdraw, tabledata):
+#     firebase_cred = json.loads(os.environ["FIREBASE_KEY"])
+#     #############################
+#     # initialise firebase
+#     #############################
+#     log = "Initialising Firebase\n"
+#     if not firebase_admin._apps:
+#         cred = credentials.Certificate(firebase_cred)
+#         firebase_admin.initialize_app(cred)
+#     db = firestore.client()
+#     log += "Requesting table from Firebase\n"
+#     tables_ref = db.collection("tables")
+#     queryres = (
+#         tables_ref.where("cd.num", "==", CDNUM)
+#         .where("cd.type", "==", CDTYPE)
+#         .limit(1)
+#         .get()[0]
+#     )
+#     cd_ref = queryres.reference
+#     cd_fromFB = queryres.to_dict()
+#     #############################
+#     # Update firebase record
+#     #############################
+#     if cd_fromFB["lastDraw"] >= newlastdraw:
+#         log += f"Already scraped draw {thisDraw}\nAbort update of Firebase\n"
+#     else:
+#         log += "Update data to Firebase\n"
+#         cd_ref.update({"lastDraw": newlastdraw, "table": tabledata})
+#         log += "Firebase update finished\n"
+#     return log
 
 
 ####################################################
