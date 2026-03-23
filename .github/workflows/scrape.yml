@@ -3,7 +3,7 @@ name: Update DB weekly
 on: #push
     workflow_dispatch:
     schedule:
-        - cron: "47 4 * * THU"
+        - cron: "46 4 * * THU"
 
 # env:
 #     NAME: value
@@ -51,10 +51,10 @@ jobs:
 
             - name: Prepare node if db changes
               if: steps.scrapestep.outputs.changes == 'new'
-              uses: actions/setup-node@v4
+              uses: actions/setup-node@v6
               with:
-                  node-version: 20
-                  cache: npm
+                  node-version: latest
+                  cache: "npm"
 
             - name: Install npm dependencies if db changes
               if: steps.scrapestep.outputs.changes == 'new'
