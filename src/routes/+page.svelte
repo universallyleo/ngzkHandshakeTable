@@ -81,6 +81,16 @@
 <svelte:head>
     <title>乃木坂46インタラクティブ式完売表</title>
     <meta name="description" content="乃木坂46インタラクティブ式完売表" />
+    <meta property="og:site_name" content="乃木坂46完売表" />
+    <meta property="og:title" content="乃木坂46完売表" />
+    <script type="application/ld+json">
+        {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            name: '乃木坂46完売表',
+            url: 'https://universallyleo.github.io/ngzkHandshakeTable'
+        })}
+    </script>
 </svelte:head>
 
 <div class="optionForm">
