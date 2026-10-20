@@ -2,12 +2,12 @@ name: Build on change to src
 
 on:
     push:
-    branches:
-        - main
-    paths:
-        - "src/**"
-        - "static/**"
-        - "svelte.config.js"
+        branches:
+            - main
+        paths:
+            - "src/**"
+            - "static/**"
+            - "svelte.config.js"
     #paths:
     #  - "src/**"
     #  - "static/**"
