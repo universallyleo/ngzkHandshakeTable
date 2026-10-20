@@ -1,9 +1,13 @@
 name: Build on change to src
 
 on:
-    #push:
-    #  branches:
-    #    - main
+    push:
+    branches:
+        - main
+    paths:
+        - "src/**"
+        - "static/**"
+        - "svelte.config.js"
     #paths:
     #  - "src/**"
     #  - "static/**"
@@ -31,12 +35,12 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
-              uses: actions/checkout@v4
+              uses: actions/checkout@v6
 
             - name: Install Node.js
-              uses: actions/setup-node@v4
+              uses: actions/setup-node@v7
               with:
-                  node-version: 20
+                  node-version: 26
                   cache: npm
 
             - name: Install dependencies
@@ -49,7 +53,7 @@ jobs:
                   npm run build
 
             - name: Upload Artifacts
-              uses: actions/upload-pages-artifact@v3
+              uses: actions/upload-pages-artifact@v5
               with:
                   # this should match the `pages` option in your adapter-static options
                   path: "build/"
@@ -69,4 +73,4 @@ jobs:
         steps:
             - name: Deploy
               id: deployment
-              uses: actions/deploy-pages@v4
+              uses: actions/deploy-pages@v5
