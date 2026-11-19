@@ -3,7 +3,7 @@ name: Update DB weekly
 on: #push
     workflow_dispatch:
     schedule:
-        - cron: "40 4 * * THU"
+        - cron: "50 4 * * THU"
 
 # env:
 #     NAME: value
@@ -12,6 +12,7 @@ jobs:
     modify-db:
         name: Update json file via Python
         runs-on: ubuntu-latest
+        timeout-minutes: 15
         # Expose step outputs as job outputs
         outputs:
             changes: ${{ steps.scrapestep.outputs.changes }}
